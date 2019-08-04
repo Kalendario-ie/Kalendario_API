@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appointment_manager/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="18" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="18" />
+              <folding>
+                <element signature="e#643#675#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/appointment_manager/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="138" column="17" lean-forward="true" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>static</find>
+      <find>static_roo</find>
+      <find>customer</find>
+      <find>da</find>
+      <find>appointment.ob</find>
+      <find>date</find>
+      <find>timedetal</find>
+      <find>timedelta</find>
+      <find>print</find>
+      <find>raise</find>
+      <find>impo</find>
+      <find>temp</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>datetime.timedelta</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/scheduling/templates/scheduling/index.html" />
+        <option value="$PROJECT_DIR$/scheduling/views/home.py" />
+        <option value="$PROJECT_DIR$/scheduling/templates/scheduling/staff.html" />
+        <option value="$PROJECT_DIR$/scheduling/templates/scheduling/staff/index.html" />
+        <option value="$PROJECT_DIR$/scheduling/templates/scheduling/staff/details.html" />
+        <option value="$PROJECT_DIR$/appointment_manager/templates/scheduling/staff/index.html" />
+        <option value="$PROJECT_DIR$/templates/base2.html" />
+        <option value="$PROJECT_DIR$/static/css/site.css" />
+        <option value="$PROJECT_DIR$/scheduling/views/appointment.py" />
+        <option value="$PROJECT_DIR$/scheduling/views/customer.py" />
+        <option value="$PROJECT_DIR$/templates/scheduling/customer/index.html" />
+        <option value="$PROJECT_DIR$/templates/scheduling/staff/index.html" />
+        <option value="$PROJECT_DIR$/templates/scheduling/customer/details.html" />
+        <option value="$PROJECT_DIR$/templates/scheduling/services/index.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/templates/scheduling/services/details.html" />
+        <option value="$PROJECT_DIR$/test/sigmond.py" />
+        <option value="$PROJECT_DIR$/test/graphs.py" />
+        <option value="$PROJECT_DIR$/test/main.py" />
+        <option value="$PROJECT_DIR$/serializers.ts" />
+        <option value="$PROJECT_DIR$/serializers.py" />
+        <option value="$PROJECT_DIR$/scheduling/api-urls.py" />
+        <option value="$PROJECT_DIR$/scheduling/urls-api.py" />
+        <option value="$PROJECT_DIR$/scheduling/admin.py" />
+        <option value="$PROJECT_DIR$/scheduling/views/staff.py" />
+        <option value="$PROJECT_DIR$/scheduling/api/urls.py" />
+        <option value="$PROJECT_DIR$/scheduling/api/views.py" />
+        <option value="$PROJECT_DIR$/scheduling/api/serializers.py" />
+        <option value="$PROJECT_DIR$/templates/scheduling/staff/details.html" />
+        <option value="$PROJECT_DIR$/templates/scheduling/home.html" />
+        <option value="$PROJECT_DIR$/templates/home.html" />
+        <option value="$PROJECT_DIR$/scheduling/urls.py" />
+        <option value="$PROJECT_DIR$/scheduling/serializers.py" />
+        <option value="$PROJECT_DIR$/scheduling/CustomException.py" />
+        <option value="$PROJECT_DIR$/scheduling/tests.py" />
+        <option value="$PROJECT_DIR$/scheduling/customException.py" />
+        <option value="$PROJECT_DIR$/scheduling/views.py" />
+        <option value="$PROJECT_DIR$/scheduling/models.py" />
+        <option value="$PROJECT_DIR$/scheduling/utility.py" />
+        <option value="$PROJECT_DIR$/appointment_manager/urls.py" />
+        <option value="$PROJECT_DIR$/templates/registration/login.html" />
+        <option value="$PROJECT_DIR$/appointment_manager/settings.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
+              <item name="appointment_manager" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
+              <item name="scheduling" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="registration" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PyCharm 2019.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\development\Python\Projects\appointment_manager\scheduling" />
+      <recent name="C:\development\Python\Projects\appointment_manager\templates" />
+      <recent name="C:\development\Python\Projects\appointment_manager\scheduling\api" />
+      <recent name="C:\development\Python\Projects\appointment_manager\appointment_manager" />
+      <recent name="C:\development\Python\Projects\appointment_manager" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Django server.appointment_manager">
+    <configuration name="Test: appointment_manager" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="appointment_manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="appointment_manager" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: scheduling" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="appointment_manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="scheduling" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: scheduling.tests.AppointmentTest.test_two_appointments_start_on_end" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="appointment_manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="scheduling.tests.AppointmentTest.test_two_appointments_start_on_end" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: scheduling.tests.SlotTest" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="appointment_manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="scheduling.tests.SlotTest" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: " type="DjangoTestsConfigurationType">
+      <module name="appointment_manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="true" />
+      <option name="OPTIONS" value="--noinput" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="appointment_manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="appointment_manager" type="Python.DjangoServer" factoryName="Django server">
+      <module name="appointment_manager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="appointment_manager.settings" />
+      </envs>
+      <option name="SDK_HOME" value="C:\development\Python\virtual environments\appointment_manager\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8080" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.appointment_manager" />
+      <item itemvalue="Django tests.Test: " />
+      <item itemvalue="Django tests.Test: scheduling.tests.AppointmentTest.test_two_appointments_start_on_end" />
+      <item itemvalue="Django tests.Test: scheduling" />
+      <item itemvalue="Django tests.Test: appointment_manager" />
+      <item itemvalue="Django tests.Test: scheduling.tests.SlotTest" />
+      <item itemvalue="Python.main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: scheduling.tests.SlotTest" />
+        <item itemvalue="Django tests.Test: scheduling.tests.AppointmentTest.test_two_appointments_start_on_end" />
+        <item itemvalue="Django tests.Test: scheduling" />
+        <item itemvalue="Django tests.Test: appointment_manager" />
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="" />
+      <created>1562791749541</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1562791749541</updated>
+      <workItem from="1562791769841" duration="13441000" />
+      <workItem from="1563308539251" duration="2499000" />
+      <workItem from="1563375643130" duration="7353000" />
+      <workItem from="1563441749056" duration="18633000" />
+      <workItem from="1563480733732" duration="1164000" />
+      <workItem from="1563542833217" duration="93000" />
+      <workItem from="1563543447577" duration="3634000" />
+      <workItem from="1563568923174" duration="7408000" />
+      <workItem from="1563612387888" duration="7445000" />
+      <workItem from="1563715457096" duration="806000" />
+      <workItem from="1563798362762" duration="2801000" />
+      <workItem from="1563836323597" duration="3208000" />
+      <workItem from="1563868851940" duration="1301000" />
+      <workItem from="1563905264290" duration="11364000" />
+      <workItem from="1564657433094" duration="20298000" />
+      <workItem from="1564819554283" duration="11949000" />
+      <workItem from="1564945243690" duration="1613000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 13h 06m 09s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 13h 06m 28s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 13h 07m 07s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 13h 07m 27s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 13h 08m 20s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 13h 08m 52s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 13h 16m 02s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 15h 27m 20s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 15h 34m 09s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_SlotTest - 2019.08.03 at 15h 37m 35s.xml">
+      <configuration name="Test: scheduling.tests.SlotTest" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="115010000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.17324094" />
+      <window_info id="Structure" order="1" sideWeight="0.5023847" side_tool="true" weight="0.2889126" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="1" />
+      <window_info anchor="bottom" id="Version Control" order="2" />
+      <window_info anchor="bottom" id="Python Console" order="3" weight="0.39761648" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.34127843" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="12" weight="0.32936078" />
+      <window_info anchor="bottom" id="TypeScript" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/appointment_manager_API$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1564694814846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/appointment_manager$Test__scheduling_tests_AppointmentTest_test_two_appointments_start_on_end.coverage" NAME="Test: scheduling.tests.AppointmentTest.test_two_appointments_start_on_end Coverage Results" MODIFIED="1563444367471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/appointment_manager$Test__appointment_manager.coverage" NAME="Test: appointment_manager Coverage Results" MODIFIED="1563442595302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/appointment_manager$main.coverage" NAME="main Coverage Results" MODIFIED="1563379140925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_SlotTest.coverage" NAME="Test: scheduling.tests.SlotTest Coverage Results" MODIFIED="1564843049350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/appointment_manager$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1563447800661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/appointment_manager$Test__scheduling.coverage" NAME="Test: scheduling Coverage Results" MODIFIED="1563443124712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/appointment_manager$Test__scheduling_tests_AppointmentTest_test_add_appointment_scheduled_day_correct_time.coverage" NAME="Test: scheduling.tests.AppointmentTest.test_add_appointment_scheduled_day_correct_time Coverage Results" MODIFIED="1562792950072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../virtual environments/appointment_manager/Lib/site-packages/django/core/checks/urls.py" />
+    <entry file="file://$PROJECT_DIR$/scheduling/templates/scheduling/staff.html" />
+    <entry file="file://$PROJECT_DIR$/scheduling/templates/scheduling/index.html" />
+    <entry file="file://$PROJECT_DIR$/../../virtual environments/appointment_manager/Lib/site-packages/django/shortcuts.py" />
+    <entry file="file://$PROJECT_DIR$/static/css/site.css" />
+    <entry file="file://$PROJECT_DIR$/../../virtual environments/appointment_manager/Lib/site-packages/django/views/generic/list.py" />
+    <entry file="file://$PROJECT_DIR$/templates/scheduling/staff/index.html" />
+    <entry file="file://$PROJECT_DIR$/scheduling/views/customer.py" />
+    <entry file="file://$PROJECT_DIR$/templates/scheduling/customers/index.html" />
+    <entry file="file://$PROJECT_DIR$/templates/scheduling/customers/details.html" />
+    <entry file="file://$PROJECT_DIR$/templates/base.html" />
+    <entry file="file://$PROJECT_DIR$/templates/scheduling/services/index.html" />
+    <entry file="file://$PROJECT_DIR$/templates/scheduling/services/details.html" />
+    <entry file="file://$PROJECT_DIR$/test/graphs.py" />
+    <entry file="file://$PROJECT_DIR$/test/main.py" />
+    <entry file="file://$PROJECT_DIR$/scheduling/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serializers.ts" />
+    <entry file="file://$PROJECT_DIR$/scheduling/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/api/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/scheduling/views/appointment.py" />
+    <entry file="file://$PROJECT_DIR$/scheduling/views/staff.py" />
+    <entry file="file://$PROJECT_DIR$/scheduling/views/home.py" />
+    <entry file="file://$PROJECT_DIR$/../../virtual environments/appointment_manager/Lib/site-packages/rest_framework/routers.py" />
+    <entry file="file://$PROJECT_DIR$/../../virtual environments/appointment_manager/Lib/site-packages/django/contrib/auth/models.py" />
+    <entry file="file://$PROJECT_DIR$/../../virtual environments/appointment_manager/Lib/site-packages/rest_framework/exceptions.py" />
+    <entry file="file://$PROJECT_DIR$/templates/scheduling/staff/details.html" />
+    <entry file="file://$PROJECT_DIR$/scheduling/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/1925633756/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="488" column="4" selection-start-line="488" selection-start-column="4" selection-end-line="488" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Lib/codeop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/db/models/fields/related.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4134">
+          <caret line="1101" column="8" selection-start-line="1101" selection-start-column="8" selection-end-line="1101" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Lib/tkinter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="3304" column="8" selection-start-line="3304" selection-start-column="8" selection-end-line="3304" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/urls/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" lean-forward="true" selection-start-column="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="815">
+          <caret line="306" lean-forward="true" selection-start-line="306" selection-end-line="306" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-477">
+          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/utility.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/customException.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/contrib/auth/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2142">
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/contrib/auth/urls.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appointment_manager/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="18" />
+          <folding>
+            <element signature="e#643#675#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appointment_manager/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="138" column="17" lean-forward="true" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

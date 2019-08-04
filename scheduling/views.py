@@ -1,0 +1,77 @@
+from rest_framework import viewsets
+
+from scheduling.customException import InvalidActionException
+from scheduling.serializers import *
+from scheduling.models import Appointment, Employee
+from django.contrib.auth.models import User
+
+import datetime
+from django.http import JsonResponse, HttpResponseForbidden
+
+from scheduling.utility import get_availability_for_service
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class AppointmentViewSet(viewsets.ModelViewSet):
+    serializer_class = AppointmentSerializer
+
+    def get_queryset(self):
+        queryset = Appointment.objects.all()
+
+        employee = self.request.query_params.get('employee')
+        if employee is not None:
+            queryset = queryset.filter(employee=employee)
+
+        year = self.request.query_params.get('year')
+        if year is not None:
+            queryset = queryset.filter(start__year=year)
+
+        month = self.request.query_params.get('month')
+        if month is not None:
+            queryset = queryset.filter(start__month=month)
+
+        day = self.request.query_params.get('day')
+        if day is not None:
+            queryset = queryset.filter(start__day=day)
+
+        from_date = self.request.query_params.get('from_date')
+        if from_date is not None:
+            queryset = queryset.filter(start__gte=from_date)
+
+        to_date = self.request.query_params.get('to_date')
+        if to_date is not None:
+            queryset = queryset.filter(start__lte=to_date)
+
+        return queryset
+
+
+class EmployeeViewSet(viewsets.ModelViewSet):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+
+def slot_list(request):
+    year = request.GET.get('year')
+    month = request.GET.get('month')
+    day = request.GET.get('day')
+    employee_id = request.GET.get('employee')
+    service_id = request.GET.get('service')
+
+    employee = Employee.objects.get(id=employee_id)
+    service = Service.objects.get(id=service_id)
+
+    date = datetime.datetime(int(year), int(month), int(day))
+
+    try:
+        slots = get_availability_for_service(employee, date, service)
+        slots = list(map(lambda slot: slot.__dict__(), slots))
+        # TODO: find way to return list without having to set safe to false
+        return JsonResponse(slots, safe=False)
+    except InvalidActionException as e:
+        return HttpResponseForbidden(str(e))
+
+
