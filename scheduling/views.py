@@ -1,19 +1,20 @@
 from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from scheduling.customException import InvalidActionException
 from scheduling.serializers import *
-from scheduling.models import Appointment, Employee
-from django.contrib.auth.models import User
+from scheduling.models import *
 
 import datetime
 from django.http import JsonResponse, HttpResponseForbidden
 
-from scheduling.utility import get_availability_for_service
+from scheduling.availability import get_availability_for_service
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):

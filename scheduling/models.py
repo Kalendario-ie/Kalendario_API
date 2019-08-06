@@ -1,7 +1,6 @@
-from django.db import models
-import datetime
-
-from scheduling.customException import ModelCreationFailedException
+from core.models import User
+from scheduling.manager import *
+from django.conf import settings
 
 
 class TimeFrame(models.Model):
@@ -113,28 +112,14 @@ class Employee(Person):
         return False
 
 
-class Customer(Person):
-    pass
+class Customer(User):
+    is_staff = False
+    is_superuser = False
 
+    class Meta:
+        proxy = True
 
-class AppointmentManager(models.Manager):
-    def create(self, *args, **kwargs):
-        employee = kwargs['employee']
-        service = kwargs['service']
-        start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
-        end = start + datetime.timedelta(hours=service.duration.hour, minutes=service.duration.minute)
-        service_id = service.id
-
-        if start.date() <= datetime.date.today():
-            raise ModelCreationFailedException('Date can\'t be on the past')
-
-        if not employee.provides_service():
-            raise ModelCreationFailedException('Employee doesn\'t provide this service')
-
-        if not employee.is_available(start, end):
-            raise ModelCreationFailedException('No time available for the date selected')
-
-        return super().create(*args, **kwargs)
+    objects = CustomerManager()
 
 
 class Appointment(models.Model):
@@ -152,7 +137,7 @@ class Appointment(models.Model):
 
     def __str__(self):
         return "{customer} on {date} from {start} to {end} {service} with {emp}".format(
-            customer=self.customer.name,
+            customer=self.customer.first_name,
             date=self.start.date(),
             start=self.start.time(),
             end=self.end(),

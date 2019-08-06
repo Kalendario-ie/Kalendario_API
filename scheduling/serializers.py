@@ -1,20 +1,21 @@
-from json import JSONEncoder
-import json
-import datetime
-
 from rest_framework import serializers
-from django.contrib.auth.models import User
 from rest_framework.exceptions import PermissionDenied
-from scheduling.models import Employee, Appointment, Service
+from scheduling.models import *
 from scheduling.customException import ModelCreationFailedException
-from scheduling.utility import Slot
 
 
-# Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class CustomerSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
     class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'is_staff')
+        model = Customer
+        fields = ('email', 'password', 'first_name', 'last_name')
+
+    def create(self, validated_data):
+        user = super(CustomerSerializer, self).create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
