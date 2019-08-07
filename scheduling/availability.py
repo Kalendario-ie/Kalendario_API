@@ -26,7 +26,7 @@ class Slot:
         return Slot(date.replace(hour=start.hour, minute=start.minute), date.replace(hour=end.hour, minute=end.minute))
 
     def __str__(self):
-        return '{start} - {end}'.format(start=self.start, end=self.end)
+        return '{start} - {end}'.format(start=self.start.isoformat(), end=self.end.isoformat())
 
     def __dict__(self):
         return {'start': self.start.isoformat(), 'end': self.end.isoformat()}
@@ -38,19 +38,19 @@ def get_availability(employee: Employee, date_time: datetime.datetime):
     :param date_time: type of datetime.datetime
     :return: a list of slots the start / end times should be exactly the available times
     """
+    if date_time.date() <= datetime.date.today():
+        raise InvalidActionException("Date can't be in the past")
+
     frames = employee.get_availability(date_time)
     appointments = employee.appointment_set.filter(start__year=date_time.year, start__month=date_time.month,
                                                    start__day=date_time.day)
     slots = list(map(lambda x: Slot.create_slot(date_time, x.start, x.end), frames))
 
-    if date_time.date() <= datetime.date.today():
-        raise InvalidActionException("Date can't be in the past")
-
     # goes through appointments removing the time of an appointment from the slot belongs to
     for appointment in appointments:
         for i in range(len(slots)):
             slot = slots[i]
-            if appointment.start >= slot.start:
+            if appointment.start >= slot.start and appointment.end() <= slot.end:
                 slots = slots[:i] + [Slot(slot.start, appointment.start),
                                      Slot(appointment.end(), slot.end)] + slots[i + 1:]
     return slots

@@ -2,13 +2,13 @@ from django.test import TestCase
 from scheduling.models import *
 from datetime import datetime, time
 
-from scheduling.tests.util import next_monday, next_tuesday, add_schedule, TestHelper
+from scheduling.tests.util import next_monday, next_tuesday, schedule_a, TestHelper
 
 
 class ScheduleTest(TestCase):
 
     def setUp(self):
-        schedule = add_schedule()
+        schedule = schedule_a()
         self.assertIsNotNone(schedule)
 
     def test_get_availability_scheduled_day(self):
@@ -33,6 +33,9 @@ class AppointmentTest(TestCase):
     def setUp(self):
         self.helper = TestHelper()
 
+    def tearDown(self):
+        self.helper.tearDown()
+
     def test_add_appointment_unscheduled_day(self):
         print('test_add_appointment_unscheduled_day')
 
@@ -53,7 +56,7 @@ class AppointmentTest(TestCase):
 
     def test_add_appointment_scheduled_day_correct_time(self):
         print('test_add_appointment_scheduled_day_correct_time')
-
+        print(next_tuesday())
         appointment_date = next_tuesday().replace(hour=9, minute=0)
         appointment = self.helper.book_appointment(appointment_date)
         self.assertIsInstance(appointment, Appointment)
@@ -173,4 +176,23 @@ class AppointmentTest(TestCase):
                           self.helper.book_appointment,
                           appointment_1_date)
 
+
+    def appointment_between_2_appointments_exact_times(self):
+        """
+        Booking an appointment that starts at another end and finishes at another start
+        :return:
+        """
+        print('appointment_between_2_appointments_exact_times')
+
+        appointment_1_date = next_tuesday().replace(hour=9, minute=0)
+        appointment = self.helper.book_appointment(appointment_1_date)
+        self.assertIsInstance(appointment, Appointment)
+
+        appointment_2_date = next_tuesday().replace(hour=10, minute=0)
+        appointment2 = self.helper.book_appointment(appointment_2_date)
+        self.assertIsInstance(appointment2, Appointment)
+
+        appointment_3_date = next_tuesday().replace(hour=9, minute=30)
+        appointment3 = self.helper.book_appointment(appointment_3_date)
+        self.assertIsInstance(appointment3, Appointment)
 

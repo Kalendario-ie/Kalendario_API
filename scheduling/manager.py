@@ -12,7 +12,6 @@ class AppointmentManager(models.Manager):
         service = kwargs['service']
         start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
         end = start + datetime.timedelta(hours=service.duration.hour, minutes=service.duration.minute)
-        service_id = service.id
 
         if start.date() <= datetime.date.today():
             raise ModelCreationFailedException('Date can\'t be on the past')
