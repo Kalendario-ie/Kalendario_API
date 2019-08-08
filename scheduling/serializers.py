@@ -18,20 +18,6 @@ class CustomerSerializer(serializers.ModelSerializer):
         return user
 
 
-class AppointmentSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Appointment
-        fields = ('start', 'end', 'employee', 'service', 'customer')
-
-    def create(self, validated_data):
-        try:
-            appoint = Appointment.objects.create(**validated_data)
-            return appoint
-        except ModelCreationFailedException as e:
-            raise PermissionDenied({"message": str(e)})
-
-
 class ServiceSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -46,3 +32,27 @@ class EmployeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = ('id', 'name', 'instagram', 'email', 'phone', 'services')
 
+
+class AppointmentReadSerializer(serializers.ModelSerializer):
+
+    customer = CustomerSerializer(read_only=True)
+    employee = EmployeeSerializer(read_only=True)
+    service = ServiceSerializer(read_only=True)
+
+    class Meta:
+        model = Appointment
+        fields = ('start', 'end', 'employee', 'service', 'customer')
+
+
+class AppointmentWriteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Appointment
+        fields = ('start', 'end', 'employee', 'service', 'customer')
+
+    def create(self, validated_data):
+        try:
+            appoint = Appointment.objects.create(**validated_data)
+            return appoint
+        except ModelCreationFailedException as e:
+            raise PermissionDenied({"message": str(e)})

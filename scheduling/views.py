@@ -18,10 +18,23 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
-    serializer_class = AppointmentSerializer
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
+
+    def get_serializer_class(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return AppointmentReadSerializer
+        return AppointmentWriteSerializer
 
     def get_queryset(self):
         queryset = Appointment.objects.all()
+
+        # employees and customers should only be able to see their own appointments
+        if self.request.user.is_staff and not self.request.user.is_superuser:
+            queryset = queryset.filter(employee_id=self.request.user.id)
+
+        if not self.request.user.is_staff and not self.request.user.is_superuser:
+            queryset = queryset.filter(customer_id=self.request.user.id)
 
         employee = self.request.query_params.get('employee')
         if employee is not None:
@@ -46,6 +59,10 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         to_date = self.request.query_params.get('to_date')
         if to_date is not None:
             queryset = queryset.filter(start__lte=to_date)
+
+        customer = self.request.query_params.get('customer')
+        if customer is not None:
+            queryset = queryset.filter(customer__id=customer)
 
         return queryset
 
