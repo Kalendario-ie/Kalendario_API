@@ -1,3 +1,6 @@
 django
 gunicorn
 django-heroku
+django-rest-auth
+djangorestframework
+django-cors-headers
