@@ -1,5 +1,5 @@
 from core.models import User
-from scheduling.manager import *
+from scheduling.managers import *
 from django.conf import settings
 
 
@@ -21,13 +21,13 @@ class Shift(models.Model):
 
 class Schedule(models.Model):
     name = models.CharField(max_length=20)
-    mon = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, related_name='mon')
-    tue = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, related_name='tue')
-    wed = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, related_name='wed')
-    thu = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, related_name='thu')
-    fri = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, related_name='fri')
-    sat = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, related_name='sat')
-    sun = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, related_name='sun')
+    mon = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='mon')
+    tue = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='tue')
+    wed = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='wed')
+    thu = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='thu')
+    fri = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='fri')
+    sat = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='sat')
+    sun = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='sun')
 
     def get_availability(self, date):
         dayofweek = date.weekday()
@@ -55,15 +55,6 @@ class Schedule(models.Model):
         return self.name
 
 
-class Person(models.Model):
-    name = models.CharField(max_length=120)
-    email = models.EmailField()
-    phone = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.name
-
-
 class Service(models.Model):
     name = models.CharField(max_length=120)
     duration = models.TimeField()
@@ -75,10 +66,19 @@ class Service(models.Model):
         return self.name
 
 
-class Employee(Person):
-    schedule = models.ForeignKey(Schedule, on_delete=models.SET_NULL, null='true')
+class Employee(models.Model):
+    phone = models.CharField(max_length=20)
+    schedule = models.ForeignKey(Schedule, on_delete=models.SET_NULL, null=True, blank=True)
     services = models.ManyToManyField(Service)
     instagram = models.CharField(max_length=200, null=True)
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def name(self):
+        return self.user.first_name + ' ' + self.user.last_name
+
+    def email(self):
+        return self.user.email
 
     def provides_service(self, service: Service):
         return self.services.filter(id=service.id).first() is not None

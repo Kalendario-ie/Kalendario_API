@@ -16,7 +16,7 @@ class ShiftAdmin(admin.ModelAdmin):
 
 class ScheduleAdmin(admin.ModelAdmin):
     fieldset = [
-        (None, {'fields': ['mon']}),
+        (None, {'fields': ['name']}),
     ]
 
 
