@@ -4,3 +4,5 @@ django-heroku
 django-rest-auth
 djangorestframework
 django-cors-headers
+dj_database_url
+python-dotenv
