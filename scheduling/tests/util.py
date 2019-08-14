@@ -1,5 +1,6 @@
 from datetime import *
 
+from core.models import User
 from scheduling.models import Shift, TimeFrame, Schedule, Service, Employee, Customer, Appointment
 
 
@@ -48,28 +49,32 @@ class TestHelper:
 
         schedule = schedule_a()
 
-        self.emp = Employee.objects.create(
-            name='Employee A',
-            email='gustavo@email.com',
-            phone='0988',
-            schedule=schedule,
-        )
-        self.emp.services.add(self.service)
-        self.emp.save()
+        user = User.objects.create(email='employee@email.com')
 
-        self.customer = Customer.objects.create(
-            first_name='Customer',
-            email='gustavo@email.com',
+        self.employeeA = Employee.objects.create(
+            schedule=schedule,
+            user=user
         )
+        self.employeeA.services.add(self.service)
+        self.employeeA.save()
+
+        c1 = Customer.objects.create(email='c1@email.com')
+        c1.set_password('1234')
+        c1.save()
+        self.customerA = c1
+        c2 = Customer.objects.create(email='c2@email.com')
+        c2.set_password('1234')
+        c2.save()
+        self.customerB = c2
 
     def book_appointment_with_service(self, start, service):
         print('Booking a {time} service appointment on {date}'.format(time=self.service.duration, date=start))
         try:
-            print(self.emp.schedule)
+            print(self.employeeA.schedule)
             appointment = Appointment.objects.create(start=start,
                                                      service=service,
-                                                     customer=self.customer,
-                                                     employee=self.emp)
+                                                     customer=self.customerA,
+                                                     employee=self.employeeA)
         except Exception as e:
             print('failed to create appointment: ' + str(e), end='\n\n')
             raise

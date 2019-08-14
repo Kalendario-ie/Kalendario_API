@@ -6,3 +6,4 @@ djangorestframework
 django-cors-headers
 dj_database_url
 python-dotenv
+django-seed

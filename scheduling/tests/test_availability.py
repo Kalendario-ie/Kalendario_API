@@ -7,14 +7,14 @@ from scheduling.tests.util import *
 class SlotTest(TestCase):
     def setUp(self):
         self.helper = TestHelper()
-        self.emp = self.helper.emp
-        print(self.helper.emp.schedule.thu)
+        self.emp = self.helper.employeeA
+        print(self.helper.employeeA.schedule.thu)
 
     def tearDown(self):
         self.helper.tearDown()
 
     def get_slots(self, date_to_check):
-        return get_availability_for_service(self.helper.emp, date_to_check, self.helper.service)
+        return get_availability_for_service(self.helper.employeeA, date_to_check, self.helper.service)
 
     def test_day_without_appointments(self):
         print("test_day_without_appointments", end="\n\n")

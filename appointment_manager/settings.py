@@ -50,10 +50,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_auth',
-
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders'
+
+    'corsheaders',
+
+    'django_seed',
+
 ]
 
 REST_FRAMEWORK = {
@@ -67,7 +70,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
         'rest_framework.permissions.AllowAny'
-    ]
+    ],
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
 }
 
 MIDDLEWARE = [
