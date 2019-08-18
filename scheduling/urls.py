@@ -2,7 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 from scheduling.customer.views import CustomerAppointmentViewSet
 from scheduling.employee.views import EmployeeAppointmentViewSet
-from scheduling.views import slot_list, EmployeeViewSet, CustomerViewSet
+from scheduling.views import EmployeeViewSet, CustomerViewSet
 
 router = routers.DefaultRouter()
 router.register(r'employees', EmployeeViewSet)
@@ -13,7 +13,6 @@ router.register(r'employee/appointments', EmployeeAppointmentViewSet, base_name=
 
 
 urlpatterns = [
-    path("slots/", slot_list, name="slot-list"),
     path(r'', include(router.urls)),
     path(r'', include('rest_framework.urls', namespace='rest_framework')),
 ]

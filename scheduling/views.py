@@ -1,6 +1,6 @@
 import datetime
 
-from django.http import JsonResponse, HttpResponseForbidden
+from django.http import HttpResponseBadRequest, HttpResponseForbidden
 from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
@@ -11,27 +11,6 @@ from scheduling.customException import InvalidActionException
 from scheduling.customer.serializers import CustomerSerializer
 from scheduling.serializers import EmployeeSerializer, AppointmentReadSerializer, AppointmentWriteSerializer
 from scheduling.models import Employee, Service, Appointment, Customer
-
-
-def slot_list(request):
-    year = request.GET.get('year')
-    month = request.GET.get('month')
-    day = request.GET.get('day')
-    employee_id = request.GET.get('employee')
-    service_id = request.GET.get('service')
-
-    employee = Employee.objects.get(id=employee_id)
-    service = Service.objects.get(id=service_id)
-
-    date = datetime.datetime(int(year), int(month), int(day))
-
-    try:
-        slots = get_availability_for_service(employee, date, service)
-        slots = list(map(lambda slot: slot.__dict__(), slots))
-        # TODO: find way to return list without having to set safe to false
-        return JsonResponse(slots, safe=False)
-    except InvalidActionException as e:
-        return HttpResponseForbidden(str(e))
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
@@ -45,6 +24,38 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
 
         return HttpResponseForbidden({'error': 'not an employee'})
+
+    @action(detail=True, methods=['get'])
+    def slots(self, request, pk=None):
+        date = request.GET.get('date')
+        if date is None:
+            return HttpResponseBadRequest('date is required')
+
+        service_id = request.GET.get('service')
+        if service_id is None:
+            return HttpResponseBadRequest('service is required')
+
+        try:
+            employee = Employee.objects.get(id=pk)
+        except Employee.DoesNotExist:
+            return HttpResponseBadRequest('invalid employee id')
+
+        try:
+            service = Service.objects.get(id=service_id)
+        except Service.DoesNotExist:
+            return HttpResponseBadRequest('invalid service id')
+
+        try:
+            date = datetime.datetime.fromisoformat(date)
+        except ValueError as e:
+            return HttpResponseBadRequest(str(e))
+
+        try:
+            slots = get_availability_for_service(employee, date, service)
+            slots = list(map(lambda slot: slot.__dict__(), slots))
+            return Response(slots)
+        except InvalidActionException as e:
+            return HttpResponseForbidden(str(e))
 
 
 class CustomerViewSet(viewsets.ModelViewSet):

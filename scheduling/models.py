@@ -126,6 +126,8 @@ class Customer(User):
     objects = CustomerManager()
 
 
+# TODO: when a appointment is booked by a client it should be marked as unconfirmed
+#  The employee has to confirm the appointment
 class Appointment(models.Model):
     start = models.DateTimeField()
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
