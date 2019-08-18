@@ -71,8 +71,9 @@ class Employee(models.Model):
     schedule = models.ForeignKey(Schedule, on_delete=models.SET_NULL, null=True, blank=True)
     services = models.ManyToManyField(Service)
     instagram = models.CharField(max_length=200, null=True)
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    objects = EmployeeManager()
 
     def name(self):
         return self.user.first_name + ' ' + self.user.last_name
@@ -115,6 +116,9 @@ class Employee(models.Model):
 class Customer(User):
     is_staff = False
     is_superuser = False
+
+    def name(self):
+        return self.first_name + ' ' + self.last_name
 
     class Meta:
         proxy = True

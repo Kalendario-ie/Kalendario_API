@@ -15,3 +15,6 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = UserManager()
+
+    def is_employee(self):
+        return hasattr(self, 'employee')

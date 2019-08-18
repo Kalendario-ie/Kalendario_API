@@ -1,12 +1,15 @@
 from django.urls import include, path
 from rest_framework import routers
-import scheduling.customer.views as customer
-from scheduling.views import slot_list, EmployeeViewSet
+from scheduling.customer.views import CustomerAppointmentViewSet
+from scheduling.employee.views import EmployeeAppointmentViewSet
+from scheduling.views import slot_list, EmployeeViewSet, CustomerViewSet
 
 router = routers.DefaultRouter()
 router.register(r'employees', EmployeeViewSet)
-router.register(r'customer/appointments', customer.AppointmentViewSet, base_name='appointment')
-router.register(r'customer/register', customer.CustomerViewSet)
+router.register(r'customers', CustomerViewSet)
+
+router.register(r'customer/appointments', CustomerAppointmentViewSet, base_name='c-appointment')
+router.register(r'employee/appointments', EmployeeAppointmentViewSet, base_name='e-appointment')
 
 
 urlpatterns = [

@@ -29,3 +29,10 @@ class CustomerManager(UserManager):
 
     def all(self):
         return super().all().filter(is_staff=False, is_superuser=False)
+
+
+class EmployeeManager(models.Manager):
+    def create(self, *args, **kwargs):
+        user = kwargs['user']
+        user.is_staff = True
+        return super().create(*args, **kwargs)
