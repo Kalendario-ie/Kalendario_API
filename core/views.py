@@ -25,10 +25,4 @@ class UserViewSet(viewsets.GenericViewSet):
 class ObtainAuthUserView(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
-        token = super(ObtainAuthUserView, self).post(request, args, kwargs)
-        user_email = request.data['username']
-        user = User.objects.filter(email=user_email).first()
-        serializer = UserSerializer(user)
-        token.data['user'] = serializer.data
-
-        return token
+        return super(ObtainAuthUserView, self).post(request, args, kwargs)
