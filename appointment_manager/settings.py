@@ -15,14 +15,13 @@ import django_heroku
 import dj_database_url
 import dotenv
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # load environment variables from .env
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
-        dotenv.load_dotenv(dotenv_file)
+    dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -38,6 +37,22 @@ ALLOWED_HOSTS = []
 CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.AllowAny'
+    ],
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    # )
+}
 INSTALLED_APPS = [
     'scheduling.apps.SchedulingConfig',
     'core.apps.CoreConfig',
@@ -48,33 +63,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
-    'rest_auth',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'rest_auth.registration',
 
     'corsheaders',
 
     'django_seed',
 
 ]
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication'
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-        'rest_framework.permissions.AllowAny'
-    ],
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    )
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -134,7 +137,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 LOGIN_REDIRECT_URL = '/'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1
+
 AUTH_USER_MODEL = 'core.User'
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'core.serializers.CustomRegisterSerializer'
+}
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
