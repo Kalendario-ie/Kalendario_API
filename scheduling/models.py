@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from core.models import User
 from scheduling.managers import *
 from django.conf import settings
@@ -71,7 +72,7 @@ class Employee(models.Model):
     schedule = models.ForeignKey(Schedule, on_delete=models.SET_NULL, null=True, blank=True)
     services = models.ManyToManyField(Service)
     instagram = models.CharField(max_length=200, null=True)
-    profile_img = models.ImageField(null=True, blank=True)
+    profile_img = CloudinaryField('image', null=True, blank=True)
     bio = models.TextField(max_length=600, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 

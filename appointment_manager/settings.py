@@ -78,6 +78,9 @@ INSTALLED_APPS = [
 
     'django_seed',
 
+    #cloudinary image uploader
+    'cloudinary',
+
 ]
 
 MIDDLEWARE = [
@@ -212,3 +215,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
+

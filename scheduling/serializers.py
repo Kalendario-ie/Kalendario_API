@@ -18,7 +18,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ('id', 'name', 'instagram', 'email', 'phone', 'services')
+        fields = ('id', 'name', 'instagram', 'email', 'phone', 'services', 'profile_img', 'bio')
 
 
 class AppointmentReadSerializer(serializers.ModelSerializer):
