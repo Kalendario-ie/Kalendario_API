@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment_manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/appointment_manager/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,20 +14,7 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/appointment_manager/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="102" column="4" selection-start-line="102" selection-start-column="4" selection-end-line="102" selection-end-column="4" />
-              <folding>
-                <element signature="e#320#329#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -42,7 +28,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>user</find>
       <find>func</find>
       <find>authentica</find>
       <find>pro</find>
@@ -72,6 +57,7 @@
       <find>static</find>
       <find>d</find>
       <find>cors</find>
+      <find>temp/</find>
     </findStrings>
     <replaceStrings>
       <replace>datetime.timedelta</replace>
@@ -166,7 +152,7 @@
             <path>
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
               <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
-              <item name="staticfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -178,7 +164,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ASI/Python/TakadaCSVConverter" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/staticfiles" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -187,11 +173,12 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\development\appointment_manager\appointment_manager_API\staticfiles" />
       <recent name="C:\development\appointment_manager\appointment_manager_API" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\development\appointment_manager\appointment_manager_API\staticfiles" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\static" />
+      <recent name="C:\development\appointment_manager\appointment_manager_API\staticfiles" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\customers" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\views" />
       <recent name="C:\development\appointment_manager\appointment_manager_API" />
@@ -395,7 +382,7 @@
       <workItem from="1566423642841" duration="15936000" />
       <workItem from="1566490415140" duration="5361000" />
       <workItem from="1566556261589" duration="9602000" />
-      <workItem from="1566915109507" duration="4275000" />
+      <workItem from="1566915109507" duration="5183000" />
     </task>
     <servers />
   </component>
@@ -432,7 +419,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315684000" />
+    <option name="totallyTimeSpent" value="316592000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -446,7 +433,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.17750533" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.17750533" />
       <window_info id="Structure" order="1" sideWeight="0.5023847" side_tool="true" weight="0.2889126" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
@@ -457,7 +444,7 @@
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.4978678" weight="0.24918744" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" visible="true" weight="0.40628386" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" visible="true" weight="0.40628386" />
       <window_info anchor="bottom" id="Run" order="9" sideWeight="0.4968017" weight="0.26218852" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
@@ -515,25 +502,6 @@
     <SUITE FILE_PATH="coverage/appointment_manager$Test__scheduling_tests_AppointmentTest_test_add_appointment_scheduled_day_correct_time.coverage" NAME="Test: scheduling.tests.AppointmentTest.test_add_appointment_scheduled_day_correct_time Coverage Results" MODIFIED="1562792950072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scheduling/customer/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="69" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="69" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/rest_framework/authtoken/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-446">
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/test/testcases.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -754,8 +722,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/staticfiles/ang/index.html" />
-    <entry file="file://$PROJECT_DIR$/staticfiles/ang/index.html" />
+    <entry file="file://$PROJECT_DIR$/static/ang/index.html" />
+    <entry file="file://$PROJECT_DIR$/static/ang/index.html" />
     <entry file="file://$PROJECT_DIR$/core/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -874,6 +842,12 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/staticfiles.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/staticfiles/ang/main.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
