@@ -141,7 +141,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = dotenv.dotenv_values()['EMAIL_HOST']
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST_USER = dotenv.dotenv_values()['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = dotenv.dotenv_values()['EMAIL_HOST_PASSWORD']
 
 SITE_ID = 1
 
