@@ -34,7 +34,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    "https://localhost:4200",
+]
 # Application definition
 
 REST_FRAMEWORK = {

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment_manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/appointment_manager/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,29 +19,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/appointment_manager/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="213" column="8" selection-start-line="213" selection-start-column="2" selection-end-line="213" selection-end-column="8" />
+            <state relative-caret-position="200">
+              <caret line="102" column="4" selection-start-line="102" selection-start-column="4" selection-end-line="102" selection-end-column="4" />
               <folding>
                 <element signature="e#320#329#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/dj_database_url.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="63" column="46" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -59,8 +42,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>manager</find>
-      <find>from</find>
       <find>user</find>
       <find>func</find>
       <find>authentica</find>
@@ -89,6 +70,8 @@
       <find>whiteno</find>
       <find>white</find>
       <find>static</find>
+      <find>d</find>
+      <find>cors</find>
     </findStrings>
     <replaceStrings>
       <replace>datetime.timedelta</replace>
@@ -183,7 +166,7 @@
             <path>
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
               <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="staticfiles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -203,14 +186,14 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PyCharm 2019.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\development\appointment_manager\appointment_manager_API" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\development\appointment_manager\appointment_manager_API\staticfiles" />
+      <recent name="C:\development\appointment_manager\appointment_manager_API\static" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\customers" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\views" />
-      <recent name="C:\development\appointment_manager\appointment_manager_API" />
-      <recent name="C:\development\appointment_manager\appointment_manager_API\core\tests" />
-      <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\tests" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\development\appointment_manager\appointment_manager_API" />
     </key>
   </component>
@@ -412,7 +395,7 @@
       <workItem from="1566423642841" duration="15936000" />
       <workItem from="1566490415140" duration="5361000" />
       <workItem from="1566556261589" duration="9602000" />
-      <workItem from="1566915109507" duration="2778000" />
+      <workItem from="1566915109507" duration="4275000" />
     </task>
     <servers />
   </component>
@@ -449,7 +432,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="314187000" />
+    <option name="totallyTimeSpent" value="315684000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -463,7 +446,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.17750533" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.17750533" />
       <window_info id="Structure" order="1" sideWeight="0.5023847" side_tool="true" weight="0.2889126" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
@@ -474,7 +457,7 @@
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.4978678" weight="0.24918744" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" visible="true" weight="0.40628386" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" visible="true" weight="0.40628386" />
       <window_info anchor="bottom" id="Run" order="9" sideWeight="0.4968017" weight="0.26218852" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
@@ -772,7 +755,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/staticfiles/ang/index.html" />
-    <entry file="file://$PROJECT_DIR$/static/ang/index.html" />
+    <entry file="file://$PROJECT_DIR$/staticfiles/ang/index.html" />
     <entry file="file://$PROJECT_DIR$/core/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -868,6 +851,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/dj_database_url.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="60" column="17" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -875,17 +865,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/dj_database_url.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="63" column="46" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appointment_manager/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="213" column="8" selection-start-line="213" selection-start-column="2" selection-end-line="213" selection-end-column="8" />
+        <state relative-caret-position="200">
+          <caret line="102" column="4" selection-start-line="102" selection-start-column="4" selection-end-line="102" selection-end-column="4" />
           <folding>
             <element signature="e#320#329#0" expanded="true" />
           </folding>
