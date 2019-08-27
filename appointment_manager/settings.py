@@ -143,11 +143,11 @@ LOGIN_REDIRECT_URL = '/'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = dotenv.dotenv_values()['EMAIL_HOST']
+EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
-EMAIL_HOST_USER = dotenv.dotenv_values()['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = dotenv.dotenv_values()['EMAIL_HOST_PASSWORD']
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 
 SITE_ID = 1
 
@@ -195,8 +195,8 @@ SOCIALACCOUNT_PROVIDERS = \
         'VERSION': 'v2.4'}}
 
 #facebook
-SOCIAL_AUTH_FACEBOOK_KEY = dotenv.dotenv_values()['FACEBOOK_APP_ID']
-SOCIAL_AUTH_FACEBOOK_SECRET = dotenv.dotenv_values()['FACEBOOK_APP_SECRET']
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ['FACEBOOK_APP_ID']
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['FACEBOOK_APP_SECRET']
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
