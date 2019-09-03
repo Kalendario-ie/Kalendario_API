@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scheduling/employee/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment_manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/appointment_manager/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/availability.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/availability.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/customer/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/customer/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/customer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/employee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/employee/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/managers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/tests/test_availability.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/test_availability.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/tests/test_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/test_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/tests/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/ang/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/ang/3rdpartylicenses.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/ang/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/ang/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/ang/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +47,7 @@
             <entry file="file://$PROJECT_DIR$/scheduling/customer/views.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="289">
-                  <caret line="17" selection-start-line="17" selection-end-line="17" />
+                  <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
                   <folding>
                     <element signature="e#0#54#0" expanded="true" />
                   </folding>
@@ -256,24 +242,24 @@
             <path>
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
               <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
-              <item name="appointment_manager" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
               <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
-              <item name="scheduling" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="ang" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
               <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
-              <item name="scheduling" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
+              <item name="staticfiles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
               <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
-              <item name="scheduling" type="462c0819:PsiDirectoryNode" />
-              <item name="employee" type="462c0819:PsiDirectoryNode" />
+              <item name="staticfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="ang" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -507,7 +493,7 @@
       <workItem from="1567114409380" duration="8619000" />
       <workItem from="1567154064234" duration="7061000" />
       <workItem from="1567183680572" duration="6461000" />
-      <workItem from="1567464487729" duration="6802000" />
+      <workItem from="1567464487729" duration="8779000" />
     </task>
     <servers />
   </component>
@@ -544,7 +530,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364435000" />
+    <option name="totallyTimeSpent" value="366412000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -558,7 +544,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49761525" weight="0.17750533" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.17750533" />
       <window_info id="Structure" order="1" sideWeight="0.5023847" side_tool="true" weight="0.2889126" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
@@ -956,16 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/customer/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scheduling/employee/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -992,6 +968,16 @@
           <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/customer/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
