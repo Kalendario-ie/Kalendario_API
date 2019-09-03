@@ -1,5 +1,6 @@
 from rest_framework.permissions import IsAuthenticated
 
+from scheduling.customer.serializers import CustomerAppointmentWriteSerializer
 from scheduling.permissions import IsCustomer
 from scheduling.views import AppointmentViewSet
 
@@ -11,5 +12,6 @@ class CustomerAppointmentViewSet(AppointmentViewSet):
         return queryset.filter(customer_id=self.request.user.id)
 
     def get_serializer_class(self):
-        self.request.data['customer'] = self.request.user.id
+        if self.action == 'create' or self.action == 'update' or self.action == 'partial_update':
+            return CustomerAppointmentWriteSerializer
         return super().get_serializer_class()

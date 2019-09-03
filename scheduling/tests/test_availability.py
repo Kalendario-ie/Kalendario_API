@@ -14,7 +14,9 @@ class SlotTest(TestCase):
         self.helper.tearDown()
 
     def get_slots(self, date_to_check):
-        return get_availability_for_service(self.helper.employeeA, date_to_check, self.helper.service)
+        return get_availability_for_service(self.helper.employeeA, self.helper.service,
+                                            date_to_check.replace(hour=0, minute=0),
+                                            date_to_check.replace(hour=23, minute=59))
 
     def test_day_without_appointments(self):
         print("test_day_without_appointments", end="\n\n")
@@ -80,7 +82,7 @@ class SlotTest(TestCase):
         self.assertEqual(len(slots), 13)
 
     def test_slot_(self):
-        print('test_shift_with_break', end='\n\n')
+        print('test_slot_', end='\n\n')
 
         appointment_1_date = next_tuesday().replace(hour=9, minute=0)
         appointment_2_date = next_tuesday().replace(hour=10, minute=0)
@@ -92,3 +94,14 @@ class SlotTest(TestCase):
             self.assertEqual(slot.duration(), self.helper.service.duration_delta())
 
         self.assertEqual(len(slots), 12)
+
+    def test_rejected_appointment(self):
+        print("test_rejected_appointment", end="\n\n")
+
+        appointment_1_date = next_wednesday().replace(hour=9, minute=15)
+        appointment = self.helper.book_appointment(appointment_1_date)
+
+        self.helper.reject_appointment(appointment)
+
+        slots = self.get_slots(appointment_1_date)
+        self.assertEqual(len(slots), 17)

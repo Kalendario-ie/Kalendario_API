@@ -3,11 +3,11 @@ from rest_framework.exceptions import PermissionDenied
 from scheduling.models import Appointment, ModelCreationFailedException
 
 
-class CustomerAppointmentWriteSerializer(serializers.ModelSerializer):
+class EmployeeAppointmentWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
-        fields = ('id', 'start', 'end', 'employee', 'service', 'customer')
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'status')
 
     def create(self, validated_data):
         try:

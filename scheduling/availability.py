@@ -32,20 +32,18 @@ class Slot:
         return {'start': self.start.isoformat(), 'end': self.end.isoformat()}
 
 
-def get_availability(employee: Employee, date_time: datetime.datetime):
-    """
-    :param employee: Employee
-    :param date_time: type of datetime.datetime
-    :return: a list of slots the start / end times should be exactly the available times
-    """
-    if date_time.date() <= datetime.date.today():
+def get_availability(employee: Employee, start, end):
+    if start.date() <= datetime.date.today():
         raise InvalidActionException("Date can't be in the past")
 
-    frames = employee.get_availability(date_time)
-    appointments = employee.appointment_set.filter(start__year=date_time.year, start__month=date_time.month,
-                                                   start__day=date_time.day)
-    slots = list(map(lambda x: Slot.create_slot(date_time, x.start, x.end), frames))
+    day = start
+    slots = []
+    while day < end:
+        frames = employee.get_availability(day)
+        slots.extend(list(map(lambda x: Slot.create_slot(day, x.start, x.end), frames)))
+        day = day + datetime.timedelta(days=1)
 
+    appointments = employee.confirmed_appointments(start, end)
     # goes through appointments removing the time of an appointment from the slot belongs to
     for appointment in appointments:
         for i in range(len(slots)):
@@ -56,12 +54,12 @@ def get_availability(employee: Employee, date_time: datetime.datetime):
     return slots
 
 
-def get_availability_for_service(employee: Employee, date_time: datetime, service: Service) -> list:
+def get_availability_for_service(employee: Employee, service: Service, start, end) -> list:
 
     if not employee.provides_service(service):
         raise InvalidActionException("Employee doesn't provide the service specified")
 
     result = []
-    for slot in get_availability(employee, date_time):
+    for slot in get_availability(employee, start, end):
         result.extend(slot.breakdown_slot(service.duration_delta()))
     return result

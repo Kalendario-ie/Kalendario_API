@@ -90,6 +90,11 @@ class Employee(models.Model):
     def get_availability(self, date):
         return self.schedule.get_availability(date)
 
+    def confirmed_appointments(self, start, end):
+        return self.appointment_set.filter(start__gte=start,
+                                           start__lte=end,
+                                           status__in=[Appointment.ACCEPTED, Appointment.PENDING])
+
     # To be available the times must fit inside a frame and not overlap existing appointments
     def is_available(self, start, end):
         return self.__has_availability__(start, end) and not self.__is_overlapping__(start, end)
@@ -104,10 +109,8 @@ class Employee(models.Model):
 
     # Check if the appointment overlaps with any other appointment already booked.
     def __is_overlapping__(self, start, end):
-        date = start.date()
-        appointments = self.appointment_set.filter(start__year=date.year,
-                                                   start__month=date.month,
-                                                   start__day=date.day)
+        appointments = self.confirmed_appointments(start, end)
+
         for appointment in appointments:
             if appointment.start <= start < appointment.end():
                 return True
@@ -132,10 +135,22 @@ class Customer(User):
 # TODO: when a appointment is booked by a client it should be marked as unconfirmed
 #  The employee has to confirm the appointment
 class Appointment(models.Model):
+    PENDING = 'P'
+    ACCEPTED = 'A'
+    REJECTED = 'R'
+
+    STATUS_CHOICES = [
+        (PENDING, 'Pending'),
+        (ACCEPTED, 'Accepted'),
+        (REJECTED, 'Rejected'),
+    ]
+
     start = models.DateTimeField()
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
+
     objects = AppointmentManager()
 
     def day(self):

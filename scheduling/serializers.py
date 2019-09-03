@@ -2,8 +2,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 
 from scheduling.customException import ModelCreationFailedException
-from scheduling.customer.serializers import CustomerSerializer
-from scheduling.models import Service, Employee, Appointment
+from scheduling.models import Service, Employee, Appointment, Customer
 
 
 class ServiceSerializer(serializers.ModelSerializer):
@@ -11,6 +10,20 @@ class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
         fields = '__all__'
+
+
+class CustomerSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = Customer
+        fields = ('id', 'email', 'password', 'first_name', 'last_name', 'name')
+
+    def create(self, validated_data):
+        user = super(CustomerSerializer, self).create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
@@ -29,18 +42,17 @@ class AppointmentReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
-        fields = ('start', 'end', 'employee', 'service', 'customer')
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'status')
 
 
-class AppointmentWriteSerializer(serializers.ModelSerializer):
+class SlotSerializer(serializers.Serializer):
+    start = serializers.DateTimeField()
+    end = serializers.DateTimeField()
+    service = serializers.IntegerField()
 
-    class Meta:
-        model = Appointment
-        fields = ('start', 'end', 'employee', 'service', 'customer')
-
-    def create(self, validated_data):
+    def validate_service(self, service):
         try:
-            appoint = Appointment.objects.create(**validated_data)
-            return appoint
-        except ModelCreationFailedException as e:
-            raise PermissionDenied({"message": str(e)})
+            s = Service.objects.get(pk=service)
+            return s
+        except Service.DoesNotExist:
+            raise serializers.ValidationError('Invalid service id')

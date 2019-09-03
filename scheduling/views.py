@@ -1,16 +1,13 @@
-import datetime
-
-from django.http import HttpResponseBadRequest, HttpResponseForbidden
-from rest_framework import viewsets, mixins
+from django.http import HttpResponseForbidden
+from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from scheduling.availability import get_availability_for_service
 from scheduling.customException import InvalidActionException
-from scheduling.customer.serializers import CustomerSerializer
-from scheduling.serializers import EmployeeSerializer, AppointmentReadSerializer, AppointmentWriteSerializer
-from scheduling.models import Employee, Service, Appointment, Customer
+from scheduling.serializers import EmployeeSerializer, AppointmentReadSerializer, SlotSerializer, CustomerSerializer
+from scheduling.models import Employee, Appointment, Customer
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
@@ -27,31 +24,10 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def slots(self, request, pk=None):
-        date = request.GET.get('date')
-        if date is None:
-            return HttpResponseBadRequest('date is required')
-
-        service_id = request.GET.get('service')
-        if service_id is None:
-            return HttpResponseBadRequest('service is required')
-
+        serializer = SlotSerializer(data=request.GET)
+        serializer.is_valid(raise_exception=True)
         try:
-            employee = Employee.objects.get(id=pk)
-        except Employee.DoesNotExist:
-            return HttpResponseBadRequest('invalid employee id')
-
-        try:
-            service = Service.objects.get(id=service_id)
-        except Service.DoesNotExist:
-            return HttpResponseBadRequest('invalid service id')
-
-        try:
-            date = datetime.datetime.fromisoformat(date)
-        except ValueError as e:
-            return HttpResponseBadRequest(str(e))
-
-        try:
-            slots = get_availability_for_service(employee, date, service)
+            slots = get_availability_for_service(**serializer.validated_data, employee=self.get_object())
             slots = list(map(lambda slot: slot.__dict__(), slots))
             return Response(slots)
         except InvalidActionException as e:
@@ -72,11 +48,8 @@ class CustomerViewSet(viewsets.ModelViewSet):
         return Response(result)
 
 
-class AppointmentViewSet(mixins.ListModelMixin,
-                         mixins.CreateModelMixin,
-                         viewsets.GenericViewSet):
-
-    authentication_classes = (TokenAuthentication, )
+class AppointmentViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
 
     def custom_queryset_filter(self, queryset):
         return queryset
@@ -84,7 +57,6 @@ class AppointmentViewSet(mixins.ListModelMixin,
     def get_serializer_class(self):
         if self.action == 'list' or self.action == 'retrieve':
             return AppointmentReadSerializer
-        return AppointmentWriteSerializer
 
     def get_queryset(self):
         queryset = Appointment.objects.all()
@@ -106,5 +78,9 @@ class AppointmentViewSet(mixins.ListModelMixin,
         to_date = self.request.query_params.get('to_date')
         if to_date is not None:
             queryset = queryset.filter(start__lte=to_date)
+
+        status = self.request.query_params.get('status')
+        if status is not None:
+            queryset = queryset.filter(status=status)
 
         return queryset

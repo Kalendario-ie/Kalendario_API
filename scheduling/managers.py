@@ -11,16 +11,16 @@ class AppointmentManager(models.Manager):
         employee = kwargs['employee']
         service = kwargs['service']
         start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
-        end = start + datetime.timedelta(hours=service.duration.hour, minutes=service.duration.minute)
+        end = start + service.duration_delta()
 
         if start.date() <= datetime.date.today():
-            raise ModelCreationFailedException('Date can\'t be on the past')
+            raise ModelCreationFailedException(r'Date can\'t be on the past')
 
         if not employee.provides_service(service):
-            raise ModelCreationFailedException('Employee doesn\'t provide this service')
+            raise ModelCreationFailedException(r'Employee doesn\'t provide this service')
 
         if not employee.is_available(start, end):
-            raise ModelCreationFailedException('No time available for the date selected')
+            raise ModelCreationFailedException(r'No time available for the date selected')
 
         return super().create(*args, **kwargs)
 

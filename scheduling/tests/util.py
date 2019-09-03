@@ -86,6 +86,10 @@ class TestHelper:
     def book_appointment(self, start):
         return self.book_appointment_with_service(start, self.service)
 
+    def reject_appointment(self, appointment):
+        appointment.status = appointment.REJECTED
+        appointment.save()
+
     def tearDown(self):
         Appointment.objects.all().delete()
         Employee.objects.all().delete()

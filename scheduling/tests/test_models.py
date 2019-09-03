@@ -20,7 +20,7 @@ class ScheduleTest(TestCase):
         self.assertEquals(availability[0].end, time(13, 00))
 
         self.assertEquals(availability[1].start, time(14))
-        self.assertEquals(availability[1].end, time(18))
+        self.assertEquals(availability[1].end, time(17))
 
     def test_get_availability_unscheduled_day(self):
         schedule = Schedule.objects.filter(name='simple schedule').first()
@@ -176,7 +176,6 @@ class AppointmentTest(TestCase):
                           self.helper.book_appointment,
                           appointment_1_date)
 
-
     def appointment_between_2_appointments_exact_times(self):
         """
         Booking an appointment that starts at another end and finishes at another start
@@ -195,4 +194,21 @@ class AppointmentTest(TestCase):
         appointment_3_date = next_tuesday().replace(hour=9, minute=30)
         appointment3 = self.helper.book_appointment(appointment_3_date)
         self.assertIsInstance(appointment3, Appointment)
+
+    def test_appointment_finishing_in_middle_of_another_canceled(self):
+        """
+        Booking an appointment that starts at another end and finishes at another start
+        :return:
+        """
+        print('test_appointment_finishing_in_middle_of_another_canceled')
+
+        appointment_1_date = next_tuesday().replace(hour=9, minute=30)
+        appointment = self.helper.book_appointment(appointment_1_date)
+        self.assertIsInstance(appointment, Appointment)
+
+        self.helper.reject_appointment(appointment)
+
+        appointment_2_date = next_tuesday().replace(hour=9, minute=15)
+        appointment2 = self.helper.book_appointment(appointment_2_date)
+        self.assertIsInstance(appointment2, Appointment)
 
