@@ -7,7 +7,7 @@ class CustomerAppointmentWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
-        fields = ('id', 'start', 'end', 'employee', 'service', 'customer')
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'customer_notes')
 
     def create(self, validated_data):
         try:

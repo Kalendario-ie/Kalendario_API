@@ -42,7 +42,7 @@ class AppointmentReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
-        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'status')
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'status', 'customer_notes')
 
 
 class SlotSerializer(serializers.Serializer):

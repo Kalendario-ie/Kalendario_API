@@ -150,6 +150,7 @@ class Appointment(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
+    customer_notes = models.TextField(max_length=255, null=True, blank=True)
 
     objects = AppointmentManager()
 
