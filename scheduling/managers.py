@@ -11,7 +11,7 @@ class AppointmentManager(models.Manager):
         employee = kwargs['employee']
         service = kwargs['service']
         start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
-        end = start + service.duration_delta()
+        end = kwargs['end'] = start + service.duration_delta()
 
         if start.date() <= datetime.date.today():
             raise ModelCreationFailedException(r'Date can\'t be on the past')

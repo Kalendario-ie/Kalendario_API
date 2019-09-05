@@ -56,3 +56,22 @@ class SlotSerializer(serializers.Serializer):
             return s
         except Service.DoesNotExist:
             raise serializers.ValidationError('Invalid service id')
+
+
+class AppointmentWriteSerializer(serializers.ModelSerializer):
+    end = serializers.DateTimeField(required=False)
+
+    class Meta:
+        model = Appointment
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'customer_notes', 'status')
+
+    def create(self, validated_data):
+        try:
+            appoint = Appointment.objects.create(**validated_data)
+            return appoint
+        except ModelCreationFailedException as e:
+            raise PermissionDenied({"message": str(e)})
+
+    def get_validation_exclusions(self):
+        exclusions = super(AppointmentWriteSerializer, self).get_validation_exclusions()
+        return exclusions + ['end']

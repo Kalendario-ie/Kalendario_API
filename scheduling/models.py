@@ -91,9 +91,9 @@ class Employee(models.Model):
         return self.schedule.get_availability(date)
 
     def confirmed_appointments(self, start, end):
-        return self.appointment_set.filter(start__gte=start,
-                                           start__lte=end,
-                                           status__in=[Appointment.ACCEPTED, Appointment.PENDING])
+        appointments = self.baseappointment_set.filter(start__gte=start, start__lte=end)
+        appointments = filter(lambda x:  x.is_active(), appointments)
+        return appointments
 
     # To be available the times must fit inside a frame and not overlap existing appointments
     def is_available(self, start, end):
@@ -112,9 +112,9 @@ class Employee(models.Model):
         appointments = self.confirmed_appointments(start, end)
 
         for appointment in appointments:
-            if appointment.start <= start < appointment.end():
+            if appointment.start <= start < appointment.end:
                 return True
-            if appointment.start < end <= appointment.end():
+            if appointment.start < end <= appointment.end:
                 return True
         return False
 
@@ -132,9 +132,19 @@ class Customer(User):
     objects = CustomerManager()
 
 
+class BaseAppointment(models.Model):
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    objects = AppointmentManager()
+
+    def is_active(self):
+        return True
+
+
 # TODO: when a appointment is booked by a client it should be marked as unconfirmed
 #  The employee has to confirm the appointment
-class Appointment(models.Model):
+class Appointment(BaseAppointment):
     PENDING = 'P'
     ACCEPTED = 'A'
     REJECTED = 'R'
@@ -145,27 +155,20 @@ class Appointment(models.Model):
         (REJECTED, 'Rejected'),
     ]
 
-    start = models.DateTimeField()
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
     customer_notes = models.TextField(max_length=255, null=True, blank=True)
 
-    objects = AppointmentManager()
-
-    def day(self):
-        return self.start.date()
-
-    def end(self):
-        return self.start + datetime.timedelta(hours=self.service.duration.hour, minutes=self.service.duration.minute)
+    def is_active(self):
+        return self.status != Appointment.REJECTED
 
     def __str__(self):
         return "{customer} on {date} from {start} to {end} {service} with {emp}".format(
             customer=self.customer.first_name,
             date=self.start.date(),
             start=self.start.time(),
-            end=self.end(),
+            end=self.end,
             service=self.service.name,
             emp=self.employee.name
         )

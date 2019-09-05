@@ -1,17 +1,9 @@
-from rest_framework import serializers
-from rest_framework.exceptions import PermissionDenied
-from scheduling.models import Appointment, ModelCreationFailedException
+from scheduling.models import Appointment
+from scheduling.serializers import AppointmentWriteSerializer
 
 
-class CustomerAppointmentWriteSerializer(serializers.ModelSerializer):
+class CustomerAppointmentWriteSerializer(AppointmentWriteSerializer):
 
     class Meta:
         model = Appointment
         fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'customer_notes')
-
-    def create(self, validated_data):
-        try:
-            appoint = Appointment.objects.create(**validated_data)
-            return appoint
-        except ModelCreationFailedException as e:
-            raise PermissionDenied({"message": str(e)})
