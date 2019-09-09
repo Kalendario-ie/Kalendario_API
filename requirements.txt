@@ -10,3 +10,4 @@ python-dotenv
 django-seed
 Pillow
 cloudinary
+django-model-utils

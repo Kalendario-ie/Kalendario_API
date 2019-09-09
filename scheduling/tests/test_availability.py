@@ -8,10 +8,9 @@ class SlotTest(TestCase):
     def setUp(self):
         self.helper = TestHelper()
         self.emp = self.helper.employeeA
-        print(self.helper.employeeA.schedule.thu)
 
     def tearDown(self):
-        self.helper.tearDown()
+        tearDown()
 
     def get_slots(self, date_to_check):
         return get_availability_for_service(self.helper.employeeA, self.helper.service,
@@ -101,7 +100,7 @@ class SlotTest(TestCase):
         appointment_1_date = next_wednesday().replace(hour=9, minute=15)
         appointment = self.helper.book_appointment(appointment_1_date)
 
-        self.helper.reject_appointment(appointment)
+        reject_appointment(appointment)
 
         slots = self.get_slots(appointment_1_date)
         self.assertEqual(len(slots), 17)

@@ -2,7 +2,7 @@ from django.test import TestCase
 from scheduling.models import *
 from datetime import datetime, time
 
-from scheduling.tests.util import next_monday, next_tuesday, schedule_a, TestHelper
+from scheduling.tests.util import next_monday, next_tuesday, schedule_a, TestHelper, reject_appointment, tearDown
 
 
 class ScheduleTest(TestCase):
@@ -34,7 +34,7 @@ class AppointmentTest(TestCase):
         self.helper = TestHelper()
 
     def tearDown(self):
-        self.helper.tearDown()
+        tearDown()
 
     def test_add_appointment_unscheduled_day(self):
         print('test_add_appointment_unscheduled_day')
@@ -206,7 +206,7 @@ class AppointmentTest(TestCase):
         appointment = self.helper.book_appointment(appointment_1_date)
         self.assertIsInstance(appointment, Appointment)
 
-        self.helper.reject_appointment(appointment)
+        reject_appointment(appointment)
 
         appointment_2_date = next_tuesday().replace(hour=9, minute=15)
         appointment2 = self.helper.book_appointment(appointment_2_date)

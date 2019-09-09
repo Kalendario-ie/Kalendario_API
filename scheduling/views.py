@@ -6,8 +6,10 @@ from rest_framework.response import Response
 
 from scheduling.availability import get_availability_for_service
 from scheduling.customException import InvalidActionException
-from scheduling.serializers import EmployeeSerializer, AppointmentReadSerializer, SlotSerializer, CustomerSerializer
-from scheduling.models import Employee, Appointment, Customer
+from scheduling.permissions import IsEmployee
+from scheduling.serializers import EmployeeSerializer, AppointmentReadSerializer, SlotSerializer, CustomerSerializer, \
+    SelfAppointmentWriteSerializer, AppointmentWriteSerializer, SelfAppointmentReadSerializer
+from scheduling.models import Employee, Appointment, Customer, SelfAppointment
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
@@ -49,7 +51,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (TokenAuthentication, )
 
     def request_data(self):
         return self.request.data
@@ -67,9 +69,10 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == 'list' or self.action == 'retrieve':
             return AppointmentReadSerializer
+        return AppointmentWriteSerializer
 
     def get_queryset(self):
-        queryset = Appointment.objects.all()
+        queryset = base_appointment_filter(Appointment.objects.all(), self.request.query_params)
 
         queryset = self.custom_queryset_filter(queryset)
 
@@ -77,20 +80,48 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         if customer is not None:
             queryset = queryset.filter(customer=customer)
 
-        employee = self.request.query_params.get('employee')
-        if employee is not None:
-            queryset = queryset.filter(employee=employee)
-
-        from_date = self.request.query_params.get('from_date')
-        if from_date is not None:
-            queryset = queryset.filter(start__gte=from_date)
-
-        to_date = self.request.query_params.get('to_date')
-        if to_date is not None:
-            queryset = queryset.filter(start__lte=to_date)
-
-        status = self.request.query_params.get('status')
+        param_status = self.request.query_params.get('status')
         if status is not None:
-            queryset = queryset.filter(status=status)
+            queryset = queryset.filter(status=param_status)
 
         return queryset
+
+
+class SelfAppointmentViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication, IsEmployee)
+
+    def request_data(self):
+        data = self.request.data.copy()
+        data['employee'] = self.request.user.employee.id
+        return data
+
+    def get_serializer_class(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return SelfAppointmentReadSerializer
+        return SelfAppointmentWriteSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=self.request_data())
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def get_queryset(self):
+        return base_appointment_filter(SelfAppointment.objects.all(), self.request.query_params)
+
+
+def base_appointment_filter(queryset, query_params):
+    employee = query_params.get('employee')
+    if employee is not None:
+        queryset = queryset.filter(employee=employee)
+
+    from_date = query_params.get('from_date')
+    if from_date is not None:
+        queryset = queryset.filter(start__gte=from_date)
+
+    to_date = query_params.get('to_date')
+    if to_date is not None:
+        queryset = queryset.filter(start__lte=to_date)
+
+    return queryset

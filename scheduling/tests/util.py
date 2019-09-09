@@ -42,6 +42,20 @@ def schedule_a():
     )
 
 
+def reject_appointment(appointment):
+    appointment.status = appointment.REJECTED
+    appointment.save()
+
+
+def tearDown():
+    Appointment.objects.all().delete()
+    Employee.objects.all().delete()
+    Customer.objects.all().delete()
+    Schedule.objects.all().delete()
+    Shift.objects.all().delete()
+    User.objects.all().delete()
+
+
 class TestHelper:
 
     def __init__(self):
@@ -49,7 +63,7 @@ class TestHelper:
 
         schedule = schedule_a()
 
-        user = User.objects.create(email='employee@email.com')
+        user = User.objects.create(email='emp@email.com')
 
         self.employeeA = Employee.objects.create(
             schedule=schedule,
@@ -58,11 +72,11 @@ class TestHelper:
         self.employeeA.services.add(self.service)
         self.employeeA.save()
 
-        c1 = Customer.objects.create(email='c1@email.com')
+        c1 = Customer.objects.create(email='customer1@email.com')
         c1.set_password('1234')
         c1.save()
         self.customerA = c1
-        c2 = Customer.objects.create(email='c2@email.com')
+        c2 = Customer.objects.create(email='customer2@email.com')
         c2.set_password('1234')
         c2.save()
         self.customerB = c2
@@ -85,14 +99,3 @@ class TestHelper:
 
     def book_appointment(self, start):
         return self.book_appointment_with_service(start, self.service)
-
-    def reject_appointment(self, appointment):
-        appointment.status = appointment.REJECTED
-        appointment.save()
-
-    def tearDown(self):
-        Appointment.objects.all().delete()
-        Employee.objects.all().delete()
-        Customer.objects.all().delete()
-        Schedule.objects.all().delete()
-        Shift.objects.all().delete()

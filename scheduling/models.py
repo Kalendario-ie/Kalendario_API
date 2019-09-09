@@ -1,4 +1,7 @@
 from cloudinary.models import CloudinaryField
+from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
+
 from core.models import User
 from scheduling.managers import *
 from django.conf import settings
@@ -91,9 +94,8 @@ class Employee(models.Model):
         return self.schedule.get_availability(date)
 
     def confirmed_appointments(self, start, end):
-        appointments = self.baseappointment_set.filter(start__gte=start, start__lte=end)
-        appointments = filter(lambda x:  x.is_active(), appointments)
-        return appointments
+        appointments = self.baseappointment_set.filter(start__gte=start, start__lte=end).select_subclasses()
+        return list(filter(lambda x: x.is_active(), appointments))
 
     # To be available the times must fit inside a frame and not overlap existing appointments
     def is_available(self, start, end):
@@ -109,14 +111,9 @@ class Employee(models.Model):
 
     # Check if the appointment overlaps with any other appointment already booked.
     def __is_overlapping__(self, start, end):
-        appointments = self.confirmed_appointments(start, end)
-
-        for appointment in appointments:
-            if appointment.start <= start < appointment.end:
-                return True
-            if appointment.start < end <= appointment.end:
-                return True
-        return False
+        starts_or_ends_between = self.baseappointment_set.filter(
+            Q(start__gte=start, start__lt=end) | Q(end__gt=start, end__lte=end)).select_subclasses()
+        return len(list(filter(lambda x: x.is_active(), starts_or_ends_between))) > 0
 
 
 class Customer(User):
@@ -136,14 +133,22 @@ class BaseAppointment(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    objects = AppointmentManager()
 
+    objects = BaseAppointmentManager()
+
+    # System shouldn't be able to book over active appointments but it should ignore inactive
     def is_active(self):
         return True
 
+    def __str__(self):
+        return "{emp}: {start} to {end}".format(
+            date=self.start,
+            start=self.start,
+            end=self.end,
+            emp=self.employee.name()
+        )
 
-# TODO: when a appointment is booked by a client it should be marked as unconfirmed
-#  The employee has to confirm the appointment
+
 class Appointment(BaseAppointment):
     PENDING = 'P'
     ACCEPTED = 'A'
@@ -160,15 +165,23 @@ class Appointment(BaseAppointment):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
     customer_notes = models.TextField(max_length=255, null=True, blank=True)
 
+    objects = AppointmentManager()
+
     def is_active(self):
         return self.status != Appointment.REJECTED
 
     def __str__(self):
-        return "{customer} on {date} from {start} to {end} {service} with {emp}".format(
+        return "{customer} on {date} from {start} to {end} {service} with {emp}. {status}".format(
             customer=self.customer.first_name,
             date=self.start.date(),
             start=self.start.time(),
             end=self.end,
             service=self.service.name,
-            emp=self.employee.name
+            emp=self.employee.name(),
+            status=self.status
         )
+
+
+# This will lock a period without a customer, so employees can block appointments by booking this
+class SelfAppointment(BaseAppointment):
+    reason = models.TextField(max_length=255, null=True, blank=True)

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 
 from scheduling.customException import ModelCreationFailedException
-from scheduling.models import Service, Employee, Appointment, Customer
+from scheduling.models import Service, Employee, Appointment, Customer, SelfAppointment
 
 
 class ServiceSerializer(serializers.ModelSerializer):
@@ -75,3 +75,18 @@ class AppointmentWriteSerializer(serializers.ModelSerializer):
     def get_validation_exclusions(self):
         exclusions = super(AppointmentWriteSerializer, self).get_validation_exclusions()
         return exclusions + ['end']
+
+
+class SelfAppointmentWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SelfAppointment
+        fields = ('id', 'start', 'end', 'employee', 'reason')
+
+
+class SelfAppointmentReadSerializer(serializers.ModelSerializer):
+
+    employee = EmployeeSerializer(read_only=True)
+
+    class Meta:
+        model = SelfAppointment
+        fields = ('id', 'start', 'end', 'employee', 'reason')
