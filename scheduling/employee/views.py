@@ -9,6 +9,8 @@ class EmployeeAppointmentViewSet(AppointmentViewSet):
     permission_classes = (IsAuthenticated, IsEmployee)
 
     def custom_queryset_filter(self, queryset):
+        if self.request.user.has_perm('scheduling.view_appointment'):
+            return queryset
         return queryset.filter(employee_id=self.request.user.employee.id)
 
     def get_serializer_class(self):
@@ -18,5 +20,6 @@ class EmployeeAppointmentViewSet(AppointmentViewSet):
 
     def request_data(self):
         request = self.request.data.copy()
-        request['employee'] = self.request.user.employee.id
+        if not self.request.user.has_perm('scheduling.change_appointment'):
+            request['employee'] = self.request.user.employee.id
         return request
