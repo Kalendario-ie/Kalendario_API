@@ -92,7 +92,8 @@ class SelfAppointmentViewSet(viewsets.ModelViewSet):
 
     def request_data(self):
         data = self.request.data.copy()
-        data['employee'] = self.request.user.employee.id
+        if not self.request.user.has_perm('scheduling.change_appointment'):
+            data['employee'] = self.request.user.employee.id
         return data
 
     def get_serializer_class(self):
