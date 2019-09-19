@@ -2,25 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scheduling/tests/test_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/customer/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/customer/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/customer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/customer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/employee/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/employee/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/employee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/employee/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/permissions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/tests/test_customer_views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/tests/test_customers_view_set.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/tests/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/fontawesome-webfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/polyfills.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/runtime.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/styles.css" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +32,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scheduling/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="262">
-                  <caret line="45" selection-start-line="45" selection-end-line="45" />
+                <state relative-caret-position="483">
+                  <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
                   <folding>
                     <element signature="e#0#45#0" expanded="true" />
                   </folding>
@@ -474,7 +468,7 @@
       <workItem from="1568723770086" duration="20045000" />
       <workItem from="1568845435654" duration="1508000" />
       <workItem from="1568915888326" duration="1568000" />
-      <workItem from="1568923965210" duration="2976000" />
+      <workItem from="1568923965210" duration="4869000" />
     </task>
     <servers />
   </component>
@@ -511,7 +505,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="506059000" />
+    <option name="totallyTimeSpent" value="507952000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -910,8 +904,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scheduling/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="483">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
