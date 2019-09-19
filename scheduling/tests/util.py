@@ -1,5 +1,7 @@
 from datetime import *
 
+from django.contrib.auth.models import Permission, Group
+
 from core.models import User
 from scheduling.models import Shift, TimeFrame, Schedule, Service, Employee, Customer, Appointment
 
@@ -54,6 +56,7 @@ def tearDown():
     Schedule.objects.all().delete()
     Shift.objects.all().delete()
     User.objects.all().delete()
+    Group.objects.all().delete()
 
 
 class TestHelper:
@@ -61,25 +64,50 @@ class TestHelper:
     def __init__(self):
         self.service = Service.objects.create(name='service A', duration=time(0, 30))
 
+        permissions = Permission.objects.all().filter(codename__endswith='appointment')
+        schedulers_pg = Group.objects.create(name='schedulers')
+        for permission in permissions:
+            schedulers_pg.permissions.add(permission)
+
+        scheduler = User.objects.create(email='scheduler@email.com')
+        scheduler.set_password('SchedulerPassword')
+        scheduler.groups.add(schedulers_pg)
+        scheduler.save()
+        self.scheduler = scheduler
+
         schedule = schedule_a()
 
-        user = User.objects.create(email='emp@email.com')
-
+        emp_a_user = User.objects.create(email='emp_a@email.com')
         self.employeeA = Employee.objects.create(
+            first_name='Joe',
+            last_name='Bloggs',
             schedule=schedule,
-            user=user
+            user=emp_a_user
         )
         self.employeeA.services.add(self.service)
         self.employeeA.save()
 
-        c1 = Customer.objects.create(email='customer1@email.com')
-        c1.set_password('1234')
-        c1.save()
-        self.customerA = c1
-        c2 = Customer.objects.create(email='customer2@email.com')
-        c2.set_password('1234')
-        c2.save()
-        self.customerB = c2
+        emp_b_user = User.objects.create(email='emp_b@email.com')
+        self.employeeB = Employee.objects.create(
+            first_name='jane',
+            last_name='Doe',
+            schedule=schedule,
+            user=emp_b_user
+        )
+        self.employeeB.services.add(self.service)
+        self.employeeB.save()
+
+        self.customerA = Customer.objects.create(first_name='Customer', last_name='first')
+        c1_user = User.objects.create(email='c1@test.com')
+        c1_user.set_password('Customer1Pass')
+        c1_user.save()
+        self.customerA.user = c1_user
+
+        self.customerB = Customer.objects.create(first_name='Customer', last_name='second')
+        c2_user = User.objects.create(email='c2@test.com')
+        c2_user.set_password('Customer2Pass')
+        c2_user.save()
+        self.customerB.user = c2_user
 
     def book_appointment_with_service(self, start, service):
         print('Booking a {time} service appointment on {date}'.format(time=self.service.duration, date=start))

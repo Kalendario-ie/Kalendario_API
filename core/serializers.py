@@ -2,12 +2,15 @@ from rest_framework import serializers
 from rest_auth.registration.serializers import RegisterSerializer
 
 from core.models import User
+from scheduling.serializers import CustomerSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
+    person = CustomerSerializer()
+
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'is_employee', 'employee')
+        fields = ('id', 'email', 'first_name', 'last_name', 'person', 'is_employee', 'is_customer')
 
 
 class CustomRegisterSerializer(RegisterSerializer):

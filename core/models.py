@@ -17,4 +17,7 @@ class User(AbstractUser):
     objects = UserManager()
 
     def is_employee(self):
-        return hasattr(self, 'employee')
+        return hasattr(self, 'person') and hasattr(self.person, 'employee')
+
+    def is_customer(self):
+        return hasattr(self, 'person') and hasattr(self.person, 'customer')

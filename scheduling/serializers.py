@@ -13,17 +13,10 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 
 class CustomerSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
 
     class Meta:
         model = Customer
-        fields = ('id', 'email', 'password', 'first_name', 'last_name', 'name')
-
-    def create(self, validated_data):
-        user = super(CustomerSerializer, self).create(validated_data)
-        user.set_password(validated_data['password'])
-        user.save()
-        return user
+        fields = ('id', 'first_name', 'last_name', 'name', 'phone')
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
@@ -90,3 +83,32 @@ class SelfAppointmentReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = SelfAppointment
         fields = ('id', 'start', 'end', 'employee', 'reason')
+
+
+class CustomerAppointmentWriteSerializer(AppointmentWriteSerializer):
+    status = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Appointment
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'customer_notes', 'status')
+
+
+class EmployeeAppointmentWriteSerializer(AppointmentWriteSerializer):
+
+    class Meta:
+        model = Appointment
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'status', 'customer_notes')
+
+
+class AppointmentQuerySerlializer(serializers.Serializer):
+    status = serializers.CharField(required=False)
+    from_date = serializers.DateTimeField(required=False)
+    to_date = serializers.DateTimeField(required=False)
+    customer = serializers.IntegerField(required=False)
+    employee = serializers.IntegerField(required=False)
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass

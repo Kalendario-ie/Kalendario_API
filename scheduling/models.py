@@ -1,10 +1,8 @@
 from cloudinary.models import CloudinaryField
-from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 
 from core.models import User
 from scheduling.managers import *
-from django.conf import settings
 
 
 class TimeFrame(models.Model):
@@ -70,19 +68,25 @@ class Service(models.Model):
         return self.name
 
 
-class Employee(models.Model):
+class Person(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
+
+    def name(self):
+        return self.first_name + ' ' + self.last_name
+
+    def __str__(self):
+        return self.name()
+
+
+class Employee(Person):
     schedule = models.ForeignKey(Schedule, on_delete=models.SET_NULL, null=True, blank=True)
     services = models.ManyToManyField(Service)
     instagram = models.CharField(max_length=200, null=True)
     profile_img = CloudinaryField('image', null=True, blank=True)
     bio = models.TextField(max_length=600, null=True, blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    objects = EmployeeManager()
-
-    def name(self):
-        return self.user.first_name + ' ' + self.user.last_name
 
     def email(self):
         return self.user.email
@@ -116,17 +120,8 @@ class Employee(models.Model):
         return len(list(filter(lambda x: x.is_active(), starts_or_ends_between))) > 0
 
 
-class Customer(User):
-    is_staff = False
-    is_superuser = False
-
-    def name(self):
-        return self.first_name + ' ' + self.last_name
-
-    class Meta:
-        proxy = True
-
-    objects = CustomerManager()
+class Customer(Person):
+    pass
 
 
 class BaseAppointment(models.Model):
@@ -172,7 +167,7 @@ class Appointment(BaseAppointment):
 
     def __str__(self):
         return "{customer} on {date} from {start} to {end} {service} with {emp}. {status}".format(
-            customer=self.customer.first_name,
+            customer=self.customer.name(),
             date=self.start.date(),
             start=self.start.time(),
             end=self.end,
