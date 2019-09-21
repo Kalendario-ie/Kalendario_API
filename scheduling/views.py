@@ -1,5 +1,6 @@
 from django.http import HttpResponseForbidden
-from rest_framework import viewsets, status
+from django.db.models import Q
+from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
@@ -9,15 +10,15 @@ from rest_framework.response import Response
 from scheduling.availability import get_availability_for_service
 from scheduling.customException import InvalidActionException
 from scheduling.permissions import IsEmployee
-from scheduling.serializers import EmployeeSerializer, AppointmentReadSerializer, SlotSerializer, CustomerSerializer, \
-    SelfAppointmentWriteSerializer, AppointmentWriteSerializer, SelfAppointmentReadSerializer, \
-    CustomerAppointmentWriteSerializer, EmployeeAppointmentWriteSerializer, AppointmentQuerySerlializer
+from scheduling import serializers as s
 from scheduling.models import Employee, Appointment, Customer, SelfAppointment
+
+from drf_rw_serializers import viewsets
 
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+    serializer_class = s.EmployeeSerializer
 
     @action(detail=False, methods=['get'])
     def current(self, request):
@@ -29,7 +30,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def slots(self, request, pk=None):
-        serializer = SlotSerializer(data=request.GET)
+        serializer = s.SlotSerializer(data=request.GET)
         serializer.is_valid(raise_exception=True)
         try:
             slots = get_availability_for_service(**serializer.validated_data, employee=self.get_object())
@@ -46,10 +47,10 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication, )
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, IsEmployee)
 
-    serializer_class = CustomerSerializer
+    serializer_class = s.CustomerSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
@@ -57,30 +58,27 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
         search = self.request.query_params.get('search')
         if search is not None:
-            queryset = queryset.filter(first_name__istartswith=search)
+            queryset = queryset.filter(Q(first_name__icontains=search) | Q(last_name__icontains=search))
 
         return queryset
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication, )
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+    read_serializer_class = s.AppointmentReadSerializer
 
     def request_data(self):
         return self.request.data
 
-    def get_serializer_class(self):
-        if self.action == 'create' or self.action == 'update' or self.action == 'partial_update':
-            if self.request.user.is_customer():
-                return CustomerAppointmentWriteSerializer
-            if self.request.user.is_employee():
-                return EmployeeAppointmentWriteSerializer
-        if self.action == 'list' or self.action == 'retrieve':
-            return AppointmentReadSerializer
-        return AppointmentWriteSerializer
+    def get_write_serializer_class(self):
+        if self.request.user.is_customer():
+            return s.CustomerAppointmentWriteSerializer
+
+        return s.EmployeeAppointmentWriteSerializer
 
     def get_queryset(self):
-        serializer = AppointmentQuerySerlializer(data=self.request.query_params)
+        serializer = s.AppointmentQuerySerlializer(data=self.request.query_params)
         serializer.is_valid(raise_exception=True)
         params = serializer.validated_data
 
@@ -106,25 +104,20 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         if self.request.user.has_perm('scheduling.change_appointment'):
             return super().create(request, args, kwargs)
 
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = self.request.user
+        user, data = self.request.user, self.request.data
+        customer, employee = key_or_none(data, 'customer'), key_or_none(data, 'employee')
 
-        # Customers should only be able to book appointment for themselves
-        if user.is_customer() and serializer.validated_data['customer'].id != user.person.id:
+        if customer is not None and user.is_customer() and customer != user.person.id:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-        # Employees should only be able to book appointment for themselves
-        if user.is_employee() and serializer.validated_data['employee'].id != user.person.id:
+        if employee is not None and user.is_employee() and employee != user.person.id:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return super().create(request, args, kwargs)
 
 
 class SelfAppointmentViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication, )
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, IsEmployee)
 
     def create(self, request, *args, **kwargs):
@@ -137,8 +130,8 @@ class SelfAppointmentViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'list' or self.action == 'retrieve':
-            return SelfAppointmentReadSerializer
-        return SelfAppointmentWriteSerializer
+            return s.SelfAppointmentReadSerializer
+        return s.SelfAppointmentWriteSerializer
 
     def get_queryset(self):
         queryset = base_appointment_filter(SelfAppointment.objects.all(), self.request.query_params)

@@ -11,3 +11,4 @@ django-seed
 Pillow
 cloudinary
 django-model-utils
+drf-rw-serializers

@@ -1,23 +1,26 @@
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APITestCase
 from scheduling.models import Appointment, SelfAppointment, Customer
+from scheduling.tests.generics import ViewTestCase
 from scheduling.tests.util import TestHelper, next_tuesday
 
 
 # TODO: test filtering when the parameters are not right
-class AppointmentViewSetTest(APITestCase):
+class AppointmentViewSetTest(ViewTestCase):
 
     def setUp(self):
         self.helper = TestHelper()
         self.list_url = reverse('appointment-list')
 
-    def test_list_anonymous_user_access(self):
+    def test_anonymous_user_access(self):
         """
         Ensure that anonymous users have no access to list
         """
-        response = self.client.get(self.list_url)
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        appointment = Appointment.objects.create(customer=self.helper.customerA, employee=self.helper.employeeA,
+                                                 service=self.helper.service,
+                                                 start=next_tuesday().replace(hour=9, minute=00))
+        detail_url = reverse('appointment-detail', kwargs={'pk': appointment.id})
+        self.ensure_all_unauthorized(detail_url)
 
     def test_list_auth_as_customer(self):
         """
@@ -79,20 +82,20 @@ class AppointmentViewSetTest(APITestCase):
         """
         customer = self.helper.customerA
         self.client.force_authenticate(user=customer.user)
-        empId = self.helper.employeeA.id
-        serviceId = self.helper.employeeA.services.first().id
-        data = {'employee': empId,
+        emp = self.helper.employeeA
+        service = self.helper.employeeA.services.first()
+        data = {'employee': emp.id,
                 'customer': customer.id,
-                'service': serviceId,
+                'service': service.id,
                 'start': next_tuesday().replace(hour=10, minute=0).__str__()
                 }
         response = self.client.post(self.list_url, data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        self.assertEqual(response.data['employee'], empId)
-        self.assertEqual(response.data['customer'], customer.id)
-        self.assertEqual(response.data['service'], serviceId)
+        self.assertEqual(response.data['employee']['id'], emp.id)
+        self.assertEqual(response.data['customer']['id'], customer.id)
+        self.assertEqual(response.data['service']['id'], service.id)
 
     def test_create_auth_as_customer_omitting_customer(self):
         """
@@ -145,9 +148,9 @@ class AppointmentViewSetTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        self.assertEqual(response.data['employee'], emp.id)
-        self.assertEqual(response.data['customer'], customerId)
-        self.assertEqual(response.data['service'], serviceId)
+        self.assertEqual(response.data['employee']['id'], emp.id)
+        self.assertEqual(response.data['customer']['id'], customerId)
+        self.assertEqual(response.data['service']['id'], serviceId)
 
     def test_create_auth_as_employee_another_employee(self):
         """
@@ -202,26 +205,32 @@ class AppointmentViewSetTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 
-class SelfAppointmentViewSetTest(APITestCase):
+class SelfAppointmentViewSetTest(ViewTestCase):
 
     def setUp(self):
         self.helper = TestHelper()
         self.list_url = reverse('self-appointment-list')
 
-    def test_list_anonymous_user_access(self):
+    def test_anonymous_access(self):
         """
         Ensure that anonymous users have no access to list
         """
-        response = self.client.get(self.list_url)
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        sa = SelfAppointment.objects.create(employee=self.helper.employeeA,
+                                            start=next_tuesday().replace(hour=9, minute=00),
+                                            end=next_tuesday().replace(hour=10, minute=00))
+        detail_url = reverse('self-appointment-detail', kwargs={'pk': sa.id})
+        self.ensure_all_unauthorized(detail_url)
 
-    def test_list_authenticated_as_customer(self):
+    def test_customer_access(self):
         """
-        A customer shouldn't have access to this view at all
+        Ensure that anonymous users have no access to list
         """
+        sa = SelfAppointment.objects.create(employee=self.helper.employeeA,
+                                            start=next_tuesday().replace(hour=9, minute=00),
+                                            end=next_tuesday().replace(hour=10, minute=00))
+        detail_url = reverse('self-appointment-detail', kwargs={'pk': sa.id})
         self.client.force_authenticate(user=self.helper.customerA.user)
-        response = self.client.get(self.list_url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.ensure_all_forbidden(detail_url)
 
     def test_list_authenticated_as_employee(self):
         """
@@ -338,18 +347,43 @@ class SelfAppointmentViewSetTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
-class CustomerViewSetTest(APITestCase):
+class CustomerViewSetTest(ViewTestCase):
+    list_url = reverse('customer-list')
 
     def setUp(self):
+        self.helper = TestHelper()
         Customer.objects.create(first_name='Gustavo', last_name='Francelino')
         Customer.objects.create(first_name='Isabela', last_name='Loz')
         Customer.objects.create(first_name='Gleyci', last_name='Figueiredo')
         Customer.objects.create(first_name='Amanda', last_name='Francelino')
         Customer.objects.create(first_name='Guilherme', last_name='Portugues')
 
+    def test_unauthenticated_access(self):
+        """
+        Shouldn't be able to retrieve any data when unauthenticated
+        """
+        customer = self.helper.customerA
+        detail_url = reverse('customer-detail', kwargs={'pk': customer.id})
+        self.ensure_all_unauthorized(detail_url)
+
+    def test_customer_access(self):
+        """
+        Customer shouldn't be able to see access this view
+        """
+        auth_customer, check_customer = self.helper.customerA, self.helper.customerB
+        self.client.force_authenticate(user=auth_customer.user)
+        detail_url = reverse('customer-detail', kwargs={'pk': check_customer.id})
+        self.ensure_all_forbidden(detail_url)
+
+        customer = self.helper.customerA
+        self.client.force_authenticate(user=customer.user)
+        detail_url = reverse('customer-detail', kwargs={'pk': customer.id})
+        self.ensure_all_forbidden(detail_url)
+
     def test_search_2_letters(self):
         url = reverse('customer-list')
         data = {'search': 'gu'}
+        self.client.force_authenticate(user=self.helper.employeeA.user)
         response = self.client.get(url, data=data, format='json')
-        self.assertEqual(len(response.data), 2)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data['results']), 3)
