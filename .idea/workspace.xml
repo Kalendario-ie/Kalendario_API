@@ -3,7 +3,63 @@
   <component name="ChangeListManager">
     <list default="true" id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/3rdpartylicenses.05d5eb8940a2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/3rdpartylicenses.05d5eb8940a2.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/3rdpartylicenses.e01d8a1b3e1e.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/3rdpartylicenses.e01d8a1b3e1e.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/3rdpartylicenses.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/3rdpartylicenses.txt.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/favicon.b9aa7c338693.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/favicon.b9aa7c338693.ico.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/favicon.ico.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.674f50d287a8.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.674f50d287a8.eot.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.912ec66d7572.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.912ec66d7572.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.af7ae505a9ee.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.b06871f281fe.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.b06871f281fe.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.eot.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.fee66e712a8a.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.svg.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.ttf.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/fontawesome-webfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/index.e88533849524.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/index.e88533849524.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/index.html.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.1dd1bae2824b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.1dd1bae2824b.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.39ff7318d1d6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.39ff7318d1d6.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.b6f9e5f2f9d7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.b6f9e5f2f9d7.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.ce52fa848f0d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.ce52fa848f0d.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/main.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/polyfills.c07078703504.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/polyfills.c07078703504.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/polyfills.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/polyfills.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/runtime.cd1ce3e306bf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/runtime.cd1ce3e306bf.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/runtime.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/runtime.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/scripts.464b052a4e03.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/scripts.464b052a4e03.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/scripts.js.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/styles.86bdd979cc22.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/styles.86bdd979cc22.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/styles.css.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/ang/styles.ed2be32bde3e.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/staticfiles/staticfiles.json" beforeDir="false" afterPath="$PROJECT_DIR$/staticfiles/staticfiles.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +88,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/appointment_manager/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="226" selection-start-line="226" selection-end-line="226" />
+            <state relative-caret-position="429">
+              <caret line="224" selection-start-line="224" selection-end-line="224" />
             </state>
           </provider>
         </entry>
@@ -173,6 +229,12 @@
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
               <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="ang" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
@@ -458,7 +520,7 @@
       <workItem from="1568923965210" duration="5483000" />
       <workItem from="1569054679829" duration="26227000" />
       <workItem from="1569163096700" duration="2556000" />
-      <workItem from="1569429264116" duration="2514000" />
+      <workItem from="1569429264116" duration="3002000" />
     </task>
     <servers />
   </component>
@@ -495,7 +557,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="539863000" />
+    <option name="totallyTimeSpent" value="540351000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -509,7 +571,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.16897655" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.20042644" />
       <window_info id="Structure" order="1" sideWeight="0.5023847" side_tool="true" weight="0.2889126" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
@@ -520,7 +582,7 @@
       <window_info anchor="bottom" id="Find" order="5" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49733475" weight="0.31310943" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" visible="true" weight="0.40628386" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" visible="true" weight="0.40628386" />
       <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49520257" weight="0.29577464" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
@@ -964,8 +1026,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/appointment_manager/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="226" selection-start-line="226" selection-end-line="226" />
+        <state relative-caret-position="429">
+          <caret line="224" selection-start-line="224" selection-end-line="224" />
         </state>
       </provider>
     </entry>
