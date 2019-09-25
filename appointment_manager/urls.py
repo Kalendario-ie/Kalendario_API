@@ -6,7 +6,9 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('api/auth/', include('auth.urls')),
     path('api/auth/', include('rest_auth.urls')),
+    # path('api/auth/registration/', include('auth.registration.urls')),
     path('api/auth/registration/', include('rest_auth.registration.urls')),
     path('api/accounts/', include('allauth.urls')),
     path('api/', include('core.urls')),

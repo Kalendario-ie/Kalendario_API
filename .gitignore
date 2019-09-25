@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io
 
+## google auth still not in use
+auth/
+
 ### OSX ###
 .DS_Store
 .AppleDouble

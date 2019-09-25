@@ -12,7 +12,7 @@ class BaseAppointmentManager(InheritanceManager):
         start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
         end = kwargs['end'] = kwargs['end'].replace(second=0, microsecond=0)
 
-        if start.date() <= datetime.date.today():
+        if start <= datetime.datetime.now():
             raise ModelCreationFailedException(r'Date can\'t be on the past')
 
         if not employee.is_available(start, end):

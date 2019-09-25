@@ -1,3 +1,4 @@
+requests
 django
 gunicorn
 django-heroku
@@ -12,3 +13,5 @@ Pillow
 cloudinary
 django-model-utils
 drf-rw-serializers
+pyrebase
+firebase-admin
