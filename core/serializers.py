@@ -13,6 +13,17 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'email', 'first_name', 'last_name', 'person', 'is_employee', 'is_customer')
 
 
+class PermissionsSerializer(serializers.ModelSerializer):
+    permissions = serializers.ListField(
+        child=serializers.CharField(max_length=100),
+        source='get_all_permissions'
+    )
+
+    class Meta:
+        model = User
+        fields = ('id', 'is_staff', 'permissions')
+
+
 class CustomRegisterSerializer(RegisterSerializer):
     first_name = serializers.CharField(max_length=30)
     last_name = serializers.CharField(max_length=100)
