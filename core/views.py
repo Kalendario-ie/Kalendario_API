@@ -15,7 +15,7 @@ class CurrentUserViewSet(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        if not request.user.is_employee() and not request.user.is_customer():
+        if not request.user.is_employee() and not request.user.is_customer() and not request.user.is_staff:
             create_customer(request.user)
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
