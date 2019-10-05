@@ -300,7 +300,7 @@ class SelfAppointmentViewSetTest(ViewTestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        self.assertEqual(response.data['employee'], emp.id)
+        self.assertEqual(response.data['employee']['id'], emp.id)
 
     def test_create_omitting_employee(self):
         """

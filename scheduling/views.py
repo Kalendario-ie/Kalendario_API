@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from scheduling.availability import get_availability_for_service
 from scheduling.customException import InvalidActionException
 from scheduling.permissions import IsEmployee
-from scheduling import serializers as s
+from scheduling import serializers
 from scheduling.models import Employee, Appointment, Customer, SelfAppointment
 
 from drf_rw_serializers import viewsets
@@ -18,7 +18,7 @@ from drf_rw_serializers import viewsets
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
-    serializer_class = s.EmployeeSerializer
+    serializer_class = serializers.EmployeeSerializer
 
     @action(detail=False, methods=['get'])
     def current(self, request):
@@ -30,7 +30,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def slots(self, request, pk=None):
-        serializer = s.SlotSerializer(data=request.GET)
+        serializer = serializers.SlotSerializer(data=request.GET)
         serializer.is_valid(raise_exception=True)
         try:
             slots = get_availability_for_service(**serializer.validated_data, employee=self.get_object())
@@ -50,7 +50,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, IsEmployee)
 
-    serializer_class = s.CustomerSerializer
+    serializer_class = serializers.CustomerSerializer
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
@@ -65,20 +65,20 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
 class AppointmentViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
-    read_serializer_class = s.AppointmentReadSerializer
+    read_serializer_class = serializers.AppointmentReadSerializer
 
-    def request_data(self):
-        return self.request.data
+    def get_permissions(self):
+        permission_classes = [IsAuthenticated, ]
+        return [permission() for permission in permission_classes]
 
     def get_write_serializer_class(self):
         if self.request.user.is_customer():
-            return s.CustomerAppointmentWriteSerializer
+            return serializers.CustomerAppointmentWriteSerializer
 
-        return s.EmployeeAppointmentWriteSerializer
+        return serializers.EmployeeAppointmentWriteSerializer
 
     def get_queryset(self):
-        serializer = s.AppointmentQuerySerlializer(data=self.request.query_params)
+        serializer = serializers.AppointmentQuerySerlializer(data=self.request.query_params)
         serializer.is_valid(raise_exception=True)
         params = serializer.validated_data
 
@@ -107,6 +107,9 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         user, data = self.request.user, self.request.data
         customer, employee = key_or_none(data, 'customer'), key_or_none(data, 'employee')
 
+        if not user.is_employee() and not user.is_customer() and not user.is_staff:
+            customer = create_customer(request.user)
+
         if customer is not None and user.is_customer() and customer != user.person.id:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
@@ -116,9 +119,18 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         return super().create(request, args, kwargs)
 
 
+def create_customer(user):
+    customer = Customer.objects.create(first_name=user.first_name, last_name=user.last_name)
+    customer.user = user
+    customer.save()
+    return customer
+
+
 class SelfAppointmentViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, IsEmployee)
+    read_serializer_class = serializers.SelfAppointmentReadSerializer
+    write_serializer_class = serializers.SelfAppointmentWriteSerializer
 
     def create(self, request, *args, **kwargs):
         if self.request.user.has_perm('scheduling.change_appointment'):
@@ -127,11 +139,6 @@ class SelfAppointmentViewSet(viewsets.ModelViewSet):
         if user.is_employee() and 'employee' in data and data['employee'] != user.person.id:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
         return super().create(request, args, kwargs)
-
-    def get_serializer_class(self):
-        if self.action == 'list' or self.action == 'retrieve':
-            return s.SelfAppointmentReadSerializer
-        return s.SelfAppointmentWriteSerializer
 
     def get_queryset(self):
         queryset = base_appointment_filter(SelfAppointment.objects.all(), self.request.query_params)

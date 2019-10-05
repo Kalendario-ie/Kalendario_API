@@ -15,8 +15,6 @@ class CurrentUserViewSet(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        if not request.user.is_employee() and not request.user.is_customer() and not request.user.is_staff:
-            create_customer(request.user)
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
@@ -36,9 +34,3 @@ class FacebookLogin(SocialLoginView):
 
 class FacebookConnect(SocialConnectView):
     adapter_class = FacebookOAuth2Adapter
-
-
-def create_customer(user):
-    customer = Customer.objects.create(first_name=user.first_name, last_name=user.last_name)
-    customer.user = user
-    customer.save()
