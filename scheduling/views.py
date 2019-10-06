@@ -9,14 +9,14 @@ from rest_framework.response import Response
 
 from scheduling.availability import get_availability_for_service
 from scheduling.customException import InvalidActionException
-from scheduling.permissions import IsEmployee
+from scheduling import permissions
 from scheduling import serializers
 from scheduling.models import Employee, Appointment, Customer, SelfAppointment
 
 from drf_rw_serializers import viewsets
 
 
-class EmployeeViewSet(viewsets.ModelViewSet):
+class EmployeeViewSet(viewsets.GenericAPIView):
     queryset = Employee.objects.all()
     serializer_class = serializers.EmployeeSerializer
 
@@ -48,7 +48,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 class CustomerViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated, IsEmployee)
+    permission_classes = (IsAuthenticated, permissions.IsEmployee)
 
     serializer_class = serializers.CustomerSerializer
     pagination_class = StandardResultsSetPagination
@@ -128,7 +128,7 @@ def create_customer(user):
 
 class SelfAppointmentViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated, IsEmployee)
+    permission_classes = (IsAuthenticated, permissions.IsEmployee)
     read_serializer_class = serializers.SelfAppointmentReadSerializer
     write_serializer_class = serializers.SelfAppointmentWriteSerializer
 
