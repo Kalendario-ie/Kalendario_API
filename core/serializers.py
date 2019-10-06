@@ -7,13 +7,6 @@ from scheduling.serializers import CustomerSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     person = CustomerSerializer()
-
-    class Meta:
-        model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'person', 'is_employee', 'is_customer')
-
-
-class PermissionsSerializer(serializers.ModelSerializer):
     permissions = serializers.ListField(
         child=serializers.CharField(max_length=100),
         source='get_all_permissions'
@@ -21,7 +14,7 @@ class PermissionsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'is_staff', 'permissions')
+        fields = ('id', 'email', 'first_name', 'last_name', 'person', 'is_employee', 'is_customer', 'permissions')
 
 
 class CustomRegisterSerializer(RegisterSerializer):

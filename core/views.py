@@ -2,12 +2,10 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from core.serializers import UserSerializer, PermissionsSerializer
+from core.serializers import UserSerializer
 
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView, SocialConnectView
-
-from scheduling.models import Customer
 
 
 class CurrentUserViewSet(APIView):
@@ -16,15 +14,6 @@ class CurrentUserViewSet(APIView):
 
     def get(self, request):
         serializer = UserSerializer(request.user)
-        return Response(serializer.data)
-
-
-class UserPermissionsViewSet(APIView):
-    authentication_classes = (TokenAuthentication, SessionAuthentication, BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
-
-    def get(self, request):
-        serializer = PermissionsSerializer(request.user)
         return Response(serializer.data)
 
 
