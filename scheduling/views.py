@@ -1,5 +1,6 @@
 from django.http import HttpResponseForbidden
 from django.db.models import Q
+from drf_rw_serializers.viewsets import ReadOnlyModelViewSet
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
@@ -16,7 +17,7 @@ from scheduling.models import Employee, Appointment, Customer, SelfAppointment
 from drf_rw_serializers import viewsets
 
 
-class EmployeeViewSet(viewsets.GenericAPIView):
+class EmployeeViewSet(ReadOnlyModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = serializers.EmployeeSerializer
 
@@ -25,7 +26,6 @@ class EmployeeViewSet(viewsets.GenericAPIView):
         if request.user.is_employee():
             serializer = self.get_serializer(request.user.person.employee)
             return Response(serializer.data)
-
         return HttpResponseForbidden({'error': 'not an employee'})
 
     @action(detail=True, methods=['get'])

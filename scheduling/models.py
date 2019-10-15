@@ -60,6 +60,7 @@ class Schedule(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=120)
     duration = models.TimeField()
+    description = models.CharField(max_length=255, blank=True, null=True)
 
     def duration_delta(self):
         return datetime.datetime.combine(datetime.datetime.min, self.duration) - datetime.datetime.min
@@ -73,6 +74,7 @@ class Person(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
+    email = models.EmailField()
 
     def name(self):
         return self.first_name + ' ' + self.last_name
