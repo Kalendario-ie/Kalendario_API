@@ -167,6 +167,11 @@ class Appointment(BaseAppointment):
     def is_active(self):
         return self.status != Appointment.REJECTED
 
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.end = self.start + self.service.duration_delta()
+        super().save(force_insert, force_update, using, update_fields)
+
     def __str__(self):
         return "{customer} on {date} from {start} to {end} {service} with {emp}. {status}".format(
             customer=self.customer.name(),

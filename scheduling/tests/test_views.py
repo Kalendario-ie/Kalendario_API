@@ -204,6 +204,26 @@ class AppointmentViewSetTest(ViewTestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_create_overlapping_appointments(self):
+        """
+        overlapping appointments shouldn't be able to be created and should return the proper response
+        """
+        customer = self.helper.customerA
+        self.client.force_authenticate(user=customer.user)
+        emp = self.helper.employeeA
+        service = self.helper.employeeA.services.first()
+        data = {'employee': emp.id,
+                'customer': customer.id,
+                'service': service.id,
+                'start': next_tuesday().replace(hour=10, minute=0).__str__()
+                }
+        first_post = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(first_post.status_code, status.HTTP_201_CREATED)
+
+        second_post = self.client.post(self.list_url, data, format='json')
+
+        self.assertEqual(second_post.status_code, status.HTTP_403_FORBIDDEN)
+
 
 class SelfAppointmentViewSetTest(ViewTestCase):
 
@@ -345,6 +365,23 @@ class SelfAppointmentViewSetTest(ViewTestCase):
         response = self.client.post(self.list_url, data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_create_overlapping_appointments(self):
+        """
+        overlapping appointments shouldn't be able to be created and should return the proper response
+        """
+        self.client.force_authenticate(user=self.helper.scheduler)
+
+        data = {'employee': self.helper.employeeA.id,
+                'start': next_tuesday().replace(hour=10, minute=0).__str__(),
+                'end': next_tuesday().replace(hour=11, minute=0).__str__()
+                }
+
+        first_post = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(first_post.status_code, status.HTTP_201_CREATED)
+
+        second_post = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(second_post.status_code, status.HTTP_403_FORBIDDEN)
 
 
 class CustomerViewSetTest(ViewTestCase):

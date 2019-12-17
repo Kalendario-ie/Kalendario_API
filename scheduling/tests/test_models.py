@@ -212,3 +212,21 @@ class AppointmentTest(TestCase):
         appointment2 = self.helper.book_appointment(appointment_2_date)
         self.assertIsInstance(appointment2, Appointment)
 
+    def test_appointment_edit_end_time_variable(self):
+        """
+        When editing an appointment the end time should always be the start + service duration
+        regardless of what value is inserted in end
+        """
+
+        appointment_1_date = next_tuesday().replace(hour=9, minute=30)
+        appointment = self.helper.book_appointment(appointment_1_date)
+        self.assertIsInstance(appointment, Appointment)
+        self.assertEqual(appointment.end, appointment.start + appointment.service.duration_delta())
+
+        # Here we change the start time but not the end time
+        new_start = appointment.start.replace(hour=10)
+        appointment.start = new_start
+        appointment.save()
+
+        # After saving the end time should have changed
+        self.assertEqual(appointment.end, appointment.start + appointment.service.duration_delta())

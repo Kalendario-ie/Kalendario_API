@@ -66,6 +66,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
 class AppointmentViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.AppointmentReadSerializer
+    write_serializer_class = serializers.AppointmentWriteSerializer
 
     def get_permissions(self):
         permission_classes = [IsAuthenticated, ]

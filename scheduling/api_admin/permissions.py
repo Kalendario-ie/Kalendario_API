@@ -39,3 +39,24 @@ class CanChangeServices(permissions.BasePermission):
 class CanDeleteServices(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.has_perm('scheduling.delete_service')
+
+
+class CanViewShifts(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('scheduling.view_shift')
+
+
+class CanAddShifts(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('scheduling.add_shift')
+
+
+class CanChangeShifts(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('scheduling.change_shift')
+
+
+class CanDeleteShifts(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('scheduling.delete_shift')
+
