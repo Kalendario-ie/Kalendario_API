@@ -10,43 +10,37 @@ from rest_framework import status
 
 from scheduling.api_admin import serializers
 from scheduling.models import Employee, Service, Shift
-from scheduling.api_admin import permissions
+from scheduling.api_admin.permissions import ModelPermission
 
 import cloudinary.uploader
 
 
 class WithPermissionsModelViewSet(viewsets.ModelViewSet):
-    custom_permissions = {'view': [], 'create': [], 'change': [], 'delete': []}
+    queryset_class = None
 
     def get_permissions(self):
         permission_classes = [IsAuthenticated, ]
 
         if self.action in ['list', 'retrieve']:
-            permission_classes.extend(self.custom_permissions['view'])
+            permission_classes.append(ModelPermission('view', self.queryset_class))
 
         if self.action == 'create':
-            permission_classes.extend(self.custom_permissions['create'])
+            permission_classes.append(ModelPermission('add', self.queryset_class))
 
         if self.action == 'update':
-            permission_classes.extend(self.custom_permissions['change'])
+            permission_classes.append(ModelPermission('change', self.queryset_class))
 
         return [permission() for permission in permission_classes]
 
 
 class EmployeeViewSet(WithPermissionsModelViewSet):
     authentication_classes = (TokenAuthentication,)
-
     read_serializer_class = serializers.EmployeeReadSerializer
-
     write_serializer_class = serializers.EmployeeWriteSerializer
-
     queryset = Employee.objects.all()
+    queryset_class = 'employee'
 
-    custom_permissions = {'view': [permissions.CanViewEmployees],
-                          'create': [permissions.CanAddEmployees],
-                          'change': [permissions.CanChangeEmployees],
-                          'delete': [permissions.CanDeleteEmployees]}
-
+    # TODO: Delete old profile picture when a new one is added
     @action(detail=True, methods=['post'])
     def photo(self, request, pk=None):
         file = request.data.get('image')
@@ -68,10 +62,7 @@ class ServiceViewSet(WithPermissionsModelViewSet):
     read_serializer_class = serializers.ServiceReadSerializer
     write_serializer_class = serializers.ServiceReadSerializer
     queryset = Service.objects.all()
-    custom_permissions = {'view': [permissions.CanViewServices],
-                          'create': [permissions.CanAddServices],
-                          'change': [permissions.CanChangeServices],
-                          'delete': [permissions.CanDeleteServices]}
+    queryset_class = 'service'
 
 
 class ShiftViewSet(WithPermissionsModelViewSet):
@@ -79,7 +70,5 @@ class ShiftViewSet(WithPermissionsModelViewSet):
     read_serializer_class = serializers.ShiftReadSerializer
     write_serializer_class = serializers.ShiftWriteSerializer
     queryset = Shift.objects.all()
-    custom_permissions = {'view': [permissions.CanViewShifts],
-                          'create': [permissions.CanAddShifts],
-                          'change': [permissions.CanChangeShifts],
-                          'delete': [permissions.CanDeleteShifts]}
+    queryset_class = 'shift'
+
