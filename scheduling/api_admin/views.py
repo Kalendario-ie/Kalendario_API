@@ -77,7 +77,7 @@ class ServiceViewSet(WithPermissionsModelViewSet):
 class ShiftViewSet(WithPermissionsModelViewSet):
     authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.ShiftReadSerializer
-    write_serializer_class = serializers.ShiftReadSerializer
+    write_serializer_class = serializers.ShiftWriteSerializer
     queryset = Shift.objects.all()
     custom_permissions = {'view': [permissions.CanViewShifts],
                           'create': [permissions.CanAddShifts],

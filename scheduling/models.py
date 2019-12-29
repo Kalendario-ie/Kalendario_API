@@ -11,7 +11,7 @@ class TimeFrame(models.Model):
     shift = models.ForeignKey('Shift', on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'start: ' + self.start.__str__() + ', end: ' + self.end.__str__()
+        return str(self.id) + ' start: ' + self.start.__str__() + ', end: ' + self.end.__str__()
 
 
 class Shift(models.Model):
