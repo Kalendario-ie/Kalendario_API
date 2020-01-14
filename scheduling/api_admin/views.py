@@ -7,9 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
-
 from scheduling.api_admin import serializers
-from scheduling.models import Employee, Service, Shift
+from scheduling.models import Employee, Service, Shift, Schedule
 from scheduling.api_admin.permissions import ModelPermission
 
 import cloudinary.uploader
@@ -30,7 +29,7 @@ class WithPermissionsModelViewSet(viewsets.ModelViewSet):
         if self.action == 'update':
             permission_classes.append(ModelPermission('change', self.queryset_class))
 
-        return [permission() for permission in permission_classes]
+        return [perm if perm.__class__ == ModelPermission else perm() for perm in permission_classes]
 
 
 class EmployeeViewSet(WithPermissionsModelViewSet):
@@ -72,3 +71,10 @@ class ShiftViewSet(WithPermissionsModelViewSet):
     queryset = Shift.objects.all()
     queryset_class = 'shift'
 
+
+class ScheduleViewSet(WithPermissionsModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    read_serializer_class = serializers.ScheduleReadSerializer
+    write_serializer_class = serializers.ScheduleWriteSerializer
+    queryset = Schedule.objects.all()
+    queryset_class = 'schedule'

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from scheduling.models import Service, Employee, Shift, TimeFrame
+from scheduling.models import Service, Employee, Shift, TimeFrame, Schedule
 
 
 class ServiceReadSerializer(serializers.ModelSerializer):
@@ -79,3 +79,17 @@ def updateFrame(shift, frame, validated_data):
     frame.start = validated_data['start']
     frame.end = validated_data['end']
     frame.save()
+
+
+class ScheduleReadSerializer(serializers.ModelSerializer):
+    mon, tue, wed, thu, fri, sat, sun = [ShiftReadSerializer(many=False, read_only=True) for i in range(7)]
+
+    class Meta:
+        model = Schedule
+        fields = ('id', 'name', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun')
+
+
+class ScheduleWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Schedule
+        fields = ('id', 'name', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun')
