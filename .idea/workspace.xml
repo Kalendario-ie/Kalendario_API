@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scheduling/api_admin/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/api_admin/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/api_admin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/api_admin/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/api_admin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/api_admin/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +20,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scheduling/api_admin/serializers.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="297">
-                  <caret line="67" column="66" selection-start-line="67" selection-start-column="66" selection-end-line="67" selection-end-column="66" />
+                <state relative-caret-position="425">
+                  <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
                   </folding>
@@ -48,7 +45,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/scheduling/api_admin/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
+                <state relative-caret-position="578">
                   <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
@@ -57,11 +54,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scheduling/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="18" selection-start-line="18" selection-end-line="18" />
+                <state relative-caret-position="153">
+                  <caret line="80" selection-start-line="80" selection-end-line="80" />
                   <folding>
                     <element signature="e#0#45#0" expanded="true" />
                   </folding>
@@ -81,7 +78,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/appointment_manager/urls.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="289">
@@ -220,7 +217,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="240" />
     <option name="y" value="130" />
     <option name="width" value="1440" />
@@ -549,7 +546,7 @@
       <workItem from="1578769799493" duration="1073000" />
       <workItem from="1578832982416" duration="989000" />
       <workItem from="1578854967138" duration="1546000" />
-      <workItem from="1578944899745" duration="1830000" />
+      <workItem from="1578944899745" duration="4871000" />
     </task>
     <task id="LOCAL-00001" summary="removed customer / employee unused files">
       <created>1570401757297</created>
@@ -594,7 +591,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="711938000" />
+    <option name="totallyTimeSpent" value="714979000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -606,7 +603,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49761525" weight="0.20362474" />
@@ -620,8 +617,8 @@
       <window_info anchor="bottom" id="Find" order="5" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49733475" weight="0.31310943" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" weight="0.2654388" />
-      <window_info active="true" anchor="bottom" id="Run" order="9" sideWeight="0.49413645" visible="true" weight="0.29577464" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" visible="true" weight="0.2654388" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49413645" weight="0.29577464" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
@@ -1112,40 +1109,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/api_admin/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="67" column="66" selection-start-line="67" selection-start-column="66" selection-end-line="67" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scheduling/api_admin/permissions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/api_admin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1155,6 +1122,16 @@
           <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appointment_manager/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1169,12 +1146,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appointment_manager/urls.py">
+    <entry file="file://$PROJECT_DIR$/scheduling/api_admin/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="578">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/api_admin/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>

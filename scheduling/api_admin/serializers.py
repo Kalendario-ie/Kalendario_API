@@ -14,15 +14,16 @@ class EmployeeReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ('id', 'name', 'first_name', 'last_name', 'instagram',
+        fields = ('id', 'name', 'first_name', 'last_name', 'instagram', 'schedule',
                   'email', 'phone', 'services', 'profile_img', 'bio')
 
 
 class EmployeeWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ('id', 'first_name', 'last_name', 'instagram', 'email', 'phone', 'services', 'profile_img', 'bio')
-
+        fields = ('id', 'first_name', 'last_name', 'instagram', 'schedule',
+                  'email', 'phone', 'services', 'profile_img', 'bio')
+    
 
 class TimeFrameSerializer(serializers.ModelSerializer):
     class Meta:
