@@ -40,10 +40,7 @@ class Migration(migrations.Migration):
                 'indexes': [],
                 'constraints': [],
             },
-            bases=('core.user',),
-            managers=[
-                ('objects', scheduling.managers.CustomerManager()),
-            ],
+            bases=('core.user',)
         ),
         migrations.CreateModel(
             name='TimeFrame',

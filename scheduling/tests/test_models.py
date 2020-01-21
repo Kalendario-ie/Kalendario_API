@@ -1,4 +1,6 @@
 from django.test import TestCase
+
+from core.models import User
 from scheduling.models import *
 from datetime import datetime, time
 
@@ -230,3 +232,10 @@ class AppointmentTest(TestCase):
 
         # After saving the end time should have changed
         self.assertEqual(appointment.end, appointment.start + appointment.service.duration_delta())
+
+
+class UserTest(TestCase):
+
+    def test_user_create_generates_person(self):
+        user = User.objects.create(email='scheduler@email.com')
+        self.assertTrue(hasattr(user, 'person'))

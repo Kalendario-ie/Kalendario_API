@@ -3,7 +3,7 @@ from datetime import *
 from django.contrib.auth.models import Permission, Group
 
 from core.models import User
-from scheduling.models import Shift, TimeFrame, Schedule, Service, Employee, Customer, Appointment
+from scheduling.models import Shift, TimeFrame, Schedule, Service, Employee, Person, Appointment
 
 
 def next_monday():
@@ -52,7 +52,7 @@ def reject_appointment(appointment):
 def tearDown():
     Appointment.objects.all().delete()
     Employee.objects.all().delete()
-    Customer.objects.all().delete()
+    Person.objects.all().delete()
     Schedule.objects.all().delete()
     Shift.objects.all().delete()
     User.objects.all().delete()
@@ -97,13 +97,13 @@ class TestHelper:
         self.employeeB.services.add(self.service)
         self.employeeB.save()
 
-        self.customerA = Customer.objects.create(first_name='Customer', last_name='first')
+        self.customerA = Person.objects.create(first_name='Customer', last_name='first')
         c1_user = User.objects.create(email='c1@test.com')
         c1_user.set_password('Customer1Pass')
         c1_user.save()
         self.customerA.user = c1_user
 
-        self.customerB = Customer.objects.create(first_name='Customer', last_name='second')
+        self.customerB = Person.objects.create(first_name='Customer', last_name='second')
         c2_user = User.objects.create(email='c2@test.com')
         c2_user.set_password('Customer2Pass')
         c2_user.save()

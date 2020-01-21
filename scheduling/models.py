@@ -1,7 +1,6 @@
 from cloudinary.models import CloudinaryField
 from django.db.models import Q
 
-from core.models import User
 from scheduling.managers import *
 
 
@@ -74,7 +73,7 @@ class Company(models.Model):
 
 
 class Person(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField('core.User', on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
@@ -86,9 +85,8 @@ class Person(models.Model):
         return self.first_name + ' ' + self.last_name
 
     def addUser(self, user):
-        self.user = user,
+        self.user = user
         self.first_name, self.last_name = user.first_name, user.last_name
-        self.save()
 
     def __str__(self):
         return self.name()

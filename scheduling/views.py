@@ -71,12 +71,6 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         permission_classes = [IsAuthenticated, ]
         return [permission() for permission in permission_classes]
 
-    def get_write_serializer_class(self):
-        if self.request.user.is_customer():
-            return serializers.CustomerAppointmentWriteSerializer
-
-        return serializers.EmployeeAppointmentWriteSerializer
-
     def get_queryset(self):
         serializer = serializers.AppointmentQuerySerlializer(data=self.request.query_params)
         serializer.is_valid(raise_exception=True)

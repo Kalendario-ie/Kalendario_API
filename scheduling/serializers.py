@@ -101,13 +101,6 @@ class CustomerAppointmentWriteSerializer(AppointmentWriteSerializer):
         fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'customer_notes', 'status')
 
 
-class EmployeeAppointmentWriteSerializer(AppointmentWriteSerializer):
-
-    class Meta:
-        model = Appointment
-        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'status', 'customer_notes')
-
-
 class AppointmentQuerySerlializer(serializers.Serializer):
     status = serializers.CharField(required=False)
     from_date = serializers.DateTimeField(required=False)
