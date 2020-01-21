@@ -2,10 +2,14 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from core.models import User
 from core.serializers import UserSerializer
 
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView, SocialConnectView
+
+from scheduling.models import Person
 
 
 class CurrentUserViewSet(APIView):
@@ -13,7 +17,10 @@ class CurrentUserViewSet(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        user = User.objects.filter(email=request.user).first()
+        if user.person is None:
+            Person().addUser(user)
+        serializer = UserSerializer(user)
         return Response(serializer.data)
 
 

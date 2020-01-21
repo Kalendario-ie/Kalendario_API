@@ -2,11 +2,11 @@ from rest_framework import serializers
 from rest_auth.registration.serializers import RegisterSerializer
 
 from core.models import User
-from scheduling.serializers import CustomerSerializer
+from scheduling.serializers import PersonSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
-    person = CustomerSerializer()
+    person = PersonSerializer()
     permissions = serializers.ListField(
         child=serializers.CharField(max_length=100),
         source='get_all_permissions'
@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'person', 'is_employee', 'is_customer', 'permissions')
+        fields = ('id', 'email', 'first_name', 'last_name', 'person', 'is_employee', 'permissions')
 
 
 class CustomRegisterSerializer(RegisterSerializer):

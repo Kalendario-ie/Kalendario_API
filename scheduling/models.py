@@ -69,15 +69,26 @@ class Service(models.Model):
         return self.name
 
 
+class Company(models.Model):
+    name = models.CharField(max_length=255)
+
+
 class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
+    company_admin = models.BooleanField(default=False)
 
     def name(self):
         return self.first_name + ' ' + self.last_name
+
+    def addUser(self, user):
+        self.user = user,
+        self.first_name, self.last_name = user.first_name, user.last_name
+        self.save()
 
     def __str__(self):
         return self.name()
@@ -122,10 +133,6 @@ class Employee(Person):
         return len(list(filter(lambda x: x.is_active(), starts_or_ends_between))) > 0
 
 
-class Customer(Person):
-    pass
-
-
 class BaseAppointment(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
@@ -157,7 +164,7 @@ class Appointment(BaseAppointment):
         (REJECTED, 'Rejected'),
     ]
 
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Person, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
     customer_notes = models.TextField(max_length=255, null=True, blank=True)

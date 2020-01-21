@@ -32,12 +32,6 @@ class EmployeeAdmin(admin.ModelAdmin):
     ]
 
 
-class CustomerAdmin(admin.ModelAdmin):
-    fieldset = [
-        (None, {'fields': ['testing_wat']}),
-    ]
-
-
 class AppointmentAdmin(admin.ModelAdmin):
     fieldset = [
         (None, {'fields': ['testing_wat']}),
@@ -48,6 +42,5 @@ admin.site.register(Shift, ShiftAdmin)
 admin.site.register(Schedule, ScheduleAdmin)
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(Employee, EmployeeAdmin)
-admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Appointment, AppointmentAdmin)
 

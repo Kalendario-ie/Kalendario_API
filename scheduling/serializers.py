@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 
 from scheduling.customException import ModelCreationFailedException
-from scheduling.models import Service, Employee, Appointment, Customer, SelfAppointment, BaseAppointment
+from scheduling.models import Service, Employee, Appointment, SelfAppointment, BaseAppointment, Company, Person
 
 
 class ServiceSerializer(serializers.ModelSerializer):
@@ -12,19 +12,18 @@ class ServiceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CustomerSerializer(serializers.ModelSerializer):
-
+class PersonSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Customer
-        fields = ('id', 'first_name', 'last_name', 'name', 'phone')
+        model = Person
+        fields = ('id', 'name', 'email', 'phone', 'company', 'company_admin')
 
 
-class EmployeeSerializer(serializers.ModelSerializer):
+class EmployeeSerializer(PersonSerializer):
     services = ServiceSerializer(many=True, read_only=True)
 
-    class Meta:
+    class Meta(PersonSerializer.Meta):
         model = Employee
-        fields = ('id', 'name', 'instagram', 'email', 'phone', 'services', 'profile_img', 'bio')
+        fields = PersonSerializer.Meta.fields + ('services', 'profile_img', 'bio')
 
 
 class SlotSerializer(serializers.Serializer):
@@ -62,7 +61,7 @@ class BaseAppointmentWriteSerializer(serializers.ModelSerializer):
 
 
 class AppointmentReadSerializer(BaseAppointmentReadSerializer):
-    customer = CustomerSerializer(read_only=True)
+    customer = PersonSerializer(read_only=True)
     service = ServiceSerializer(read_only=True)
 
     class Meta(BaseAppointmentReadSerializer.Meta):
@@ -121,3 +120,9 @@ class AppointmentQuerySerlializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         pass
+
+
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ('id', 'name')

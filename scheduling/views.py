@@ -1,5 +1,4 @@
 from django.http import HttpResponseForbidden
-from django.db.models import Q
 from drf_rw_serializers.viewsets import ReadOnlyModelViewSet
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
@@ -12,14 +11,25 @@ from scheduling.availability import get_availability_for_service
 from scheduling.customException import InvalidActionException
 from scheduling import permissions
 from scheduling import serializers
-from scheduling.models import Employee, Appointment, Customer, SelfAppointment
+from scheduling.models import Employee, Appointment, SelfAppointment, Company
 
 from drf_rw_serializers import viewsets
 
 
 class EmployeeViewSet(ReadOnlyModelViewSet):
-    queryset = Employee.objects.all()
     serializer_class = serializers.EmployeeSerializer
+
+    def get_queryset(self):
+        queryset = Employee.objects.all()
+
+        if self.action == 'slots':
+            return queryset
+
+        company = self.request.query_params.get('company')
+        if company is None:
+            return None
+        queryset = queryset.filter(company__name=company)
+        return queryset
 
     @action(detail=False, methods=['get'])
     def current(self, request):
@@ -46,21 +56,10 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 300
 
 
-class CustomerViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated, permissions.IsEmployee)
-
-    serializer_class = serializers.CustomerSerializer
-    pagination_class = StandardResultsSetPagination
-
-    def get_queryset(self):
-        queryset = Customer.objects.all()
-
-        search = self.request.query_params.get('search')
-        if search is not None:
-            queryset = queryset.filter(Q(first_name__icontains=search) | Q(last_name__icontains=search))
-
-        return queryset
+class CompanyViewSet(viewsets.ModelViewSet):
+    read_serializer_class = serializers.CompanySerializer
+    write_serializer_class = serializers.CompanySerializer
+    queryset = Company.objects.all()
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
@@ -93,8 +92,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         if param_status is not None:
             queryset = queryset.filter(status=param_status)
 
-        if self.request.user.is_customer():
-            queryset = queryset.filter(customer_id=self.request.user.person.id)
+        queryset = queryset.filter(customer_id=self.request.user.person.id)
 
         if self.request.user.is_employee():
             queryset = queryset.filter(employee_id=self.request.user.person.id)
@@ -108,23 +106,13 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         user, data = self.request.user, self.request.data
         customer, employee = key_or_none(data, 'customer'), key_or_none(data, 'employee')
 
-        if not user.is_employee() and not user.is_customer() and not user.is_staff:
-            customer = create_customer(request.user)
-
-        if customer is not None and user.is_customer() and customer != user.person.id:
+        if customer is not None and customer != user.person.id:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         if employee is not None and user.is_employee() and employee != user.person.id:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         return super().create(request, args, kwargs)
-
-
-def create_customer(user):
-    customer = Customer.objects.create(first_name=user.first_name, last_name=user.last_name)
-    customer.user = user
-    customer.save()
-    return customer
 
 
 class SelfAppointmentViewSet(viewsets.ModelViewSet):

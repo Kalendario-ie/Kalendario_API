@@ -18,6 +18,3 @@ class User(AbstractUser):
 
     def is_employee(self):
         return hasattr(self, 'person') and hasattr(self.person, 'employee')
-
-    def is_customer(self):
-        return hasattr(self, 'person') and hasattr(self.person, 'customer')
