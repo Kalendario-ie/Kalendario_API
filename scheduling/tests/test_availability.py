@@ -7,13 +7,13 @@ from scheduling.tests.util import *
 class SlotTest(TestCase):
     def setUp(self):
         self.helper = TestHelper()
-        self.emp = self.helper.employeeA
+        self.emp = self.helper.employees.pop(0)
 
     def tearDown(self):
         tearDown()
 
     def get_slots(self, date_to_check):
-        return get_availability_for_service(self.helper.employeeA, self.helper.service,
+        return get_availability_for_service(self.emp, self.helper.service,
                                             date_to_check.replace(hour=0, minute=0),
                                             date_to_check.replace(hour=23, minute=59))
 
@@ -29,7 +29,7 @@ class SlotTest(TestCase):
     def test_day_with_one_appointment_start_of_shift(self):
         print("test_day_with_one_appointment_start_of_shift", end="\n\n")
 
-        appointment_1_date = next_wednesday().replace(hour=9, minute=00)
+        appointment_1_date = next_tuesday().replace(hour=9, minute=00)
         self.helper.book_appointment(appointment_1_date)
         slots = self.get_slots(appointment_1_date)
 

@@ -3,7 +3,7 @@ from datetime import *
 from django.contrib.auth.models import Permission, Group
 
 from core.models import User
-from scheduling.models import Shift, TimeFrame, Schedule, Service, Employee, Person, Appointment
+from scheduling.models import Shift, TimeFrame, Schedule, Service, Employee, Person, Appointment, Company
 
 
 def next_monday():
@@ -77,46 +77,36 @@ class TestHelper:
 
         schedule = schedule_a()
 
-        emp_a_user = User.objects.create(email='emp_a@email.com')
-        self.employeeA = Employee.objects.create(
-            first_name='Joe',
-            last_name='Bloggs',
-            schedule=schedule,
-            user=emp_a_user
-        )
-        self.employeeA.services.add(self.service)
-        self.employeeA.save()
+        self.comp1 = Company.objects.create(name='company 1')
+        self.comp2 = Company.objects.create(name='company 2')
 
-        emp_b_user = User.objects.create(email='emp_b@email.com')
-        self.employeeB = Employee.objects.create(
-            first_name='jane',
-            last_name='Doe',
-            schedule=schedule,
-            user=emp_b_user
-        )
-        self.employeeB.services.add(self.service)
-        self.employeeB.save()
+        self.employees = [create_employee('c1e1@email.com', schedule, self.comp1, [self.service]),
+                          create_employee('c1e2@email.com', schedule, self.comp1, [self.service]),
+                          create_employee('c2e1@email.com', schedule, self.comp2, [self.service]),
+                          create_employee('c2e2@email.com', schedule, self.comp2, [self.service])]
 
-        self.customerA = Person.objects.create(first_name='Customer', last_name='first')
-        c1_user = User.objects.create(email='c1@test.com')
-        c1_user.set_password('Customer1Pass')
-        c1_user.save()
-        self.customerA.user = c1_user
+        self.admins = [create_employee('c1e3@email.com', schedule, self.comp1, [self.service], True)]
 
-        self.customerB = Person.objects.create(first_name='Customer', last_name='second')
-        c2_user = User.objects.create(email='c2@test.com')
-        c2_user.set_password('Customer2Pass')
-        c2_user.save()
-        self.customerB.user = c2_user
+        self.customers = [create_customer('c1@test.com'),
+                          create_customer('c2@test.com'),
+                          create_customer('c3@test.com')]
+
+        self.appointments = []
+
+        for emp in self.employees:
+            service = emp.services.first()
+            start = next_wednesday().replace(hour=9, minute=00)
+            for customer in self.customers:
+                self.appointments.append(book_appointment(emp, customer, service, start))
+                start = start + service.duration_delta()
 
     def book_appointment_with_service(self, start, service):
         print('Booking a {time} service appointment on {date}'.format(time=self.service.duration, date=start))
         try:
-            print(self.employeeA.schedule)
             appointment = Appointment.objects.create(start=start,
                                                      service=service,
-                                                     customer=self.customerA,
-                                                     employee=self.employeeA)
+                                                     customer=self.customers[0],
+                                                     employee=self.employees[0])
         except Exception as e:
             print('failed to create appointment: ' + str(e), end='\n\n')
             raise
@@ -127,3 +117,22 @@ class TestHelper:
 
     def book_appointment(self, start):
         return self.book_appointment_with_service(start, self.service)
+
+
+def create_employee(email, schedule, company, services, is_admin=False):
+    emp = Employee.objects.create(first_name='j', last_name='b', schedule=schedule, company=company,
+                                  company_admin=is_admin)
+    [emp.services.add(service) for service in services], emp.save()
+    User.objects.create(email=email, person=emp)
+    return emp
+
+
+def create_customer(email):
+    customer = Person.objects.create(first_name='Customer', last_name='second')
+    customer.user = User.objects.create(email=email)
+    customer.user.set_password('Customer2Pass'), customer.user.save()
+    return customer
+
+
+def book_appointment(emp, customer, service, start):
+    return Appointment.objects.create(customer=customer, employee=emp, service=service, start=start)

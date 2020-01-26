@@ -12,7 +12,15 @@ class ServiceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ('id', 'name')
+
+
 class PersonSerializer(serializers.ModelSerializer):
+    company = CompanySerializer(read_only=True)
+
     class Meta:
         model = Person
         fields = ('id', 'name', 'email', 'phone', 'company', 'company_admin')
@@ -113,9 +121,3 @@ class AppointmentQuerySerlializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         pass
-
-
-class CompanySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Company
-        fields = ('id', 'name')

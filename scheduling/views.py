@@ -14,6 +14,7 @@ from scheduling import serializers
 from scheduling.models import Employee, Appointment, SelfAppointment, Company
 
 from drf_rw_serializers import viewsets
+from django.db.models import Q
 
 
 class EmployeeViewSet(ReadOnlyModelViewSet):
@@ -86,24 +87,22 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         if param_status is not None:
             queryset = queryset.filter(status=param_status)
 
-        queryset = queryset.filter(customer_id=self.request.user.person.id)
-
-        if self.request.user.is_employee():
-            queryset = queryset.filter(employee_id=self.request.user.person.id)
+        if self.request.user.is_company_admin():
+            queryset = queryset.filter(employee__company_id=self.request.user.person.company_id)
+        else:
+            queryset = queryset.filter(Q(customer_id=self.request.user.person.id) |
+                                       Q(employee_id=self.request.user.person.id))
 
         return queryset
 
     def create(self, request, *args, **kwargs):
-        if self.request.user.has_perm('scheduling.change_appointment'):
-            return super().create(request, args, kwargs)
-
         user, data = self.request.user, self.request.data
         customer, employee = key_or_none(data, 'customer'), key_or_none(data, 'employee')
 
-        if customer is not None and customer != user.person.id:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        if customer is None or employee is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        if employee is not None and user.is_employee() and employee != user.person.id:
+        if [customer, employee].count(user.person.id) == 0:  # Make sure that the user has himself in the appointment
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         return super().create(request, args, kwargs)
