@@ -1,17 +1,18 @@
 from django.http import HttpResponseForbidden
+
 from drf_rw_serializers.viewsets import ReadOnlyModelViewSet
-from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from scheduling.permissions import CanCreateAppointment, CanCreateCompany
 from scheduling.availability import get_availability_for_service
 from scheduling.customException import InvalidActionException
-from scheduling import permissions
 from scheduling import serializers
-from scheduling.models import Employee, Appointment, SelfAppointment, Company
+from scheduling.models import Appointment, Employee, Company
+from scheduling import permissions as cp
 
 from drf_rw_serializers import viewsets
 from django.db.models import Q
@@ -29,7 +30,7 @@ class EmployeeViewSet(ReadOnlyModelViewSet):
         company = self.request.query_params.get('company')
         if company is None:
             return None
-        queryset = queryset.filter(company__name=company)
+        queryset = queryset.filter(owner__name=company)
         return queryset
 
     @action(detail=False, methods=['get'])
@@ -58,9 +59,33 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
-    read_serializer_class = serializers.CompanySerializer
-    write_serializer_class = serializers.CompanySerializer
-    queryset = Company.objects.all()
+    read_serializer_class = serializers.CompanyReadSerializer
+    write_serializer_class = serializers.CompanyWriteSerializer
+
+    def get_queryset(self):
+        queryset = Company.objects.all()
+        params = self.request.query_params
+        name = params.get('name')
+        if name is not None:
+            queryset = queryset.filter(name=name)
+        return queryset
+
+    def get_permissions(self):
+        permission_classes = [cp.IsOwnerOrReadOnly]
+
+        if self.action in ['create', 'update']:
+            permission_classes.append(IsAuthenticated)
+        if self.action == 'create':
+            permission_classes.append(CanCreateCompany)
+
+        return [perm() for perm in permission_classes]
+
+    def create(self, request, *args, **kwargs):
+        r = super().create(request, *args, **kwargs)
+        request.user.company_id = r.data.get('id')
+        request.user.enable_company_editing()
+        request.user.save()
+        return r
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
@@ -70,6 +95,10 @@ class AppointmentViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         permission_classes = [IsAuthenticated, ]
+
+        if self.action == 'create':
+            permission_classes.append(CanCreateAppointment)
+
         return [permission() for permission in permission_classes]
 
     def get_queryset(self):
@@ -77,75 +106,27 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         params = serializer.validated_data
 
-        queryset = base_appointment_filter(Appointment.objects.all(), params)
+        queryset = Appointment.objects.all()
 
-        customer = key_or_none(params, 'customer')
-        if customer is not None:
-            queryset = queryset.filter(customer=customer)
+        if params.get('employee') is not None:
+            queryset = queryset.filter(employee=params.get('employee'))
 
-        param_status = key_or_none(params, 'status')
-        if param_status is not None:
-            queryset = queryset.filter(status=param_status)
+        if params.get('from_date') is not None:
+            queryset = queryset.filter(start__gte=params.get('from_date'))
+
+        if params.get('to_date') is not None:
+            queryset = queryset.filter(start__lte=params.get('to_date'))
+
+        if params.get('customer') is not None:
+            queryset = queryset.filter(customer=params.get('customer'))
+
+        if params.get('status') is not None:
+            queryset = queryset.filter(status=params.get('status'))
 
         if self.request.user.is_company_admin():
-            queryset = queryset.filter(employee__company_id=self.request.user.person.company_id)
+            queryset = queryset.filter(employee__owner_id=self.request.user.company_id)
         else:
             queryset = queryset.filter(Q(customer_id=self.request.user.person.id) |
                                        Q(employee_id=self.request.user.person.id))
 
         return queryset
-
-    def create(self, request, *args, **kwargs):
-        user, data = self.request.user, self.request.data
-        customer, employee = key_or_none(data, 'customer'), key_or_none(data, 'employee')
-
-        if customer is None or employee is None:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        if [customer, employee].count(user.person.id) == 0:  # Make sure that the user has himself in the appointment
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-        return super().create(request, args, kwargs)
-
-
-class SelfAppointmentViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated, permissions.IsEmployee)
-    read_serializer_class = serializers.SelfAppointmentReadSerializer
-    write_serializer_class = serializers.SelfAppointmentWriteSerializer
-
-    def create(self, request, *args, **kwargs):
-        if self.request.user.has_perm('scheduling.change_appointment'):
-            return super().create(request, args, kwargs)
-        user, data = self.request.user, self.request.data
-        if user.is_employee() and 'employee' in data and data['employee'] != user.person.id:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-        return super().create(request, args, kwargs)
-
-    def get_queryset(self):
-        queryset = base_appointment_filter(SelfAppointment.objects.all(), self.request.query_params)
-
-        if self.request.user.is_employee() and not self.request.user.has_perm('scheduling.view_appointment'):
-            queryset = queryset.filter(employee_id=self.request.user.person.id)
-
-        return queryset
-
-
-def base_appointment_filter(queryset, params):
-    employee = key_or_none(params, 'employee')
-    if employee is not None:
-        queryset = queryset.filter(employee=employee)
-
-    from_date = key_or_none(params, 'from_date')
-    if from_date is not None:
-        queryset = queryset.filter(start__gte=from_date)
-
-    to_date = key_or_none(params, 'to_date')
-    if to_date is not None:
-        queryset = queryset.filter(start__lte=to_date)
-
-    return queryset
-
-
-def key_or_none(values, key):
-    return values[key] if key in values else None
