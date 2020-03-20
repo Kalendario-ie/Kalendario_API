@@ -158,6 +158,7 @@ AUTH_USER_MODEL = 'core.User'
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'core.serializers.CustomRegisterSerializer'
 }
+ACCOUNT_ADAPTER = 'appointment_manager.users.adapter.MyAccountAdapter'
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = 'email'

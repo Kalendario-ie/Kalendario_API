@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from scheduling.models import Service, Employee, Shift, TimeFrame, Schedule
+from scheduling.models import Service, Employee, Shift, TimeFrame, Schedule, Customer
 
 
 class ServiceReadSerializer(serializers.ModelSerializer):
@@ -22,7 +22,7 @@ class EmployeeWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = ('id', 'first_name', 'last_name', 'instagram', 'schedule',
-                  'email', 'phone', 'services', 'profile_img', 'bio')
+                  'email', 'phone', 'services', 'profile_img', 'bio', 'owner')
     
 
 class TimeFrameSerializer(serializers.ModelSerializer):
@@ -44,7 +44,7 @@ class ShiftWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Shift
-        fields = ('id', 'name', 'frames')
+        fields = ('id', 'name', 'frames', 'owner')
 
     def create(self, validated_data):
         return updateShift(Shift(), validated_data)
@@ -54,7 +54,8 @@ class ShiftWriteSerializer(serializers.ModelSerializer):
 
 
 def updateShift(instance, validated_data):
-    instance.name = validated_data['name']
+    instance.name = validated_data.get('name')
+    instance.owner = validated_data.get('owner')
     instance.save()
 
     frames, validatedFrames = list(instance.timeframe_set.all()), validated_data['timeframe_set']
@@ -93,4 +94,18 @@ class ScheduleReadSerializer(serializers.ModelSerializer):
 class ScheduleWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Schedule
-        fields = ('id', 'name', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun')
+        fields = ('id', 'name', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun', 'owner')
+
+
+class CustomerReadSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Customer
+        fields = ('id', 'first_name', 'last_name', 'name', 'phone')
+
+
+class CustomerWriteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Customer
+        fields = ('id', 'first_name', 'last_name', 'name', 'phone', 'owner')

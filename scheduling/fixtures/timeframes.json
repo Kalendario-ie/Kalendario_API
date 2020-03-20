@@ -1,0 +1,38 @@
+[
+  {
+    "model": "scheduling.timeframe",
+    "pk": 1,
+    "fields": {
+      "start": "09:00:00",
+      "end": "17:30:00",
+      "shift": 1
+    }
+  },
+  {
+    "model": "scheduling.timeframe",
+    "pk": 2,
+    "fields": {
+      "start": "09:00:00",
+      "end": "13:00:00",
+      "shift": 2
+    }
+  },
+  {
+    "model": "scheduling.timeframe",
+    "pk": 3,
+    "fields": {
+      "start": "14:00:00",
+      "end": "17:00:00",
+      "shift": 2
+    }
+  },
+  {
+    "model": "scheduling.timeframe",
+    "pk": 4,
+    "fields": {
+      "start": "09:00:00",
+      "end": "18:00:00",
+      "shift": 3
+    }
+  }
+]

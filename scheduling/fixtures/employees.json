@@ -1,0 +1,61 @@
+[
+  {
+    "model": "scheduling.employee",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "schedule": 1,
+      "instagram": "Gustavo Francelino",
+      "profile_img": null,
+      "bio": "",
+      "services": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "scheduling.employee",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "schedule": 1,
+      "instagram": "A",
+      "profile_img": null,
+      "bio": "",
+      "services": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "scheduling.employee",
+    "pk": 3,
+    "fields": {
+      "owner": 2,
+      "schedule": 2,
+      "instagram": "A",
+      "profile_img": null,
+      "bio": "",
+      "services": [
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "scheduling.employee",
+    "pk": 4,
+    "fields": {
+      "owner": 2,
+      "schedule": 2,
+      "instagram": "A",
+      "profile_img": null,
+      "bio": "",
+      "services": [
+        3,
+        4
+      ]
+    }
+  }
+]

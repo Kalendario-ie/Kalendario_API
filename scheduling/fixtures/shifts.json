@@ -1,0 +1,26 @@
+[
+    {
+    "model": "scheduling.shift",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "name": "C1 SHIFT 1"
+    }
+  },
+  {
+    "model": "scheduling.shift",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "name": "C1 SHIFT 2"
+    }
+  },
+  {
+    "model": "scheduling.shift",
+    "pk": 3,
+    "fields": {
+      "owner": 2,
+      "name": "C2 SHIFT 1"
+    }
+  }
+]

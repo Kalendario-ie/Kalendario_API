@@ -1,7 +1,7 @@
 import datetime
 
 from scheduling.customException import InvalidActionException
-from scheduling.models import Service, Employee
+from scheduling.models import Employee
 
 
 class Slot:
@@ -54,7 +54,7 @@ def get_availability(employee: Employee, start, end):
     return slots
 
 
-def get_availability_for_service(employee: Employee, service: Service, start, end) -> list:
+def get_availability_for_service(employee, service, start, end):
 
     if not employee.provides_service(service):
         raise InvalidActionException("Employee doesn't provide the service specified")

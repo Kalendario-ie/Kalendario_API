@@ -1,50 +1,71 @@
+import cloudinary.uploader as cloudinary_uploader
 from cloudinary import CloudinaryResource
-from cloudinary.templatetags import cloudinary
+from django.db.models import Q
 from drf_rw_serializers import viewsets
+from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import status
 
 from scheduling.api_admin import serializers
-from scheduling.models import Employee, Service, Shift, Schedule
-from scheduling.api_admin.permissions import ModelPermission
+from scheduling.api_admin.permissions import IsCompanyAdmin, ModelPermissionFactory
+from scheduling.models import Employee, Service, Schedule, Shift, Customer
 
-import cloudinary.uploader
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 100
+    page_size_query_param = 'page_size'
+    max_page_size = 300
 
 
 class WithPermissionsModelViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    pagination_class = StandardResultsSetPagination
     queryset_class = None
 
-    def get_permissions(self):
-        permission_classes = [IsAuthenticated, ]
+    action_perm_map = {'list': 'view',
+                       'retrieve': 'view',
+                       'create': 'add',
+                       'update': 'change',
+                       'partial_update': 'change'}
 
-        if self.action in ['list', 'retrieve']:
-            permission_classes.append(ModelPermission('view', self.queryset_class))
+    def get_action_map(self):
+        return self.action_perm_map
+
+    def get_permissions(self):
+        permission_classes = [IsAuthenticated,
+                              ModelPermissionFactory(self.get_action_map().get(self.action), self.queryset_class)]
 
         if self.action == 'create':
-            permission_classes.append(ModelPermission('add', self.queryset_class))
+            permission_classes.append(IsCompanyAdmin)
+        if self.action in ['update', 'partial_update']:
+            permission_classes.append(IsCompanyAdmin)
 
-        if self.action == 'update':
-            permission_classes.append(ModelPermission('change', self.queryset_class))
+        return [perm() for perm in permission_classes]
 
-        return [perm if perm.__class__ == ModelPermission else perm() for perm in permission_classes]
+    def get_queryset(self):
+        queryset = self.queryset.order_by('id')
+        return queryset.filter(owner_id=self.request.user.company_id)
 
 
 class EmployeeViewSet(WithPermissionsModelViewSet):
-    authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.EmployeeReadSerializer
     write_serializer_class = serializers.EmployeeWriteSerializer
     queryset = Employee.objects.all()
     queryset_class = 'employee'
+
+    def get_action_map(self):
+        self.action_perm_map['photo'] = 'change'
+        return self.action_perm_map
 
     # TODO: Delete old profile picture when a new one is added
     @action(detail=True, methods=['post'])
     def photo(self, request, pk=None):
         file = request.data.get('image')
 
-        u = cloudinary.uploader.upload(file)
+        u = cloudinary_uploader.upload(file)
 
         employee = self.queryset.get(id=pk)
         employee.profile_img = CloudinaryResource(u['public_id'], u['format'], u['version'], u['signature'],
@@ -57,7 +78,6 @@ class EmployeeViewSet(WithPermissionsModelViewSet):
 
 
 class ServiceViewSet(WithPermissionsModelViewSet):
-    authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.ServiceReadSerializer
     write_serializer_class = serializers.ServiceReadSerializer
     queryset = Service.objects.all()
@@ -65,7 +85,6 @@ class ServiceViewSet(WithPermissionsModelViewSet):
 
 
 class ShiftViewSet(WithPermissionsModelViewSet):
-    authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.ShiftReadSerializer
     write_serializer_class = serializers.ShiftWriteSerializer
     queryset = Shift.objects.all()
@@ -73,8 +92,23 @@ class ShiftViewSet(WithPermissionsModelViewSet):
 
 
 class ScheduleViewSet(WithPermissionsModelViewSet):
-    authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.ScheduleReadSerializer
     write_serializer_class = serializers.ScheduleWriteSerializer
     queryset = Schedule.objects.all()
     queryset_class = 'schedule'
+
+
+class CustomerViewSet(WithPermissionsModelViewSet):
+    read_serializer_class = serializers.CustomerReadSerializer
+    write_serializer_class = serializers.CustomerWriteSerializer
+    queryset = Customer.objects.all()
+    queryset_class = 'customer'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        search = self.request.query_params.get('search')
+        if search is not None:
+            queryset = queryset.filter(Q(first_name__icontains=search) | Q(last_name__icontains=search))
+
+        return queryset

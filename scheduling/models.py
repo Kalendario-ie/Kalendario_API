@@ -4,6 +4,10 @@ from django.db.models import Q
 from scheduling.managers import *
 
 
+class Company(models.Model):
+    name = models.CharField(max_length=255)
+
+
 class TimeFrame(models.Model):
     start = models.TimeField()
     end = models.TimeField()
@@ -14,6 +18,7 @@ class TimeFrame(models.Model):
 
 
 class Shift(models.Model):
+    owner = models.ForeignKey(Company, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
 
     def __str__(self):
@@ -21,6 +26,7 @@ class Shift(models.Model):
 
 
 class Schedule(models.Model):
+    owner = models.ForeignKey(Company, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     mon = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='mon')
     tue = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='tue')
@@ -57,6 +63,7 @@ class Schedule(models.Model):
 
 
 class Service(models.Model):
+    owner = models.ForeignKey(Company, on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     duration = models.TimeField()
     description = models.CharField(max_length=255, blank=True, null=True)
@@ -68,31 +75,21 @@ class Service(models.Model):
         return self.name
 
 
-class Company(models.Model):
-    name = models.CharField(max_length=255)
-
-
 class Person(models.Model):
-    user = models.OneToOneField('core.User', on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
-    company_admin = models.BooleanField(default=False)
 
     def name(self):
         return self.first_name + ' ' + self.last_name
-
-    def addUser(self, user):
-        self.user = user
-        self.first_name, self.last_name = user.first_name, user.last_name
 
     def __str__(self):
         return self.name()
 
 
 class Employee(Person):
+    owner = models.ForeignKey(Company, on_delete=models.CASCADE)
     schedule = models.ForeignKey(Schedule, on_delete=models.SET_NULL, null=True, blank=True)
     services = models.ManyToManyField(Service)
     instagram = models.CharField(max_length=200, null=True)
@@ -102,14 +99,16 @@ class Employee(Person):
     def email(self):
         return self.user.email
 
-    def provides_service(self, service: Service):
+    def provides_service(self, service):
         return self.services.filter(id=service.id).first() is not None
 
     def get_availability(self, date):
+        if self.schedule is None:
+            return []
         return self.schedule.get_availability(date)
 
     def confirmed_appointments(self, start, end):
-        appointments = self.baseappointment_set.filter(start__gte=start, start__lte=end).select_subclasses()
+        appointments = self.service_provided.filter(start__gte=start, start__lte=end)
         return list(filter(lambda x: x.is_active(), appointments))
 
     # To be available the times must fit inside a frame and not overlap existing appointments
@@ -126,32 +125,16 @@ class Employee(Person):
 
     # Check if the appointment overlaps with any other appointment already booked.
     def __is_overlapping__(self, start, end):
-        starts_or_ends_between = self.baseappointment_set.filter(
-            Q(start__gte=start, start__lt=end) | Q(end__gt=start, end__lte=end)).select_subclasses()
+        starts_or_ends_between = self.service_provided.filter(Q(start__gte=start, start__lt=end)
+                                                              | Q(end__gt=start, end__lte=end))
         return len(list(filter(lambda x: x.is_active(), starts_or_ends_between))) > 0
 
 
-class BaseAppointment(models.Model):
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-
-    objects = BaseAppointmentManager()
-
-    # System shouldn't be able to book over active appointments but it should ignore inactive
-    def is_active(self):
-        return True
-
-    def __str__(self):
-        return "{emp}: {start} to {end}".format(
-            date=self.start,
-            start=self.start,
-            end=self.end,
-            emp=self.employee.name()
-        )
+class Customer(Person):
+    owner = models.ForeignKey(Company, on_delete=models.CASCADE)
 
 
-class Appointment(BaseAppointment):
+class Appointment(models.Model):
     PENDING = 'P'
     ACCEPTED = 'A'
     REJECTED = 'R'
@@ -162,8 +145,11 @@ class Appointment(BaseAppointment):
         (REJECTED, 'Rejected'),
     ]
 
-    customer = models.ForeignKey(Person, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='service_provided')
+    customer = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='service_received')
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
     customer_notes = models.TextField(max_length=255, null=True, blank=True)
 
@@ -174,21 +160,17 @@ class Appointment(BaseAppointment):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        self.end = self.start + self.service.duration_delta()
+        if self.service:
+            self.end = self.start + self.service.duration_delta()
         super().save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return "{customer} on {date} from {start} to {end} {service} with {emp}. {status}".format(
-            customer=self.customer.name(),
+            customer=self.customer,
             date=self.start.date(),
             start=self.start.time(),
-            end=self.end,
-            service=self.service.name,
-            emp=self.employee.name(),
+            end=self.end.time(),
+            service=self.service,
+            emp=self.employee,
             status=self.status
         )
-
-
-# This will lock a period without a customer, so employees can block appointments by booking this
-class SelfAppointment(BaseAppointment):
-    reason = models.TextField(max_length=255, null=True, blank=True)

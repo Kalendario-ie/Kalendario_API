@@ -1,0 +1,82 @@
+[
+ {
+    "model": "scheduling.person",
+    "pk": 1,
+    "fields": {
+      "first_name": "COMPANY A",
+      "last_name": "EMPLOYEE A",
+      "phone": "0",
+      "email": "CAEA@EMAIL.COM"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 2,
+    "fields": {
+      "first_name": "COMPANY A",
+      "last_name": "EMPLOYEE B",
+      "phone": "31",
+      "email": "CAEB@EMAIL.COM"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 3,
+    "fields": {
+      "first_name": "COMPANY B",
+      "last_name": "EMPLOYEE B",
+      "phone": "1",
+      "email": "CBEA@EMAIL.COM"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 4,
+    "fields": {
+      "first_name": "COMPANY B",
+      "last_name": "EMPLOYEE B",
+      "phone": "10012",
+      "email": "CBEB@EMAIL.COM"
+    }
+  },
+   {
+    "model": "scheduling.person",
+    "pk": 5,
+    "fields": {
+      "first_name": "COMPANY A",
+      "last_name": "CUSTOMER A",
+      "phone": "0",
+      "email": "CACUSTA@EMAIL.COM"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 6,
+    "fields": {
+      "first_name": "COMPANY A",
+      "last_name": "CUSTOMER B",
+      "phone": "31",
+      "email": "CACUSTB@EMAIL.COM"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 7,
+    "fields": {
+      "first_name": "COMPANY B",
+      "last_name": "CUSTOMER B",
+      "phone": "1",
+      "email": "CBCUSTA@EMAIL.COM"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 8,
+    "fields": {
+      "first_name": "COMPANY B",
+      "last_name": "CUSTOMER B",
+      "phone": "10012",
+      "email": "CBCUSTB@EMAIL.COM"
+    }
+  }
+]

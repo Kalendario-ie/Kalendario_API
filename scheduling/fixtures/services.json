@@ -1,0 +1,42 @@
+[
+ {
+    "model": "scheduling.service",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "name": "C1 SERVICE 1",
+      "duration": "00:30:00",
+      "description": "Service 1 Description"
+    }
+  },
+  {
+    "model": "scheduling.service",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "name": "C1 SERVICE 2",
+      "duration": "00:45:00",
+      "description": "Service 2 Description"
+    }
+  },
+  {
+    "model": "scheduling.service",
+    "pk": 3,
+    "fields": {
+      "owner": 2,
+      "name": "C2 SERVICE 1",
+      "duration": "00:30:00",
+      "description": "Service 3 Description"
+    }
+  },
+  {
+    "model": "scheduling.service",
+    "pk": 4,
+    "fields": {
+      "owner": 2,
+      "name": "C2 SERVICE 2",
+      "duration": "00:45:00",
+      "description": "Service 5 Description"
+    }
+  }
+]

@@ -38,9 +38,16 @@ class AppointmentAdmin(admin.ModelAdmin):
     ]
 
 
+class CompanyAdmin(admin.ModelAdmin):
+    fieldset = [
+        (None, {'fields': ['testing_wat']}),
+    ]
+
+
 admin.site.register(Shift, ShiftAdmin)
 admin.site.register(Schedule, ScheduleAdmin)
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Appointment, AppointmentAdmin)
+admin.site.register(Company, CompanyAdmin)
 

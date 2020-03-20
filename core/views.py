@@ -9,7 +9,6 @@ from core.serializers import UserSerializer
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView, SocialConnectView
 
-from scheduling.models import Person
 
 
 class CurrentUserViewSet(APIView):
@@ -18,8 +17,6 @@ class CurrentUserViewSet(APIView):
 
     def get(self, request):
         user = User.objects.filter(email=request.user).first()
-        if user.person is None:
-            Person().addUser(user)
         serializer = UserSerializer(user)
         return Response(serializer.data)
 

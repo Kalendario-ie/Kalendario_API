@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import PermissionDenied
 
 from scheduling.customException import ModelCreationFailedException
-from scheduling.models import Service, Employee, Appointment, SelfAppointment, BaseAppointment, Company, Person
+from scheduling.models import Service, Employee, Appointment, Company, Person
 
 
 class ServiceSerializer(serializers.ModelSerializer):
@@ -12,26 +12,32 @@ class ServiceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CompanySerializer(serializers.ModelSerializer):
+class CompanyReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ('id', 'name')
+
+
+class CompanyWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = ('id', 'name')
 
 
 class PersonSerializer(serializers.ModelSerializer):
-    company = CompanySerializer(read_only=True)
 
     class Meta:
         model = Person
-        fields = ('id', 'name', 'email', 'phone', 'company', 'company_admin')
+        fields = ('id', 'name', 'email', 'phone')
 
 
 class EmployeeSerializer(PersonSerializer):
     services = ServiceSerializer(many=True, read_only=True)
+    owner = CompanyReadSerializer(read_only=True)
 
     class Meta(PersonSerializer.Meta):
         model = Employee
-        fields = PersonSerializer.Meta.fields + ('services', 'profile_img', 'bio')
+        fields = PersonSerializer.Meta.fields + ('services', 'profile_img', 'bio', 'owner')
 
 
 class SlotSerializer(serializers.Serializer):
@@ -47,58 +53,33 @@ class SlotSerializer(serializers.Serializer):
             raise serializers.ValidationError('Invalid service id')
 
 
-class BaseAppointmentReadSerializer(serializers.ModelSerializer):
+class AppointmentReadSerializer(serializers.ModelSerializer):
     employee = EmployeeSerializer(read_only=True)
+    customer = PersonSerializer(read_only=True)
+    service = ServiceSerializer(read_only=True)
 
     class Meta:
-        model = BaseAppointment
-        fields = ('id', 'start', 'end', 'employee')
+        model = Appointment
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'status', 'customer_notes')
 
 
-class BaseAppointmentWriteSerializer(serializers.ModelSerializer):
+class AppointmentWriteSerializer(serializers.ModelSerializer):
+    end = serializers.DateTimeField(required=False)
+
     class Meta:
-        model = BaseAppointment
-        fields = ('id', 'start', 'end', 'employee')
+        model = Appointment
+        fields = ('id', 'start', 'end', 'employee', 'service', 'customer', 'customer_notes', 'status')
 
     def create(self, validated_data):
         try:
             appoint = self.Meta.model.objects.create(**validated_data)
             return appoint
         except ModelCreationFailedException as e:
-            raise PermissionDenied({"message": str(e)})
-
-
-class AppointmentReadSerializer(BaseAppointmentReadSerializer):
-    customer = PersonSerializer(read_only=True)
-    service = ServiceSerializer(read_only=True)
-
-    class Meta(BaseAppointmentReadSerializer.Meta):
-        model = Appointment
-        fields = BaseAppointmentReadSerializer.Meta.fields + ('service', 'customer', 'status', 'customer_notes')
-
-
-class AppointmentWriteSerializer(BaseAppointmentWriteSerializer):
-    end = serializers.DateTimeField(required=False)
-
-    class Meta(BaseAppointmentWriteSerializer.Meta):
-        model = Appointment
-        fields = BaseAppointmentWriteSerializer.Meta.fields + ('service', 'customer', 'customer_notes', 'status')
+            raise PermissionDenied(str(e))
 
     def get_validation_exclusions(self):
         exclusions = super(AppointmentWriteSerializer, self).get_validation_exclusions()
         return exclusions + ['end']
-
-
-class SelfAppointmentReadSerializer(BaseAppointmentReadSerializer):
-    class Meta(BaseAppointmentReadSerializer.Meta):
-        model = SelfAppointment
-        fields = BaseAppointmentReadSerializer.Meta.fields + ('reason',)
-
-
-class SelfAppointmentWriteSerializer(BaseAppointmentWriteSerializer):
-    class Meta(BaseAppointmentWriteSerializer.Meta):
-        model = SelfAppointment
-        fields = BaseAppointmentWriteSerializer.Meta.fields + ('reason',)
 
 
 class CustomerAppointmentWriteSerializer(AppointmentWriteSerializer):

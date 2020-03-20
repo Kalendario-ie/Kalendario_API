@@ -23,4 +23,5 @@ class RegisterUserView(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         user = User.objects.last()
         self.assertEqual(user.email, data['email'])
-        self.assertTrue(hasattr(user, 'person'))
+        self.assertIsNotNone(user.person)
+        self.assertTrue(user.has_perm('scheduling.add_company'))

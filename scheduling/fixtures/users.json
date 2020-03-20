@@ -1,0 +1,21 @@
+[
+  {
+    "model": "core.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$150000$fLLjbuA4wYB5$Fcr7SxfeEJGT06UVfH6ME/siLJTwEbD5mXyo6UmzBIM=",
+        "last_login": "2020-03-04T22:23:26.847",
+        "is_superuser": false,
+        "first_name": "Company A",
+        "last_name": "Owner",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2020-03-04T22:23:17.966",
+        "email": "gustavo.francelino@gmail.com",
+        "company": 1,
+        "person": null,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
