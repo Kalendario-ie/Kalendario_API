@@ -47,7 +47,7 @@ class CanCreateAppointment(permissions.BasePermission):
         customer, employee = int(request.data.get('customer', 0)), int(request.data.get('employee', 0))
         user, c = request.user, request.user.company
 
-        if (user.is_company_admin()
+        if (user.has_company()
                 and _check_if_exists(c.employee_set, employee)
                 and (_check_if_exists(c.customer_set, customer) or _check_if_exists(c.employee_set, customer))):
             return True

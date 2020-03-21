@@ -22,8 +22,8 @@ class User(AbstractUser):
     def is_employee(self):
         return hasattr(self, 'person') and hasattr(self.person, 'employee')
 
-    def is_company_admin(self):
-        return self.company and self.has_perm('scheduling.add_appointment')
+    def has_company(self):
+        return self.company is not None
 
     def change_to_emp(self, emp):
         self.person.delete()
@@ -33,5 +33,6 @@ class User(AbstractUser):
     def enable_company_editing(self):
         permissions = ['appointment', 'employee', 'shift', 'schedule', 'service', 'customer']
         for name in permissions:
-            list(map(self.user_permissions.add, Permission.objects.filter(codename__endswith=name)))
+            self.user_permissions.add(*Permission.objects.filter(codename__endswith=name))
+        self.user_permissions.remove(*Permission.objects.filter(codename='add_company'))
         self.save()

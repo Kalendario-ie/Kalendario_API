@@ -5,19 +5,13 @@ from drf_rw_serializers import viewsets
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from scheduling.util import StandardResultsSetPagination
 from scheduling.api_admin import serializers
 from scheduling.api_admin.permissions import IsCompanyAdmin, ModelPermissionFactory
 from scheduling.models import Employee, Service, Schedule, Shift, Customer
-
-
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 100
-    page_size_query_param = 'page_size'
-    max_page_size = 300
 
 
 class WithPermissionsModelViewSet(viewsets.ModelViewSet):

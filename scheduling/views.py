@@ -3,7 +3,6 @@ from django.http import HttpResponseForbidden
 from drf_rw_serializers.viewsets import ReadOnlyModelViewSet
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -52,12 +51,6 @@ class EmployeeViewSet(ReadOnlyModelViewSet):
             return HttpResponseForbidden(str(e))
 
 
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 100
-    page_size_query_param = 'page_size'
-    max_page_size = 300
-
-
 class CompanyViewSet(viewsets.ModelViewSet):
     read_serializer_class = serializers.CompanyReadSerializer
     write_serializer_class = serializers.CompanyWriteSerializer
@@ -84,7 +77,6 @@ class CompanyViewSet(viewsets.ModelViewSet):
         r = super().create(request, *args, **kwargs)
         request.user.company_id = r.data.get('id')
         request.user.enable_company_editing()
-        request.user.save()
         return r
 
 
@@ -123,7 +115,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         if params.get('status') is not None:
             queryset = queryset.filter(status=params.get('status'))
 
-        if self.request.user.is_company_admin():
+        if self.request.user.has_company() and self.request.user.has_perm('scheduling.view_appointment'):
             queryset = queryset.filter(employee__owner_id=self.request.user.company_id)
         else:
             queryset = queryset.filter(Q(customer_id=self.request.user.person.id) |

@@ -2,63 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de8732ee-7932-4ecb-b053-1d9c10d14280" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/appointment_manager/users/adapter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/companies.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/customers.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/employees.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/people.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/schedules.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/services.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/shifts.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/timeframes.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/fixtures/users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment_manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/appointment_manager/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/tests/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/tests/test_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/api_admin/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/api_admin/permissions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/api_admin/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/api_admin/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/api_admin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/api_admin/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scheduling/api_admin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/api_admin/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/availability.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/availability.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/managers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0002_auto_20190812_2006.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0003_auto_20190812_2016.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0004_auto_20190821_1953.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0005_auto_20190826_2350.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0006_auto_20190826_2350.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0007_appointment_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0008_appointment_customer_notes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0009_auto_20190905_2252.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0010_baseappointment_end.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0011_selfappointment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0012_auto_20190915_1957.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0013_auto_20190915_2011.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0014_auto_20190915_2014.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0015_auto_20190915_2102.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/migrations/0002_customer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0016_auto_20190918_0136.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0017_person_email.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0018_service_description.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0019_auto_20200115_2115.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0020_auto_20200120_2151.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/migrations/0021_auto_20200120_2311.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scheduling/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/permissions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/tests/generics.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/generics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scheduling/tests/test_availability.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/test_availability.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/tests/test_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/test_models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scheduling/tests/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/test_views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scheduling/tests/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/ang/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +25,149 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="525">
+                  <caret line="38" selection-start-line="38" selection-end-line="38" />
+                  <folding>
+                    <element signature="e#0#51#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scheduling/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="509">
+                  <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+                  <folding>
+                    <element signature="e#0#45#0" expanded="true" />
+                    <element signature="e#777#1967#0" />
+                    <element signature="e#864#1153#0" />
+                    <element signature="e#1238#1455#0" />
+                    <element signature="e#1281#1388#0" />
+                    <element signature="e#1546#1967#0" />
+                    <element signature="e#1679#1874#0" />
+                    <element signature="e#2178#2390#0" />
+                    <element signature="e#2431#2726#0" />
+                    <element signature="e#2998#4685#0" />
+                    <element signature="e#3220#3425#0" />
+                    <element signature="e#3463#4685#0" />
+                    <element signature="e#4506#4660#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scheduling/permissions.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="323">
+                  <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+                  <folding>
+                    <element signature="e#91#227#0" />
+                    <element signature="e#91#139#1" />
+                    <element signature="e#194#227#0" />
+                    <element signature="e#280#473#0" />
+                    <element signature="e#280#329#1" />
+                    <element signature="e#384#473#0" />
+                    <element signature="e#533#1036#0" />
+                    <element signature="e#533#675#1" />
+                    <element signature="e#742#1036#0" />
+                    <element signature="e#742#788#0" />
+                    <element signature="e#1080#1155#0" />
+                    <element signature="e#1219#1818#0" />
+                    <element signature="e#1268#1818#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/scheduling/tests/test_views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="586">
+                  <caret line="326" column="31" selection-start-line="326" selection-start-column="31" selection-end-line="326" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#0#49#0" expanded="true" />
+                    <element signature="e#370#514#0" />
+                    <element signature="e#377#514#0" />
+                    <element signature="e#574#713#0" />
+                    <element signature="e#581#713#0" />
+                    <element signature="e#774#933#0" />
+                    <element signature="e#999#1142#0" />
+                    <element signature="e#1193#12578#0" />
+                    <element signature="e#1193#1300#1" />
+                    <element signature="e#1331#1912#0" />
+                    <element signature="e#1452#1912#0" />
+                    <element signature="e#1677#1912#0" />
+                    <element signature="e#1735#1912#0" />
+                    <element signature="e#1985#2361#0" />
+                    <element signature="e#2406#2664#0" />
+                    <element signature="e#2406#2517#1" />
+                    <element signature="e#2711#3137#0" />
+                    <element signature="e#2711#2827#1" />
+                    <element signature="e#3181#3733#0" />
+                    <element signature="e#3181#3331#1" />
+                    <element signature="e#3798#4190#0" />
+                    <element signature="e#3798#3948#1" />
+                    <element signature="e#4236#4810#0" />
+                    <element signature="e#4236#4386#1" />
+                    <element signature="e#4873#5381#0" />
+                    <element signature="e#5444#5884#0" />
+                    <element signature="e#5948#6495#0" />
+                    <element signature="e#5948#6056#1" />
+                    <element signature="e#6560#7091#0" />
+                    <element signature="e#6560#6707#1" />
+                    <element signature="e#7135#7619#0" />
+                    <element signature="e#7135#7242#1" />
+                    <element signature="e#7665#8154#0" />
+                    <element signature="e#7665#7774#1" />
+                    <element signature="e#8217#8773#0" />
+                    <element signature="e#8217#8326#1" />
+                    <element signature="e#8837#9347#0" />
+                    <element signature="e#8837#8923#1" />
+                    <element signature="e#9412#10023#0" />
+                    <element signature="e#9412#9533#1" />
+                    <element signature="e#10064#10589#0" />
+                    <element signature="e#10064#10173#1" />
+                    <element signature="e#10632#11190#0" />
+                    <element signature="e#10632#10743#1" />
+                    <element signature="e#11251#11836#0" />
+                    <element signature="e#11251#11362#1" />
+                    <element signature="e#11898#12578#0" />
+                    <element signature="e#11898#12016#1" />
+                    <element signature="e#12651#12690#0" />
+                    <element signature="e#12745#12917#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scheduling/tests/util.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="773">
+                  <caret line="77" selection-start-line="77" selection-end-line="77" />
+                  <folding>
+                    <element signature="e#0#22#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -129,8 +226,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/auth/generics.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/auth/views.py" />
         <option value="$PROJECT_DIR$/core/urls.py" />
         <option value="$PROJECT_DIR$/appointment_manager/urls.py" />
@@ -138,7 +233,6 @@
         <option value="$PROJECT_DIR$/scheduling/admin/serializers.py" />
         <option value="$PROJECT_DIR$/scheduling/admin/views.py" />
         <option value="$PROJECT_DIR$/scheduling/api_admin/generics.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/scheduling/migrations/0019_auto_20200115_2115.py" />
         <option value="C:/ASI/Documents/port.py" />
         <option value="$PROJECT_DIR$/scheduling/migrations/0001_initial.py" />
@@ -160,7 +254,6 @@
         <option value="$PROJECT_DIR$/scheduling/tests/generics.py" />
         <option value="$PROJECT_DIR$/core/serializers.py" />
         <option value="$PROJECT_DIR$/scheduling/tests/test_models.py" />
-        <option value="$PROJECT_DIR$/scheduling/tests/test_availability.py" />
         <option value="$PROJECT_DIR$/scheduling/api_admin/permissions.py" />
         <option value="$PROJECT_DIR$/appointment_manager/settings.py" />
         <option value="$PROJECT_DIR$/core/managers.py" />
@@ -168,7 +261,6 @@
         <option value="$PROJECT_DIR$/core/views.py" />
         <option value="$PROJECT_DIR$/scheduling/urls.py" />
         <option value="$PROJECT_DIR$/scheduling/api_admin/urls.py" />
-        <option value="$PROJECT_DIR$/core/models.py" />
         <option value="$PROJECT_DIR$/scheduling/managers.py" />
         <option value="$PROJECT_DIR$/scheduling/serializers.py" />
         <option value="$PROJECT_DIR$/scheduling/api_admin/serializers.py" />
@@ -176,18 +268,23 @@
         <option value="$PROJECT_DIR$/scheduling/permissions.py" />
         <option value="$PROJECT_DIR$/core/tests/test_views.py" />
         <option value="$PROJECT_DIR$/scheduling/availability.py" />
-        <option value="$PROJECT_DIR$/scheduling/tests/test_views.py" />
-        <option value="$PROJECT_DIR$/scheduling/tests/util.py" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/templates/home.html" />
+        <option value="$PROJECT_DIR$/core/util.py" />
         <option value="$PROJECT_DIR$/scheduling/api_admin/views.py" />
         <option value="$PROJECT_DIR$/scheduling/views.py" />
+        <option value="$PROJECT_DIR$/scheduling/tests/test_availability.py" />
+        <option value="$PROJECT_DIR$/core/models.py" />
+        <option value="$PROJECT_DIR$/scheduling/tests/test_views.py" />
+        <option value="$PROJECT_DIR$/scheduling/tests/util.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="width" value="1440" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -210,8 +307,7 @@
             <path>
               <item name="appointment_manager_API" type="b2602c69:ProjectViewProjectNode" />
               <item name="appointment_manager_API" type="462c0819:PsiDirectoryNode" />
-              <item name="scheduling" type="462c0819:PsiDirectoryNode" />
-              <item name="api_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -232,19 +328,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PyCharm 2019.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\fixtures" />
-      <recent name="C:\development\appointment_manager\appointment_manager_API\auth" />
-      <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\tests" />
-      <recent name="C:\development\appointment_manager\appointment_manager_API\staticfiles" />
-      <recent name="C:\development\appointment_manager\appointment_manager_API" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\static" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\staticfiles" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\customers" />
       <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\fixtures" />
+      <recent name="C:\development\appointment_manager\appointment_manager_API\auth" />
+      <recent name="C:\development\appointment_manager\appointment_manager_API\scheduling\tests" />
+      <recent name="C:\development\appointment_manager\appointment_manager_API\staticfiles" />
+      <recent name="C:\development\appointment_manager\appointment_manager_API" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -259,7 +355,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Django tests.Test: ">
+  <component name="RunManager" selected="Django server.appointment_manager">
     <configuration name="Test: core.tests.test_views.RegisterUserView" type="DjangoTestsConfigurationType" temporary="true">
       <module name="appointment_manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -415,8 +511,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Django tests.Test: scheduling.tests.test_views.CompanyViewSetTest" />
         <item itemvalue="Django tests.Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" />
+        <item itemvalue="Django tests.Test: scheduling.tests.test_views.CompanyViewSetTest" />
         <item itemvalue="Django tests.Test: scheduling.tests.test_views.CompanyViewSetTest.test__anonymous_create_company" />
         <item itemvalue="Django tests.Test: core.tests.test_views.RegisterUserView" />
         <item itemvalue="Django tests.Test: core.tests.test_views.RegisterUserView.test_register_user_creates_user_and_person" />
@@ -564,7 +660,11 @@
       <workItem from="1583835470527" duration="13482000" />
       <workItem from="1584041688422" duration="680000" />
       <workItem from="1584294316019" duration="44541000" />
-      <workItem from="1584616405091" duration="5473000" />
+      <workItem from="1584616405091" duration="7345000" />
+      <workItem from="1584703490230" duration="8830000" />
+      <workItem from="1584785882472" duration="5555000" />
+      <workItem from="1584800789541" duration="120000" />
+      <workItem from="1584818145874" duration="4307000" />
     </task>
     <task id="LOCAL-00001" summary="removed customer / employee unused files">
       <created>1570401757297</created>
@@ -591,39 +691,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.09 at 20h 20m 32s.xml">
-      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.09 at 21h 42m 59s.xml">
-      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.09 at 21h 44m 17s.xml">
-      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.09 at 21h 48m 43s.xml">
-      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.09 at 21h 54m 02s.xml">
-      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest - 2020.03.10 at 08h 36m 00s.xml">
-      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest - 2020.03.10 at 08h 44m 32s.xml">
-      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
-    <history-entry file="Test__ - 2020.03.20 at 09h 01m 22s.xml">
+    <history-entry file="Test__ - 2020.03.21 at 19h 21m 23s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ - 2020.03.20 at 09h 08m 10s.xml">
+    <history-entry file="Test__ - 2020.03.21 at 19h 21m 54s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
     </history-entry>
-    <history-entry file="Test__ - 2020.03.20 at 09h 08m 46s.xml">
+    <history-entry file="Test__ - 2020.03.21 at 19h 23m 36s.xml">
       <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2020.03.21 at 19h 35m 58s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__ - 2020.03.21 at 19h 46m 45s.xml">
+      <configuration name="Test: " configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.21 at 19h 47m 01s.xml">
+      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.21 at 19h 49m 54s.xml">
+      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.21 at 19h 50m 25s.xml">
+      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.21 at 19h 53m 57s.xml">
+      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
+    <history-entry file="Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create - 2020.03.21 at 19h 59m 47s.xml">
+      <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" configurationId="DjangoTestsConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="965334000" />
+    <option name="totallyTimeSpent" value="986018000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -635,9 +735,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49761525" visible="true" weight="0.20149253" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49761525" weight="0.20362474" />
       <window_info id="Structure" order="1" sideWeight="0.5023847" side_tool="true" weight="0.2889126" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
@@ -646,10 +746,10 @@
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.50586355" side_tool="true" weight="0.29577464" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32936078" />
-      <window_info anchor="bottom" id="Version Control" order="6" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49733475" weight="0.24052005" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" weight="0.2654388" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49413645" weight="0.29469123" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" visible="true" weight="0.26868907" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49413645" weight="0.34994584" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
@@ -699,6 +799,58 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="heroku/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="heroku/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="removed customer / employee unused files" />
     <MESSAGE value="add tests to appointment" />
@@ -723,11 +875,11 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/appointment_manager_API$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1584695295465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/appointment_manager_API$Test__.coverage" NAME="Test:  Coverage Results" MODIFIED="1584819997403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_test_views_CustomerViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.CustomerViewSetTest Coverage Results" MODIFIED="1569096774564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_end_on_start.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_end_on_start Coverage Results" MODIFIED="1583363653922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_test_models_AppointmentTest_test_add_appointment_scheduled_day_correct_time.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_add_appointment_scheduled_day_correct_time Coverage Results" MODIFIED="1583363571199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create.coverage" NAME="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create Coverage Results" MODIFIED="1583790831757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create.coverage" NAME="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create Coverage Results" MODIFIED="1584820778924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_customer_list.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_customer_list Coverage Results" MODIFIED="1583530729159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_test_customer_appointment_view_set_AppointmentViewSetTest.coverage" NAME="Test: scheduling.tests.test_customer_appointment_view_set.AppointmentViewSetTest Coverage Results" MODIFIED="1568657804387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/appointment_manager_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_list_auth_as_company_admin.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_list_auth_as_company_admin Coverage Results" MODIFIED="1583449337092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -796,38 +948,10 @@
     <SUITE FILE_PATH="coverage/appointment_manager$Test__scheduling_tests_AppointmentTest_test_add_appointment_scheduled_day_correct_time.coverage" NAME="Test: scheduling.tests.AppointmentTest.test_add_appointment_scheduled_day_correct_time Coverage Results" MODIFIED="1562792950072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/contrib/auth/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="159" column="4" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/rest_auth/registration/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="206" column="29" selection-start-line="206" selection-start-column="18" selection-end-line="206" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/managers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/allauth/account/adapter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="216" column="17" selection-start-line="216" selection-start-column="8" selection-end-line="216" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/contrib/auth/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4148">
-          <caret line="254" column="8" selection-start-line="254" selection-start-column="8" selection-end-line="254" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -842,13 +966,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/rest_framework/viewsets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
         </state>
       </provider>
     </entry>
@@ -1033,14 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scheduling/fixtures/people.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1086,35 +1195,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="105" column="33" lean-forward="true" selection-start-line="105" selection-start-column="33" selection-end-line="105" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scheduling/api_admin/permissions.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/permissions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1188,16 +1270,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/tests/test_availability.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scheduling/tests/test_models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1212,15 +1284,6 @@
         <state>
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/tests/test_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1245,37 +1308,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/tests/util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="47" column="45" lean-forward="true" selection-start-line="47" selection-start-column="45" selection-end-line="47" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#1#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scheduling/api_admin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-629">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#779#858#0" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/appointment_manager/settings.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1287,11 +1321,267 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="136">
+            <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="27" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/contrib/auth/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="227" column="4" selection-start-line="227" selection-start-column="4" selection-end-line="227" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/django/db/backends/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python/virtual environments/appointment_manager/Lib/site-packages/rest_framework/viewsets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="123" column="8" lean-forward="true" selection-start-line="123" selection-start-column="8" selection-end-line="123" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/api_admin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#876#1883#0" />
+            <element signature="e#1025#1218#0" />
+            <element signature="e#1258#1285#0" />
+            <element signature="e#1326#1736#0" />
+            <element signature="e#1347#1479#0" />
+            <element signature="e#1774#1883#0" />
+            <element signature="e#1942#2855#0" />
+            <element signature="e#2175#2251#0" />
+            <element signature="e#2406#2855#0" />
+            <element signature="e#2788#2827#0" />
+            <element signature="e#2913#3101#0" />
+            <element signature="e#3157#3338#0" />
+            <element signature="e#3397#3590#0" />
+            <element signature="e#3649#4132#0" />
+            <element signature="e#3880#4132#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scheduling/availability.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="102">
+          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#137#1065#0" />
+            <element signature="e#177#284#0" />
+            <element signature="e#318#346#0" />
+            <element signature="e#396#664#0" />
+            <element signature="e#439#580#0" />
+            <element signature="e#731#842#0" />
+            <element signature="e#875#962#0" />
+            <element signature="e#996#1065#0" />
+            <element signature="e#1126#1985#0" />
+            <element signature="e#1295#1470#0" />
+            <element signature="e#1673#1968#0" />
+            <element signature="e#1713#1968#0" />
+            <element signature="e#1825#1968#0" />
+            <element signature="e#1845#1952#0" />
+            <element signature="e#2058#2347#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
+          <folding>
+            <element signature="e#147#186#0" />
+            <element signature="e#224#465#0" />
+            <element signature="e#377#465#0" />
+            <element signature="e#499#651#0" />
+            <element signature="e#635#651#0" />
+            <element signature="e#688#2129#0" />
+            <element signature="e#1574#2080#0" />
+            <element signature="e#2113#2129#0" />
+            <element signature="e#2165#2560#0" />
+            <element signature="e#2417#2511#0" />
+            <element signature="e#2544#2560#0" />
+            <element signature="e#2595#2891#0" />
+            <element signature="e#2795#2840#0" />
+            <element signature="e#2873#2891#0" />
+            <element signature="e#2922#4787#0" />
+            <element signature="e#3345#3367#0" />
+            <element signature="e#3418#3480#0" />
+            <element signature="e#3528#3627#0" />
+            <element signature="e#3687#3831#0" />
+            <element signature="e#3975#4063#0" />
+            <element signature="e#4172#4378#0" />
+            <element signature="e#4270#4357#0" />
+            <element signature="e#4517#4787#0" />
+            <element signature="e#4818#4878#0" />
+            <element signature="e#4918#6356#0" />
+            <element signature="e#4992#5093#0" />
+            <element signature="e#5675#5717#0" />
+            <element signature="e#5832#5985#0" />
+            <element signature="e#6018#6356#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/tests/test_availability.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/permissions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+          <folding>
+            <element signature="e#91#227#0" />
+            <element signature="e#91#139#1" />
+            <element signature="e#194#227#0" />
+            <element signature="e#280#473#0" />
+            <element signature="e#280#329#1" />
+            <element signature="e#384#473#0" />
+            <element signature="e#533#1036#0" />
+            <element signature="e#533#675#1" />
+            <element signature="e#742#1036#0" />
+            <element signature="e#742#788#0" />
+            <element signature="e#1080#1155#0" />
+            <element signature="e#1219#1818#0" />
+            <element signature="e#1268#1818#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+            <element signature="e#777#1967#0" />
+            <element signature="e#864#1153#0" />
+            <element signature="e#1238#1455#0" />
+            <element signature="e#1281#1388#0" />
+            <element signature="e#1546#1967#0" />
+            <element signature="e#1679#1874#0" />
+            <element signature="e#2178#2390#0" />
+            <element signature="e#2431#2726#0" />
+            <element signature="e#2998#4685#0" />
+            <element signature="e#3220#3425#0" />
+            <element signature="e#3463#4685#0" />
+            <element signature="e#4506#4660#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/tests/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scheduling/tests/test_views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="326" column="31" selection-start-line="326" selection-start-column="31" selection-end-line="326" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#370#514#0" />
+            <element signature="e#377#514#0" />
+            <element signature="e#574#713#0" />
+            <element signature="e#581#713#0" />
+            <element signature="e#774#933#0" />
+            <element signature="e#999#1142#0" />
+            <element signature="e#1193#12578#0" />
+            <element signature="e#1193#1300#1" />
+            <element signature="e#1331#1912#0" />
+            <element signature="e#1452#1912#0" />
+            <element signature="e#1677#1912#0" />
+            <element signature="e#1735#1912#0" />
+            <element signature="e#1985#2361#0" />
+            <element signature="e#2406#2664#0" />
+            <element signature="e#2406#2517#1" />
+            <element signature="e#2711#3137#0" />
+            <element signature="e#2711#2827#1" />
+            <element signature="e#3181#3733#0" />
+            <element signature="e#3181#3331#1" />
+            <element signature="e#3798#4190#0" />
+            <element signature="e#3798#3948#1" />
+            <element signature="e#4236#4810#0" />
+            <element signature="e#4236#4386#1" />
+            <element signature="e#4873#5381#0" />
+            <element signature="e#5444#5884#0" />
+            <element signature="e#5948#6495#0" />
+            <element signature="e#5948#6056#1" />
+            <element signature="e#6560#7091#0" />
+            <element signature="e#6560#6707#1" />
+            <element signature="e#7135#7619#0" />
+            <element signature="e#7135#7242#1" />
+            <element signature="e#7665#8154#0" />
+            <element signature="e#7665#7774#1" />
+            <element signature="e#8217#8773#0" />
+            <element signature="e#8217#8326#1" />
+            <element signature="e#8837#9347#0" />
+            <element signature="e#8837#8923#1" />
+            <element signature="e#9412#10023#0" />
+            <element signature="e#9412#9533#1" />
+            <element signature="e#10064#10589#0" />
+            <element signature="e#10064#10173#1" />
+            <element signature="e#10632#11190#0" />
+            <element signature="e#10632#10743#1" />
+            <element signature="e#11251#11836#0" />
+            <element signature="e#11251#11362#1" />
+            <element signature="e#11898#12578#0" />
+            <element signature="e#11898#12016#1" />
+            <element signature="e#12651#12690#0" />
+            <element signature="e#12745#12917#0" />
           </folding>
         </state>
       </provider>

@@ -290,30 +290,47 @@ class CompanyViewSetTest(ViewTestCase):
 
     def test_user_create(self):
         user = test_user()
-        self.client.force_authenticate(user=user)
-        user.groups.add(util.company_permissions())
-        data = {'name': 'test'}
-        response = self.client.post(self.list_url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        user = User.objects.get(pk=user.pk)
-        self.assertIsNotNone(user.company)
-        print(user.get_all_permissions())
+        util.add_company_permissions(user)
+
         perm = []
         permissions = ['appointment', 'employee', 'shift', 'schedule', 'service']
         for name in permissions:
             perm.extend(Permission.objects.filter(codename__endswith=name))
-        for p in perm:
-            self.assertTrue(user.has_perm(f'{p.content_type.app_label}.{p.codename}'))
 
-    def test_user_create_twice(self):
-        user = test_user()
+        # Initial assertions that the user doesn't have a company and permissions to edit
+        self.assertIsNone(user.company)
+        for p in perm:
+            self.assertFalse(user.has_perm(f'{p.content_type.app_label}.{p.codename}'))
+
+        # Create a company through the api endpoint
         self.client.force_authenticate(user=user)
-        user.groups.add(util.company_permissions())
         data = {'name': 'test'}
         response = self.client.post(self.list_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # reloads the user to update the permissions
+        user = User.objects.get(pk=user.pk)
+
+        # checks that the user now has a company full permissions to edit company models
+        # and no permissions to create other companies
+        self.assertIsNotNone(user.company)
+        for p in perm:
+            self.assertTrue(user.has_perm(f'{p.content_type.app_label}.{p.codename}'))
+        self.assertTrue(user.has_perm('scheduling.add_shift'))
+        self.assertFalse(user.has_perm('scheduling.add_company'))
+
+    def test_user_create_twice(self):
+        user = test_user()
+        util.add_company_permissions(user)
+
+        self.client.force_authenticate(user=user)
+        data = {'name': 'test'}
+        response = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
         user = User.objects.get(pk=user.pk)
         self.assertIsNotNone(user.company)
+
         self.client.force_authenticate(user=user)
         response = self.client.post(self.list_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

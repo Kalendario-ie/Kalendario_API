@@ -73,9 +73,5 @@ def appointment_permissions():
     return group
 
 
-def company_permissions():
-    permissions = Permission.objects.all().filter(codename__endswith='company')
-    group = Group.objects.create(name='Company all')
-    group.permissions.add(*permissions)
-    group.save()
-    return group
+def add_company_permissions(user):
+    user.user_permissions.add(*Permission.objects.all().filter(codename__endswith='company'))

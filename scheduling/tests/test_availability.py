@@ -1,5 +1,5 @@
 from scheduling.availability import get_availability_for_service
-from scheduling.models import Customer
+from scheduling.models import Customer, Employee
 from scheduling.tests.generics import TestCaseWF
 from scheduling.tests.util import *
 
