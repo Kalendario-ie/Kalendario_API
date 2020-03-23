@@ -3,14 +3,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/auth/', include('auth.urls')),
     path('api/auth/', include('rest_auth.urls')),
-    # path('api/auth/registration/', include('auth.registration.urls')),
     path('api/auth/registration/', include('rest_auth.registration.urls')),
-    path('api/accounts/', include('allauth.urls')),
+    url(r'^account-confirm-email/(?P<key>[-:\w]+)/$', TemplateView.as_view(),
+        name='account_confirm_email'),
+    # path('api/accounts/', include('allauth.urls')),
     path('api/', include('core.urls')),
     path('api/', include('scheduling.urls')),
     url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")

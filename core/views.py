@@ -10,7 +10,6 @@ from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView, SocialConnectView
 
 
-
 class CurrentUserViewSet(APIView):
     authentication_classes = (TokenAuthentication, SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticated,)
