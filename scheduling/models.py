@@ -7,6 +7,9 @@ from scheduling.managers import *
 class Company(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class TimeFrame(models.Model):
     start = models.TimeField()
@@ -36,36 +39,24 @@ class Schedule(models.Model):
     sat = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='sat')
     sun = models.ForeignKey(Shift, on_delete=models.SET_NULL, null=True, blank=True, related_name='sun')
 
+    # returns a tupple with the shifts in the order of date.weekday to make it easy to access
+    def get_week(self):
+        return self.mon, self.tue, self.wed, self.thu, self.fri, self.sat, self.sun
+
     def get_availability(self, date):
-        dayofweek = date.weekday()
-        if dayofweek == 0:
-            shift = self.mon
-        elif dayofweek == 1:
-            shift = self.tue
-        elif dayofweek == 2:
-            shift = self.wed
-        elif dayofweek == 3:
-            shift = self.thu
-        elif dayofweek == 4:
-            shift = self.fri
-        elif dayofweek == 5:
-            shift = self.sat
-        else:
-            shift = self.sun
-
-        if shift is None:
-            return []
-
-        return shift.timeframe_set.all()
+        shift = self.get_week()[date.weekday()]
+        return [] if shift is None else shift.timeframe_set.all()
 
     def __str__(self):
         return self.name
 
 
+# TODO: Add color field to allow services to be color coded
 class Service(models.Model):
     owner = models.ForeignKey(Company, on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     duration = models.TimeField()
+    color = models.CharField(max_length=7, default='#FFFFFF')
     description = models.CharField(max_length=255, blank=True, null=True)
 
     def duration_delta(self):
