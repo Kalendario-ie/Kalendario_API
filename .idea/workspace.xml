@@ -11,24 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/10-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/10-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/10-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/10-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/2-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/2-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/2-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/2-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/ngsw-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/ngsw-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/ngsw.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/ngsw.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/polyfills.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/runtime.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/safety-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/safety-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/worker-basic.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/worker-basic.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -399,7 +382,7 @@
       <workItem from="1602881247226" duration="119000" />
       <workItem from="1602881399515" duration="2644000" />
       <workItem from="1602884157914" duration="13000" />
-      <workItem from="1602884248905" duration="875000" />
+      <workItem from="1602884248905" duration="1558000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
