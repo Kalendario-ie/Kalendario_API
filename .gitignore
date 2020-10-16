@@ -1,4 +1,6 @@
 # Created by https://www.gitignore.io
+staticfiles/*
+!staticfiles/.gitkeep
 
 ## google auth still not in use
 auth/

@@ -11,7 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
+      <change afterPath="$PROJECT_DIR$/staticfiles/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/staticfiles/staticfiles.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,7 +384,7 @@
       <workItem from="1602881247226" duration="119000" />
       <workItem from="1602881399515" duration="2644000" />
       <workItem from="1602884157914" duration="13000" />
-      <workItem from="1602884248905" duration="1558000" />
+      <workItem from="1602884248905" duration="1849000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
