@@ -1,5 +1,5 @@
 [
- {
+  {
     "model": "scheduling.person",
     "pk": 1,
     "fields": {
@@ -39,9 +39,19 @@
       "email": "CBEB@EMAIL.COM"
     }
   },
-   {
+  {
     "model": "scheduling.person",
     "pk": 5,
+    "fields": {
+      "first_name": "COMPANY B",
+      "last_name": "EMPLOYEE c",
+      "phone": "100123",
+      "email": "CBEC@EMAIL.COM"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 1001,
     "fields": {
       "first_name": "COMPANY A",
       "last_name": "CUSTOMER A",
@@ -51,7 +61,7 @@
   },
   {
     "model": "scheduling.person",
-    "pk": 6,
+    "pk": 1002,
     "fields": {
       "first_name": "COMPANY A",
       "last_name": "CUSTOMER B",
@@ -61,7 +71,7 @@
   },
   {
     "model": "scheduling.person",
-    "pk": 7,
+    "pk": 1003,
     "fields": {
       "first_name": "COMPANY B",
       "last_name": "CUSTOMER B",
@@ -71,12 +81,32 @@
   },
   {
     "model": "scheduling.person",
-    "pk": 8,
+    "pk": 1004,
     "fields": {
       "first_name": "COMPANY B",
       "last_name": "CUSTOMER B",
       "phone": "10012",
       "email": "CBCUSTB@EMAIL.COM"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 2001,
+    "fields": {
+      "first_name": "Ice",
+      "last_name": "King",
+      "phone": "10012",
+      "email": "ice.king@adventuretime.com"
+    }
+  },
+  {
+    "model": "scheduling.person",
+    "pk": 2002,
+    "fields": {
+      "first_name": "Princess",
+      "last_name": "Bubblegum",
+      "phone": "1002",
+      "email": "princess.bubblegum@adventuretime.com"
     }
   }
 ]

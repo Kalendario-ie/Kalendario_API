@@ -3,14 +3,14 @@
     "model": "scheduling.company",
     "pk": 1,
     "fields": {
-      "name": "Company A"
+      "name": "Company-A"
     }
   },
       {
     "model": "scheduling.company",
     "pk": 2,
     "fields": {
-      "name": "Company B"
+      "name": "Company-B"
     }
   }
 ]

@@ -1,107 +1,164 @@
-from django.http import HttpResponseForbidden
+import cloudinary.uploader as cloudinary_uploader
+from cloudinary import CloudinaryResource
 
-from drf_rw_serializers.viewsets import ReadOnlyModelViewSet
+from django.db.models import Q
+from django.urls import reverse
+
+from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from scheduling.permissions import CanCreateAppointment, CanCreateCompany
-from scheduling.availability import get_availability_for_service
-from scheduling.customException import InvalidActionException
-from scheduling import serializers
-from scheduling.models import Appointment, Employee, Company
-from scheduling import permissions as cp
-
-from drf_rw_serializers import viewsets
-from django.db.models import Q
+from appointment_manager.common import viewsets, mixins, stripe_helpers
+from scheduling import serializers, models
 
 
-class EmployeeViewSet(ReadOnlyModelViewSet):
+class EmployeeViewSet(mixins.WithPermissionsMixin,
+                      mixins.AuthOwnerFilterMixin,
+                      viewsets.ModelViewSet):
     serializer_class = serializers.EmployeeSerializer
+    queryset = models.Employee.objects.order_by('first_name')
+
+    # TODO: Delete old profile picture when a new one is added
+    @action(detail=True, methods=['post'])
+    def photo(self, request, pk=None):
+        file = request.data.get('image')
+
+        u = cloudinary_uploader.upload(file)
+
+        employee = self.queryset.get(id=pk)
+        employee.profile_img = CloudinaryResource(u['public_id'], u['format'], u['version'], u['signature'],
+                                                  type=u['type'], resource_type=u['resource_type'])
+        employee.save()
+
+        return Response({
+            'url': u['url']
+        }, status=status.HTTP_200_OK)
+
+
+class ServiceCategoryViewSet(mixins.WithPermissionsMixin,
+                             mixins.AuthOwnerFilterMixin,
+                             viewsets.ModelViewSet):
+    serializer_class = serializers.ServiceCategorySerializer
+    queryset = models.ServiceCategory.objects.all()
+
+
+class ServiceViewSet(mixins.WithPermissionsMixin,
+                     mixins.AuthOwnerFilterMixin,
+                     viewsets.ModelViewSet):
+    serializer_class = serializers.ServiceSerializer
+    queryset = models.Service.objects.all().order_by('category__name').order_by('name')
+
+
+class ScheduleViewSet(mixins.WithPermissionsMixin,
+                      mixins.AuthOwnerFilterMixin,
+                      viewsets.ModelViewSet):
+    read_serializer_class = serializers.ScheduleReadSerializer
+    write_serializer_class = serializers.ScheduleReadSerializer
+    queryset = models.Schedule.objects.all().order_by('name')
+
+
+class CustomerViewSet(mixins.WithPermissionsMixin,
+                      mixins.AuthOwnerFilterMixin,
+                      viewsets.ModelViewSet):
+    serializer_class = serializers.CustomerSerializer
 
     def get_queryset(self):
-        queryset = Employee.objects.all()
+        queryset = models.Customer.objects.all().order_by('first_name')
 
-        if self.action == 'slots':
-            return queryset
+        search = self.request.query_params.get('search')
+        if search is not None:
+            queryset = queryset.filter(Q(first_name__icontains=search) | Q(last_name__icontains=search))
 
-        company = self.request.query_params.get('company')
-        if company is None:
-            return None
-        queryset = queryset.filter(owner__name=company)
         return queryset
 
-    @action(detail=False, methods=['get'])
-    def current(self, request):
-        if request.user.is_employee():
-            serializer = self.get_serializer(request.user.person.employee)
-            return Response(serializer.data)
-        return HttpResponseForbidden({'error': 'not an employee'})
 
-    @action(detail=True, methods=['get'])
-    def slots(self, request, pk=None):
-        serializer = serializers.SlotSerializer(data=request.GET)
-        serializer.is_valid(raise_exception=True)
-        try:
-            slots = get_availability_for_service(**serializer.validated_data, employee=self.get_object())
-            slots = list(map(lambda slot: slot.__dict__(), slots))
-            return Response(slots)
-        except InvalidActionException as e:
-            return HttpResponseForbidden(str(e))
-
-
-class CompanyViewSet(viewsets.ModelViewSet):
-    read_serializer_class = serializers.CompanyReadSerializer
-    write_serializer_class = serializers.CompanyWriteSerializer
+class RequestViewSet(mixins.WithPermissionsMixin,
+                     mixins.AuthOwnerFilterMixin,
+                     viewsets.ModelViewSet):
+    serializer_class = serializers.RequestSerializer
 
     def get_queryset(self):
-        queryset = Company.objects.all()
-        params = self.request.query_params
-        name = params.get('name')
-        if name is not None:
-            queryset = queryset.filter(name=name)
-        return queryset
+        queryset = models.Request.objects.filter(complete=True).order_by('last_updated')
 
-    def get_permissions(self):
-        permission_classes = [cp.IsOwnerOrReadOnly]
-
-        if self.action in ['create', 'update']:
-            permission_classes.append(IsAuthenticated)
-        if self.action == 'create':
-            permission_classes.append(CanCreateCompany)
-
-        return [perm() for perm in permission_classes]
-
-    def create(self, request, *args, **kwargs):
-        r = super().create(request, *args, **kwargs)
-        request.user.company_id = r.data.get('id')
-        request.user.enable_company_editing()
-        return r
-
-
-class AppointmentViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
-    read_serializer_class = serializers.AppointmentReadSerializer
-    write_serializer_class = serializers.AppointmentWriteSerializer
-
-    def get_permissions(self):
-        permission_classes = [IsAuthenticated, ]
-
-        if self.action == 'create':
-            permission_classes.append(CanCreateAppointment)
-
-        return [permission() for permission in permission_classes]
-
-    def get_queryset(self):
-        serializer = serializers.AppointmentQuerySerlializer(data=self.request.query_params)
+        serializer = serializers.RequestQuerySerlializer(data=self.request.query_params)
         serializer.is_valid(raise_exception=True)
         params = serializer.validated_data
 
-        queryset = Appointment.objects.all()
+        if params.get('status') is not None:
+            queryset = queryset.filter(_status=params.get('status'))
+
+        return queryset
+
+    @action(detail=True, methods=['patch'])
+    def accept(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.status = models.Appointment.ACCEPTED
+        serializer = self.get_read_serializer(instance)
+        response = Response(serializer.data)
+        # TODO: PENDING EMAIL
+        return response
+
+    @action(detail=True, methods=['patch'])
+    def reject(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.status = models.Appointment.REJECTED
+        serializer = self.get_read_serializer(instance)
+        response = Response(serializer.data)
+        return response
+
+
+class AppointmentViewSet(mixins.WithPermissionsMixin,
+                         mixins.AuthOwnerFilterMixin,
+                         mixins.QuerysetSerializerMixin,
+                         viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication,)
+    read_serializer_class = serializers.AppointmentReadSerializer
+    queryset_serializer_class = serializers.AppointmentQuerySerlializer
+
+    def get_write_serializer_class(self):
+        if self.action in ('lock', 'plock'):
+            return serializers.SelfAppointmentWriteSerializer
+        return serializers.AppointmentWriteSerializer
+
+    @action(detail=False, methods=['post'])
+    def lock(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    @action(detail=True, methods=['patch'])
+    def plock(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    @action(detail=True, methods=['get'])
+    def history(self, request, *args, **kwargs):
+        instance = self.get_object()
+        queryset = instance.history.all()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = serializers.AppointmentHistorySerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = serializers.AppointmentHistorySerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def get_queryset(self):
+        queryset = models.Appointment.objects.all()
+        # if a request reaches here and the user has no permission to view appointments
+        # it means the user is an employee and
+        # should only view appointments related to the employee of the user
+        if not self.request.user.has_perm('scheduling.view_appointment') and self.request.user.employee_id is not None:
+            queryset = queryset.filter(employee=self.request.user.employee_id)
+
+        params = self.get_queryset_params()
 
         if params.get('employee') is not None:
             queryset = queryset.filter(employee=params.get('employee'))
+
+        if params.get('employees') is not None:
+            queryset = queryset.filter(employee_id__in=params.get('employees'))
+
+        if params.get('services') is not None:
+            queryset = queryset.filter(service_id__in=params.get('services'))
 
         if params.get('from_date') is not None:
             queryset = queryset.filter(start__gte=params.get('from_date'))
@@ -112,13 +169,73 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         if params.get('customer') is not None:
             queryset = queryset.filter(customer=params.get('customer'))
 
-        if params.get('status') is not None:
-            queryset = queryset.filter(status=params.get('status'))
+        return queryset.order_by('start')
 
-        if self.request.user.has_company() and self.request.user.has_perm('scheduling.view_appointment'):
-            queryset = queryset.filter(employee__owner_id=self.request.user.company_id)
-        else:
-            queryset = queryset.filter(Q(customer_id=self.request.user.person.id) |
-                                       Q(employee_id=self.request.user.person.id))
 
-        return queryset
+class CompanyViewSet(mixins.WithPermissionsMixin,
+                     mixins.AuthOwnerFilterMixin,
+                     viewsets.ModelViewSet):
+    serializer_class = serializers.CompanySerializer
+    queryset = models.Company.objects.all()
+
+    def get_write_serializer_class(self):
+        if self.action == 'create':
+            return serializers.CreateCompanySerializer
+        return self.serializer_class
+
+    # TODO: Only verified users can write to the database
+    def create(self, request, *args, **kwargs):
+        r = super().create(request, *args, **kwargs)
+        request.user.enable_company_editing(r.data.get('id'))
+        return r
+
+    @action(detail=True, methods=['patch'])
+    def config(self, request, *args, **kwargs):
+        instance = self.get_object().config
+        serializer = serializers.ConfigSerializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['post'])
+    def photo(self, request, pk=None):
+        file = request.data.get('image')
+
+        u = cloudinary_uploader.upload(file)
+
+        instance = self.get_object()
+        instance.avatar = CloudinaryResource(u['public_id'], u['format'], u['version'], u['signature'],
+                                             type=u['type'], resource_type=u['resource_type'])
+        instance.save()
+
+        serializer = self.get_read_serializer(instance)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['post'], url_path='stripe', url_name='stripe')
+    def post_stripe(self, request, *args, **kwargs):
+        instance = self.get_object()
+        stripe_id = instance.stripe_id()
+
+        origin = self.request.headers['origin'] + '/admin/home'
+        refresh_url = origin + reverse('company-stripe', kwargs={'pk': instance.id})
+
+        account_link_url = stripe_helpers.generate_account_link(stripe_id, refresh_url, origin)
+        try:
+            return Response({'url': account_link_url})
+        except Exception as e:
+            return Response(data={'error': str(e)}, status=status.HTTP_403_FORBIDDEN)
+
+    @action(detail=True, methods=['get'], url_path='stripe/details', url_name='stripe-details')
+    def get_stripe(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.update_stripe_fields()
+        serializer = serializers.StripeSerializer(instance)
+        return Response(serializer.data)
+
+
+class SchedulingPanelViewSet(mixins.WithPermissionsMixin,
+                             mixins.AuthOwnerFilterMixin,
+                             viewsets.ModelViewSet):
+    serializer_class = serializers.SchedulingPanelSerializer
+    queryset = models.SchedulingPanel.objects.all()
+

@@ -3,7 +3,7 @@ from datetime import *
 from django.contrib.auth.models import Permission, Group
 
 from scheduling.models import Shift, TimeFrame, Schedule, Appointment
-
+from core.models import GroupProfile
 
 def next_monday():
     today = datetime.now()
@@ -49,13 +49,19 @@ def reject_appointment(appointment):
     appointment.save()
 
 
-def book_appointment(employee, service, customer, start):
-    print('Booking a {time} service appointment on {date}'.format(time=service.duration, date=start))
+def book_appointment(employee, customer, start, service=None, end=None):
+    if service is not None:
+        end = start + service.duration
+        print('Booking a {time} service appointment on {date}'.format(time=service.duration, date=start))
+    else:
+        print('Booking a self appointment on {date}'.format(date=start))
     try:
         appointment = Appointment.objects.create(start=start,
+                                                 end=end,
                                                  service=service,
                                                  customer=customer,
-                                                 employee=employee)
+                                                 employee=employee,
+                                                 owner=employee.owner)
     except Exception as e:
         print('failed to create appointment: ' + str(e), end='\n\n')
         raise
@@ -65,13 +71,13 @@ def book_appointment(employee, service, customer, start):
     return appointment
 
 
-def appointment_permissions():
+def company_1_master_group():
+    group = GroupProfile.objects.create(owner_id=1, name='Master')
     permissions = Permission.objects.all().filter(codename__endswith='appointment')
-    group = Group.objects.create(name='Company Administrator')
     group.permissions.add(*permissions)
     group.save()
-    return group
+    return group.group
 
 
-def add_company_permissions(user):
-    user.user_permissions.add(*Permission.objects.all().filter(codename__endswith='company'))
+def add_permissions(user, model):
+    user.user_permissions.add(*Permission.objects.all().filter(codename__endswith=model))

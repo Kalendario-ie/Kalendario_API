@@ -1,0 +1,13 @@
+[
+  {
+    "model": "scheduling.request",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "complete": true,
+      "scheduled_date": "2020-08-05",
+      "last_updated": "2020-08-01T11:00",
+      "user": 2
+    }
+  }
+]

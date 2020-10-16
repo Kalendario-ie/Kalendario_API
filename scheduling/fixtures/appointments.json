@@ -1,0 +1,28 @@
+[
+  {
+    "model": "scheduling.appointment",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "start": "2020-08-05T09:00",
+      "end": "2020-08-05T09:00",
+      "employee": 1,
+      "service": 1,
+      "customer": 2001,
+      "request": 1
+    }
+  },
+  {
+    "model": "scheduling.appointment",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "start": "2020-08-05T11:00",
+      "end": "2020-08-05T11:00",
+      "employee": 1,
+      "service": 2,
+      "customer": 2001,
+      "request": 1
+    }
+  }
+]

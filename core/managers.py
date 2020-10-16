@@ -1,4 +1,4 @@
-from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.base_user import BaseUserManager, models
 
 
 class UserManager(BaseUserManager):
@@ -33,3 +33,16 @@ class UserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self._create_user(email, password, **extra_fields)
+
+
+class GroupProfileManager(models.Manager):
+
+    def create(self, *args, **kwargs):
+        owner_id, owner = kwargs.get('owner_id'), kwargs.get('owner')
+        if owner_id is None and owner is not None:
+            owner_id = owner.id
+        group_name = f"{owner_id}_{kwargs.get('name')}"
+        group = self.model.create_group(group_name)
+        kwargs['group_id'] = group.id
+        return models.Manager.create(self, *args, **kwargs)
+

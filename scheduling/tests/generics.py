@@ -4,7 +4,7 @@ from django.test import TestCase
 
 FIXTURES = ['companies.json', 'timeframes.json', 'shifts.json', 'schedules.json',
             'people.json', 'services.json', 'employees.json', 'customers.json',
-            'users.json']
+            'users.json', 'requests.json', 'appointments.json']
 
 
 class TestCaseWF(TestCase):

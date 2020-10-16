@@ -1,36 +1,39 @@
 import datetime
+from django.core.exceptions import ValidationError
 from django.db import models
-from scheduling.customException import ModelCreationFailedException
 
 
 class AppointmentManager(models.Manager):
     def create(self, *args, **kwargs):
-        employee = kwargs['employee']
         start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
 
-        service = kwargs.get('service')
-        if not service and employee.id != kwargs['customer'].id:
-            raise ModelCreationFailedException(r"A service must be provided")
-
-        if service and not employee.provides_service(service):
-            raise ModelCreationFailedException(r"Employee doesn't provide this service")
-
-        if service:
-            kwargs['end'] = kwargs['start'] + service.duration_delta()
-
-        kwargs['end'] = kwargs['end'].replace(second=0, microsecond=0)
-
         if start <= datetime.datetime.now():
-            raise ModelCreationFailedException(r'Date can\'t be on the past')
-
-        if not employee.is_available(start, kwargs['end']):
-            raise ModelCreationFailedException(r'No time available for the date selected')
+            raise ValidationError('Date can\'t be on the past')
 
         return super().create(*args, **kwargs)
 
+    def accepted(self):
+        return self.get_queryset().filter(status='A')
 
-class EmployeeManager(models.Manager):
-    def create(self, *args, **kwargs):
-        user = kwargs['user']
-        user.is_staff = True
-        return super().create(*args, **kwargs)
+    def requests(self):
+        return self.get_queryset().filter(status='P')
+
+
+class RequestManager(models.Manager):
+    def get_current(self, owner_id, user_id):
+        """
+        returns the first request that's not complete from the database or create a new request
+        """
+        current = self.get_queryset().filter(owner_id=owner_id, user_id=user_id, complete=False).first()
+        return current if current else self.create(owner_id=owner_id, user_id=user_id, scheduled_date=datetime.date.today())
+
+    def get_by_payment_intent_id(self, intend_id):
+        return self.get_queryset().get(_stripe_payment_intent_id=intend_id)
+
+
+class CompanyManager(models.Manager):
+    def get_by_stripe_id(self, stripe_id):
+        return self.get_queryset().get(stripe_id=stripe_id)
+
+    def get_public(self):
+        return self.get_queryset().filter(_is_viewable=True)

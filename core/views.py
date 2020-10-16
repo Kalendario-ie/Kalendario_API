@@ -1,28 +1,49 @@
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from core.models import User
-from core.serializers import UserSerializer
-
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
-from rest_auth.registration.views import SocialLoginView, SocialConnectView
+from rest_auth.registration import views
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+from appointment_manager.common import mixins, viewsets
+from core import models, serializers
 
 
-class CurrentUserViewSet(APIView):
-    authentication_classes = (TokenAuthentication, SessionAuthentication, BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
+class FacebookLogin(views.SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
 
-    def get(self, request):
-        user = User.objects.filter(email=request.user).first()
-        serializer = UserSerializer(user)
+
+class FacebookConnect(views.SocialConnectView):
+    adapter_class = FacebookOAuth2Adapter
+
+
+class UserViewSet(mixins.WithPermissionsMixin,
+                  mixins.AuthOwnerFilterMixin,
+                  viewsets.ModelViewSet):
+    serializer_class = serializers.UserAdminSerializer
+    queryset = models.User.objects.all()
+
+    @action(detail=True, methods=['patch'])
+    def changePassword(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        # Change Password
+        context = {'request': self.request}
+        serializer = serializers.PasswordChangeSerializer(instance, data=request.data, context=context)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        # Return User
+        serializer = self.get_read_serializer(instance)
         return Response(serializer.data)
 
 
-class FacebookLogin(SocialLoginView):
-    adapter_class = FacebookOAuth2Adapter
+class GroupProfileViewSet(mixins.WithPermissionsMixin,
+                          mixins.AuthOwnerFilterMixin,
+                          viewsets.ModelViewSet):
+    serializer_class = serializers.GroupProfileSerializer
+    queryset = models.GroupProfile.objects.all()
 
-
-class FacebookConnect(SocialConnectView):
-    adapter_class = FacebookOAuth2Adapter
+    @action(detail=False, methods=['get'])
+    def permissions(self, request, *args, **kwargs):
+        queryset = models.permissions()
+        serializer = serializers.PermissionsSerializer(queryset, many=True)
+        return Response(serializer.data)

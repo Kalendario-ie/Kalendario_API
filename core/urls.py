@@ -1,8 +1,14 @@
-from django.urls import path
-from core.views import CurrentUserViewSet, FacebookConnect, FacebookLogin
+from django.urls import path, include
+from rest_framework import routers
+
+from core import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet, 'user')
+router.register(r'groups', views.GroupProfileViewSet, 'group')
 
 urlpatterns = [
-    path(r'users/current/', CurrentUserViewSet.as_view(), name='current'),
-    path(r'auth/facebook/', FacebookLogin.as_view(), name='fb-login'),
-    path(r'auth/facebook/connect/', FacebookConnect.as_view(), name='fb_connect'),
+    path(r'', include(router.urls)),
+    path(r'auth/facebook/', views.FacebookLogin.as_view(), name='fb_login'),
+    path(r'auth/facebook/connect/', views.FacebookConnect.as_view(), name='fb_connect'),
 ]

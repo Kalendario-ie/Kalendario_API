@@ -1,0 +1,11 @@
+[
+  {
+    "model": "core.groupprofile",
+    "pk": 1,
+    "fields": {
+      "name": "test",
+      "owner": 1,
+      "group_id": 1
+    }
+  }
+]

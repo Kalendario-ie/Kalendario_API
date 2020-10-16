@@ -27,18 +27,20 @@ if os.path.isfile(dotenv_file):
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '(%z53etlr)!%6&)6cpl84l&)kppchge&th-yah#02cu86($_jm'
+SECRET_KEY = os.environ.get('SECRET_KEY') or 'djas139das$%@#*()dasd132173nsads1sbdascl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Don't add anything as DEBUG_MODE in production
+DEBUG = bool(os.environ.get('DEBUG_MODE'))
 
 ALLOWED_HOSTS = []
 
-CORS_ORIGIN_WHITELIST = [
+CORS_ORIGIN_WHITELIST = (
     "https://localhost:4200",
-]
-# Application definition
+    "https://192.168.0.19:4200",
+) if DEBUG else ()
 
+# Application definition
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -51,13 +53,26 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
         'rest_framework.permissions.AllowAny'
     ],
-    # 'DEFAULT_RENDERER_CLASSES': (
-    #     'rest_framework.renderers.JSONRenderer',
-    # )
+    'DEFAULT_RENDERER_CLASSES': (
+        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+        'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
+        # Any other renders
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        # If you use MultiPartFormParser or FormParser, we also have a camel case version
+        'djangorestframework_camel_case.parser.CamelCaseFormParser',
+        'djangorestframework_camel_case.parser.CamelCaseMultiPartParser',
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+        # Any other parsers
+    ),
+    'EXCEPTION_HANDLER': 'appointment_manager.common.handlers.custom_exception_handler'
+
 }
 INSTALLED_APPS = [
     'scheduling.apps.SchedulingConfig',
+    'customers.apps.CustomersConfig',
     'core.apps.CoreConfig',
+    'webhooks.apps.WebhooksConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -78,11 +93,11 @@ INSTALLED_APPS = [
 
     'corsheaders',
 
-    'django_seed',
-
     #cloudinary image uploader
     'cloudinary',
+    'simple_history',
 
+    "sslserver",
 ]
 
 MIDDLEWARE = [
@@ -96,6 +111,7 @@ MIDDLEWARE = [
     # below adds middleware for cors
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',    # Used for appointment history
 ]
 
 ROOT_URLCONF = 'appointment_manager.urls'
@@ -143,21 +159,25 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_REDIRECT_URL = '/'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ['EMAIL_HOST']
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+
+EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', os.environ.get('EMAIL_HOST', ''))
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', 465)
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', os.environ.get('EMAIL_HOST_USER', ''))
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', os.environ.get('EMAIL_HOST_PASSWORD', ''))
 
 SITE_ID = 1
 
 AUTH_USER_MODEL = 'core.User'
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'core.serializers.CustomRegisterSerializer'
+    'REGISTER_SERIALIZER': 'core.serializers.CustomRegisterSerializer',
 }
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'core.serializers.UserSerializer',
+}
+
 ACCOUNT_ADAPTER = 'appointment_manager.users.adapter.MyAccountAdapter'
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
@@ -174,32 +194,6 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-
-SOCIALACCOUNT_PROVIDERS = \
-    {'facebook':
-       {'METHOD': 'oauth2',
-        'SCOPE': ['email', 'public_profile', 'user_friends'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'FIELDS': [
-            'id',
-            'email',
-            'name',
-            'first_name',
-            'last_name',
-            'verified',
-            'locale',
-            'timezone',
-            'link',
-            'gender',
-            'updated_time'],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': lambda request: 'kr_KR',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v2.4'}}
-
-#facebook
-SOCIAL_AUTH_FACEBOOK_KEY = os.environ['FACEBOOK_APP_ID']
-SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['FACEBOOK_APP_SECRET']
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -232,3 +226,7 @@ STATICFILES_DIRS = (
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
 
+STRIPE_API_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_API_VERSION = os.environ.get('STRIPE_API_VERSION', '2019-12-03')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')

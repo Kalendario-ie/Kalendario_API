@@ -8,10 +8,10 @@
       "mon": null,
       "tue": 2,
       "wed": 1,
-      "thu": 1,
-      "fri": 1,
-      "sat": 1,
-      "sun": 1
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null
     }
   },
   {
@@ -20,13 +20,28 @@
     "fields": {
       "owner": 2,
       "name": "C2 SCHEDULE 1",
-      "mon": 3,
-      "tue": 3,
+      "mon": null,
+      "tue": null,
       "wed": 3,
-      "thu": 3,
-      "fri": 3,
+      "thu": null,
+      "fri": null,
       "sat": null,
-      "sun": 3
+      "sun": null
+    }
+  },
+  {
+    "model": "scheduling.schedule",
+    "pk": 3,
+    "fields": {
+      "owner": 1,
+      "name": "C1 SCHEDULE 2",
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null
     }
   }
 ]

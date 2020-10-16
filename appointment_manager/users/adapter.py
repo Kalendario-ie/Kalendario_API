@@ -16,3 +16,7 @@ class MyAccountAdapter(DefaultAccountAdapter):
         user.save()
         return user
 
+    def send_mail(self, template_prefix, email, context):
+        msg = self.render_mail(template_prefix, email, context)
+        msg.send(fail_silently=True)
+

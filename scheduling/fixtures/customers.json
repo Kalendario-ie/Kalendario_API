@@ -1,28 +1,28 @@
 [
   {
     "model": "scheduling.customer",
-    "pk": 5,
+    "pk": 1001,
     "fields": {
       "owner": 1
     }
   },
   {
     "model": "scheduling.customer",
-    "pk": 6,
+    "pk": 1002,
     "fields": {
       "owner": 1
     }
   },
   {
     "model": "scheduling.customer",
-    "pk": 7,
+    "pk": 1003,
     "fields": {
       "owner": 2
     }
   },
   {
     "model": "scheduling.customer",
-    "pk": 8,
+    "pk": 1004,
     "fields": {
       "owner": 2
     }
