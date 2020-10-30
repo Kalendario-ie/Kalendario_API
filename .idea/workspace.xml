@@ -12,6 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,7 +386,8 @@
       <workItem from="1602884248905" duration="4055000" />
       <workItem from="1603135507634" duration="27000" />
       <workItem from="1603137135283" duration="5142000" />
-      <workItem from="1603823233007" duration="2117000" />
+      <workItem from="1603823233007" duration="3290000" />
+      <workItem from="1604087183169" duration="1896000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
@@ -498,37 +500,37 @@
     </state>
     <state x="-1181" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603054800452" />
     <state x="739" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601928866402" />
-    <state width="1877" height="218" key="GridCell.Tab.0.bottom" timestamp="1603841912729">
+    <state width="1877" height="218" key="GridCell.Tab.0.bottom" timestamp="1603909275362">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603841912729" />
+    <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603909275361" />
     <state width="1877" height="234" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598896769323" />
     <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
     <state width="1877" height="229" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
     <state width="1877" height="234" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
     <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1602612492880" />
-    <state width="1877" height="218" key="GridCell.Tab.0.center" timestamp="1603841912729">
+    <state width="1877" height="218" key="GridCell.Tab.0.center" timestamp="1603909275361">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603841912729" />
+    <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603909275361" />
     <state width="1877" height="234" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598896769323" />
     <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
     <state width="1877" height="229" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
     <state width="1877" height="234" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
     <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1602612492880" />
-    <state width="1877" height="218" key="GridCell.Tab.0.left" timestamp="1603841912729">
+    <state width="1877" height="218" key="GridCell.Tab.0.left" timestamp="1603909275361">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603841912729" />
+    <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603909275361" />
     <state width="1877" height="234" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598896769323" />
     <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
     <state width="1877" height="229" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
     <state width="1877" height="234" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
     <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1602612492880" />
-    <state width="1877" height="218" key="GridCell.Tab.0.right" timestamp="1603841912729">
+    <state width="1877" height="218" key="GridCell.Tab.0.right" timestamp="1603909275361">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603841912729" />
+    <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603909275361" />
     <state width="1877" height="234" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598896769323" />
     <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
     <state width="1877" height="229" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
