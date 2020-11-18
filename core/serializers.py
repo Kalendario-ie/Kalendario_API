@@ -37,6 +37,10 @@ class UserAdminSerializer(serializers.ModelSerializer):
         model = models.User
         fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name', 'groups', 'employee')
 
+    def get_validation_exclusions(self):
+        exclusions = super(UserAdminSerializer, self).get_validation_exclusions()
+        return exclusions + ['employee']
+
 
 class PasswordChangeSerializer(serializers.Serializer):
     user_password = serializers.CharField(max_length=128)
