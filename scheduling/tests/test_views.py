@@ -4,13 +4,13 @@ from rest_framework import status
 
 import scheduling.tests.util as util
 from core.models import User
-from scheduling.models import Appointment, Person, Employee, Customer, Company, Schedule
+from scheduling import models
 from scheduling.tests.generics import ViewTestCase
 
 
 def employee_user():
     user = User.objects.get(pk=1)
-    user.employee = Employee.objects.filter(owner=1).first()
+    user.employee = models.Employee.objects.filter(owner=1).first()
     user.save()
     return user
 
@@ -20,6 +20,7 @@ def create_apt_data(emp, customer, service, date):
             'customer': customer.id,
             'service': service.id,
             'start': str(date),
+            'end': str(date + service.duration),
             'owner': emp.owner_id
             }
 
@@ -32,7 +33,7 @@ def create_self_apt_data(emp, customer, start, end):
             }
 
 
-def test_user(person=Person(email="user@email.com")):
+def test_user(person=models.Person(email="user@email.com")):
     person.save()
     user = User.objects.create(email='user@email.com')
     user.set_password('UserPass')
@@ -49,15 +50,25 @@ def company_a_owner():
     return user
 
 
-def emp_service(company=Company.objects.first()):
-    emp = company.employee_set.first()
-    service = emp.services.first()
+def emp_service():
+    # Employee pk 1 owner 1
+    emp = models.Employee.objects.get(pk=1)
+    # Service pk 1 owner 1
+    service = models.Service.objects.get(pk=1)
     return emp, service
 
 
-def emp_customer_service(company=Company.objects.first()):
-    emp, service = emp_service(company)
-    return emp, company.customer_set.first(), service
+def emp_customer_service():
+    emp, service = emp_service()
+    customer = models.Customer.objects.get(pk=1001)
+    return emp, customer, service
+
+
+def emp_customer_service_company_2():
+    emp = models.Employee.objects.get(pk=3)
+    service = models.Service.objects.get(pk=3)
+    customer = models.Customer.objects.get(pk=1003)
+    return emp, customer, service
 
 
 class AppointmentViewSetTest(ViewTestCase):
@@ -73,16 +84,16 @@ class AppointmentViewSetTest(ViewTestCase):
 
         kwargs = {}
 
-        for emp in Employee.objects.all():
+        for emp in models.Employee.objects.all():
             kwargs['service'] = emp.services.first()
             kwargs['start'] = util.next_wednesday().replace(hour=9, minute=00)
             kwargs['employee'] = emp
             kwargs['owner'] = emp.owner
-            for customer in Customer.objects.all():
+            for customer in models.Customer.objects.all():
                 if customer.owner_id == emp.owner_id:
                     kwargs['customer'] = customer
                     kwargs['status'] = 'A'
-                    Appointment.objects.create(**kwargs)
+                    models.Appointment.objects.create(**kwargs)
                     kwargs['start'] = kwargs['start'] + kwargs['service'].duration
 
     def assertCreated(self, response, emp, customer, service):
@@ -100,8 +111,18 @@ class AppointmentViewSetTest(ViewTestCase):
     def assertAccepted(self, response):
         self.assertEqual(response.data['status'], 'A')
 
+    def _auth_as_admin(self):
+        user = User.objects.get(pk=1)
+        user.groups.add(util.company_1_master_group())
+        user.save()
+        self.client.force_authenticate(user=user)
+        return user
+
+    def _detail_url(self, pk):
+        return reverse('appointment-detail', kwargs={'pk': pk})
+
     def test_anonymous_list(self):
-        detail_url = reverse('appointment-detail', kwargs={'pk': Appointment.objects.first().id})
+        detail_url = reverse('appointment-detail', kwargs={'pk': models.Appointment.objects.first().id})
         self.ensure_all_unauthorized(detail_url)
 
     def test_anonymous_create(self):
@@ -138,7 +159,7 @@ class AppointmentViewSetTest(ViewTestCase):
         self.assertEqual(get_response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_customer_view_for_other_customer(self):
-        appointments = list(Appointment.objects.all())
+        appointments = list(models.Appointment.objects.all())
 
         self.client.force_authenticate(user=test_user())
         responses = []
@@ -149,7 +170,7 @@ class AppointmentViewSetTest(ViewTestCase):
             self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_customer_delete_for_other_customer(self):
-        appointments = list(Appointment.objects.all())
+        appointments = list(models.Appointment.objects.all())
 
         self.client.force_authenticate(user=test_user())
         responses = []
@@ -171,11 +192,12 @@ class AppointmentViewSetTest(ViewTestCase):
 
     def test_employee_create_pending(self):
         emp, customer, service = emp_customer_service()
-        emp.user = test_user(emp)
         data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=0))
         data['status'] = 'P'
 
+        emp.user = test_user(emp)
         self.client.force_authenticate(user=emp.user)
+
         response = self.client.post(self.list_url, data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -214,20 +236,19 @@ class AppointmentViewSetTest(ViewTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_employee_create_for_other_employee(self):
-        company = Company.objects.first()
-        emp, customer, service = emp_customer_service(company)
-        emp2 = company.employee_set.last()
-        emp2.user = test_user(emp2)
+        emp, customer, service = emp_customer_service()
         data = create_apt_data(emp, customer, service, util.next_wednesday().replace(hour=10, minute=0))
 
+        emp2 = models.Employee.objects.get(pk=2)
+        emp2.user = test_user(emp2)
         self.client.force_authenticate(user=emp2.user)
         response = self.client.post(self.list_url, data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_employee_view(self):
-        emp = Employee.objects.first()
-        apt = Appointment.objects.filter(employee=emp).first()
+        emp = models.Employee.objects.first()
+        apt = models.Appointment.objects.filter(employee=emp).first()
         user = test_user(emp)
 
         self.client.force_authenticate(user=user)
@@ -236,10 +257,7 @@ class AppointmentViewSetTest(ViewTestCase):
         self.assertEqual(get_response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_admin_list(self):
-        user = User.objects.get(pk=1)
-        user.groups.add(util.company_1_master_group())
-
-        self.client.force_authenticate(user=user)
+        user = self._auth_as_admin()
         response = self.client.get(self.list_url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -249,45 +267,131 @@ class AppointmentViewSetTest(ViewTestCase):
 
     def test_admin_create(self):
         emp, customer, service = emp_customer_service()
-        user = User.objects.get(pk=1)
-        user.groups.add(util.company_1_master_group())
-        self.client.force_authenticate(user=user)
+
+        self._auth_as_admin()
+
         data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=0))
         response = self.client.post(self.list_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+    def test_admin_create_overlapping(self):
+        """
+        When creating overlapping appointments
+        the server should return 422 error
+        """
+        emp, customer, service = emp_customer_service()
+
+        self._auth_as_admin()
+
+        # Create appointment at 10 am finishing at 10:30
+        data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=0))
+        response = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # Create appointment at 10:15 overlapping with previous (fails)
+        data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=15))
+        response = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    def test_admin_create_overlapping_ignore_availability(self):
+        """
+        When creating overlapping appointments
+        the server should return 422 error
+        """
+        emp, customer, service = emp_customer_service()
+
+        self._auth_as_admin()
+
+        # Create appointment at 10 am finishing at 10:30
+        data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=0))
+        response = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # Create appointment at 10:15 overlapping with ignore_availability flag, should create
+        data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=15))
+        data['ignore_availability'] = True
+        response = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_admin_update_overlapping(self):
+        """
+        When creating overlapping appointments
+        the server should return 422 error
+        """
+        emp, customer, service = emp_customer_service()
+
+        self._auth_as_admin()
+
+        # Create appointment at 10 am finishing at 10:30
+        data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=0))
+        r1 = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(r1.status_code, status.HTTP_201_CREATED)
+
+        # Create appointment at 10:40 (not overlapping)
+        data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=40))
+        r2 = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(r2.status_code, status.HTTP_201_CREATED)
+
+        # Update previous to overlap with first
+        data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=15))
+        r3 = self.client.patch(self._detail_url(r2.data['id']), data, format='json')
+        self.assertEqual(r3.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    def test_admin_update_overlapping_ignore_availability(self):
+        """
+        When creating overlapping appointments
+        the server should return 422 error
+        """
+        emp, customer, service = emp_customer_service()
+
+        self._auth_as_admin()
+
+        # Create appointment at 10 am finishing at 10:30
+        d1 = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=0))
+        r1 = self.client.post(self.list_url, d1, format='json')
+        self.assertEqual(r1.status_code, status.HTTP_201_CREATED)
+
+        # Create appointment at 10:40 (not overlapping)
+        d2 = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=40))
+        r2 = self.client.post(self.list_url, d2, format='json')
+        self.assertEqual(r2.status_code, status.HTTP_201_CREATED)
+
+        # Update previous to overlap with first
+        d3 = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=15))
+        d3['ignore_availability'] = True
+        r3 = self.client.patch(self._detail_url(r2.data['id']), d3, format='json')
+        self.assertEqual(r3.status_code, status.HTTP_200_OK)
+
     def test_admin_create_self_appointment(self):
         emp, customer, service = emp_customer_service()
-        user = User.objects.get(pk=1)
-        user.groups.add(util.company_1_master_group())
+
         data = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
                                     util.next_tuesday().replace(hour=11, minute=0))
 
-        self.client.force_authenticate(user=user)
+        self._auth_as_admin()
         response = self.client.post(self.list_url + 'lock/', data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_admin_create_self_appointment_with_service(self):
         emp, customer, service = emp_customer_service()
-        user = User.objects.get(pk=1)
-        user.groups.add(util.company_1_master_group())
+
         data = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
                                     util.next_tuesday().replace(hour=11, minute=0))
         data['service'] = 0
 
-        self.client.force_authenticate(user=user)
+        self._auth_as_admin()
         response = self.client.post(self.list_url + 'lock/', data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_admin_create_different_company(self):
-        emp, customer, service = emp_customer_service(Company.objects.get(pk=2))
-        user = User.objects.filter(owner_id=1).first()
-        user.groups.add(util.company_1_master_group())
-        self.client.force_authenticate(user=user)
+        emp, customer, service = emp_customer_service_company_2()
         data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=0))
+
+        self._auth_as_admin()
         response = self.client.post(self.list_url, data, format='json')
+
         self.assertEqual(response.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
@@ -381,7 +485,7 @@ class EmployeeViewSetTest(ViewTestCase):
         self.client.force_authenticate(user=user)
         response = self.client.post(self.list_url, data, format='json')
         emp_id = response.data.get('id')
-        created = Employee.objects.get(pk=emp_id)
+        created = models.Employee.objects.get(pk=emp_id)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(created.owner_id, user.owner_id)
@@ -442,7 +546,7 @@ class CustomerViewSetTest(ViewTestCase):
     def setUp(self):
         self.list_url = reverse('customer-list')
 
-    def detail_url(self, id=Customer.objects.first().id):
+    def detail_url(self, id=models.Customer.objects.first().id):
         return reverse('customer-detail', kwargs={'pk': id})
 
     def test_anonymous_user_all_unauthorized(self):
@@ -474,7 +578,7 @@ class ServiceViewSetTest(ViewTestCase):
     def setUp(self):
         self.list_url = reverse('service-list')
 
-    def detail_url(self, id=Customer.objects.first().id):
+    def detail_url(self, id=models.Customer.objects.first().id):
         return reverse('service-detail', kwargs={'pk': id})
 
     def test_anonymous_user_all_unauthorized(self):
@@ -506,7 +610,7 @@ class ScheduleViewSetTest(ViewTestCase):
     def setUp(self):
         self.list_url = reverse('schedule-list')
 
-    def detail_url(self, sid=Schedule.objects.first().id):
+    def detail_url(self, sid=models.Schedule.objects.first().id):
         return reverse('schedule-detail', kwargs={'pk': sid})
 
     def test_anonymous_user_all_unauthorized(self):

@@ -1,6 +1,6 @@
 from datetime import *
 
-from django.contrib.auth.models import Permission, Group
+from django.contrib.auth.models import Permission
 
 from scheduling.models import Shift, TimeFrame, Schedule, Appointment
 from core.models import GroupProfile
@@ -49,7 +49,7 @@ def reject_appointment(appointment):
     appointment.save()
 
 
-def book_appointment(employee, customer, start, service=None, end=None):
+def book_appointment(employee, customer, start, service=None, end=None, ignore_availability=False):
     if service is not None:
         end = start + service.duration
         print('Booking a {time} service appointment on {date}'.format(time=service.duration, date=start))
@@ -61,7 +61,8 @@ def book_appointment(employee, customer, start, service=None, end=None):
                                                  service=service,
                                                  customer=customer,
                                                  employee=employee,
-                                                 owner=employee.owner)
+                                                 owner=employee.owner,
+                                                 ignore_availability=ignore_availability)
     except Exception as e:
         print('failed to create appointment: ' + str(e), end='\n\n')
         raise
@@ -73,7 +74,7 @@ def book_appointment(employee, customer, start, service=None, end=None):
 
 def company_1_master_group():
     group = GroupProfile.objects.create(owner_id=1, name='Master')
-    permissions = Permission.objects.all().filter(codename__endswith='appointment')
+    permissions = Permission.objects.filter(codename__endswith='appointment')
     group.permissions.add(*permissions)
     group.save()
     return group.group

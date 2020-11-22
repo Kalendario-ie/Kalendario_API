@@ -119,6 +119,9 @@ class AppointmentViewSet(mixins.WithPermissionsMixin,
     read_serializer_class = serializers.AppointmentReadSerializer
     queryset_serializer_class = serializers.AppointmentQuerySerlializer
 
+    def get_serializer_context(self):
+        return {'user': self.request.user}
+
     def get_write_serializer_class(self):
         if self.action in ('lock', 'plock'):
             return serializers.SelfAppointmentWriteSerializer

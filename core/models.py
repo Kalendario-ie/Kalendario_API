@@ -6,14 +6,14 @@ from django.utils.translation import ugettext_lazy as _
 from appointment_manager.common.model_mixins import CleanSaveMixin
 from core import managers
 
-PERMISSIONS = (
-'company', 'historicalappointment', 'appointment', 'employee', 'shift', 'schedule', 'service', 'servicecategory',
-'customer', 'config', 'schedulingpanel', 'groupprofile', 'user', 'request')
+PERMISSIONS = ('company', 'historicalappointment', 'appointment', 'employee', 'shift', 'schedule', 'service',
+               'servicecategory', 'customer', 'config', 'schedulingpanel', 'groupprofile', 'user', 'request')
 
 
 def permissions():
     values = [f'{t}_{p}' for p in PERMISSIONS for t in ['add', 'delete', 'change', 'view']]
     values.remove('add_company')
+    values.append('overlap_appointment')
     return Permission.objects.filter(codename__in=values)
 
 

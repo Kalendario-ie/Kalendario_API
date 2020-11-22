@@ -4,13 +4,16 @@ from django.db import models
 
 
 class AppointmentManager(models.Manager):
-    def create(self, *args, **kwargs):
+    def create(self, *args, ignore_availability=False, **kwargs):
         start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
 
         if start <= datetime.datetime.now():
             raise ValidationError('Date can\'t be on the past')
 
-        return super().create(*args, **kwargs)
+        obj = self.model(**kwargs)
+        self._for_write = True
+        obj.save(force_insert=True, ignore_availability=ignore_availability, using=self.db)
+        return obj
 
     def accepted(self):
         return self.get_queryset().filter(status='A')

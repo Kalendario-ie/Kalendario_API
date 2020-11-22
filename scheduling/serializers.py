@@ -20,7 +20,7 @@ class ConfigSerializer(serializers.ModelSerializer):
 class CreateCompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Company
-        fields = ('id', 'name', )
+        fields = ('id', 'name',)
 
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -58,7 +58,8 @@ class ServiceCategorySerializer(serializers.ModelSerializer):
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Service
-        fields = ('id', 'owner', 'private', 'name', 'duration', 'color', 'description', 'cost', 'is_from', 'price', 'category')
+        fields = ('id', 'owner', 'private', 'name', 'duration', 'color'
+                  , 'description', 'cost', 'is_from', 'price', 'category')
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
@@ -79,7 +80,7 @@ class ShiftSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Shift
-        fields = ('frames', )
+        fields = ('frames',)
 
 
 def updateShift(schedule, shift, validated_data):
@@ -139,12 +140,6 @@ class ScheduleReadSerializer(serializers.ModelSerializer):
         return updateSchedule(instance, validated_data)
 
 
-# class ScheduleWriteSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = models.Schedule
-#         fields = ('id', 'owner', 'name', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun')
-
-
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Customer
@@ -190,10 +185,31 @@ class AppointmentHistorySerializer(serializers.ModelSerializer):
 
 
 class AppointmentWriteSerializer(serializers.ModelSerializer):
+    ignore_availability = serializers.BooleanField(required=False, write_only=True)
+
     class Meta:
         model = models.Appointment
         fields = ('id', 'owner', 'start', 'end', 'employee', 'service', 'customer'
-                  , 'internal_notes', 'status')
+                  , 'internal_notes', 'status', 'ignore_availability')
+
+    def create(self, validated_data):
+        ignore_availability = self._ignore_availability(validated_data)
+        instance = models.Appointment.objects.create(**validated_data, ignore_availability=ignore_availability)
+        return instance
+
+    def update(self, instance, validated_data):
+        ignore_availability = self._ignore_availability(validated_data)
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save(ignore_availability=ignore_availability)
+        return instance
+
+    def _ignore_availability(self, validated_data):
+        user = self.context.get('user')
+        ignore_availability = all([validated_data.pop('ignore_availability', False),
+                                   user is not None,
+                                   user.has_perm('scheduling.overlap_appointment')])
+        return ignore_availability
 
 
 class RequestSerializer(serializers.ModelSerializer):

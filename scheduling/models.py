@@ -158,9 +158,8 @@ class Customer(Person):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)
 
 
-class Appointment(CleanSaveMixin, models.Model):
+class Appointment(models.Model):
     PENDING, ACCEPTED, REJECTED = 'P', 'A', 'R'
-
     STATUS_CHOICES = [
         (PENDING, 'Pending'),
         (ACCEPTED, 'Accepted'),
@@ -181,6 +180,11 @@ class Appointment(CleanSaveMixin, models.Model):
     history = HistoricalRecords()
 
     objects = managers.AppointmentManager()
+
+    class Meta:
+        permissions = [
+            ("overlap_appointment", "Can overlap appointment"),
+        ]
 
     def is_active(self):
         return self.status != Appointment.REJECTED
@@ -228,10 +232,6 @@ class Appointment(CleanSaveMixin, models.Model):
         if not self.service and self.customer is not None and self.employee.id != self.customer.id:
             raise ValidationError(r"A service must be provided")
 
-        # Employee must be available for a service to be saved
-        if not self.employee.is_available(self):
-            raise ValidationError(r'No time available for the date selected')
-
         # The employee must provide the service for the appointment to be valid
         if self.service and not self.employee.provides_service(self.service):
             raise ValidationError(r"Employee doesn't provide this service")
@@ -241,6 +241,15 @@ class Appointment(CleanSaveMixin, models.Model):
 
         if self.end < self.start:
             raise ValidationError(r"End time can't be before start time")
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None, ignore_availability=False):
+        self.clean()
+
+        # Employee must be available for a service to be saved
+        if not ignore_availability and not self.employee.is_available(self):
+            raise ValidationError(r'No time available for the date selected')
+
+        models.Model.save(self, force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return "{customer} on {date} from {start} to {end} {service} with {emp}. {status}".format(

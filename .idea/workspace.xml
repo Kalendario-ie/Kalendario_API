@@ -10,7 +10,60 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work" />
+    <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/managers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/tests/test_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/test_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/tests/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/test_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/tests/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/tests/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/1-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/1-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/10-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/10-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/11-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/11-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/3-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/3-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/8-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/8-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/9-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/9-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/RedHatDisplay-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/fonts/RedHatDisplay-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/fonts/inter-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-128x128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-144x144.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-152x152.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-192x192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-384x384.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-512x512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-72x72.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-96x96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/assets/img/default-avatar.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/common-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/common-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/inter-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/main-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/main-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/manifest.webmanifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/ngsw-worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/ngsw.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/polyfills-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/polyfills-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/runtime-es2015.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/runtime-es5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/safety-worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/worker-basic.min.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,11 +114,6 @@
     <property name="ts.external.directory.path" value="C:\Users\gfrancelino\AppData\Local\JetBrains\PyCharm 2020.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Development\Kalendario\Kalendario_API\appointment_manager\common" />
-      <recent name="C:\Development\Kalendario\Kalendario_API\payment\static" />
-      <recent name="C:\Development\Kalendario\Kalendario_API" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Development\Kalendario\Kalendario_API\scheduling\migrations" />
       <recent name="C:\Development\Kalendario\Kalendario_API\payment\static" />
@@ -73,9 +121,14 @@
       <recent name="C:\Development\Kalendario\Kalendario_API\payment\templates" />
       <recent name="C:\Development\Kalendario\Kalendario_API\scheduling\fixtures" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Development\Kalendario\Kalendario_API\appointment_manager\common" />
+      <recent name="C:\Development\Kalendario\Kalendario_API\payment\static" />
+      <recent name="C:\Development\Kalendario\Kalendario_API" />
+    </key>
   </component>
   <component name="RunManager" selected="Django Server.Serve local">
-    <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_employee_list" type="DjangoTestsConfigurationType" temporary="true">
+    <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create" type="DjangoTestsConfigurationType" temporary="true">
       <module name="appointment_manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -88,14 +141,14 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="scheduling.tests.test_views.AppointmentViewSetTest.test_employee_list" />
+      <option name="TARGET" value="scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Test: scheduling.tests.test_views.CustomerViewSetTest" type="DjangoTestsConfigurationType" temporary="true">
+    <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create_overlapping" type="DjangoTestsConfigurationType" temporary="true">
       <module name="appointment_manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,14 +161,14 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="scheduling.tests.test_views.CustomerViewSetTest" />
+      <option name="TARGET" value="scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create_overlapping" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Test: scheduling.tests.test_views.ScheduleViewSetTest" type="DjangoTestsConfigurationType" temporary="true">
+    <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping" type="DjangoTestsConfigurationType" temporary="true">
       <module name="appointment_manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -128,14 +181,14 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="scheduling.tests.test_views.ScheduleViewSetTest" />
+      <option name="TARGET" value="scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Test: scheduling.tests.test_views.ScheduleViewSetTest.test_admin_user_create" type="DjangoTestsConfigurationType" temporary="true">
+    <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability" type="DjangoTestsConfigurationType" temporary="true">
       <module name="appointment_manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -148,14 +201,14 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="scheduling.tests.test_views.ScheduleViewSetTest.test_admin_user_create" />
+      <option name="TARGET" value="scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Test: scheduling.tests.test_views.ServiceViewSetTest" type="DjangoTestsConfigurationType" temporary="true">
+    <configuration name="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" type="DjangoTestsConfigurationType" temporary="true">
       <module name="appointment_manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -168,7 +221,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="scheduling.tests.test_views.ServiceViewSetTest" />
+      <option name="TARGET" value="scheduling.tests.test_views.CompanyViewSetTest.test_user_create" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
@@ -283,13 +336,22 @@
       <item itemvalue="Django Server.Serve LAN" />
       <item itemvalue="Django Server.Serve local" />
       <item itemvalue="Django tests.Tests" />
-      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_employee_list" />
-      <item itemvalue="Django tests.Test: scheduling.tests.test_views.CustomerViewSetTest" />
-      <item itemvalue="Django tests.Test: scheduling.tests.test_views.ScheduleViewSetTest" />
-      <item itemvalue="Django tests.Test: scheduling.tests.test_views.ScheduleViewSetTest.test_admin_user_create" />
-      <item itemvalue="Django tests.Test: scheduling.tests.test_views.ServiceViewSetTest" />
       <item itemvalue="Shell Script.Push to Heroku" />
+      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create_overlapping" />
+      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create" />
+      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping" />
+      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability" />
+      <item itemvalue="Django tests.Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability" />
+        <item itemvalue="Django tests.Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create" />
+        <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping" />
+        <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create" />
+        <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create_overlapping" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -388,7 +450,11 @@
       <workItem from="1605354888905" duration="930000" />
       <workItem from="1605630296327" duration="6180000" />
       <workItem from="1605792013889" duration="340000" />
-      <workItem from="1605811713181" duration="3235000" />
+      <workItem from="1605811713181" duration="4077000" />
+      <workItem from="1605864488063" duration="23000" />
+      <workItem from="1605865184304" duration="42000" />
+      <workItem from="1605903838554" duration="2968000" />
+      <workItem from="1606041424252" duration="24509000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
@@ -423,6 +489,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -479,84 +555,84 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1598256386260" />
-    <state x="-1828" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1602883004247">
+    <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1606076793168">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1828" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602883004247" />
+    <state width="254" height="195" key="DatabaseViewActions_Filter/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606076793168" />
+    <state x="-1828" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1606059961820">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1828" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606059961820" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602612204985" />
-    <state x="827" y="350" key="EnvironmentVariablesDialog" timestamp="1597185922834">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="827" y="350" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597185922834" />
-    <state x="-1181" y="275" key="FileChooserDialogImpl" timestamp="1605792024666">
+    <state x="-1181" y="275" key="FileChooserDialogImpl" timestamp="1605865225230">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1181" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605792024666" />
+    <state x="-1181" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605865225230" />
     <state x="739" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601928866402" />
-    <state width="1877" height="218" key="GridCell.Tab.0.bottom" timestamp="1605820374636">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom" timestamp="1606082179368">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605817167333" />
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606082179368" />
     <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605517183275" />
     <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
     <state width="1877" height="229" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
     <state width="1877" height="234" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
-    <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605820374636" />
-    <state width="1877" height="218" key="GridCell.Tab.0.center" timestamp="1605820374635">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606041893209" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center" timestamp="1606082179368">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605817167333" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606082179368" />
     <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605517183274" />
     <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
     <state width="1877" height="229" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
     <state width="1877" height="234" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
-    <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605820374635" />
-    <state width="1877" height="218" key="GridCell.Tab.0.left" timestamp="1605820374635">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="254" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606041893209" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left" timestamp="1606082179368">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605817167333" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606082179368" />
     <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605517183274" />
     <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
     <state width="1877" height="229" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
     <state width="1877" height="234" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
-    <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605820374635" />
-    <state width="1877" height="218" key="GridCell.Tab.0.right" timestamp="1605820374635">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="254" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606041893209" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right" timestamp="1606082179368">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605817167333" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606082179368" />
     <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605517183275" />
     <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
     <state width="1877" height="229" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
     <state width="1877" height="234" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
-    <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605820374635" />
-    <state width="1877" height="276" key="GridCell.Tab.1.bottom" timestamp="1600121256288">
+    <state width="1877" height="254" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606041893209" />
+    <state width="1877" height="316" key="GridCell.Tab.1.bottom" timestamp="1606082053788">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600121256288" />
+    <state width="1877" height="316" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606082053788" />
     <state width="1877" height="276" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598884223398" />
     <state width="1877" height="276" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599691884050" />
-    <state width="1877" height="276" key="GridCell.Tab.1.center" timestamp="1600121256288">
+    <state width="1877" height="316" key="GridCell.Tab.1.center" timestamp="1606082053788">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600121256288" />
+    <state width="1877" height="316" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606082053788" />
     <state width="1877" height="276" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598884223398" />
     <state width="1877" height="276" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599691884049" />
-    <state width="1877" height="276" key="GridCell.Tab.1.left" timestamp="1600121256288">
+    <state width="1877" height="316" key="GridCell.Tab.1.left" timestamp="1606082053788">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600121256288" />
+    <state width="1877" height="316" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606082053788" />
     <state width="1877" height="276" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598884223398" />
     <state width="1877" height="276" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599691884049" />
-    <state width="1877" height="276" key="GridCell.Tab.1.right" timestamp="1600121256288">
+    <state width="1877" height="316" key="GridCell.Tab.1.right" timestamp="1606082053788">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="276" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600121256288" />
+    <state width="1877" height="316" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606082053788" />
     <state width="1877" height="276" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598884223398" />
     <state width="1877" height="276" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599691884050" />
-    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1603135526648">
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1606076692439">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603135526648" />
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606076692439" />
     <state x="-1125" y="222" key="RollbackChangesDialog" timestamp="1598358319732">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -599,10 +675,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="405" width="954" height="722" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598466155659" />
-    <state x="-1253" y="119" width="585" height="801" key="find.popup" timestamp="1605645882248">
+    <state x="-1253" y="119" width="585" height="801" key="find.popup" timestamp="1606070909710">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1253" y="119" width="585" height="801" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605645882248" />
+    <state x="-1253" y="119" width="585" height="801" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606070909710" />
     <state x="667" y="119" width="585" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602612542740" />
     <state x="-1180" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1598358137122">
       <screen x="-1920" y="0" width="1920" height="1040" />
@@ -612,10 +688,10 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1117" y="305" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1598280086136" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1602608554500">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606048134384">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1600119014233" />
+    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606048134384" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602608554500" />
   </component>
   <component name="XDebuggerManager">
@@ -626,23 +702,50 @@
           <line>46</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scheduling/tests/test_views.py</url>
+          <line>332</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scheduling/tests/test_views.py</url>
+          <line>337</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scheduling/tests/util.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_employee_list.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_employee_list Coverage Results" MODIFIED="1599846336392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_RequestTest.coverage" NAME="Test: scheduling.tests.test_models.RequestTest Coverage Results" MODIFIED="1597484758731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Kalendario_API$Test__core_tests_test_views_GroupViewTest_test_create.coverage" NAME="Test: core.tests.test_views.GroupViewTest.test_create Coverage Results" MODIFIED="1599678579640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_RequestViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.RequestViewSetTest Coverage Results" MODIFIED="1599679657213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Kalendario_API$Test__customers_tests_test_views_RequestViewSetTest_test_create_and_remove_appointment.coverage" NAME="Test: customers.tests.test_views.RequestViewSetTest.test_create_and_remove_appointment Coverage Results" MODIFIED="1599681229218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_ScheduleViewSetTest_test_admin_user_create.coverage" NAME="Test: scheduling.tests.test_views.ScheduleViewSetTest.test_admin_user_create Coverage Results" MODIFIED="1600121017933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Kalendario_API$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1598221029263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create.coverage" NAME="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create Coverage Results" MODIFIED="1599684075355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_create.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create Coverage Results" MODIFIED="1606059522318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_appointment_end_a_minute_after_next_starts.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_appointment_end_a_minute_after_next_starts Coverage Results" MODIFIED="1606053158283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_update_overlapping.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping Coverage Results" MODIFIED="1606071107642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_CustomerViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.CustomerViewSetTest Coverage Results" MODIFIED="1599691581588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Kalendario_API$Tests.coverage" NAME="Tests Coverage Results" MODIFIED="1602883222784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create.coverage" NAME="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create Coverage Results" MODIFIED="1606075627779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_start_a_minute_before_end_of_previous.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_start_a_minute_before_end_of_previous Coverage Results" MODIFIED="1606052472356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_ServiceViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.ServiceViewSetTest Coverage Results" MODIFIED="1599691116305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_RequestTest_test_update_status.coverage" NAME="Test: scheduling.tests.test_models.RequestTest.test_update_status Coverage Results" MODIFIED="1597486215656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_appointment_end_a_minute_after_next_starts_check_availability_false.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_appointment_end_a_minute_after_next_starts_check_availability_false Coverage Results" MODIFIED="1606053247976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_ScheduleViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.ScheduleViewSetTest Coverage Results" MODIFIED="1600113689986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_employee_list.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_employee_list Coverage Results" MODIFIED="1599846336392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_start_a_minute_before_end_of_previous_check_availability_false.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_start_a_minute_before_end_of_previous_check_availability_false Coverage Results" MODIFIED="1606052729175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_RequestViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.RequestViewSetTest Coverage Results" MODIFIED="1599679657213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_end_on_start.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_end_on_start Coverage Results" MODIFIED="1606052074788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_ScheduleViewSetTest_test_admin_user_create.coverage" NAME="Test: scheduling.tests.test_views.ScheduleViewSetTest.test_admin_user_create Coverage Results" MODIFIED="1600121017933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest Coverage Results" MODIFIED="1606058306986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_update_overlapping_ignore_availability.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability Coverage Results" MODIFIED="1606077656388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_start_on_end.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_start_on_end Coverage Results" MODIFIED="1606051879522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest Coverage Results" MODIFIED="1606053069056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1598221029263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Tests.coverage" NAME="Tests Coverage Results" MODIFIED="1606080865697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_RequestTest_test_update_status.coverage" NAME="Test: scheduling.tests.test_models.RequestTest.test_update_status Coverage Results" MODIFIED="1597486215656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_create_overlapping.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create_overlapping Coverage Results" MODIFIED="1606058396896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_RequestTest_test_get_pending.coverage" NAME="Test: scheduling.tests.test_models.RequestTest.test_get_pending Coverage Results" MODIFIED="1597485917935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_CustomersViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.CustomersViewSetTest Coverage Results" MODIFIED="1599690987530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
