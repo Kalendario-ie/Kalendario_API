@@ -433,6 +433,25 @@ class AppointmentViewSetTest(ViewTestCase):
         results = q_after.data['results']
         self.assertEqual(len(results), 0)
 
+    def test_admin_reschedule_self_appointment_multiple_days(self):
+        emp, customer, service = emp_customer_service()
+        start_date = util.next_tuesday().replace(hour=10, minute=0) + util.timedelta(7)
+        end_date = util.next_tuesday().replace(hour=11, minute=0) + util.timedelta(14)
+        data = create_self_apt_data(emp, emp, start_date, end_date)
+
+        self._auth_as_admin()
+
+        # Create an appointment that has 7 days of length
+        r1 = self.client.post(self.list_url + 'lock/', data, format='json')
+        self.assertEqual(r1.status_code, status.HTTP_201_CREATED)
+
+        # Update the appointment to be 14 days of length
+        apt_id = r1.data['id']
+        r2 = self.client.patch(self._detail_url(apt_id) + 'plock/', data, format='json')
+        data['end'] = str(util.next_tuesday().replace(hour=11, minute=0) + util.timedelta(21))
+
+        self.assertEqual(r2.status_code, status.HTTP_200_OK)
+
 
 class CompanyViewSetTest(ViewTestCase):
 

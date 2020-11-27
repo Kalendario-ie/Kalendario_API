@@ -133,7 +133,7 @@ class Employee(Person):
 
     # Check id the appointment fits inside a frame
     def _has_availability(self, start, end):
-        availability = self.get_availability(start.date())
+        availability = [*self.get_availability(start.date())]
         for frame in availability:
             if start.time() >= frame.start and end.time() <= frame.end:
                 return True
