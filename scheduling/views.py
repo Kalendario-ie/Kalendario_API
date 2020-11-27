@@ -166,11 +166,18 @@ class AppointmentViewSet(mixins.WithPermissionsMixin,
         if params.get('services') is not None:
             queryset = queryset.filter(service_id__in=params.get('services'))
 
-        if params.get('from_date') is not None:
-            queryset = queryset.filter(start__gte=params.get('from_date'))
+        from_date = params.get('from_date')
+        to_date = params.get('to_date')
+        if from_date is not None and to_date is None:
+            queryset = queryset.filter(start__gte=from_date)
 
-        if params.get('to_date') is not None:
-            queryset = queryset.filter(start__lte=params.get('to_date'))
+        if to_date is not None and from_date is None:
+            queryset = queryset.filter(start__lte=to_date)
+
+        if from_date is not None and to_date is not None:
+            queryset = queryset.filter(Q(start__gte=from_date, start__lte=to_date) |
+                                       Q(end__gte=from_date, end__lte=to_date) |
+                                       Q(start__lte=from_date, end__gte=to_date))
 
         if params.get('customer') is not None:
             queryset = queryset.filter(customer=params.get('customer'))

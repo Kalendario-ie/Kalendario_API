@@ -394,6 +394,45 @@ class AppointmentViewSetTest(ViewTestCase):
 
         self.assertEqual(response.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
+    def test_admin_view_self_appointment_multiple_days(self):
+        emp, customer, service = emp_customer_service()
+        start_date = util.next_tuesday().replace(hour=10, minute=0) + util.timedelta(7)
+        end_date = util.next_tuesday().replace(hour=11, minute=0) + util.timedelta(14)
+        data = create_self_apt_data(emp, emp, start_date, end_date)
+
+        self._auth_as_admin()
+
+        # Create an appointment that has 7 days of length
+        response = self.client.post(self.list_url + 'lock/', data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        apt_id = response.data['id']
+        for i in range(8):
+            # Goes through all the dates the appointment is booked and checks that the appointment is being retrieved
+            # in the results
+            date = start_date + util.timedelta(i)
+            q_data = {'from_date': date.strftime('%Y-%m-%dT00:00'), 'to_date': date.strftime('%Y-%m-%dT23:59')}
+            q = self.client.get(self.list_url, q_data, format='json')
+            self.assertEqual(q.status_code, status.HTTP_200_OK)
+            result_id = q.data['results'][0]['id']
+            self.assertEqual(result_id, apt_id)
+
+        # The appointment shouldn't be showing on the day before
+        d_before = start_date - util.timedelta(1)
+        q_before_data = {'from_date': d_before.strftime('%Y-%m-%dT00:00'), 'to_date': d_before.strftime('%Y-%m-%dT23:59')}
+        q_before = self.client.get(self.list_url, q_before_data, format='json')
+        self.assertEqual(q_before.status_code, status.HTTP_200_OK)
+        results = q_before.data['results']
+        self.assertEqual(len(results), 0)
+
+        # The appointment shouldn't be showing on the day after
+        d_after = start_date + util.timedelta(8)
+        q_after_data = {'from_date': d_after.strftime('%Y-%m-%dT00:00'), 'to_date': d_after.strftime('%Y-%m-%dT23:59')}
+        q_after = self.client.get(self.list_url, q_after_data, format='json')
+        self.assertEqual(q_after.status_code, status.HTTP_200_OK)
+        results = q_after.data['results']
+        self.assertEqual(len(results), 0)
+
 
 class CompanyViewSetTest(ViewTestCase):
 
