@@ -483,6 +483,7 @@ class Company(models.Model):
             self.save()
 
         self.update_is_viewable()
+        models.Model.save(self, force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return self.name
