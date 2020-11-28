@@ -476,14 +476,13 @@ class Company(models.Model):
         if self.name.count(' ') > 0:
             raise ValidationError({"name": "name should not contain spaces"})
 
-        models.Model.save(self, force_insert, force_update, using, update_fields)
-
-        if not hasattr(self, 'config'):
+        if self.id is None:
+            models.Model.save(self, force_insert, force_update, using, update_fields)
             self.config = Config.objects.create(owner=self)
             self.save()
-
-        self.update_is_viewable()
-        models.Model.save(self, force_insert, force_update, using, update_fields)
+        else:
+            self.update_is_viewable()
+            models.Model.save(self, force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return self.name
