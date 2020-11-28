@@ -159,12 +159,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#
+# EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', os.environ.get('EMAIL_HOST', ''))
+# EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', 465)
+# EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', os.environ.get('EMAIL_HOST_PASSWORD', ''))
 
-EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', os.environ.get('EMAIL_HOST', ''))
-EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', 465)
-EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', os.environ.get('EMAIL_HOST_USER', ''))
-EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', os.environ.get('EMAIL_HOST_PASSWORD', ''))
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = os.environ.get('MAILGUN_ACCESS_KEY')
+MAILGUN_SERVER_NAME = os.environ.get('MAILGUN_SERVER_NAME')
+EMAIL_HOST_USER = os.environ.get('MAILGUN_EMAIL', 'no-reply@kalendario.ie')
 
 SITE_ID = 1
 
