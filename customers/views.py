@@ -15,7 +15,11 @@ from appointment_manager.common import viewsets
 class RequestViewSet(mixins.QuerysetSerializerMixin, viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.RequestReadSerializer
-    queryset_serializer_class = serializers.RequestQuerySerializer
+
+    def get_queryset_serializer_class(self):
+        if self.action in ['current']:
+            return serializers.RequestQueryRequiredOwnerSerializer
+        return serializers.RequestQuerySerializer
 
     def get_write_serializer_class(self):
         if self.action == 'create':

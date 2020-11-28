@@ -132,8 +132,7 @@ class AppointmentQuerySerializer(serializers.Serializer):
         pass
 
 
-class RequestQuerySerializer(serializers.Serializer):
-    owner = serializers.IntegerField()
+class RequestQueryBaseSerializer(serializers.Serializer):
     appointment = serializers.IntegerField(required=False)
     from_date = serializers.DateTimeField(required=False)
     to_date = serializers.DateTimeField(required=False)
@@ -143,6 +142,14 @@ class RequestQuerySerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         pass
+
+
+class RequestQueryRequiredOwnerSerializer(RequestQueryBaseSerializer):
+    owner = serializers.IntegerField()
+
+
+class RequestQuerySerializer(RequestQueryBaseSerializer):
+    owner = serializers.IntegerField(required=False)
 
 
 class RequestReadSerializer(serializers.ModelSerializer):

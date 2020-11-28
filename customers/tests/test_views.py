@@ -73,13 +73,14 @@ class CompanyViewSetTest(ViewTestCase):
 class RequestViewSetTest(ViewTestCase):
 
     def setUp(self):
-        self.list_url = reverse('customer-request-list')
+        self.url_name = 'customer-request'
+        self.list_url = reverse(self.url_name+'-list')
 
     def current_url(self):
         return f'{self.list_url}current/'
 
-    # def appointment_url(self):
-    #     return f'{self.list_url}appointment/'
+    def detail_url(self, pk):
+        return reverse(self.url_name+'-detail', kwargs={'pk': pk})
 
     def test_get_current_no_owner_id(self):
         self.client.force_authenticate(user=test_user())
@@ -126,3 +127,21 @@ class RequestViewSetTest(ViewTestCase):
         response = self.client.delete(self.list_url + f'{request_id}/?appointment={apt_id}&owner={emp.owner_id}', format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_submit_request(self):
+        # Login
+        user = User.objects.get(pk=2)
+        self.client.force_authenticate(user=user)
+
+        # get current request
+        get = self.client.get(self.current_url(), {'owner': 1}, format='json')
+        request_id = get.data.get('id')
+
+        # Add one appointment to request
+        emp, service = emp_service()
+        data = create_apt_data(emp, user.person, service, util.next_tuesday().replace(hour=10, minute=0))
+        post = self.client.post(self.list_url, data, format='json')
+        self.assertEqual(post.status_code, status.HTTP_201_CREATED)
+
+        confirm = self.client.patch(self.detail_url(request_id))
+        self.assertEqual(confirm.status_code, status.HTTP_200_OK)
