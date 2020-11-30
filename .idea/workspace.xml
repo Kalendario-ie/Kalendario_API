@@ -12,9 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/customers/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/tests/test_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customers/tests/test_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customers/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +76,7 @@
       <recent name="C:\Development\Kalendario\Kalendario_API" />
     </key>
   </component>
-  <component name="RunManager" selected="Django tests.Tests">
+  <component name="RunManager" selected="Django Server.Serve local">
     <configuration name="Test: customers.tests.test_views.RequestViewSetTest.test_submit_request" type="DjangoTestsConfigurationType" temporary="true">
       <module name="appointment_manager" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -288,12 +285,12 @@
       <item itemvalue="Django Server.Serve LAN" />
       <item itemvalue="Django Server.Serve local" />
       <item itemvalue="Django tests.Tests" />
+      <item itemvalue="Django tests.Test: customers.tests.test_views.RequestViewSetTest.test_submit_request" />
+      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_reschedule_self_appointment_multiple_days" />
+      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_rescheudle_self_appointment_multiple_days" />
       <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability" />
       <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_view_self_appointment_multiple_days" />
       <item itemvalue="Shell Script.Push to Heroku" />
-      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_rescheudle_self_appointment_multiple_days" />
-      <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_reschedule_self_appointment_multiple_days" />
-      <item itemvalue="Django tests.Test: customers.tests.test_views.RequestViewSetTest.test_submit_request" />
     </list>
     <recent_temporary>
       <list>
@@ -414,6 +411,8 @@
       <workItem from="1606469506918" duration="12000" />
       <workItem from="1606475906678" duration="1019000" />
       <workItem from="1606488300775" duration="17120000" />
+      <workItem from="1606580618751" duration="43000" />
+      <workItem from="1606669309485" duration="614000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
