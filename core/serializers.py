@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from rest_auth.registration.serializers import RegisterSerializer
 from core import models
-from scheduling.models import Company, Person
-from scheduling.serializers import EmployeeSerializer
+from scheduling.models import Company, Person, Employee
+from scheduling.serializers import ScheduleReadSerializer, ServiceSerializer
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -15,6 +15,16 @@ class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = ('id', 'name')
+
+
+class EmployeeSerializer(serializers.ModelSerializer):
+    services = ServiceSerializer(many=True)
+    schedule = ScheduleReadSerializer()
+
+    class Meta:
+        model = Employee
+        fields = ('id', 'private', 'name', 'instagram', 'schedule',
+                  'email', 'phone', 'services', 'profile_img', 'bio')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -33,13 +43,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserAdminSerializer(serializers.ModelSerializer):
+    employee = EmployeeSerializer(read_only=True)
+    employee_id = serializers.IntegerField()
+
     class Meta:
         model = models.User
-        fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name', 'groups', 'employee')
+        fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name', 'groups', 'employee', 'employee_id')
 
-    def get_validation_exclusions(self):
-        exclusions = super(UserAdminSerializer, self).get_validation_exclusions()
-        return exclusions + ['employee']
+    # def validate_user_password(self, value):
 
 
 class PasswordChangeSerializer(serializers.Serializer):
