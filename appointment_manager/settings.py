@@ -114,6 +114,9 @@ MIDDLEWARE = [
     'simple_history.middleware.HistoryRequestMiddleware',    # Used for appointment history
 ]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
 ROOT_URLCONF = 'appointment_manager.urls'
 
 TEMPLATES = [

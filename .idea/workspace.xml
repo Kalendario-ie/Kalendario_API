@@ -12,15 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/ang/10-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/10-es2015.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/ang/10-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/10-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/11-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/11-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/11-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/11-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main-es5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/ang/ngsw.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/ngsw.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -423,7 +416,7 @@
       <workItem from="1606488300775" duration="17120000" />
       <workItem from="1606580618751" duration="43000" />
       <workItem from="1606669309485" duration="614000" />
-      <workItem from="1606740019913" duration="8082000" />
+      <workItem from="1606740019913" duration="8667000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
