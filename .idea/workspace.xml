@@ -13,49 +13,15 @@
     <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/1-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/1-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/10-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/10-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/11-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/11-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/3rdpartylicenses.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/8-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/8-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/9-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/9-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/RedHatDisplay-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/fonts/RedHatDisplay-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/fonts/inter-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-128x128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-144x144.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-152x152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-384x384.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-72x72.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/icons/icon-96x96.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/assets/img/default-avatar.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/common-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/common-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/inter-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/main-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/manifest.webmanifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/ngsw-worker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/ngsw.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/polyfills-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/polyfills-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/runtime-es2015.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/runtime-es5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/safety-worker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/scripts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/worker-basic.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/10-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/10-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/10-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/10-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/11-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/11-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/11-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/11-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/3-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/3-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/3-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/main-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main-es2015.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/main-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/main-es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/ang/ngsw.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/ngsw.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -457,7 +423,7 @@
       <workItem from="1606488300775" duration="17120000" />
       <workItem from="1606580618751" duration="43000" />
       <workItem from="1606669309485" duration="614000" />
-      <workItem from="1606740019913" duration="8017000" />
+      <workItem from="1606740019913" duration="8082000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
