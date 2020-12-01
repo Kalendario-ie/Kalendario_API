@@ -11,10 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
+      <change afterPath="$PROJECT_DIR$/appointment_manager/celery.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/celery_beat.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/celery_worker.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customers/tasks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scheduling/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/appointment_manager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Kalendario.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/10-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/10-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/10-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/10-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/ang/ngsw.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/ang/ngsw.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment_manager/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/appointment_manager/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appointment_manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/appointment_manager/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scheduling/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/managers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +62,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/employees" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/celery_beat.bat" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -67,21 +75,23 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Development\kalendario\Kalendario_API\appointment_manager" />
+      <recent name="C:\Development\kalendario\Kalendario_API\appointment_manager\settings" />
+      <recent name="C:\Development\kalendario\Kalendario_API\appointment_manager\base" />
       <recent name="C:\Development\Kalendario\Kalendario_API\appointment_manager\common" />
       <recent name="C:\Development\Kalendario\Kalendario_API\payment\static" />
-      <recent name="C:\Development\Kalendario\Kalendario_API" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Development\kalendario\Kalendario_API" />
+      <recent name="C:\Development\kalendario\Kalendario_API\scheduling" />
       <recent name="C:\Development\kalendario\Kalendario_API\employees" />
       <recent name="C:\Development\Kalendario\Kalendario_API\scheduling\migrations" />
       <recent name="C:\Development\Kalendario\Kalendario_API\payment\static" />
-      <recent name="C:\Development\Kalendario\Kalendario_API\static" />
-      <recent name="C:\Development\Kalendario\Kalendario_API\payment\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Django Server.Serve local">
+  <component name="RunManager" selected="Shell Script.Start Celery Beat">
     <configuration name="Test: customers.tests.test_views.RequestViewSetTest.test_submit_request" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -101,7 +111,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_reschedule_self_appointment_multiple_days" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -121,7 +131,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_rescheudle_self_appointment_multiple_days" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -141,7 +151,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -161,7 +171,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_view_self_appointment_multiple_days" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -181,7 +191,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Tests" type="DjangoTestsConfigurationType">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -201,7 +211,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Serve LAN" type="Python.DjangoServer" factoryName="Django server">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -226,7 +236,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Serve local" type="Python.DjangoServer" factoryName="Django server">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -251,7 +261,7 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <module name="appointment_manager" />
+      <module name="Kalendario" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -273,12 +283,23 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Push to Heroku" type="ShConfigurationType">
+    <configuration name="Start Celery Beat" type="ShConfigurationType">
       <option name="INDEPENDENT_SCRIPT_PATH" value="false" />
-      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/../pushToHeroku.bat" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/celery_beat.bat" />
       <option name="SCRIPT_OPTIONS" value="" />
       <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/../" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Start Celery Worker" type="ShConfigurationType">
+      <option name="INDEPENDENT_SCRIPT_PATH" value="false" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/celery_worker.bat" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="false" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
       <option name="INTERPRETER_PATH" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -293,7 +314,8 @@
       <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_rescheudle_self_appointment_multiple_days" />
       <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability" />
       <item itemvalue="Django tests.Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_view_self_appointment_multiple_days" />
-      <item itemvalue="Shell Script.Push to Heroku" />
+      <item itemvalue="Shell Script.Start Celery Worker" />
+      <item itemvalue="Shell Script.Start Celery Beat" />
     </list>
     <recent_temporary>
       <list>
@@ -416,7 +438,9 @@
       <workItem from="1606488300775" duration="17120000" />
       <workItem from="1606580618751" duration="43000" />
       <workItem from="1606669309485" duration="614000" />
-      <workItem from="1606740019913" duration="8667000" />
+      <workItem from="1606740019913" duration="10293000" />
+      <workItem from="1606805779615" duration="4836000" />
+      <workItem from="1606814222389" duration="6768000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
@@ -508,14 +532,23 @@
     <option name="LAST_COMMIT_MESSAGE" value="create a link between user and employee to allow employee dashboard to work" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1506" y="175" width="1092" height="864" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603135533523">
+    <state x="-1506" y="175" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606831447147">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1506" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1603135533523" />
+    <state x="-1506" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606831447147" />
+    <state x="2323" y="77" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606819071334" />
+    <state x="2625" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606818974223">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2625" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606818974223" />
     <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598256386260">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1230" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1598256386260" />
+    <state x="2638" y="278" key="#com.intellij.tools.ToolEditorDialog" timestamp="1606814861888">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2638" y="278" key="#com.intellij.tools.ToolEditorDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606814861888" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1606076793168">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -525,70 +558,75 @@
     </state>
     <state x="-1828" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606503919256" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602612204985" />
-    <state x="739" y="275" key="FileChooserDialogImpl" timestamp="1606459565314">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1307" y="287" width="479" height="489" key="EnvironmentVariablesDialog" timestamp="1606808138595">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1307" y="287" width="479" height="489" key="EnvironmentVariablesDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606808138595" />
+    <state x="2659" y="275" key="FileChooserDialogImpl" timestamp="1606819053990">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1181" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606335387950" />
+    <state x="2659" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606819053990" />
     <state x="739" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606459565314" />
-    <state width="1877" height="311" key="GridCell.Tab.0.bottom" timestamp="1606769270755">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom" timestamp="1606815806527">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606769270755" />
+    <state width="1877" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606809166581" />
     <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605517183275" />
     <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
-    <state width="1877" height="229" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
-    <state width="1877" height="234" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
+    <state width="1877" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606811645708" />
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606815806527" />
     <state width="1877" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606559829387" />
-    <state width="1877" height="311" key="GridCell.Tab.0.center" timestamp="1606769270755">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center" timestamp="1606815806527">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606769270755" />
+    <state width="1877" height="311" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606809166581" />
     <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605517183274" />
     <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
-    <state width="1877" height="229" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
-    <state width="1877" height="234" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
+    <state width="1877" height="311" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606811645707" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606815806527" />
     <state width="1877" height="311" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606559829387" />
-    <state width="1877" height="311" key="GridCell.Tab.0.left" timestamp="1606769270755">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left" timestamp="1606815806527">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606769270755" />
+    <state width="1877" height="311" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606809166581" />
     <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605517183274" />
     <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
-    <state width="1877" height="229" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
-    <state width="1877" height="234" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
+    <state width="1877" height="311" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606811645707" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606815806527" />
     <state width="1877" height="311" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606559829387" />
-    <state width="1877" height="311" key="GridCell.Tab.0.right" timestamp="1606769270755">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right" timestamp="1606815806527">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606769270755" />
+    <state width="1877" height="311" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606809166581" />
     <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1605517183275" />
     <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601293361579" />
-    <state width="1877" height="229" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1601280375787" />
-    <state width="1877" height="234" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598879882827" />
+    <state width="1877" height="311" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606811645707" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606815806527" />
     <state width="1877" height="311" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606559829387" />
-    <state width="1877" height="311" key="GridCell.Tab.1.bottom" timestamp="1606769270755">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="311" key="GridCell.Tab.1.bottom" timestamp="1606811645708">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606769270755" />
-    <state width="1877" height="276" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598884223398" />
+    <state width="1877" height="311" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606809166581" />
+    <state width="1877" height="311" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606811645708" />
     <state width="1877" height="311" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606559829388" />
-    <state width="1877" height="311" key="GridCell.Tab.1.center" timestamp="1606769270755">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="311" key="GridCell.Tab.1.center" timestamp="1606811645708">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606769270755" />
-    <state width="1877" height="276" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598884223398" />
+    <state width="1877" height="311" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606809166581" />
+    <state width="1877" height="311" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606811645708" />
     <state width="1877" height="311" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606559829387" />
-    <state width="1877" height="311" key="GridCell.Tab.1.left" timestamp="1606769270755">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="311" key="GridCell.Tab.1.left" timestamp="1606811645708">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606769270755" />
-    <state width="1877" height="276" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598884223398" />
+    <state width="1877" height="311" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606809166581" />
+    <state width="1877" height="311" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606811645708" />
     <state width="1877" height="311" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606559829387" />
-    <state width="1877" height="311" key="GridCell.Tab.1.right" timestamp="1606769270755">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state width="1877" height="311" key="GridCell.Tab.1.right" timestamp="1606811645708">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="311" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606769270755" />
-    <state width="1877" height="276" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1598884223398" />
+    <state width="1877" height="311" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606809166581" />
+    <state width="1877" height="311" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606811645708" />
     <state width="1877" height="311" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606559829387" />
     <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1606076692439">
       <screen x="-1920" y="0" width="1920" height="1040" />
@@ -631,14 +669,19 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1143" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1598270377906" />
+    <state x="2764" y="244" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey" timestamp="1606814862515">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2764" y="244" key="com.intellij.tools.ToolSelectDialog.dimensionServiceKey/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606814862515" />
     <state x="681" y="405" width="954" height="722" key="dock-window-1" timestamp="1598466155659">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="681" y="405" width="954" height="722" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1598466155659" />
-    <state x="667" y="119" width="585" height="801" key="find.popup" timestamp="1606552777337">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2587" y="119" width="585" height="801" key="find.popup" timestamp="1606814433129">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1253" y="119" width="585" height="801" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606070909710" />
+    <state x="-1253" y="119" width="585" height="801" key="find.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606771287189" />
+    <state x="2587" y="119" width="585" height="801" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606814433129" />
     <state x="667" y="119" width="585" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606552777337" />
     <state x="-1180" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1598358137122">
       <screen x="-1920" y="0" width="1920" height="1040" />
@@ -648,10 +691,11 @@
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1117" y="305" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1598280086136" />
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606768100858">
-      <screen x="-1920" y="0" width="1920" height="1040" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606816165139">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606768100858" />
+    <state x="-1297" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606807950338" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606816165139" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606552368106" />
   </component>
   <component name="XDebuggerManager">
@@ -676,6 +720,86 @@
           <url>file://$PROJECT_DIR$/customers/views.py</url>
           <line>19</line>
           <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>121</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>125</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>104</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>45</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/appointment_manager/settings.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

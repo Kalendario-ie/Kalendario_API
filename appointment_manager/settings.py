@@ -19,7 +19,7 @@ import dotenv
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # load environment variables from .env
-dotenv_file = os.path.join(BASE_DIR, ".env")
+dotenv_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
@@ -27,7 +27,7 @@ if os.path.isfile(dotenv_file):
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY') or 'djas139das$%@#*()dasd132173nsads1sbdascl'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'djas139das$%@#*()dasd132173nsads1sbdascl')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Don't add anything as DEBUG_MODE in production
@@ -35,10 +35,12 @@ DEBUG = bool(os.environ.get('DEBUG_MODE'))
 
 ALLOWED_HOSTS = []
 
-CORS_ORIGIN_WHITELIST = (
-    "https://localhost:4200",
-    "https://192.168.0.19:4200",
-) if DEBUG else ()
+CORS_ORIGIN_WHITELIST = ()
+if DEBUG:
+    CORS_ORIGIN_WHITELIST = (
+        'https://localhost:4200',
+        'https://192.168.0.19:4200',
+    )
 
 # Application definition
 REST_FRAMEWORK = {
@@ -93,7 +95,7 @@ INSTALLED_APPS = [
 
     'corsheaders',
 
-    #cloudinary image uploader
+    # cloudinary image uploader
     'cloudinary',
     'simple_history',
 
@@ -111,18 +113,20 @@ MIDDLEWARE = [
     # below adds middleware for cors
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'simple_history.middleware.HistoryRequestMiddleware',    # Used for appointment history
+    'simple_history.middleware.HistoryRequestMiddleware',  # Used for appointment history
 ]
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+# TODO: Change this to not run on dev mode
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
 
 ROOT_URLCONF = 'appointment_manager.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, '../../templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -218,22 +222,36 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_TMP = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '../../staticfiles')
+STATIC_TMP = os.path.join(BASE_DIR, '../../static')
 STATIC_URL = '/static/'
 
 os.makedirs(STATIC_TMP, exist_ok=True)
 os.makedirs(STATIC_ROOT, exist_ok=True)
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, '../../static'),
 )
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
 
-STRIPE_API_KEY = os.environ.get('STRIPE_SECRET_KEY')
-STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_API_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY', '')
 STRIPE_API_VERSION = os.environ.get('STRIPE_API_VERSION', '2019-12-03')
-STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+
+CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+CELERY_TIMEZONE = os.environ.get('CELERY_TIMEZONE', 'Europe/London')
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+CELERY_BEAT_SCHEDULE = {
+    'delete-idle-every-2-minute': {
+        'task': 'scheduling.tasks.delete_idle_requests',
+        'schedule': 120.0
+    },
+}
