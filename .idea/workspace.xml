@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2d6dcfd8-ce34-4771-a6d1-e9506d1c2662" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="bc992915-5a99-4195-809d-3bd727ef45a0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_RequestTest.coverage" NAME="Test: scheduling.tests.test_models.RequestTest Coverage Results" MODIFIED="1597484758731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__core_tests_test_views_GroupViewTest_test_create.coverage" NAME="Test: core.tests.test_views.GroupViewTest.test_create Coverage Results" MODIFIED="1599678579640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__customers_tests_test_views_RequestViewSetTest_test_create_and_remove_appointment.coverage" NAME="Test: customers.tests.test_views.RequestViewSetTest.test_create_and_remove_appointment Coverage Results" MODIFIED="1599681229218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_create.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create Coverage Results" MODIFIED="1606059522318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_appointment_end_a_minute_after_next_starts.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_appointment_end_a_minute_after_next_starts Coverage Results" MODIFIED="1606053158283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_update_overlapping.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping Coverage Results" MODIFIED="1606071107642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_CustomerViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.CustomerViewSetTest Coverage Results" MODIFIED="1599691581588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_CompanyViewSetTest_test_user_create.coverage" NAME="Test: scheduling.tests.test_views.CompanyViewSetTest.test_user_create Coverage Results" MODIFIED="1606075627779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_start_a_minute_before_end_of_previous.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_start_a_minute_before_end_of_previous Coverage Results" MODIFIED="1606052472356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_ServiceViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.ServiceViewSetTest Coverage Results" MODIFIED="1599691116305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_appointment_end_a_minute_after_next_starts_check_availability_false.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_appointment_end_a_minute_after_next_starts_check_availability_false Coverage Results" MODIFIED="1606053247976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__customers_tests_test_views_RequestViewSetTest_test_submit_request.coverage" NAME="Test: customers.tests.test_views.RequestViewSetTest.test_submit_request Coverage Results" MODIFIED="1606559485635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_ScheduleViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.ScheduleViewSetTest Coverage Results" MODIFIED="1600113689986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_reschedule_self_appointment_multiple_days.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_reschedule_self_appointment_multiple_days Coverage Results" MODIFIED="1606503526994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_employee_list.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_employee_list Coverage Results" MODIFIED="1599846336392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_start_a_minute_before_end_of_previous_check_availability_false.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_start_a_minute_before_end_of_previous_check_availability_false Coverage Results" MODIFIED="1606052729175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_view_self_appointment_multiple_days.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_view_self_appointment_multiple_days Coverage Results" MODIFIED="1606426073585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_RequestViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.RequestViewSetTest Coverage Results" MODIFIED="1599679657213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_end_on_start.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_end_on_start Coverage Results" MODIFIED="1606052074788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_ScheduleViewSetTest_test_admin_user_create.coverage" NAME="Test: scheduling.tests.test_views.ScheduleViewSetTest.test_admin_user_create Coverage Results" MODIFIED="1600121017933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest Coverage Results" MODIFIED="1606058306986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_update_overlapping_ignore_availability.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_update_overlapping_ignore_availability Coverage Results" MODIFIED="1606077656388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest_test_two_appointments_start_on_end.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest.test_two_appointments_start_on_end Coverage Results" MODIFIED="1606051879522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_AppointmentTest.coverage" NAME="Test: scheduling.tests.test_models.AppointmentTest Coverage Results" MODIFIED="1606053069056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1598221029263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Tests.coverage" NAME="Tests Coverage Results" MODIFIED="1606559829368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_rescheudle_self_appointment_multiple_days.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_rescheudle_self_appointment_multiple_days Coverage Results" MODIFIED="1606502294215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_RequestTest_test_update_status.coverage" NAME="Test: scheduling.tests.test_models.RequestTest.test_update_status Coverage Results" MODIFIED="1597486215656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_AppointmentViewSetTest_test_admin_create_overlapping.coverage" NAME="Test: scheduling.tests.test_views.AppointmentViewSetTest.test_admin_create_overlapping Coverage Results" MODIFIED="1606058396896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_models_RequestTest_test_get_pending.coverage" NAME="Test: scheduling.tests.test_models.RequestTest.test_get_pending Coverage Results" MODIFIED="1597485917935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Kalendario_API$Test__scheduling_tests_test_views_CustomersViewSetTest.coverage" NAME="Test: scheduling.tests.test_views.CustomersViewSetTest Coverage Results" MODIFIED="1599690987530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+</project>
