@@ -477,18 +477,23 @@ class CompanyViewSetTest(ViewTestCase):
 
         # Create a company through the api endpoint
         self.client.force_authenticate(user=user)
-        data = {'name': 'test'}
+        company_name = 'test'
+        data = {'name': company_name}
         response = self.client.post(self.list_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        company = models.Company.objects.filter(name=company_name).first()
 
         # reloads the user to update the permissions
         user = User.objects.get(pk=user.id)
         p = user.get_all_permissions()
         # checks that the user now has a company full permissions to edit company models
         # and no permissions to create other companies
-        self.assertIsNotNone(user.owner)
+        self.assertEqual(user.owner_id, company.id)
         self.assertTrue(user.has_perms(perm))
         self.assertFalse(user.has_perm('scheduling.add_company'))
+
+        master_group = user.groups.all().first()
+        self.assertEqual(master_group.name, f'{company.id}_Master')
 
     def test_user_create_twice(self):
         user = test_user()

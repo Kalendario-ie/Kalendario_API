@@ -10,7 +10,6 @@ django-cors-headers==3.2.1
 django-heroku==0.3.1
 django-rest-auth==0.9.5
 django-simple-history==2.11.0
-django-sslserver==0.22
 djangorestframework==3.11.0
 djangorestframework-camel-case==1.1.2
 drf-rw-serializers==1.0.3
