@@ -1,1 +1,0 @@
-celery -A appointment_manager beat -l INFO

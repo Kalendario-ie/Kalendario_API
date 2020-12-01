@@ -1,1 +1,0 @@
-celery -A appointment_manager worker -l INFO -E --without-gossip --without-mingle --without-heartbeat -Ofair

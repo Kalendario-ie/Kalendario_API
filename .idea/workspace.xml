@@ -11,18 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="848e0fc2-29c2-49e0-8dee-202fb2c195bc" name="Default Changelist" comment="create a link between user and employee to allow employee dashboard to work">
-      <change afterPath="$PROJECT_DIR$/appointment_manager/celery.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/celery_beat.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/celery_worker.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customers/tasks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scheduling/tasks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/appointment_manager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Kalendario.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment_manager/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/appointment_manager/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appointment_manager/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/appointment_manager/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scheduling/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scheduling/managers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,7 +430,7 @@
       <workItem from="1606669309485" duration="614000" />
       <workItem from="1606740019913" duration="10293000" />
       <workItem from="1606805779615" duration="4836000" />
-      <workItem from="1606814222389" duration="6768000" />
+      <workItem from="1606814222389" duration="7496000" />
     </task>
     <task id="LOCAL-00001" summary="update service worker">
       <created>1597186441454</created>
@@ -532,10 +522,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="create a link between user and employee to allow employee dashboard to work" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1506" y="175" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606831447147">
+    <state x="-1506" y="175" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606832544783">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1506" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606831447147" />
+    <state x="-1506" y="175" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1606832544783" />
     <state x="2323" y="77" width="1092" height="834" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606819071334" />
     <state x="2625" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606818974223">
       <screen x="1920" y="0" width="1920" height="1040" />
