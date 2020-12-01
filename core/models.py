@@ -55,7 +55,7 @@ class User(CleanSaveMixin, AbstractUser):
     owner = models.ForeignKey('scheduling.Company', on_delete=models.CASCADE, null=True, blank=True)
     person = models.OneToOneField('scheduling.Person', on_delete=models.CASCADE, null=True)
 
-    employee = models.OneToOneField('scheduling.Employee', on_delete=models.SET_NULL, null=True,
+    employee = models.OneToOneField('scheduling.Employee', on_delete=models.SET_NULL, null=True, blank=True,
                                     related_name='user_link')
 
     USERNAME_FIELD = 'email'
