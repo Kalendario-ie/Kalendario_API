@@ -11,7 +11,5 @@ CORS_ORIGIN_WHITELIST = (
     'https://192.168.0.19:4200',
 )
 
-SECURE_SSL_REDIRECT = False
-
 
 
