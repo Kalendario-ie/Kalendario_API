@@ -1,7 +1,7 @@
 from .base import *
 import django_heroku
 
-DEBUG = False
+DEBUG = os.environ.get('DEBUG_MODE', False)
 
 # TODO: FIX THIS
 ALLOWED_HOSTS = []
