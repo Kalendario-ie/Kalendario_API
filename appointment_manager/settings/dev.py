@@ -7,6 +7,7 @@ DEBUG = True
 ALLOWED_HOSTS = '*'
 
 CORS_ORIGIN_WHITELIST = (
+    'http://localhost:4200',
     'https://localhost:4200',
     'https://192.168.0.19:4200',
 )
