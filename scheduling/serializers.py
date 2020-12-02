@@ -154,7 +154,7 @@ class AppointmentReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Appointment
         fields = ('id', 'owner', 'start', 'end', 'employee', 'lock_employee', 'service',
-                  'customer', 'status', 'internal_notes', 'request')
+                  'customer', 'status', 'internal_notes', 'request', 'deleted')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -235,6 +235,8 @@ class AppointmentQuerySerlializer(serializers.Serializer):
     employee = serializers.IntegerField(required=False)
     employees = serializers.ListField(required=False)
     services = serializers.ListField(required=False)
+    show_all = serializers.BooleanField(required=False)
+    deleted_only = serializers.BooleanField(required=False)
 
     def create(self, validated_data):
         pass

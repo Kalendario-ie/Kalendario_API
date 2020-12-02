@@ -148,14 +148,20 @@ class AppointmentViewSet(mixins.WithPermissionsMixin,
         return Response(serializer.data)
 
     def get_queryset(self):
-        queryset = models.Appointment.objects.all()
+        params = self.get_queryset_params()
+
+        if params.get('show_all'):
+            queryset = models.Appointment.objects.all_with_deleted()
+        elif params.get('deleted_only'):
+            queryset = models.Appointment.objects.deleted_only()
+        else:
+            queryset = models.Appointment.objects.all()
+
         # if a request reaches here and the user has no permission to view appointments
         # it means the user is an employee and
         # should only view appointments related to the employee of the user
         if not self.request.user.has_perm('scheduling.view_appointment') and self.request.user.employee_id is not None:
             queryset = queryset.filter(employee=self.request.user.employee_id)
-
-        params = self.get_queryset_params()
 
         if params.get('employee') is not None:
             queryset = queryset.filter(employee=params.get('employee'))
@@ -251,4 +257,3 @@ class SchedulingPanelViewSet(mixins.WithPermissionsMixin,
                              viewsets.ModelViewSet):
     serializer_class = serializers.SchedulingPanelSerializer
     queryset = models.SchedulingPanel.objects.all()
-

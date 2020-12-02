@@ -452,6 +452,91 @@ class AppointmentViewSetTest(ViewTestCase):
 
         self.assertEqual(r2.status_code, status.HTTP_200_OK)
 
+    def test_admin_delete_appointments_should_not_show_on_normal_get_list(self):
+        """
+        Deleting an appointment should remove it from the list view
+        """
+
+        self._auth_as_admin()
+
+        r1 = self.client.get(self.list_url)
+        before = r1.data['results']
+        len_before = len(before)
+        # Delete One
+        models.Appointment.objects.get(pk=before[0]['id']).delete()
+
+        r2 = self.client.get(self.list_url)
+        after = r2.data['results']
+
+        self.assertEqual(len_before - 1, len(after))
+
+    def test_admin_delete_appointments_should_show_on_with_show_all_flag(self):
+        """
+        The list view should still return delete appointments if the show_all flag is set to true
+        """
+        self._auth_as_admin()
+
+        r1 = self.client.get(self.list_url)
+        before = r1.data['results']
+        len_before = len(before)
+        # Delete One
+        models.Appointment.objects.get(pk=before[0]['id']).delete()
+
+        r2 = self.client.get(self.list_url, {'show_all': True})
+        after = r2.data['results']
+
+        self.assertEqual(len_before, len(after))
+
+    def test_admin_hard_delete_appointments_should_not_show_even_with_show_all_flag(self):
+        """
+        The list view should not return hard delete appointments even if the show_all flag is set to true
+        """
+        self._auth_as_admin()
+
+        r1 = self.client.get(self.list_url)
+        before = r1.data['results']
+        len_before = len(before)
+        # Delete One
+        models.Appointment.objects.get(pk=before[0]['id']).hard_delete()
+
+        r2 = self.client.get(self.list_url, {'show_all': True})
+        after = r2.data['results']
+
+        self.assertEqual(len_before - 1, len(after))
+
+    def test_admin_only_delete_appointments_should_show_with_deleted_only_flag(self):
+        """
+        The list view should not return hard delete appointments even if the show_all flag is set to true
+        """
+        self._auth_as_admin()
+
+        r1 = self.client.get(self.list_url)
+        before = r1.data['results']
+        # Delete One
+        models.Appointment.objects.get(pk=before[0]['id']).delete()
+
+        r2 = self.client.get(self.list_url, {'deleted_only': True})
+        after = r2.data['results']
+
+        self.assertEqual(len(after), 1)
+
+    def test_admin_show_all_flag_and_deleted_only_should_still_show_all(self):
+        """
+        The list view should not return hard delete appointments even if the show_all flag is set to true
+        """
+        self._auth_as_admin()
+
+        r1 = self.client.get(self.list_url)
+        before = r1.data['results']
+        len_before = len(before)
+        # Delete One
+        models.Appointment.objects.get(pk=before[0]['id']).delete()
+
+        r2 = self.client.get(self.list_url, {'show_all': True, 'deleted_only': True})
+        after = r2.data['results']
+
+        self.assertEqual(len_before, len(after))
+
 
 class CompanyViewSetTest(ViewTestCase):
 

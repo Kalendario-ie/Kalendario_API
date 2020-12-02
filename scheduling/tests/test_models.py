@@ -41,7 +41,7 @@ class ScheduleTest(TestCaseWF):
         schedule = Schedule.objects.get(pk=1)
         self.assertEquals(schedule.tue, shift)
 
-    #TODO: test_changing_shift_different_owner
+    # TODO: test_changing_shift_different_owner
     # def test_changing_shift_different_owner(self):
     #     """
     #     Should raise an error when change shift on the schedule if shift belongs to the a different owner
@@ -308,6 +308,51 @@ class AppointmentTest(TestCaseWF):
 
         self.assertRaises(ValidationError, book_appointment, **data)
 
+    def test_delete_appointments_should_not_show_on_all_queryset(self):
+        """
+        The normal objects.all should not return safe deleted appointments
+        :return:
+        """
+        before = [*Appointment.objects.all()]
+        data = self.data()
+        data['start'] = next_tuesday().replace(hour=9, minute=0)
+        created = book_appointment(**data)
+        after_create = [*Appointment.objects.all()]
+        self.assertEqual(len(before) + 1, len(after_create))
+        created.delete()
+        after_delete = [*Appointment.objects.all()]
+        self.assertEqual(len(before), len(after_delete))
+
+    def test_delete_appointments_should_show_on_all_with_deleted_queryset(self):
+        """
+        objecsts.all_with_deleted should return safe deleted appointments
+        :return:
+        """
+        before = [*Appointment.objects.all_with_deleted()]
+        data = self.data()
+        data['start'] = next_tuesday().replace(hour=9, minute=0)
+        created = book_appointment(**data)
+        after_create = [*Appointment.objects.all_with_deleted()]
+        self.assertEqual(len(before) + 1, len(after_create))
+        created.delete()
+        after_delete = [*Appointment.objects.all_with_deleted()]
+        self.assertEqual(len(after_create), len(after_delete))
+
+    def test_hard_delete_appointments_should_not_show_on_all_with_deleted_queryset(self):
+        """
+        objecsts.all_with_deleted should not return hard deleted appointments
+        :return:
+        """
+        before = [*Appointment.objects.all_with_deleted()]
+        data = self.data()
+        data['start'] = next_tuesday().replace(hour=9, minute=0)
+        created = book_appointment(**data)
+        after_create = [*Appointment.objects.all_with_deleted()]
+        self.assertEqual(len(before) + 1, len(after_create))
+        created.hard_delete()
+        after_delete = [*Appointment.objects.all_with_deleted()]
+        self.assertEqual(len(before), len(after_delete))
+
 
 class UserTest(TestCaseWF):
 
@@ -484,44 +529,22 @@ class RequestTest(TestCaseWF):
 
         self.assertEqual(len(r1.appointment_set.all()), 1)
 
-    def test_add_appointment_wrong_customer(self):
-        """
-        if the person is not the same as the user's person save should fail
-        """
-        r1 = get_current()
-        appointment = Appointment.objects.create(start=next_tuesday().replace(hour=9, minute=0),
-                                                 service_id=1,
-                                                 customer_id=1001,
-                                                 employee_id=1,
-                                                 owner_id=1)
-        r1.appointment_set.add(appointment)
-
-        self.assertRaises(exceptions.InvalidCustomer, r1.save)
-
     def test_add_appointment_wrong_owner(self):
+        r1 = get_current(owner_id=2)
+        before = [*Appointment.objects.all()]
+        params = {'start': next_tuesday().replace(hour=9, minute=0),
+                  'service_id': 1,
+                  'customer_id': 2001,
+                  'employee_id': 1,
+                  'owner_id': 1}
+        self.assertRaises(exceptions.DifferentOwnerError, r1.add_appointment, **params)
+        after = [*Appointment.objects.all()]
+        self.assertEqual(len(before), len(after))
+
+    def test_add_appointment_wrong_customer(self):
         """
         if the person is not the same as the user's person save should fail
         """
-        r1 = get_current(owner_id=2)
-        appointment = Appointment.objects.create(start=next_tuesday().replace(hour=9, minute=0),
-                                                 service_id=1,
-                                                 customer_id=2001,
-                                                 employee_id=1,
-                                                 owner_id=1)
-        r1.appointment_set.add(appointment)
-
-        self.assertRaises(exceptions.DifferentOwnerError, r1.save)
-
-    def test_add_appointment(self):
-        r1 = get_current()
-        r1.add_appointment(start=next_tuesday().replace(hour=9, minute=0),
-                           service_id=1,
-                           customer_id=2001,
-                           employee_id=1,
-                           owner_id=1)
-        self.assertEqual(len(r1.appointment_set.all()), 1)
-
-    def test_add_appointment_wrong_customer(self):
         r1 = get_current()
         c1 = len(Appointment.objects.all())
         params = {'start': next_tuesday().replace(hour=9, minute=0),
@@ -530,18 +553,6 @@ class RequestTest(TestCaseWF):
                   'employee_id': 1,
                   'owner_id': 1}
         self.assertRaises(exceptions.InvalidCustomer, r1.add_appointment, **params)
-        c2 = len(Appointment.objects.all())
-        self.assertEqual(c1, c2)
-
-    def test_add_appointment_wrong_owner(self):
-        r1 = get_current(owner_id=2)
-        c1 = len(Appointment.objects.all())
-        params = {'start': next_tuesday().replace(hour=9, minute=0),
-                  'service_id': 1,
-                  'customer_id': 2001,
-                  'employee_id': 1,
-                  'owner_id': 1}
-        self.assertRaises(exceptions.DifferentOwnerError, r1.add_appointment, **params)
         c2 = len(Appointment.objects.all())
         self.assertEqual(c1, c2)
 

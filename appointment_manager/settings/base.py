@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     # cloudinary image uploader
     'cloudinary',
     'simple_history',
+    'safedelete',
 ]
 
 MIDDLEWARE = [

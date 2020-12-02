@@ -1,9 +1,10 @@
 import datetime
 from django.core.exceptions import ValidationError
 from django.db import models
+from safedelete.models import SafeDeleteManager
 
 
-class AppointmentManager(models.Manager):
+class AppointmentManager(SafeDeleteManager):
     def create(self, *args, ignore_availability=False, **kwargs):
         start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
 

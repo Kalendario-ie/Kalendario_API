@@ -9,6 +9,9 @@ from appointment_manager.common import stripe_helpers
 from appointment_manager.common.model_mixins import CleanSaveMixin
 from scheduling import managers, exceptions
 
+from safedelete.models import SafeDeleteModel
+from safedelete.models import HARD_DELETE
+
 phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                              message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 
@@ -92,6 +95,7 @@ class Person(CleanSaveMixin, models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField()
 
+    @property
     def name(self):
         return self.first_name + ' ' + self.last_name
 
@@ -100,7 +104,7 @@ class Person(CleanSaveMixin, models.Model):
         return [appointment for appointment in appointments if appointment.is_active()]
 
     def __str__(self):
-        return self.name()
+        return self.name
 
 
 class Employee(Person):
@@ -158,7 +162,7 @@ class Customer(Person):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)
 
 
-class Appointment(models.Model):
+class Appointment(SafeDeleteModel):
     PENDING, ACCEPTED, REJECTED = 'P', 'A', 'R'
     STATUS_CHOICES = [
         (PENDING, 'Pending'),
@@ -177,6 +181,7 @@ class Appointment(models.Model):
     service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
     internal_notes = models.TextField(max_length=255, null=True, blank=True)
+    # Todo
     history = HistoricalRecords()
 
     objects = managers.AppointmentManager()
@@ -242,25 +247,20 @@ class Appointment(models.Model):
         if self.end < self.start:
             raise ValidationError(r"End time can't be before start time")
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None, ignore_availability=False):
+    def save(self, ignore_availability=False, **kwargs):
         self.clean()
 
         # Employee must be available for a service to be saved
         if not ignore_availability and not self.employee.is_available(self):
             raise ValidationError(r'No time available for the date selected')
 
-        models.Model.save(self, force_insert, force_update, using, update_fields)
+        SafeDeleteModel.save(self, **kwargs)
+
+    def hard_delete(self):
+        return self.delete(force_policy=HARD_DELETE)
 
     def __str__(self):
-        return "{customer} on {date} from {start} to {end} {service} with {emp}. {status}".format(
-            customer=self.customer,
-            date=self.start.date(),
-            start=self.start.time(),
-            end=self.end.time(),
-            service=self.service,
-            emp=self.employee,
-            status=self.status
-        )
+        return f"{self.id} C: {self.customer} E: {self.employee}"
 
 
 class Request(CleanSaveMixin, models.Model):
@@ -337,17 +337,22 @@ class Request(CleanSaveMixin, models.Model):
             self.save()
             for apt in self.appointment_set.all():
                 if apt.service_id == appointment.service_id and apt.id != appointment.id:
-                    apt.delete()
+                    apt.hard_delete()
             return appointment
         except ValidationError as e:
-            appointment.delete()
+            appointment.hard_delete()
             raise e
 
     def clean(self):
         if self.user.person_id is None:
             raise ValidationError(r'User must have a person')
 
-        for appointment in self.appointment_set.all():
+        appointments = [*self.appointment_set.all()]
+
+        if len(appointments) == 1:
+            self.scheduled_date = appointments[0].start.date()
+
+        for appointment in appointments:
             if appointment.customer_id != self.user.person_id:
                 raise exceptions.InvalidCustomer(r'Appointment customer is not the same as the user')
             if appointment.owner_id != self.owner_id:
