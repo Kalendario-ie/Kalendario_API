@@ -181,7 +181,6 @@ class Appointment(SafeDeleteModel):
     service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
     internal_notes = models.TextField(max_length=255, null=True, blank=True)
-    # Todo
     history = HistoricalRecords()
 
     objects = managers.AppointmentManager()

@@ -150,7 +150,7 @@ class AppointmentViewSet(mixins.WithPermissionsMixin,
     def get_queryset(self):
         params = self.get_queryset_params()
 
-        if params.get('show_all'):
+        if params.get('show_all') or self.action == 'history':
             queryset = models.Appointment.objects.all_with_deleted()
         elif params.get('deleted_only'):
             queryset = models.Appointment.objects.deleted_only()

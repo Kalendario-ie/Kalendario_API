@@ -181,7 +181,7 @@ class AppointmentHistorySerializer(serializers.ModelSerializer):
         model = models.Appointment.history.model
         fields = (
             'id', 'owner', 'start', 'end', 'employee', 'service', 'customer', 'status', 'internal_notes'
-            , 'history_date', 'history_user')
+            , 'history_date', 'history_user', 'history_type')
 
 
 class AppointmentWriteSerializer(serializers.ModelSerializer):
