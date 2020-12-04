@@ -216,7 +216,7 @@ class CompanyViewSet(mixins.WithPermissionsMixin,
         serializer.save()
         return Response(serializer.data)
 
-    @action(detail=True, methods=['post'])
+    @action(detail=True, methods=['patch'])
     def photo(self, request, pk=None):
         file = request.data.get('image')
 
@@ -230,7 +230,7 @@ class CompanyViewSet(mixins.WithPermissionsMixin,
         serializer = self.get_read_serializer(instance)
         return Response(serializer.data)
 
-    @action(detail=True, methods=['post'], url_path='stripe', url_name='stripe')
+    @action(detail=True, methods=['patch'], url_path='stripe', url_name='stripe')
     def post_stripe(self, request, *args, **kwargs):
         instance = self.get_object()
         stripe_id = instance.stripe_id()
