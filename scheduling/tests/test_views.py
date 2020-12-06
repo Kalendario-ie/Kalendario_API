@@ -373,6 +373,37 @@ class AppointmentViewSetTest(ViewTestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+    def test_admin_create_self_appointment_overlapping(self):
+        self._auth_as_admin()
+
+        emp, customer, service = emp_customer_service()
+
+        d1 = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
+                                    util.next_tuesday().replace(hour=12, minute=0))
+        r1 = self.client.post(self.list_url + 'lock/', d1, format='json')
+        self.assertEqual(r1.status_code, status.HTTP_201_CREATED)
+
+        d2 = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=11, minute=0),
+                                  util.next_tuesday().replace(hour=13, minute=0))
+        r2 = self.client.post(self.list_url + 'lock/', d2, format='json')
+        self.assertEqual(r2.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    def test_admin_create_self_appointment_overlapping_ignore_availability(self):
+        self._auth_as_admin()
+
+        emp, customer, service = emp_customer_service()
+
+        d1 = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
+                                  util.next_tuesday().replace(hour=12, minute=0))
+        r1 = self.client.post(self.list_url + 'lock/', d1, format='json')
+        self.assertEqual(r1.status_code, status.HTTP_201_CREATED)
+
+        d2 = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=11, minute=0),
+                                  util.next_tuesday().replace(hour=13, minute=0))
+        d2['ignore_availability'] = True
+        r2 = self.client.post(self.list_url + 'lock/', d2, format='json')
+        self.assertEqual(r2.status_code, status.HTTP_201_CREATED)
+
     def test_admin_create_self_appointment_with_service(self):
         emp, customer, service = emp_customer_service()
 

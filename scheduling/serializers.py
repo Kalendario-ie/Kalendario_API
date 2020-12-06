@@ -184,13 +184,13 @@ class AppointmentHistorySerializer(serializers.ModelSerializer):
             , 'history_date', 'history_user', 'history_type')
 
 
-class AppointmentWriteSerializer(serializers.ModelSerializer):
+class BaseAppointmentWriteSerializer(serializers.ModelSerializer):
     ignore_availability = serializers.BooleanField(required=False, write_only=True)
 
     class Meta:
         model = models.Appointment
-        fields = ('id', 'owner', 'start', 'end', 'employee', 'service', 'customer'
-                  , 'internal_notes', 'status', 'ignore_availability')
+        fields = ('id', 'owner', 'start', 'end', 'employee', 'customer', 'internal_notes', 'status'
+                  , 'ignore_availability')
 
     def create(self, validated_data):
         ignore_availability = self._ignore_availability(validated_data)
@@ -212,6 +212,17 @@ class AppointmentWriteSerializer(serializers.ModelSerializer):
         return ignore_availability
 
 
+class AppointmentWriteSerializer(BaseAppointmentWriteSerializer):
+
+    class Meta(BaseAppointmentWriteSerializer.Meta):
+        fields = BaseAppointmentWriteSerializer.Meta.fields + ('service', )
+
+
+class SelfAppointmentWriteSerializer(BaseAppointmentWriteSerializer):
+    class Meta(BaseAppointmentWriteSerializer.Meta):
+        pass
+
+
 class RequestSerializer(serializers.ModelSerializer):
     appointments = AppointmentReadSerializer(many=True, read_only=True, source='appointment_set')
     person = PersonSerializer(source='user.person')
@@ -219,12 +230,6 @@ class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Request
         fields = ('id', 'owner', 'appointments', 'complete', 'person', 'status')
-
-
-class SelfAppointmentWriteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Appointment
-        fields = ('id', 'owner', 'start', 'end', 'employee', 'customer', 'internal_notes', 'status')
 
 
 class AppointmentQuerySerlializer(serializers.Serializer):
