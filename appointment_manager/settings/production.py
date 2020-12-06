@@ -12,6 +12,8 @@ CORS_ORIGIN_WHITELIST = ()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']

@@ -6,6 +6,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = '*'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
     'https://localhost:4200',

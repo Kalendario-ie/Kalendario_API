@@ -1,10 +1,10 @@
-from django.contrib.auth.models import Permission
 from django.urls import reverse
+from django.core import mail
 from rest_framework import status
 
 import scheduling.tests.util as util
 from core.models import User
-from scheduling.models import Appointment, Person, Employee, Customer, Company
+from scheduling.models import Person, Company
 from scheduling.tests.generics import ViewTestCase
 
 
@@ -100,7 +100,7 @@ class RequestViewSetTest(ViewTestCase):
         data = create_apt_data(emp, user.person, service, util.next_tuesday().replace(hour=10, minute=0))
 
         self.client.force_authenticate(user=user)
-        response = self.client.post(self.list_url, data, format='json')
+        response = self.client.post(self.list_url + 'add/', data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -111,7 +111,7 @@ class RequestViewSetTest(ViewTestCase):
         data.pop('employee')
 
         self.client.force_authenticate(user=user)
-        response = self.client.post(self.list_url, data, format='json')
+        response = self.client.post(self.list_url + 'add/', data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -121,7 +121,7 @@ class RequestViewSetTest(ViewTestCase):
         data = create_apt_data(emp, user.person, service, util.next_tuesday().replace(hour=10, minute=0))
 
         self.client.force_authenticate(user=user)
-        response1 = self.client.post(self.list_url, data, format='json')
+        response1 = self.client.post(self.list_url + 'add/', data, format='json')
         request_id = response1.data['id']
         apt_id = response1.data['appointments'][0]['id']
         response = self.client.delete(self.list_url + f'{request_id}/?appointment={apt_id}&owner={emp.owner_id}', format='json')
@@ -138,10 +138,16 @@ class RequestViewSetTest(ViewTestCase):
         request_id = get.data.get('id')
 
         # Add one appointment to request
-        emp, service = emp_service()
+        company = Company.objects.first()
+        emp, service = emp_service(company)
         data = create_apt_data(emp, user.person, service, util.next_tuesday().replace(hour=10, minute=0))
-        post = self.client.post(self.list_url, data, format='json')
+        post = self.client.post(self.list_url + 'add/', data, format='json')
         self.assertEqual(post.status_code, status.HTTP_201_CREATED)
 
-        confirm = self.client.patch(self.detail_url(request_id))
+        confirm = self.client.patch(self.detail_url(request_id) + 'confirm/')
         self.assertEqual(confirm.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(mail.outbox), 1)
+        sent_mail = mail.outbox[0]
+        self.assertEqual(sent_mail.subject, 'Request Submitted')
+        self.assertEqual(sent_mail.body, company.config.post_book_email_message)
+        self.assertContains(sent_mail.to, user.email)
