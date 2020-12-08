@@ -79,7 +79,7 @@ class RequestViewSet(mixins.QuerysetSerializerMixin, viewsets.ReadOnlyModelViewS
         message = instance.owner.config.post_book_email_message
         mail.send_mail('Request Submitted', message, [request.user.email])
         read_serializer = self.get_read_serializer(instance)
-        return Response(read_serializer.data)
+        return Response(read_serializer.data, status=status.HTTP_200_OK)
 
 
 class CompanyViewSet(viewsets.ReadOnlyModelViewSet):

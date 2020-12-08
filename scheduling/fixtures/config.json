@@ -1,0 +1,18 @@
+[
+  {
+    "model": "scheduling.config",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "post_book_email_message": "gentle reminder"
+    }
+  },
+  {
+    "model": "scheduling.config",
+    "pk": 2,
+    "fields": {
+      "owner": 2,
+      "post_book_email_message": "gentle reminder"
+    }
+  }
+]

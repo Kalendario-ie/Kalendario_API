@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from django.test import TestCase
 
-FIXTURES = ['companies.json', 'timeframes.json', 'shifts.json', 'schedules.json',
+FIXTURES = ['companies.json', 'config.json', 'timeframes.json', 'shifts.json', 'schedules.json',
             'people.json', 'services.json', 'employees.json', 'customers.json',
             'users.json', 'requests.json', 'appointments.json']
 

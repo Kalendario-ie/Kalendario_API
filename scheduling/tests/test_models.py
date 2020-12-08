@@ -484,12 +484,7 @@ class CompanyTest(TestCaseWF):
 
 
 class ConfigTest(TestCaseWF):
-
-    def test_add_message(self):
-        c1 = Company.objects.all().last()
-        m = Config.objects.create(owner=c1)
-        self.assertEqual(m.owner_id, c1.id)
-        c2 = Company.objects.get(pk=c1.id)
+    pass
 
 
 def get_current(owner_id=1, user_id=2):

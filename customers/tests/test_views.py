@@ -150,4 +150,4 @@ class RequestViewSetTest(ViewTestCase):
         sent_mail = mail.outbox[0]
         self.assertEqual(sent_mail.subject, 'Request Submitted')
         self.assertEqual(sent_mail.body, company.config.post_book_email_message)
-        self.assertContains(sent_mail.to, user.email)
+        self.assertIn(user.email, sent_mail.to)
