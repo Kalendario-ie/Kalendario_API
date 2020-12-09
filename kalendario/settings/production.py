@@ -3,11 +3,10 @@ import django_heroku
 
 DEBUG = os.environ.get('DEBUG_MODE', False)
 
-# TODO: FIX THIS
-# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(';')
 
-CORS_ORIGIN_WHITELIST = ()
+white_list = os.getenv('DJANGO_CORS_ORIGIN_WHITELIST')
+CORS_ORIGIN_WHITELIST = tuple(white_list.split(';')) if white_list is not None else ()
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
