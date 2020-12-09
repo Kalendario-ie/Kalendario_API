@@ -11,6 +11,8 @@ from rest_framework.response import Response
 
 from appointment_manager.common import viewsets, mixins, stripe_helpers
 from scheduling import serializers, models
+import logging
+logger = logging.getLogger(__name__)
 
 
 class EmployeeViewSet(mixins.WithPermissionsMixin,
@@ -40,7 +42,7 @@ class ServiceCategoryViewSet(mixins.WithPermissionsMixin,
                              mixins.AuthOwnerFilterMixin,
                              viewsets.ModelViewSet):
     serializer_class = serializers.ServiceCategorySerializer
-    queryset = models.ServiceCategory.objects.all()
+    queryset = models.ServiceCategory.objects.all().order_by('name')
 
 
 class ServiceViewSet(mixins.WithPermissionsMixin,
@@ -127,26 +129,6 @@ class AppointmentViewSet(mixins.WithPermissionsMixin,
             return serializers.SelfAppointmentWriteSerializer
         return serializers.AppointmentWriteSerializer
 
-    @action(detail=False, methods=['post'])
-    def lock(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-    @action(detail=True, methods=['patch'])
-    def plock(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)
-
-    @action(detail=True, methods=['get'])
-    def history(self, request, *args, **kwargs):
-        instance = self.get_object()
-        queryset = instance.history.all()
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = serializers.AppointmentHistorySerializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = serializers.AppointmentHistorySerializer(queryset, many=True)
-        return Response(serializer.data)
-
     def get_queryset(self):
         params = self.get_queryset_params()
 
@@ -189,6 +171,26 @@ class AppointmentViewSet(mixins.WithPermissionsMixin,
             queryset = queryset.filter(customer=params.get('customer'))
 
         return queryset.order_by('start')
+
+    @action(detail=False, methods=['post'])
+    def lock(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    @action(detail=True, methods=['patch'])
+    def plock(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    @action(detail=True, methods=['get'])
+    def history(self, request, *args, **kwargs):
+        instance = self.get_object()
+        queryset = instance.history.all()
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = serializers.AppointmentHistorySerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = serializers.AppointmentHistorySerializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class CompanyViewSet(mixins.WithPermissionsMixin,
@@ -256,4 +258,4 @@ class SchedulingPanelViewSet(mixins.WithPermissionsMixin,
                              mixins.AuthOwnerFilterMixin,
                              viewsets.ModelViewSet):
     serializer_class = serializers.SchedulingPanelSerializer
-    queryset = models.SchedulingPanel.objects.all()
+    queryset = models.SchedulingPanel.objects.all().order_by('name')
