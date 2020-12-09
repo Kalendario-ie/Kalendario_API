@@ -3,7 +3,7 @@ from rest_auth.registration import views
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from appointment_manager.common import mixins, viewsets
+from kalendario.common import mixins, viewsets
 from core import models, serializers
 
 

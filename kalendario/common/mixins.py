@@ -1,4 +1,4 @@
-from appointment_manager.common.pagination import StandardResultsSetPagination
+from kalendario.common.pagination import StandardResultsSetPagination
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions

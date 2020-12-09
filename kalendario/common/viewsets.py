@@ -1,6 +1,6 @@
 from drf_rw_serializers import viewsets as drf
 
-from appointment_manager.common.mixins import RenderParserPaginationMixin
+from kalendario.common.mixins import RenderParserPaginationMixin
 
 
 class GenericViewSet(RenderParserPaginationMixin, drf.GenericViewSet):

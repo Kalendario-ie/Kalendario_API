@@ -3,7 +3,7 @@ from django.contrib.auth.models import Permission
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from appointment_manager.common.model_mixins import CleanSaveMixin
+from kalendario.common.model_mixins import CleanSaveMixin
 from core import managers
 
 PERMISSIONS = ('company', 'historicalappointment', 'appointment', 'employee', 'shift', 'schedule', 'service',

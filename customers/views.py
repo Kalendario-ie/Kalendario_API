@@ -4,13 +4,13 @@ from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
-from appointment_manager.common import mixins, mail
+from kalendario.common import mixins, mail
 from customers.models import get_availability_for_service
 from customers import serializers
 
 from scheduling import models
 
-from appointment_manager.common import viewsets
+from kalendario.common import viewsets
 
 
 class RequestViewSet(mixins.QuerysetSerializerMixin, viewsets.ReadOnlyModelViewSet):

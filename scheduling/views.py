@@ -9,7 +9,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from appointment_manager.common import viewsets, mixins, stripe_helpers
+from kalendario.common import viewsets, mixins, stripe_helpers
 from scheduling import serializers, models
 import logging
 logger = logging.getLogger(__name__)

@@ -5,8 +5,8 @@ from django.core.validators import RegexValidator
 from cloudinary.models import CloudinaryField
 from simple_history.models import HistoricalRecords
 
-from appointment_manager.common import stripe_helpers
-from appointment_manager.common.model_mixins import CleanSaveMixin
+from kalendario.common import stripe_helpers
+from kalendario.common.model_mixins import CleanSaveMixin
 from scheduling import managers, exceptions
 
 from safedelete.models import SafeDeleteModel

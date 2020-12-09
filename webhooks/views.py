@@ -6,7 +6,7 @@ from rest_framework import status
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
-from appointment_manager.common import stripe_helpers
+from kalendario.common import stripe_helpers
 from webhooks import models
 from scheduling.models import Request, Appointment
 

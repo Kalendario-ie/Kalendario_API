@@ -9,7 +9,7 @@ from rest_framework.views import exception_handler
 from django.core import exceptions as core_ex
 from rest_framework import exceptions as rest_ex, status
 
-from appointment_manager.common.util import NON_FIELD_ERRORS
+from kalendario.common.util import NON_FIELD_ERRORS
 
 
 def custom_exception_handler(exc, context):

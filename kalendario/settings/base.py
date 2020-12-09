@@ -42,7 +42,7 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
         # Any other parsers
     ),
-    'EXCEPTION_HANDLER': 'appointment_manager.common.handlers.custom_exception_handler'
+    'EXCEPTION_HANDLER': 'kalendario.common.handlers.custom_exception_handler'
 
 }
 
@@ -92,7 +92,7 @@ MIDDLEWARE = [
     'simple_history.middleware.HistoryRequestMiddleware',  # Used for appointment history
 ]
 
-ROOT_URLCONF = 'appointment_manager.urls'
+ROOT_URLCONF = 'kalendario.urls'
 
 TEMPLATES = [
     {
@@ -111,7 +111,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'appointment_manager.wsgi.application'
+WSGI_APPLICATION = 'kalendario.wsgi.application'
 
 DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
@@ -150,7 +150,7 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'core.serializers.UserSerializer',
 }
 
-ACCOUNT_ADAPTER = 'appointment_manager.users.adapter.MyAccountAdapter'
+ACCOUNT_ADAPTER = 'kalendario.users.adapter.MyAccountAdapter'
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
