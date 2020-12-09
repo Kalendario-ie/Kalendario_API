@@ -4,8 +4,8 @@ import django_heroku
 DEBUG = os.environ.get('DEBUG_MODE', False)
 
 # TODO: FIX THIS
-ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(';')
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(';')
 
 CORS_ORIGIN_WHITELIST = ()
 
