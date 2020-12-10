@@ -353,6 +353,24 @@ class AppointmentTest(TestCaseWF):
         after_delete = [*Appointment.objects.all_with_deleted()]
         self.assertEqual(len(before), len(after_delete))
 
+    def test_soft_delete_appointment_overlapping(self):
+        """
+        Two appointments where the second finishes a minute after the previous started
+        Should raise Validation Error
+        """
+        data = self.data()
+        # Start at 9:45
+        data['start'] = next_tuesday().replace(hour=9, minute=45)
+        a1 = book_appointment(**data)
+        self.assertIsInstance(a1, Appointment)
+
+        # Starts at 9:16 finishes at 9:46 (a minute after previous started)
+        data['start'] = next_tuesday().replace(hour=9, minute=16)
+        a2 = book_appointment(**data, ignore_availability=True)
+        self.assertIsInstance(a2, Appointment)
+        # the bellow should not throw an error
+        a2.delete()
+
 
 class UserTest(TestCaseWF):
 

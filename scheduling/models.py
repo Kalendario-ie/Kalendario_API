@@ -255,6 +255,9 @@ class Appointment(SafeDeleteModel):
 
         SafeDeleteModel.save(self, **kwargs)
 
+    def delete(self, force_policy=None, **kwargs):
+        return SafeDeleteModel.delete(self, force_policy, ignore_availability=True)
+
     def hard_delete(self):
         return self.delete(force_policy=HARD_DELETE)
 
