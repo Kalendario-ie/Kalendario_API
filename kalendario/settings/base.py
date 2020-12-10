@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'customers.apps.CustomersConfig',
     'core.apps.CoreConfig',
     'webhooks.apps.WebhooksConfig',
+    'social_providers.apps.SocialProvidersConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',

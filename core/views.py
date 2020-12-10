@@ -1,18 +1,8 @@
-from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
-from rest_auth.registration import views
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from kalendario.common import mixins, viewsets
 from core import models, serializers
-
-
-class FacebookLogin(views.SocialLoginView):
-    adapter_class = FacebookOAuth2Adapter
-
-
-class FacebookConnect(views.SocialConnectView):
-    adapter_class = FacebookOAuth2Adapter
 
 
 class UserViewSet(mixins.WithPermissionsMixin,

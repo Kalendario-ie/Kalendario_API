@@ -8,7 +8,5 @@ router.register(r'users', views.UserViewSet, 'user')
 router.register(r'groups', views.GroupProfileViewSet, 'group')
 
 urlpatterns = [
-    path(r'', include(router.urls)),
-    path(r'auth/facebook/', views.FacebookLogin.as_view(), name='fb_login'),
-    path(r'auth/facebook/connect/', views.FacebookConnect.as_view(), name='fb_connect'),
+    path(r'', include(router.urls))
 ]
