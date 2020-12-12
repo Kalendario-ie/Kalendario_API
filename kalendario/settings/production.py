@@ -37,4 +37,3 @@ LOGGING = {
     },
 }
 
-SESSION_COOKIE_DOMAIN = '.kalendario.ie'

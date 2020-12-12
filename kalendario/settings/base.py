@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'customers.apps.CustomersConfig',
     'core.apps.CoreConfig',
     'webhooks.apps.WebhooksConfig',
-    'social_providers.apps.SocialProvidersConfig',
+    'app_auth.apps.AuthConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -151,6 +151,8 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'core.serializers.UserSerializer',
 }
 
+OLD_PASSWORD_FIELD_ENABLED = True
+
 ACCOUNT_ADAPTER = 'kalendario.users.adapter.MyAccountAdapter'
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
@@ -160,6 +162,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_EMAIL_FIELD = 'email'
+
+DEFAULT_FROM_EMAIL = 'no-reply@kalendario.ie'
 
 # Social authentication
 AUTHENTICATION_BACKENDS = (
