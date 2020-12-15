@@ -39,7 +39,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name',
-                  'person', 'groups', 'permissions', 'employee')
+                  'person', 'groups', 'permissions', 'employee', 'verified')
 
 
 class UserAdminSerializer(serializers.ModelSerializer):

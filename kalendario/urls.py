@@ -11,14 +11,14 @@ urlpatterns = [
     path(r'account-confirm-email/', TemplateView.as_view(template_name='home.html'),
          name='account_email_verification_sent'),
 
-    path('account-confirm-email/<str:key>/', TemplateView.as_view(template_name='home.html'),
-         name='account_confirm_email'),
-
     path('admin/', admin.site.urls),
     path('api/auth/', include('app_auth.urls')),
     path('api/admin/', include('scheduling.urls')),
     path('api/core/', include('core.urls')),
     path('api/', include('customers.urls')),
     path('webhooks/', include('webhooks.urls')),
-    url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home"),
+    url(r'^.*', TemplateView.as_view(template_name='home.html'), name="home"),
+
+    url(r'^account-confirm-email/(?P<key>[-:\w]+)/$', TemplateView.as_view(template_name='home.html'),
+        name='account_confirm_email'),
 ]
