@@ -70,8 +70,7 @@ class CustomerViewSet(mixins.WithPermissionsMixin,
 
         search = self.request.query_params.get('search')
         if search is not None:
-            queryset = queryset.filter(Q(first_name__icontains=search) |
-                                       Q(last_name__icontains=search) |
+            queryset = queryset.filter(Q(name__icontains=search) |
                                        Q(email__icontains=search) |
                                        Q(phone__icontains=search))
 

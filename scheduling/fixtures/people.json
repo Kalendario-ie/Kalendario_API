@@ -5,6 +5,7 @@
     "fields": {
       "first_name": "COMPANY A",
       "last_name": "EMPLOYEE A",
+      "name": "COMPANY A EMPLOYEE A",
       "phone": "0",
       "email": "CAEA@EMAIL.COM"
     }
@@ -15,6 +16,7 @@
     "fields": {
       "first_name": "COMPANY A",
       "last_name": "EMPLOYEE B",
+      "name": "COMPANY A EMPLOYEE B",
       "phone": "31",
       "email": "CAEB@EMAIL.COM"
     }
@@ -24,7 +26,8 @@
     "pk": 3,
     "fields": {
       "first_name": "COMPANY B",
-      "last_name": "EMPLOYEE B",
+      "last_name": "EMPLOYEE A",
+      "name": "COMPANY B EMPLOYEE A",
       "phone": "1",
       "email": "CBEA@EMAIL.COM"
     }
@@ -35,6 +38,7 @@
     "fields": {
       "first_name": "COMPANY B",
       "last_name": "EMPLOYEE B",
+      "name": "COMPANY B EMPLOYEE B",
       "phone": "10012",
       "email": "CBEB@EMAIL.COM"
     }
@@ -44,7 +48,8 @@
     "pk": 5,
     "fields": {
       "first_name": "COMPANY B",
-      "last_name": "EMPLOYEE c",
+      "last_name": "EMPLOYEE C",
+      "name": "COMPANY B EMPLOYEE C",
       "phone": "100123",
       "email": "CBEC@EMAIL.COM"
     }
@@ -55,6 +60,7 @@
     "fields": {
       "first_name": "COMPANY A",
       "last_name": "CUSTOMER A",
+      "name": "COMPANY A CUSTOMER A",
       "phone": "0",
       "email": "CACUSTA@EMAIL.COM"
     }
@@ -65,6 +71,7 @@
     "fields": {
       "first_name": "COMPANY A",
       "last_name": "CUSTOMER B",
+      "name": "COMPANY A CUSTOMER B",
       "phone": "31",
       "email": "CACUSTB@EMAIL.COM"
     }
@@ -74,7 +81,8 @@
     "pk": 1003,
     "fields": {
       "first_name": "COMPANY B",
-      "last_name": "CUSTOMER B",
+      "last_name": "CUSTOMER A",
+      "name": "COMPANY B CUSTOMER A",
       "phone": "1",
       "email": "CBCUSTA@EMAIL.COM"
     }
@@ -85,6 +93,7 @@
     "fields": {
       "first_name": "COMPANY B",
       "last_name": "CUSTOMER B",
+      "name": "COMPANY B CUSTOMER B",
       "phone": "10012",
       "email": "CBCUSTB@EMAIL.COM"
     }
@@ -95,6 +104,7 @@
     "fields": {
       "first_name": "Ice",
       "last_name": "King",
+      "name": "Ice King",
       "phone": "10012",
       "email": "ice.king@adventuretime.com"
     }
@@ -105,6 +115,7 @@
     "fields": {
       "first_name": "Princess",
       "last_name": "Bubblegum",
+      "name": "Princess Bubblegum",
       "phone": "1002",
       "email": "princess.bubblegum@adventuretime.com"
     }

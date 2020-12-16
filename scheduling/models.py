@@ -92,12 +92,9 @@ class Service(CleanSaveMixin, models.Model):
 class Person(CleanSaveMixin, models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True, blank=True)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
-
-    @property
-    def name(self):
-        return self.first_name + ' ' + self.last_name
 
     def confirmed_appointments(self, start, end):
         appointments = self.service_received.filter(start__gte=start, start__lte=end)
@@ -105,6 +102,11 @@ class Person(CleanSaveMixin, models.Model):
 
     def __str__(self):
         return self.name
+
+    def save_base(self, raw=False, force_insert=False,
+                  force_update=False, using=None, update_fields=None):
+        self.name = self.first_name + ' ' + self.last_name
+        return models.Model.save_base(self, raw, force_insert, force_update, using, update_fields)
 
 
 class Employee(Person):

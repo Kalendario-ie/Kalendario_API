@@ -1,3 +1,4 @@
+from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
 from rest_framework import status
 from django.test import TestCase
@@ -16,10 +17,16 @@ class TestCaseWF(TestCase):
 
 class ViewTestCase(APITestCase, TestCaseWF):
     list_url = None
-    fixtures = FIXTURES
+    detail = None
+    model = None
 
-    def ensure_all_unauthorized(self, detail_url):
-        ensure_no_access(self, self.list_url, detail_url, status.HTTP_401_UNAUTHORIZED)
+    def detail_url(self, model_id=None):
+        if model_id is None:
+            model_id = self.model.objects.first().id
+        return reverse(self.detail, kwargs={'pk': model_id})
+
+    def ensure_all_unauthorized(self):
+        ensure_no_access(self, self.list_url, self.detail_url(), status.HTTP_401_UNAUTHORIZED)
 
     def ensure_all_forbidden(self, detail_url):
         ensure_no_access(self, self.list_url, detail_url, status.HTTP_403_FORBIDDEN)

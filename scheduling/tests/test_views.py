@@ -81,6 +81,8 @@ class AppointmentViewSetTest(ViewTestCase):
 
     def setUp(self):
         self.list_url = reverse('appointment-list')
+        self.detail = 'appointment-detail'
+        self.model = models.Appointment
 
         kwargs = {}
 
@@ -118,12 +120,8 @@ class AppointmentViewSetTest(ViewTestCase):
         self.client.force_authenticate(user=user)
         return user
 
-    def _detail_url(self, pk):
-        return reverse('appointment-detail', kwargs={'pk': pk})
-
     def test_anonymous_list(self):
-        detail_url = reverse('appointment-detail', kwargs={'pk': models.Appointment.objects.first().id})
-        self.ensure_all_unauthorized(detail_url)
+        self.ensure_all_unauthorized()
 
     def test_anonymous_create(self):
         emp, customer, service = emp_customer_service()
@@ -334,7 +332,7 @@ class AppointmentViewSetTest(ViewTestCase):
 
         # Update previous to overlap with first
         data = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=15))
-        r3 = self.client.patch(self._detail_url(r2.data['id']), data, format='json')
+        r3 = self.client.patch(self.detail_url(r2.data['id']), data, format='json')
         self.assertEqual(r3.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
     def test_admin_update_overlapping_ignore_availability(self):
@@ -359,7 +357,7 @@ class AppointmentViewSetTest(ViewTestCase):
         # Update previous to overlap with first
         d3 = create_apt_data(emp, customer, service, util.next_tuesday().replace(hour=10, minute=15))
         d3['ignore_availability'] = True
-        r3 = self.client.patch(self._detail_url(r2.data['id']), d3, format='json')
+        r3 = self.client.patch(self.detail_url(r2.data['id']), d3, format='json')
         self.assertEqual(r3.status_code, status.HTTP_200_OK)
 
     def test_admin_create_self_appointment(self):
@@ -478,7 +476,7 @@ class AppointmentViewSetTest(ViewTestCase):
 
         # Update the appointment to be 14 days of length
         apt_id = r1.data['id']
-        r2 = self.client.patch(self._detail_url(apt_id) + 'plock/', data, format='json')
+        r2 = self.client.patch(self.detail_url(apt_id) + 'plock/', data, format='json')
         data['end'] = str(util.next_tuesday().replace(hour=11, minute=0) + util.timedelta(21))
 
         self.assertEqual(r2.status_code, status.HTTP_200_OK)
@@ -632,9 +630,8 @@ class EmployeeViewSetTest(ViewTestCase):
 
     def setUp(self):
         self.list_url = reverse('employee-list')
-
-    def detail_url(self, id):
-        return f'{self.list_url}{id}/'
+        self.detail = 'employee-detail'
+        self.model = models.Employee
 
     def emp_data(self, extra):
         data = {'firstName': 'empName',
@@ -724,12 +721,11 @@ class CustomerViewSetTest(ViewTestCase):
 
     def setUp(self):
         self.list_url = reverse('customer-list')
-
-    def detail_url(self, id=models.Customer.objects.first().id):
-        return reverse('customer-detail', kwargs={'pk': id})
+        self.detail = 'customer-detail'
+        self.model = models.Customer
 
     def test_anonymous_user_all_unauthorized(self):
-        self.ensure_all_unauthorized(self.detail_url())
+        self.ensure_all_unauthorized()
 
     def test_common_user_all_unauthorized(self):
         user = User.objects.get(pk=2)
@@ -756,12 +752,11 @@ class ServiceViewSetTest(ViewTestCase):
 
     def setUp(self):
         self.list_url = reverse('service-list')
-
-    def detail_url(self, id=models.Customer.objects.first().id):
-        return reverse('service-detail', kwargs={'pk': id})
+        self.detail = 'service-detail'
+        self.model = models.Service
 
     def test_anonymous_user_all_unauthorized(self):
-        self.ensure_all_unauthorized(self.detail_url())
+        self.ensure_all_unauthorized()
 
     def test_common_user_all_unauthorized(self):
         user = User.objects.get(pk=2)
@@ -793,7 +788,7 @@ class ScheduleViewSetTest(ViewTestCase):
         return reverse('schedule-detail', kwargs={'pk': sid})
 
     def test_anonymous_user_all_unauthorized(self):
-        self.ensure_all_unauthorized(self.detail_url())
+        self.ensure_all_unauthorized()
 
     def test_common_user_all_unauthorized(self):
         user = User.objects.get(pk=2)
