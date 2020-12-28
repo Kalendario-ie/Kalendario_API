@@ -181,7 +181,7 @@ class BaseAppointmentWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Appointment
-        fields = ('id', 'owner', 'start', 'end', 'employee', 'customer', 'internal_notes', 'status'
+        fields = ('id', 'owner', 'start', 'end', 'employee', 'internal_notes', 'status'
                   , 'ignore_availability')
 
     def create(self, validated_data):
@@ -207,7 +207,7 @@ class BaseAppointmentWriteSerializer(serializers.ModelSerializer):
 class AppointmentWriteSerializer(BaseAppointmentWriteSerializer):
 
     class Meta(BaseAppointmentWriteSerializer.Meta):
-        fields = BaseAppointmentWriteSerializer.Meta.fields + ('service', )
+        fields = BaseAppointmentWriteSerializer.Meta.fields + ('service', 'customer')
 
 
 class SelfAppointmentWriteSerializer(BaseAppointmentWriteSerializer):
