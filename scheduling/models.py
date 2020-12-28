@@ -97,10 +97,6 @@ class Person(CleanSaveMixin, models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField()
 
-    def confirmed_appointments(self, start, end):
-        appointments = self.service_received.filter(start__gte=start, start__lte=end)
-        return [appointment for appointment in appointments if appointment.is_active()]
-
     def clean(self):
         self.name = self.first_name + ' ' + self.last_name
 
@@ -116,9 +112,6 @@ class Employee(Person):
     instagram = models.CharField(max_length=200, null=True)
     profile_img = CloudinaryField('image', null=True, blank=True)
     bio = models.TextField(max_length=600, null=True, blank=True)
-
-    def email(self):
-        return self.user.email
 
     def provides_service(self, service):
         return self.services.filter(id=service.id).first() is not None
@@ -163,6 +156,10 @@ class Employee(Person):
 class Customer(Person):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)
     user = models.ForeignKey('core.User', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def confirmed_appointments(self, start, end):
+        appointments = self.service_received.filter(start__gte=start, start__lte=end)
+        return [appointment for appointment in appointments if appointment.is_active()]
 
     def clean(self):
         Person.clean(self)
