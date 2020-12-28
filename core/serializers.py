@@ -1,14 +1,7 @@
 from rest_framework import serializers
-from rest_auth.registration.serializers import RegisterSerializer
 from core import models
-from scheduling.models import Company, Employee
+from scheduling.models import Employee
 from scheduling.serializers import ScheduleReadSerializer, ServiceSerializer
-
-
-class CompanySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Company
-        fields = ('id', 'name')
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
@@ -19,20 +12,6 @@ class EmployeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = ('id', 'private', 'name', 'instagram', 'schedule',
                   'email', 'phone', 'services', 'profile_img', 'bio')
-
-
-class UserSerializer(serializers.ModelSerializer):
-    owner = CompanySerializer()
-    permissions = serializers.ListField(
-        child=serializers.CharField(max_length=100),
-        source='get_all_permissions'
-    )
-    employee = EmployeeSerializer()
-
-    class Meta:
-        model = models.User
-        fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name',
-                  'groups', 'permissions', 'employee', 'verified')
 
 
 class UserAdminSerializer(serializers.ModelSerializer):
@@ -76,26 +55,6 @@ class PasswordChangeSerializer(serializers.Serializer):
         self.instance.set_password(self.validated_data.get('password1'))
         self.instance.save()
         return self.user
-
-
-class CustomRegisterSerializer(RegisterSerializer):
-    first_name = serializers.CharField(max_length=30)
-    last_name = serializers.CharField(max_length=100)
-
-    def create(self, validated_data):
-        pass
-
-    def update(self, instance, validated_data):
-        pass
-
-    def get_cleaned_data(self):
-        cleaned_data = RegisterSerializer.get_cleaned_data(self)
-        cleaned_data['first_name'] = self.validated_data.get('first_name', '')
-        cleaned_data['last_name'] = self.validated_data.get('last_name', '')
-        return cleaned_data
-
-    def save(self, request):
-        return RegisterSerializer.save(self, request)
 
 
 class PermissionsSerializer(serializers.ModelSerializer):

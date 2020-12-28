@@ -140,11 +140,11 @@ SITE_ID = 1
 AUTH_USER_MODEL = 'core.User'
 
 REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'core.serializers.CustomRegisterSerializer',
+    'REGISTER_SERIALIZER': 'app_auth.serializers.CustomRegisterSerializer',
 }
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'core.serializers.UserSerializer',
+    'USER_DETAILS_SERIALIZER': 'app_auth.serializers.UserSerializer',
 }
 
 OLD_PASSWORD_FIELD_ENABLED = True
