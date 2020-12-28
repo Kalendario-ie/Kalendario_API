@@ -8,7 +8,7 @@ class SlotTest(TestCaseWF):
 
     def setUp(self):
         self.emp = models.Employee.objects.get(pk=1)
-        self.customer = models.Person.objects.get(pk=2001)
+        self.customer = models.Customer.objects.get(pk=2001)
         self.service = self.emp.services.first()
 
     def book_appointment(self, date):

@@ -25,9 +25,8 @@ def create_apt_data(emp, customer, service, date):
             }
 
 
-def create_self_apt_data(emp, customer, start, end):
+def create_self_apt_data(emp, start, end):
     return {'employee': emp.id,
-            'customer': customer.id,
             'start': str(start),
             'end': str(end)
             }
@@ -214,7 +213,7 @@ class AppointmentViewSetTest(ViewTestCase):
     def test_employee_create_self_appointment(self):
         emp, customer, service = emp_customer_service()
         emp.user = test_user(emp)
-        data = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
+        data = create_self_apt_data(emp, util.next_tuesday().replace(hour=10, minute=0),
                                     util.next_tuesday().replace(hour=11, minute=0))
 
         self.client.force_authenticate(user=emp.user)
@@ -363,7 +362,7 @@ class AppointmentViewSetTest(ViewTestCase):
     def test_admin_create_self_appointment(self):
         emp, customer, service = emp_customer_service()
 
-        data = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
+        data = create_self_apt_data(emp, util.next_tuesday().replace(hour=10, minute=0),
                                     util.next_tuesday().replace(hour=11, minute=0))
 
         self._auth_as_admin()
@@ -376,12 +375,12 @@ class AppointmentViewSetTest(ViewTestCase):
 
         emp, customer, service = emp_customer_service()
 
-        d1 = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
+        d1 = create_self_apt_data(emp, util.next_tuesday().replace(hour=10, minute=0),
                                     util.next_tuesday().replace(hour=12, minute=0))
         r1 = self.client.post(self.list_url + 'lock/', d1, format='json')
         self.assertEqual(r1.status_code, status.HTTP_201_CREATED)
 
-        d2 = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=11, minute=0),
+        d2 = create_self_apt_data(emp, util.next_tuesday().replace(hour=11, minute=0),
                                   util.next_tuesday().replace(hour=13, minute=0))
         r2 = self.client.post(self.list_url + 'lock/', d2, format='json')
         self.assertEqual(r2.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
@@ -391,12 +390,12 @@ class AppointmentViewSetTest(ViewTestCase):
 
         emp, customer, service = emp_customer_service()
 
-        d1 = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
+        d1 = create_self_apt_data(emp, util.next_tuesday().replace(hour=10, minute=0),
                                   util.next_tuesday().replace(hour=12, minute=0))
         r1 = self.client.post(self.list_url + 'lock/', d1, format='json')
         self.assertEqual(r1.status_code, status.HTTP_201_CREATED)
 
-        d2 = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=11, minute=0),
+        d2 = create_self_apt_data(emp, util.next_tuesday().replace(hour=11, minute=0),
                                   util.next_tuesday().replace(hour=13, minute=0))
         d2['ignore_availability'] = True
         r2 = self.client.post(self.list_url + 'lock/', d2, format='json')
@@ -405,7 +404,7 @@ class AppointmentViewSetTest(ViewTestCase):
     def test_admin_create_self_appointment_with_service(self):
         emp, customer, service = emp_customer_service()
 
-        data = create_self_apt_data(emp, emp, util.next_tuesday().replace(hour=10, minute=0),
+        data = create_self_apt_data(emp, util.next_tuesday().replace(hour=10, minute=0),
                                     util.next_tuesday().replace(hour=11, minute=0))
         data['service'] = 0
 
@@ -427,7 +426,7 @@ class AppointmentViewSetTest(ViewTestCase):
         emp, customer, service = emp_customer_service()
         start_date = util.next_tuesday().replace(hour=10, minute=0) + util.timedelta(7)
         end_date = util.next_tuesday().replace(hour=11, minute=0) + util.timedelta(14)
-        data = create_self_apt_data(emp, emp, start_date, end_date)
+        data = create_self_apt_data(emp, start_date, end_date)
 
         self._auth_as_admin()
 
@@ -466,7 +465,7 @@ class AppointmentViewSetTest(ViewTestCase):
         emp, customer, service = emp_customer_service()
         start_date = util.next_tuesday().replace(hour=10, minute=0) + util.timedelta(7)
         end_date = util.next_tuesday().replace(hour=11, minute=0) + util.timedelta(14)
-        data = create_self_apt_data(emp, emp, start_date, end_date)
+        data = create_self_apt_data(emp, start_date, end_date)
 
         self._auth_as_admin()
 

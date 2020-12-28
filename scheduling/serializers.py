@@ -3,12 +3,6 @@ from scheduling import models
 from core.models import User
 
 
-class PersonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Person
-        fields = ('id', 'first_name', 'last_name', 'name', 'email', 'phone')
-
-
 class ConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Config
@@ -148,7 +142,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 class AppointmentReadSerializer(serializers.ModelSerializer):
     employee = EmployeeSerializer(read_only=True)
-    customer = PersonSerializer(read_only=True)
+    customer = CustomerSerializer(read_only=True)
     service = ServiceSerializer(read_only=True)
 
     class Meta:
@@ -158,7 +152,6 @@ class AppointmentReadSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    person = PersonSerializer()
     owner = CompanySerializer()
     permissions = serializers.ListField(
         child=serializers.CharField(max_length=100),
@@ -167,13 +160,12 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name',
-                  'person', 'groups', 'permissions')
+        fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name', 'groups', 'permissions')
 
 
 class AppointmentHistorySerializer(serializers.ModelSerializer):
     employee = EmployeeSerializer(read_only=True)
-    customer = PersonSerializer(read_only=True)
+    customer = CustomerSerializer(read_only=True)
     service = ServiceSerializer(read_only=True)
     history_user = UserSerializer()
 
@@ -225,11 +217,11 @@ class SelfAppointmentWriteSerializer(BaseAppointmentWriteSerializer):
 
 class RequestSerializer(serializers.ModelSerializer):
     appointments = AppointmentReadSerializer(many=True, read_only=True, source='appointment_set')
-    person = PersonSerializer(source='user.person')
+    user = UserSerializer()
 
     class Meta:
         model = models.Request
-        fields = ('id', 'owner', 'appointments', 'complete', 'person', 'status')
+        fields = ('id', 'owner', 'appointments', 'complete', 'user', 'status')
 
 
 class AppointmentQuerySerlializer(serializers.Serializer):

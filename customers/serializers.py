@@ -103,12 +103,12 @@ class AddAppointmentSerializer(serializers.ModelSerializer):
         model = models.Appointment
         fields = ('id', 'start', 'employee', 'service')
         extra_kwargs = {'employee': {'required': False}}
-        read_only_fields = ['customer_id', 'owner_id']
+        read_only_fields = ['owner_id']
 
     def save(self, **kwargs):
         validated_data = {
             **self.validated_data,
-            'user_id': self.context.get('user').id,
+            'user': self.context.get('user'),
             'owner_id': self.validated_data.get('service').owner_id
         }
         self.instance = self.create(validated_data).request
@@ -116,8 +116,8 @@ class AddAppointmentSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         request = models.Request.objects.get_current(validated_data.get('owner_id'),
-                                                     validated_data.pop('user_id'))
-        return request.add_appointment(**validated_data, customer_id=request.user.person_id)
+                                                     validated_data.get('user').id)
+        return request.add_appointment(**validated_data)
 
 
 class AppointmentQuerySerializer(serializers.Serializer):

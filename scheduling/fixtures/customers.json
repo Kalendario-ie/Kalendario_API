@@ -26,5 +26,21 @@
     "fields": {
       "owner": 2
     }
+  },
+    {
+    "model": "scheduling.customer",
+    "pk": 2001,
+    "fields": {
+      "owner": 1,
+      "user": 2
+    }
+  },
+    {
+    "model": "scheduling.customer",
+    "pk": 2002,
+    "fields": {
+      "owner": 1,
+      "user": 3
+    }
   }
 ]

@@ -5,11 +5,15 @@ from safedelete.models import SafeDeleteManager
 
 
 class AppointmentManager(SafeDeleteManager):
-    def create(self, *args, ignore_availability=False, **kwargs):
+    def create(self, ignore_availability=False, user=None, **kwargs):
         start = kwargs['start'] = kwargs['start'].replace(second=0, microsecond=0)
 
         if start <= datetime.datetime.now():
             raise ValidationError('Date can\'t be on the past')
+
+        if user:
+            owner_id = kwargs.get('owner_id') or kwargs.get('owner').id
+            kwargs['customer'], created = user.customer_set.get_or_create(owner_id=owner_id, user=user)
 
         obj = self.model(**kwargs)
         self._for_write = True

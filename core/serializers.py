@@ -1,14 +1,8 @@
 from rest_framework import serializers
 from rest_auth.registration.serializers import RegisterSerializer
 from core import models
-from scheduling.models import Company, Person, Employee
+from scheduling.models import Company, Employee
 from scheduling.serializers import ScheduleReadSerializer, ServiceSerializer
-
-
-class PersonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Person
-        fields = ('id', 'first_name', 'last_name', 'name', 'email', 'phone')
 
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -28,7 +22,6 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    person = PersonSerializer()
     owner = CompanySerializer()
     permissions = serializers.ListField(
         child=serializers.CharField(max_length=100),
@@ -39,7 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name',
-                  'person', 'groups', 'permissions', 'employee', 'verified')
+                  'groups', 'permissions', 'employee', 'verified')
 
 
 class UserAdminSerializer(serializers.ModelSerializer):
@@ -49,8 +42,6 @@ class UserAdminSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name', 'groups', 'employee', 'employee_id')
-
-    # def validate_user_password(self, value):
 
 
 class PasswordChangeSerializer(serializers.Serializer):

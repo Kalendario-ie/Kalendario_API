@@ -7,9 +7,9 @@ from core import models
 
 class RegisterUserView(TestCase):
 
-    def test_register_user_creates_user_and_person(self):
+    def test_register_user_creates_user(self):
         """
-        Registering a user should create a user as well as link this user to a person
+        Registering a user should create a user
         """
         data = {
             'first_name': 'gustavo',
@@ -23,7 +23,6 @@ class RegisterUserView(TestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         user = models.User.objects.last()
         self.assertEqual(user.email, data['email'])
-        self.assertIsNotNone(user.person)
         self.assertTrue(user.has_perm('scheduling.add_company'))
 
 

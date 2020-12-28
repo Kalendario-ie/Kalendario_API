@@ -2,7 +2,7 @@ from django.test import TestCase
 from rest_framework.test import APITestCase
 
 FIXTURES = ['companies.json', 'people.json', 'services.json', 'timeframes.json', 'shifts.json', 'schedules.json',
-            'customers.json', 'employees.json']
+            'users.json', 'customers.json', 'employees.json']
 
 
 class TestCaseWF(TestCase):

@@ -162,6 +162,7 @@ class Employee(Person):
 
 class Customer(Person):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)
+    user = models.ForeignKey('core.User', on_delete=models.SET_NULL, null=True, blank=True)
 
 
 class Appointment(SafeDeleteModel):
@@ -178,7 +179,7 @@ class Appointment(SafeDeleteModel):
     cost = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='service_provided')
     lock_employee = models.BooleanField(default=True)
-    customer = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='service_received')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='service_received', null=True)
     request = models.ForeignKey('Request', on_delete=models.CASCADE, null=True)
     service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
@@ -348,8 +349,8 @@ class Request(CleanSaveMixin, models.Model):
             raise e
 
     def clean(self):
-        if self.user.person_id is None:
-            raise ValidationError(r'User must have a person')
+        # if self.user.person_id is None:
+        #     raise ValidationError(r'User must have a person')
 
         appointments = [*self.appointment_set.all()]
 
@@ -357,7 +358,7 @@ class Request(CleanSaveMixin, models.Model):
             self.scheduled_date = appointments[0].start.date()
 
         for appointment in appointments:
-            if appointment.customer_id != self.user.person_id:
+            if appointment.customer.user_id != self.user.id:
                 raise exceptions.InvalidCustomer(r'Appointment customer is not the same as the user')
             if appointment.owner_id != self.owner_id:
                 raise exceptions.DifferentOwnerError('Appointment does not belong to the same owner as Request')

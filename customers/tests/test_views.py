@@ -8,19 +8,10 @@ from scheduling.models import Person, Company
 from scheduling.tests.generics import ViewTestCase
 
 
-def create_apt_data(emp, customer, service, date):
+def create_apt_data(emp, service, date):
     return {'employee': emp.id,
-            'customer': customer.id,
             'service': service.id,
             'start': str(date),
-            }
-
-
-def create_self_apt_data(emp, customer, start, end):
-    return {'employee': emp.id,
-            'customer': customer.id,
-            'start': str(start),
-            'end': str(end)
             }
 
 
@@ -32,14 +23,6 @@ def test_user(person=Person(email="user@email.com")):
     if hasattr(person, 'owner_id'):
         user.owner_id = person.owner_id
     user.save()
-    return user
-
-
-def company_1_admin():
-    user = User.objects.get(pk=1)
-    user.person = Person.objects.create(first_name=user.first_name, last_name=user.last_name)
-    user.save()
-    user.groups.add(util.company_1_master_group())
     return user
 
 
@@ -95,19 +78,51 @@ class RequestViewSetTest(ViewTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_create_appointment(self):
+        """
+        Adding an appointment to a request should require employee, service and start date.
+        In the case where the user is already linked to customer in the company,
+            no additional customer model should be created
+        """
+
         emp, service = emp_service()
         user = User.objects.get(pk=2)
-        data = create_apt_data(emp, user.person, service, util.next_tuesday().replace(hour=10, minute=0))
+        data = create_apt_data(emp, service, util.next_tuesday().replace(hour=10, minute=0))
+
+        before_count = user.customer_set.all().count()
 
         self.client.force_authenticate(user=user)
         response = self.client.post(self.list_url + 'add/', data, format='json')
 
+        after_count = user.customer_set.all().count()
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(before_count, after_count)
+
+    def test_create_appointment_new_company(self):
+        """
+        Adding an appointment to a request should require employee, service and start date.
+        In the case where the user is not linked to a customer in the company,
+            a new additional customer model should be created for the company the appointment is being created
+        """
+
+        emp, service = emp_service(Company.objects.get(pk=2))
+        user = User.objects.get(pk=2)
+        data = create_apt_data(emp, service, util.next_wednesday().replace(hour=10, minute=0))
+
+        before_count = user.customer_set.all().count()
+
+        self.client.force_authenticate(user=user)
+        response = self.client.post(self.list_url + 'add/', data, format='json')
+
+        after_count = user.customer_set.all().count()
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(before_count + 1, after_count)
 
     def test_create_appointment_omitting_employee(self):
         emp, service = emp_service()
         user = User.objects.get(pk=2)
-        data = create_apt_data(emp, user.person, service, util.next_tuesday().replace(hour=10, minute=0))
+        data = create_apt_data(emp, service, util.next_tuesday().replace(hour=10, minute=0))
         data.pop('employee')
 
         self.client.force_authenticate(user=user)
@@ -118,7 +133,7 @@ class RequestViewSetTest(ViewTestCase):
     def test_create_and_remove_appointment(self):
         emp, service = emp_service()
         user = User.objects.get(pk=2)
-        data = create_apt_data(emp, user.person, service, util.next_tuesday().replace(hour=10, minute=0))
+        data = create_apt_data(emp, service, util.next_tuesday().replace(hour=10, minute=0))
 
         self.client.force_authenticate(user=user)
         response1 = self.client.post(self.list_url + 'add/', data, format='json')
@@ -140,7 +155,7 @@ class RequestViewSetTest(ViewTestCase):
         # Add one appointment to request
         company = Company.objects.first()
         emp, service = emp_service(company)
-        data = create_apt_data(emp, user.person, service, util.next_tuesday().replace(hour=10, minute=0))
+        data = create_apt_data(emp, service, util.next_tuesday().replace(hour=10, minute=0))
         post = self.client.post(self.list_url + 'add/', data, format='json')
         self.assertEqual(post.status_code, status.HTTP_201_CREATED)
 
