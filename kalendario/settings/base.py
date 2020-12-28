@@ -149,7 +149,7 @@ REST_AUTH_SERIALIZERS = {
 
 OLD_PASSWORD_FIELD_ENABLED = True
 
-ACCOUNT_ADAPTER = 'kalendario.users.adapter.MyAccountAdapter'
+ACCOUNT_ADAPTER = 'app_auth.adapters.AccountAdapter'
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = 'email'

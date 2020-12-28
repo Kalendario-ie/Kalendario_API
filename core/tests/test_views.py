@@ -36,12 +36,13 @@ class RegisterUserView(ViewTestCase):
         user = models.User.objects.last()
         self.assertEqual(register_response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(user.email, data['email'])
-        self.assertTrue(user.has_perm('scheduling.add_company'))
         self.assertEqual(user.customer_set.all().count(), 0)
 
     def test_verify_email(self):
         """
         After a user is verified
+            the user should be connected to all customer models that have the same email address
+            the user should be able to create a company
         """
         register_response, data = self.register_user()
 
@@ -59,6 +60,7 @@ class RegisterUserView(ViewTestCase):
         user = models.User.objects.get(email=data['email'])
         self.assertTrue(user.verified)
         self.assertEqual(user.customer_set.all().count(), 2)
+        self.assertTrue(user.has_perm('scheduling.add_company'))
 
 
 class GroupViewTest(ViewTestCase):

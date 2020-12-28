@@ -75,6 +75,10 @@ class User(CleanSaveMixin, AbstractUser):
         email = self.email_address
         return email and email.verified
 
+    def enable_create_company(self):
+        self.user_permissions.add(Permission.objects.filter(codename='add_company').first())
+        self.save()
+
     def enable_company_editing(self, id):
         self.owner_id = id
         group, created = GroupProfile.objects.get_or_create(name='Master', owner_id=self.owner_id)
