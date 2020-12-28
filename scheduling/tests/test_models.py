@@ -593,3 +593,11 @@ class CustomerTest(TestCaseWF):
         self.assertIsInstance(c1, Customer)
         self.assertIsInstance(c2, Customer)
 
+    def test_saving_a_customer_should_not_throw_error(self):
+        """
+            System should allow the same email address when the companies are different
+        """
+        email = 'not_used_yet@test.com'
+        c1 = Customer.objects.create(email=email, owner_id=1)
+        c1.save()
+        self.assertIsInstance(c1, Customer)

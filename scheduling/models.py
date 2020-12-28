@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 
 from cloudinary.models import CloudinaryField
+from django.db.models import Q
 from simple_history.models import HistoricalRecords
 
 from kalendario.common import stripe_helpers
@@ -165,7 +166,7 @@ class Customer(Person):
     user = models.ForeignKey('core.User', on_delete=models.SET_NULL, null=True, blank=True)
 
     def clean(self):
-        if Customer.objects.filter(email=self.email, owner_id=self.owner_id).count() > 0:
+        if Customer.objects.filter(email=self.email, owner_id=self.owner_id).filter(~Q(id=self.id)).count() > 0:
             raise ValidationError("There's already a customer created with this email address")
 
 
