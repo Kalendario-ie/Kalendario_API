@@ -101,13 +101,11 @@ class Person(CleanSaveMixin, models.Model):
         appointments = self.service_received.filter(start__gte=start, start__lte=end)
         return [appointment for appointment in appointments if appointment.is_active()]
 
+    def clean(self):
+        self.name = self.first_name + ' ' + self.last_name
+
     def __str__(self):
         return self.name
-
-    def save_base(self, raw=False, force_insert=False,
-                  force_update=False, using=None, update_fields=None):
-        self.name = self.first_name + ' ' + self.last_name
-        return models.Model.save_base(self, raw, force_insert, force_update, using, update_fields)
 
 
 class Employee(Person):
@@ -156,6 +154,7 @@ class Employee(Person):
         return any(x.is_active() and x.id != exclude_id for x in starts_or_ends_between)
 
     def clean(self):
+        Person.clean(self)
         # Make sure that the schedule belongs to the same owner as self
         if self.schedule and self.schedule.owner_id != self.owner_id:
             raise ValidationError(r'The schedule does not belong to the same owner of the employee')
@@ -166,6 +165,8 @@ class Customer(Person):
     user = models.ForeignKey('core.User', on_delete=models.SET_NULL, null=True, blank=True)
 
     def clean(self):
+        Person.clean(self)
+        # Make sure that the there is no other customer with this email before saving
         if Customer.objects.filter(email=self.email, owner_id=self.owner_id).filter(~Q(id=self.id)).count() > 0:
             raise ValidationError("There's already a customer created with this email address")
 

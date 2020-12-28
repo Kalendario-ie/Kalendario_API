@@ -573,6 +573,14 @@ class RequestTest(TestCaseWF):
 
 class CustomerTest(TestCaseWF):
 
+    def test_create_customer(self):
+        """
+        When a new customer is created the variable for name should be set based on first name and last name
+        """
+        email = 'not_used_yet@test.com'
+        c1 = Customer.objects.create(email=email, first_name='fname', last_name='lname', owner_id=1)
+        self.assertEquals(c1.name, c1.first_name + ' ' + c1.last_name)
+
     def test_create_customer_same_email(self):
         """
             System should throw an error on an attempt to create a customer with the same email
