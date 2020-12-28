@@ -69,11 +69,11 @@
     "model": "scheduling.person",
     "pk": 1002,
     "fields": {
-      "first_name": "COMPANY A",
-      "last_name": "CUSTOMER B",
-      "name": "COMPANY A CUSTOMER B",
-      "phone": "31",
-      "email": "CACUSTB@EMAIL.COM"
+      "first_name": "Finn",
+      "last_name": "The Human",
+      "name": "Finn The Human",
+      "phone": "10012",
+      "email": "Finn.TheHuman@adventuretime.com"
     }
   },
   {
@@ -91,11 +91,11 @@
     "model": "scheduling.person",
     "pk": 1004,
     "fields": {
-      "first_name": "COMPANY B",
-      "last_name": "CUSTOMER B",
-      "name": "COMPANY B CUSTOMER B",
+      "first_name": "Finn",
+      "last_name": "The Human",
+      "name": "Finn The Human",
       "phone": "10012",
-      "email": "CBCUSTB@EMAIL.COM"
+      "email": "Finn.TheHuman@adventuretime.com"
     }
   },
   {

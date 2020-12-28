@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from kalendario.common.model_mixins import CleanSaveMixin
 from core import managers
+from scheduling.models import Customer
 
 PERMISSIONS = ('company', 'historicalappointment', 'appointment', 'employee', 'shift', 'schedule', 'service',
                'servicecategory', 'customer', 'config', 'schedulingpanel', 'groupprofile', 'user', 'request')
@@ -83,9 +84,17 @@ class User(CleanSaveMixin, AbstractUser):
         self.user_permissions.remove(*Permission.objects.filter(codename='add_company'))
         self.save()
 
+    def link_to_customers(self):
+        for customer in Customer.objects.filter(email=self.email):
+            customer.user = self
+            customer.save()
+
     def clean(self):
         if self.employee_id is not None and self.employee.owner_id != self.owner_id:
             raise ValidationError({"employee": "Employee does not belong to the same owner as user"})
+
+        if self.verified:
+            self.link_to_customers()
 
     def has_perm(self, perm, obj=None):
         if self.employee_id is not None and perm in ['c.scheduling.view_customer', 'c.scheduling.view_service',

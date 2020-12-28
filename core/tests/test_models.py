@@ -17,6 +17,11 @@ def get_user():
     return models.User.objects.get(pk=1)
 
 
+def verify_email_address(user):
+    user.email_address.verified = True
+    user.email_address.save()
+
+
 class ProfileTest(TestCaseWF):
 
     def setUp(self):
@@ -48,12 +53,18 @@ class UserTest(TestCaseWF):
         self.assertEqual(user.email, email)
 
     def test_create_user_same_mail(self):
+        """
+        System shouldn't not allow to create a user that has the same email of an existing user
+        """
         email = 'ice.king@advtime.com'
         models.User.objects.create(first_name='Ice', last_name='King', email=email)
         self.assertRaises(IntegrityError, models.User.objects.create,
                           first_name='Ice', last_name='King', email=email)
 
     def test_update_user_existing_mail(self):
+        """
+        System should throw an integrity error if a user is updated to have the same email as another user
+        """
         email1 = 'ice.king@advtime.com'
         email2 = 'ice.king2@advtime.com'
         models.User.objects.create(first_name='Ice', last_name='King', email=email1)
