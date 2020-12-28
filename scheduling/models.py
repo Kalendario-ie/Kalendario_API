@@ -164,6 +164,10 @@ class Customer(Person):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)
     user = models.ForeignKey('core.User', on_delete=models.SET_NULL, null=True, blank=True)
 
+    def clean(self):
+        if Customer.objects.filter(email=self.email, owner_id=self.owner_id).count() > 0:
+            raise ValidationError("There's already a customer created with this email address")
+
 
 class Appointment(SafeDeleteModel):
     PENDING, ACCEPTED, REJECTED = 'P', 'A', 'R'

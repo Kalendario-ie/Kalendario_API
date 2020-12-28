@@ -1,4 +1,3 @@
-from core.models import User
 from scheduling.models import *
 from scheduling import exceptions
 from datetime import datetime, time, timedelta
@@ -371,13 +370,6 @@ class AppointmentTest(TestCaseWF):
         a2.delete()
 
 
-# class UserTest(TestCaseWF):
-#
-#     def test_user_create_generates_person(self):
-#         user = User.objects.create(email='scheduler@email.com')
-#         self.assertTrue(hasattr(user, 'person'))
-
-
 class PersonTest(TestCaseWF):
 
     def test_customer_employee_id_sequence(self):
@@ -577,3 +569,27 @@ class RequestTest(TestCaseWF):
         instance.status = Appointment.ACCEPTED
         for apt in instance.appointment_set.all():
             self.assertEqual(apt.status, Appointment.ACCEPTED)
+
+
+class CustomerTest(TestCaseWF):
+
+    def test_create_customer_same_email(self):
+        """
+            System should throw an error on an attempt to create a customer with the same email
+                as another customer in that same company
+        """
+        email = 'not_used_yet@test.com'
+        c1 = Customer.objects.create(email=email, owner_id=1)
+        self.assertIsInstance(c1, Customer)
+        self.assertRaises(ValidationError, Customer.objects.create, email=email, owner_id=1)
+
+    def test_create_customer_same_email_different_company(self):
+        """
+            System should allow the same email address when the companies are different
+        """
+        email = 'not_used_yet@test.com'
+        c1 = Customer.objects.create(email=email, owner_id=1)
+        c2 = Customer.objects.create(email=email, owner_id=2)
+        self.assertIsInstance(c1, Customer)
+        self.assertIsInstance(c2, Customer)
+
