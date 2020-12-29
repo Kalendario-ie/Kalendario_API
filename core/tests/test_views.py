@@ -35,7 +35,7 @@ class RegisterUserView(ViewTestCase):
         register_response, data = self.register_user()
         user = models.User.objects.last()
         self.assertEqual(register_response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(user.email, data['email'])
+        self.assertEqual(user.email, data['email'].lower())
         self.assertEqual(user.customer_set.all().count(), 0)
 
     def test_verify_email(self):
@@ -57,7 +57,7 @@ class RegisterUserView(ViewTestCase):
         response = self.client.post(reverse('rest_verify_email'), {'key': token})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        user = models.User.objects.get(email=data['email'])
+        user = models.User.objects.get(email=data['email'].lower())
         self.assertTrue(user.verified)
         self.assertEqual(user.customer_set.all().count(), 2)
         self.assertTrue(user.has_perm('scheduling.add_company'))

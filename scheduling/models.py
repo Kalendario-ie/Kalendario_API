@@ -99,6 +99,7 @@ class Person(CleanSaveMixin, models.Model):
 
     def clean(self):
         self.name = self.first_name + ' ' + self.last_name
+        self.email = self.email.lower()
 
     def __str__(self):
         return self.name
@@ -167,6 +168,22 @@ class Customer(Person):
         if Customer.objects.filter(email=self.email, owner_id=self.owner_id).filter(~Q(id=self.id)).count() > 0:
             raise ValidationError("There's already a customer created with this email address")
 
+    @staticmethod
+    def get_customer_for_user(user, owner_id):
+        customer, created = Customer.objects.get_or_create(owner_id=owner_id, email=user.email.lower())
+        if created:
+            customer.email = user.email
+            customer.first_name = user.first_name
+            customer.last_name = user.last_name
+            customer.user = user
+            customer.save()
+
+        if customer.user is None:
+            customer.user = user
+            customer.save()
+
+        return customer
+
 
 class Appointment(SafeDeleteModel):
     PENDING, ACCEPTED, REJECTED = 'P', 'A', 'R'
@@ -204,6 +221,11 @@ class Appointment(SafeDeleteModel):
 
         # Ensures that if a service is provided the end time is driven by the service duration
         if self.service:
+
+            # Can't provide service for an inexisting customer
+            if self.customer is None:
+                raise ValidationError('Missing customer parameters')
+
             # If the cost is zero set the cost to be the same as of the service provided
             if self.cost == 0:
                 self.cost = self.service.cost
@@ -332,14 +354,20 @@ class Request(CleanSaveMixin, models.Model):
     def total(self):
         return self.sub_total + self.fee
 
-    def add_appointment(self, **kwargs):
+    def add_appointment(self, user=None, **kwargs):
         """
         Creates an appointment for the request, if when trying to save the request there are validation errors
         it will delete the newly created appointment
         After the appointment is created it'll delete any appointments that have the same service
+        :param user: This is the user requesting to add an appointment, it's used to link to a customer in the system
         :param kwargs: arguments for the creation of the appointment
         :return: newly created appointment
         """
+
+        if user:
+            owner_id = kwargs.get('owner_id') or kwargs.get('owner').id
+            kwargs['customer'] = Customer.get_customer_for_user(user, owner_id)
+
         appointment = self.appointment_set.create(**kwargs)
         try:
             self.save()

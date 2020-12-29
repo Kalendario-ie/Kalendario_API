@@ -65,6 +65,19 @@ class RequestViewSetTest(ViewTestCase):
     def detail_url(self, pk):
         return reverse(self.url_name+'-detail', kwargs={'pk': pk})
 
+    def assert_user_customers_same_params(self, user):
+        for c in user.customer_set.all():
+            self.assertEqual(user.email, c.email)
+            self.assertEqual(user.first_name, c.first_name)
+            self.assertEqual(user.last_name, c.last_name)
+
+    def assert_response_contains_customer_with_user_data(self, user, request_response):
+        for appointment in request_response.data['appointments']:
+            customer = appointment['customer']
+            self.assertEqual(customer['first_name'], user.first_name)
+            self.assertEqual(customer['last_name'], user.last_name)
+            self.assertEqual(customer['email'], user.email)
+
     def test_get_current_no_owner_id(self):
         self.client.force_authenticate(user=test_user())
         response = self.client.get(self.current_url(), format='json')
@@ -95,6 +108,8 @@ class RequestViewSetTest(ViewTestCase):
 
         after_count = user.customer_set.all().count()
 
+        self.assert_user_customers_same_params(user)
+        self.assert_response_contains_customer_with_user_data(user, response)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(before_count, after_count)
 
@@ -116,6 +131,31 @@ class RequestViewSetTest(ViewTestCase):
 
         after_count = user.customer_set.all().count()
 
+        self.assert_user_customers_same_params(user)
+        self.assert_response_contains_customer_with_user_data(user, response)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(before_count + 1, after_count)
+
+    def test_create_appointment_existing_email_not_linked(self):
+        """
+        Adding an appointment to a request should require employee, service and start date.
+        In the case where the user is not linked to a customer in the company,
+            a new additional customer model should be created for the company the appointment is being created
+        """
+
+        emp, service = emp_service(Company.objects.get(pk=2))
+        user = User.objects.create(email='Finn.TheHuman@adventuretime.com')
+        data = create_apt_data(emp, service, util.next_wednesday().replace(hour=10, minute=0))
+
+        before_count = user.customer_set.all().count()
+
+        self.client.force_authenticate(user=user)
+        response = self.client.post(self.list_url + 'add/', data, format='json')
+
+        after_count = user.customer_set.all().count()
+
+        self.assert_user_customers_same_params(user)
+        self.assert_response_contains_customer_with_user_data(user, response)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(before_count + 1, after_count)
 

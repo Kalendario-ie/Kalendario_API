@@ -91,9 +91,13 @@ class User(CleanSaveMixin, AbstractUser):
     def link_to_customers(self):
         for customer in Customer.objects.filter(email=self.email):
             customer.user = self
+            customer.first_name = self.first_name
+            customer.last_name = self.last_name
             customer.save()
 
     def clean(self):
+        self.email = self.email.lower()
+
         if self.employee_id is not None and self.employee.owner_id != self.owner_id:
             raise ValidationError({"employee": "Employee does not belong to the same owner as user"})
 
