@@ -457,6 +457,7 @@ class Company(models.Model):
     objects = managers.CompanyManager()
 
     name = models.CharField(max_length=255, unique=True)
+    email = models.EmailField(null=True)
     address = models.CharField(max_length=255, null=True)
     instagram = models.CharField(max_length=255, null=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True, null=True)

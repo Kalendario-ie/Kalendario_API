@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'webhooks.apps.WebhooksConfig',
     'app_auth.apps.AuthConfig',
+    'billing.apps.BillingConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -197,6 +198,7 @@ STRIPE_API_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY', '')
 STRIPE_API_VERSION = os.environ.get('STRIPE_API_VERSION', '2019-12-03')
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+STRIPE_SUBSCRIPTION_PRICE_ID = os.environ.get('STRIPE_SUBSCRIPTION_PRICE_ID', '')
 
 CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
 CELERY_TIMEZONE = os.environ.get('CELERY_TIMEZONE', 'Europe/London')

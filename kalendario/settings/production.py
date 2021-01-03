@@ -3,6 +3,8 @@ import django_heroku
 
 DEBUG = os.environ.get('DEBUG_MODE', False)
 
+ENVIRONMENT = 'PROD'
+
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(';')
 
 white_list = os.getenv('DJANGO_CORS_ORIGIN_WHITELIST')

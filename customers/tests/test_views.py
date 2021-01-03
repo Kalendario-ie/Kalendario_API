@@ -26,13 +26,15 @@ def test_user(person=Person(email="user@email.com")):
     return user
 
 
-def emp_service(company=Company.objects.first()):
+def emp_service(company=None):
+    if company is None:
+        company = Company.objects.first()
     emp = company.employee_set.first()
     service = emp.services.first()
     return emp, service
 
 
-def emp_customer_service(company=Company.objects.first()):
+def emp_customer_service(company=None):
     emp, service = emp_service(company)
     return emp, company.customer_set.first(), service
 
@@ -57,13 +59,13 @@ class RequestViewSetTest(ViewTestCase):
 
     def setUp(self):
         self.url_name = 'customer-request'
-        self.list_url = reverse(self.url_name+'-list')
+        self.list_url = reverse(self.url_name + '-list')
 
     def current_url(self):
         return f'{self.list_url}current/'
 
     def detail_url(self, pk):
-        return reverse(self.url_name+'-detail', kwargs={'pk': pk})
+        return reverse(self.url_name + '-detail', kwargs={'pk': pk})
 
     def assert_user_customers_same_params(self, user):
         for c in user.customer_set.all():
@@ -144,7 +146,8 @@ class RequestViewSetTest(ViewTestCase):
         """
 
         emp, service = emp_service(Company.objects.get(pk=2))
-        user = User.objects.create(email='Finn.TheHuman@adventuretime.com')
+        user = User.objects.create(email='Finn.TheHuman@adventuretime.com', first_name='Finn',
+                                   last_name='The Human')
         data = create_apt_data(emp, service, util.next_wednesday().replace(hour=10, minute=0))
 
         before_count = user.customer_set.all().count()
@@ -179,7 +182,8 @@ class RequestViewSetTest(ViewTestCase):
         response1 = self.client.post(self.list_url + 'add/', data, format='json')
         request_id = response1.data['id']
         apt_id = response1.data['appointments'][0]['id']
-        response = self.client.delete(self.list_url + f'{request_id}/?appointment={apt_id}&owner={emp.owner_id}', format='json')
+        response = self.client.delete(self.list_url + f'{request_id}/?appointment={apt_id}&owner={emp.owner_id}',
+                                      format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 

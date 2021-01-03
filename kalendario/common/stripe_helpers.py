@@ -1,9 +1,12 @@
 import stripe
 from django.conf import settings
+from . import stripe_mock
 
 stripe.api_key = getattr(settings, 'STRIPE_API_KEY', '')
 stripe.api_version = getattr(settings, 'STRIPE_API_VERSION', '')
 publishable_key = getattr(settings, 'STRIPE_PUBLISHABLE_KEY', '')
+price_id = getattr(settings, 'STRIPE_SUBSCRIPTION_PRICE_ID', '')
+env = getattr(settings, 'ENVIRONMENT', '')
 
 
 def create_account():
@@ -41,4 +44,26 @@ def update_payment_intent(sid, amount, fee, metadata):
         amount=amount,
         application_fee_amount=fee,
         metadata=metadata
+    )
+
+
+def create_customer(name, email, metadata=None):
+    if env == 'TEST':
+        return stripe_mock.create_customer_mock(name, email)
+
+    return stripe.Customer.create(email=email, name=name, metadata=metadata)
+
+
+def create_subscription(customer_id):
+    if env == 'TEST':
+        return stripe_mock.create_subscription_mock(customer_id)
+
+    return stripe.Subscription.create(
+        customer=customer_id,
+        items=[
+            {
+                'price': price_id,
+            },
+        ],
+        trial_period_days=30,
     )
