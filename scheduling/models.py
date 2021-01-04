@@ -443,7 +443,9 @@ class Config(CleanSaveMixin, models.Model):
 
     @property
     def can_receive_card_payments(self):
-        return self.owner.is_stripe_enabled and self.allow_card_payment
+        return (hasattr(self.owner, 'stripeconnectedaccount')
+                and self.owner.stripeconnectedaccount.is_stripe_enabled
+                and self.allow_card_payment)
 
     @property
     def can_receive_unpaid_request(self):
@@ -472,28 +474,6 @@ class Company(models.Model):
     """
     _is_viewable = models.BooleanField(default=False)
 
-    _stripe_customer_id = models.CharField(max_length=255, unique=True, null=True)
-    _stripe_details_submitted = models.BooleanField(default=False)
-    _stripe_charges_enabled = models.BooleanField(default=False)
-    _stripe_payouts_enabled = models.BooleanField(default=False)
-    _stripe_default_currency = models.CharField(max_length=20, null=True)
-
-    @property
-    def stripe_details_submitted(self):
-        return self._stripe_details_submitted
-
-    @property
-    def stripe_charges_enabled(self):
-        return self._stripe_charges_enabled
-
-    @property
-    def stripe_payouts_enabled(self):
-        return self._stripe_payouts_enabled
-
-    @property
-    def stripe_default_currency(self):
-        return self._stripe_default_currency
-
     @property
     def employees(self):
         return Employee.objects.filter(private=False, owner_id=self.id)
@@ -501,10 +481,6 @@ class Company(models.Model):
     @property
     def services(self):
         return Service.objects.filter(private=False, owner_id=self.id)
-
-    @property
-    def is_stripe_enabled(self):
-        return self._stripe_charges_enabled and self._stripe_details_submitted and self._stripe_payouts_enabled
 
     def update_is_viewable(self):
         """
@@ -528,21 +504,6 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
-
-    def stripe_id(self):
-        if not self._stripe_customer_id:
-            account = stripe_helpers.create_account()
-            self._stripe_customer_id = account.id
-            self.save()
-        return self._stripe_customer_id
-
-    def update_stripe_fields(self):
-        stripe_act = stripe_helpers.retrieve_account(self._stripe_customer_id)
-        self._stripe_details_submitted = stripe_act.details_submitted
-        self._stripe_charges_enabled = stripe_act.charges_enabled
-        self._stripe_payouts_enabled = stripe_act.payouts_enabled
-        self._stripe_default_currency = stripe_act.default_currency
-        self.save()
 
 
 class SchedulingPanel(CleanSaveMixin, models.Model):

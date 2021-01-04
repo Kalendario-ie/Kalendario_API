@@ -42,3 +42,17 @@ class SubscriptionManager(models.Manager):
             'is_active': stripe_subscription.status == 'active'
         })
         return models.Manager.create(self, **kwargs)
+
+
+class ConnectedAccountManager(models.Manager):
+    def create(self, owner, **kwargs):
+        connected_account = stripe_helpers.create_account(metadata={'company': owner.id})
+        kwargs.update({
+            'owner': owner,
+            'stripe_id': connected_account.stripe_id,
+            'details_submitted': connected_account.details_submitted,
+            'charges_enabled': connected_account.charges_enabled,
+            'payouts_enabled': connected_account.payouts_enabled,
+            'default_currency': connected_account.default_currency,
+        })
+        return models.Manager.create(self, **kwargs)

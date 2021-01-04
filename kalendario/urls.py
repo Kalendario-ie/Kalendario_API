@@ -14,6 +14,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('app_auth.urls')),
     path('api/admin/', include('scheduling.urls')),
+    path('api/billing/', include('billing.urls')),
     path('api/core/', include('core.urls')),
     path('api/', include('customers.urls')),
     path('webhooks/', include('webhooks.urls')),

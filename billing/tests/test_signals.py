@@ -1,16 +1,14 @@
 from unittest.mock import patch
 from django.test import TestCase
-
 from billing import models as billing_models
 from kalendario.common.stripe_mock import create_customer_mock, create_subscription_mock, create_customer_fail_mock
 from core.models import User
 from scheduling.models import Company
 
-FIXTURES = ['companies.json', 'users.json']
-
 
 class TestModels(TestCase):
-    fixtures = FIXTURES
+
+    fixtures = ['companies.json', 'users.json']
 
     @patch('kalendario.common.stripe_helpers.create_customer', side_effect=create_customer_mock)
     @patch('kalendario.common.stripe_helpers.create_subscription', side_effect=create_subscription_mock)

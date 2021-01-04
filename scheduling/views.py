@@ -2,14 +2,13 @@ import cloudinary.uploader as cloudinary_uploader
 from cloudinary import CloudinaryResource
 
 from django.db.models import Q
-from django.urls import reverse
 
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from kalendario.common import viewsets, mixins, stripe_helpers
+from kalendario.common import viewsets, mixins
 from scheduling import serializers, models
 import logging
 logger = logging.getLogger(__name__)
@@ -229,27 +228,6 @@ class CompanyViewSet(mixins.WithPermissionsMixin,
         instance.save()
 
         serializer = self.get_read_serializer(instance)
-        return Response(serializer.data)
-
-    @action(detail=True, methods=['patch'], url_path='stripe', url_name='stripe')
-    def post_stripe(self, request, *args, **kwargs):
-        instance = self.get_object()
-        stripe_id = instance.stripe_id()
-
-        origin = self.request.headers['origin'] + '/admin/home'
-        refresh_url = origin + reverse('company-stripe', kwargs={'pk': instance.id})
-
-        account_link_url = stripe_helpers.generate_account_link(stripe_id, refresh_url, origin)
-        try:
-            return Response({'url': account_link_url})
-        except Exception as e:
-            return Response(data={'error': str(e)}, status=status.HTTP_403_FORBIDDEN)
-
-    @action(detail=True, methods=['get'], url_path='stripe/details', url_name='stripe-details')
-    def get_stripe(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.update_stripe_fields()
-        serializer = serializers.StripeSerializer(instance)
         return Response(serializer.data)
 
 

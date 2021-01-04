@@ -25,3 +25,7 @@ class RetrieveUpdateModelViewSet(drf.RetrieveModelMixin,
                                  drf.UpdateModelMixin,
                                  GenericViewSet):
     pass
+
+
+class RetrieveModelMixin(drf.RetrieveModelMixin):
+    pass

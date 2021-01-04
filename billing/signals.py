@@ -7,7 +7,7 @@ from stripe.error import InvalidRequestError
 import logging
 
 
-def create_or_update_billing_company_account(sender, instance: Company, **kwargs):
+def upsert_billing_company_account(sender, instance: Company, **kwargs):
     company_customer = models.BillingCompanyCustomer.objects.filter(company=instance).first()
     if company_customer is not None:
         pass
@@ -21,7 +21,7 @@ def create_or_update_billing_company_account(sender, instance: Company, **kwargs
             )
 
 
-def create_or_update_billing_user_account(sender, instance: User, **kwargs):
+def upsert_billing_user_account(sender, instance: User, **kwargs):
     user_customer = models.BillingUserCustomer.objects.filter(user=instance).first()
     if user_customer is not None:
         pass
@@ -29,5 +29,12 @@ def create_or_update_billing_user_account(sender, instance: User, **kwargs):
         models.BillingUserCustomer.objects.create(instance)
 
 
-post_save.connect(create_or_update_billing_company_account, sender=Company)
-post_save.connect(create_or_update_billing_user_account, sender=User)
+def upsert_stripe_connect_account(sender, instance: Company, **kwargs):
+    connected_account = models.StripeConnectedAccount.objects.filter(owner=instance).first()
+    if connected_account is None:
+        models.StripeConnectedAccount.objects.create(instance)
+
+
+post_save.connect(upsert_billing_company_account, sender=Company)
+post_save.connect(upsert_stripe_connect_account, sender=Company)
+post_save.connect(upsert_billing_user_account, sender=User)

@@ -9,8 +9,10 @@ price_id = getattr(settings, 'STRIPE_SUBSCRIPTION_PRICE_ID', '')
 env = getattr(settings, 'ENVIRONMENT', '')
 
 
-def create_account():
-    account = stripe.Account.create(type='express')
+def create_account(**kwargs):
+    if env == 'TEST':
+        return stripe_mock.create_account_mock(**kwargs)
+    account = stripe.Account.create(type='express', **kwargs)
     return account
 
 
@@ -19,6 +21,9 @@ def retrieve_account(sid):
 
 
 def generate_account_link(account_id, refresh_url, return_url):
+    if env == 'TEST':
+        return 'mock-link'
+
     account_link = stripe.AccountLink.create(
         type='account_onboarding',
         account=account_id,

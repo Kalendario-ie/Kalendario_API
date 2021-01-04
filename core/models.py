@@ -75,6 +75,10 @@ class User(CleanSaveMixin, AbstractUser):
         email = self.email_address
         return email and email.verified
 
+    def add_permissions(self, model):
+        self.user_permissions.add(*Permission.objects.filter(codename__icontains=model.__name__.lower()))
+        self.save()
+
     def enable_create_company(self):
         self.user_permissions.add(Permission.objects.filter(codename='add_company').first())
         self.save()

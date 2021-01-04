@@ -1,6 +1,7 @@
 import uuid
 from stripe.error import InvalidRequestError
 
+
 class StripeMock:
     id = None
 
@@ -134,6 +135,16 @@ class StripeSubscriptionMock(StripeMock):
         self.status = 'active' if complete else 'incomplete'
 
 
+class StripeConnectedAccountMock(StripeMock):
+
+    def __init__(self):
+        self.id = str(uuid.uuid4())
+        self.details_submitted = False
+        self.charges_enabled = False
+        self.payouts_enabled = False
+        self.default_currency = 'EUR'
+
+
 def create_customer_mock(name, email, metadata=None):
     return StripeCustomerMock(name, email)
 
@@ -144,3 +155,7 @@ def create_customer_fail_mock(name, email, metadata=None):
 
 def create_subscription_mock(customer_id):
     return StripeSubscriptionMock(customer_id)
+
+
+def create_account_mock(**kwargs):
+    return StripeConnectedAccountMock()

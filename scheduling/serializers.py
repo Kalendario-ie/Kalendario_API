@@ -36,13 +36,6 @@ class CompanySerializer(serializers.ModelSerializer):
         cs.is_valid(raise_exception=True), cs.save()
 
 
-class StripeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Company
-        fields = ('id', 'stripe_details_submitted', 'stripe_charges_enabled', 'stripe_payouts_enabled',
-                  'stripe_default_currency')
-
-
 class ServiceCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ServiceCategory
