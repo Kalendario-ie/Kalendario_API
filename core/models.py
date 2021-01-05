@@ -8,7 +8,8 @@ from core import managers
 from scheduling.models import Customer
 
 PERMISSIONS = ('company', 'historicalappointment', 'appointment', 'employee', 'shift', 'schedule', 'service',
-               'servicecategory', 'customer', 'config', 'schedulingpanel', 'groupprofile', 'user', 'request')
+               'servicecategory', 'customer', 'config', 'schedulingpanel', 'groupprofile', 'user', 'request',
+               'stripeconnectedaccount')
 
 
 def permissions():
