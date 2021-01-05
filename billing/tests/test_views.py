@@ -13,9 +13,9 @@ class TestStripeViewSet(APITestCase):
     fixtures = ['companies.json', 'users.json']
 
     def list_detail_post_results(self, owner_id):
-        detail_url = reverse('company-stripe-detail', kwargs={'pk': owner_id})
+        detail_url = reverse('company-stripe-detail', kwargs={'owner_id': owner_id})
         get_detail = self.client.get(detail_url, format='json')
-        post = self.client.post(detail_url, format='json')
+        post = self.client.post(detail_url + 'url/', format='json')
         return get_detail, post
 
     def test_list_url_does_not_exist(self):
