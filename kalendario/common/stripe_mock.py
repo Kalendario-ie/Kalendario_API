@@ -145,11 +145,11 @@ class StripeConnectedAccountMock(StripeMock):
         self.default_currency = 'EUR'
 
 
-def create_customer_mock(name, email, metadata=None):
-    return StripeCustomerMock(name, email)
+def create_customer_mock(instance):
+    return StripeCustomerMock(instance.name, instance.email)
 
 
-def create_customer_fail_mock(name, email, metadata=None):
+def create_customer_fail_mock(instance):
     raise InvalidRequestError('invalid request', 'param')
 
 

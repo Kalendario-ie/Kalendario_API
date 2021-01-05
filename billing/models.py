@@ -1,4 +1,3 @@
-from . import managers
 from django.db import models
 from core.models import User
 from scheduling.models import Company
@@ -12,13 +11,9 @@ class BillingCustomer(models.Model):
 class BillingCompanyCustomer(BillingCustomer):
     company = models.OneToOneField(Company, on_delete=models.CASCADE)
 
-    objects = managers.CompanyCustomerManager()
-
 
 class BillingUserCustomer(BillingCustomer):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    objects = managers.UserCustomerManager()
 
 
 class Subscription(models.Model):
@@ -29,8 +24,6 @@ class Subscription(models.Model):
     current_period_start = models.DateTimeField()
     current_period_end = models.DateTimeField()
     is_active = models.BooleanField(default=False)
-
-    objects = managers.SubscriptionManager()
 
     @property
     def is_expired(self):
@@ -44,8 +37,6 @@ class StripeConnectedAccount(models.Model):
     charges_enabled = models.BooleanField(default=False)
     payouts_enabled = models.BooleanField(default=False)
     default_currency = models.CharField(max_length=20, null=True)
-
-    objects = managers.ConnectedAccountManager()
 
     @property
     def is_stripe_enabled(self):

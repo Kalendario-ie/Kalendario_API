@@ -52,11 +52,15 @@ def update_payment_intent(sid, amount, fee, metadata):
     )
 
 
-def create_customer(name, email, metadata=None):
+def create_customer(instance):
+    """
+    :param instance: User or Customer
+    :return: return a Stripe Customer Object based on the instance provided
+    """
     if env == 'TEST':
-        return stripe_mock.create_customer_mock(name, email)
-
-    return stripe.Customer.create(email=email, name=name, metadata=metadata)
+        return stripe_mock.create_customer_mock(instance)
+    metadata = {'class': instance.__class__, 'instance_id': instance.id}
+    return stripe.Customer.create(email=instance.email, name=instance.name, metadata=metadata)
 
 
 def create_subscription(customer_id):
