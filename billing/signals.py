@@ -42,7 +42,7 @@ def create_user_customer(user):
 
 def create_connected_account(company):
     connected_account = stripe_helpers.create_account(company)
-    sca = models.StripeConnectedAccount.objects.create(owner=company, stripe_id=connected_account.stripe_id)
+    sca = models.StripeAccount.objects.create(owner=company, stripe_id=connected_account.stripe_id)
     sca.update_stripe_fields(connected_account)
 
 
@@ -53,8 +53,8 @@ def company_post_save(sender, instance: Company, **kwargs):
         create_company_customer(instance)
 
     try:
-        models.StripeConnectedAccount.objects.get(owner=instance)
-    except models.StripeConnectedAccount.DoesNotExist:
+        models.StripeAccount.objects.get(owner=instance)
+    except models.StripeAccount.DoesNotExist:
         create_connected_account(instance)
 
 

@@ -48,7 +48,7 @@ class TestStripeViewSet(APITestCase):
         """
 
         user = User.objects.get(pk=1)
-        user.add_permissions(models.StripeConnectedAccount)
+        user.add_permissions(models.StripeAccount)
 
         self.client.force_authenticate(user)
         get_detail, post = self.list_detail_post_results(1)
@@ -61,7 +61,7 @@ class TestStripeViewSet(APITestCase):
         A user should not be able to access the view when trying to see a different company
         """
         user = User.objects.get(pk=1)
-        user.add_permissions(models.StripeConnectedAccount)
+        user.add_permissions(models.StripeAccount)
 
         self.client.force_authenticate(user)
         get_detail, post = self.list_detail_post_results(2)

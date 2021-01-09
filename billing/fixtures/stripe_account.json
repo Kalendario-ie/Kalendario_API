@@ -1,0 +1,116 @@
+{
+    "id": "acct_1I6NrNPSPWHkHf4n",
+    "object": "account",
+    "business_profile": {
+        "mcc": null,
+        "name": null,
+        "product_description": null,
+        "support_address": null,
+        "support_email": null,
+        "support_phone": null,
+        "support_url": null,
+        "url": null
+    },
+    "business_type": null,
+    "capabilities": {
+        "card_payments": "inactive",
+        "transfers": "inactive"
+    },
+    "charges_enabled": false,
+    "country": "IE",
+    "created": 1609885118,
+    "default_currency": "eur",
+    "details_submitted": false,
+    "email": "gustavo.francelino@gmail.com",
+    "external_accounts": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total_count": 0,
+        "url": "/v1/accounts/acct_1I6NrNPSPWHkHf4n/external_accounts"
+    },
+    "login_links": {
+        "object": "list",
+        "total_count": 0,
+        "has_more": false,
+        "url": "/v1/accounts/acct_1I6NrNPSPWHkHf4n/login_links",
+        "data": []
+    },
+    "metadata": {
+        "company": "2"
+    },
+    "payouts_enabled": false,
+    "requirements": {
+        "current_deadline": null,
+        "currently_due": [
+            "business_profile.mcc",
+            "business_profile.url",
+            "business_type",
+            "external_account",
+            "relationship.representative",
+            "tos_acceptance.date",
+            "tos_acceptance.ip"
+        ],
+        "disabled_reason": "requirements.past_due",
+        "errors": [],
+        "eventually_due": [
+            "business_profile.mcc",
+            "business_profile.url",
+            "business_type",
+            "external_account",
+            "relationship.representative",
+            "tos_acceptance.date",
+            "tos_acceptance.ip"
+        ],
+        "past_due": [
+            "business_profile.mcc",
+            "business_profile.url",
+            "business_type",
+            "external_account",
+            "relationship.representative",
+            "tos_acceptance.date",
+            "tos_acceptance.ip"
+        ],
+        "pending_verification": []
+    },
+    "settings": {
+        "bacs_debit_payments": {},
+        "branding": {
+            "icon": null,
+            "logo": null,
+            "primary_color": null,
+            "secondary_color": null
+        },
+        "card_payments": {
+            "decline_on": {
+                "avs_failure": false,
+                "cvc_failure": false
+            },
+            "statement_descriptor_prefix": null
+        },
+        "dashboard": {
+            "display_name": "Kalendario",
+            "timezone": "Etc/UTC"
+        },
+        "payments": {
+            "statement_descriptor": null,
+            "statement_descriptor_kana": null,
+            "statement_descriptor_kanji": null
+        },
+        "payouts": {
+            "debit_negative_balances": true,
+            "schedule": {
+                "delay_days": 7,
+                "interval": "daily"
+            },
+            "statement_descriptor": null
+        },
+        "sepa_debit_payments": {}
+    },
+    "tos_acceptance": {
+        "date": null,
+        "ip": null,
+        "user_agent": null
+    },
+    "type": "express"
+}

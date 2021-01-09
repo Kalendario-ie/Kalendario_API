@@ -12,7 +12,7 @@ class StripeViewSet(mixins.WithPermissionsMixin,
                     viewsets.RetrieveModelMixin,
                     viewsets.GenericViewSet):
     serializer_class = serializers.StripeConnectedAccountSerializer
-    queryset = models.StripeConnectedAccount.objects.all()
+    queryset = models.StripeAccount.objects.all()
     lookup_field = 'owner_id'
 
     @action(detail=True, methods=['post'])

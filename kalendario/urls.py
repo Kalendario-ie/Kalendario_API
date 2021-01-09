@@ -17,7 +17,6 @@ urlpatterns = [
     path('api/billing/', include('billing.urls')),
     path('api/core/', include('core.urls')),
     path('api/', include('customers.urls')),
-    path('webhooks/', include('webhooks.urls')),
     url(r'^.*', TemplateView.as_view(template_name='home.html'), name="home"),
 
     url(r'^account-confirm-email/(?P<key>[-:\w]+)/$', TemplateView.as_view(template_name='home.html'),
