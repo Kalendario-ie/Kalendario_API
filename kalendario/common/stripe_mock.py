@@ -157,5 +157,5 @@ def create_subscription_mock(customer_id):
     return StripeSubscriptionMock(customer_id)
 
 
-def create_account_mock(**kwargs):
+def create_account_mock(company):
     return StripeConnectedAccountMock()

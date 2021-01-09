@@ -9,10 +9,17 @@ price_id = getattr(settings, 'STRIPE_SUBSCRIPTION_PRICE_ID', '')
 env = getattr(settings, 'ENVIRONMENT', '')
 
 
-def create_account(**kwargs):
+def create_account(company):
     if env == 'TEST':
-        return stripe_mock.create_account_mock(**kwargs)
-    account = stripe.Account.create(type='express', **kwargs)
+        return stripe_mock.create_account_mock(company)
+    account = stripe.Account.create(type='express',
+                                    email=company.email,
+                                    metadata={'company': company.id},
+                                    capabilities={
+                                        'card_payments': {'requested': True},
+                                        'transfers': {'requested': True}
+                                    }
+                                    )
     return account
 
 
@@ -29,6 +36,7 @@ def generate_account_link(account_id, refresh_url, return_url):
         account=account_id,
         refresh_url=refresh_url,
         return_url=return_url,
+        collect='eventually_due'
     )
     return account_link.url
 

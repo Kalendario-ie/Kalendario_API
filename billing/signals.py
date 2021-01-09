@@ -41,7 +41,7 @@ def create_user_customer(user):
 
 
 def create_connected_account(company):
-    connected_account = stripe_helpers.create_account(email=company.email, metadata={'company': company.id})
+    connected_account = stripe_helpers.create_account(company)
     sca = models.StripeConnectedAccount.objects.create(owner=company, stripe_id=connected_account.stripe_id)
     sca.update_stripe_fields(connected_account)
 
