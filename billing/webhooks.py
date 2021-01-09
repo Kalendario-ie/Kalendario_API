@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from kalendario.common import stripe_helpers
-from webhooks import models
 from scheduling.models import Request, Appointment
 
 
@@ -26,9 +25,19 @@ def handle_account_application_authorized(stripe_event):
     pass
 
 
+handlers = {
+    'payment_intent.succeeded': handle_payment_intent_succeeded,
+    'account.external_account.updated': None,
+    'account.external_account.deleted': None,
+    'account.application.deauthorized': None,
+    'account.application.authorized': handle_account_application_authorized,
+    'account.external_account.created': None
+}
+
+
 @csrf_exempt
 @require_POST
-def my_webhook_view(request):
+def stripe_hook(request):
     """
     Returns 200 if everything went ok
     400 if couldn't get the event or the secret is wrong
@@ -47,27 +56,13 @@ def my_webhook_view(request):
     except ValueError as e:
         return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
 
-    handlers = {
-        'payment_intent.succeeded': handle_payment_intent_succeeded,
-        'account.external_account.updated': None,
-        'account.external_account.deleted': None,
-        'account.application.deauthorized': None,
-        'account.application.authorized': handle_account_application_authorized,
-        'account.external_account.created': None
-    }
-    stripe_event = models.StripeEvent.from_event(event)
     handler = handlers.get(event.type)
 
     if handler is None:
         return HttpResponse(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-    handled = handler(stripe_event)
-
-    if not handled:
+    if not handler(event):
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
-
-    stripe_event.is_handled = True
-    stripe_event.save()
 
     return HttpResponse(status=status.HTTP_200_OK)
 

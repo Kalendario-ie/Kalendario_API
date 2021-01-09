@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'scheduling.apps.SchedulingConfig',
     'customers.apps.CustomersConfig',
     'core.apps.CoreConfig',
-    'webhooks.apps.WebhooksConfig',
     'app_auth.apps.AuthConfig',
     'billing.apps.BillingConfig',
 
