@@ -15,7 +15,7 @@ class TestStripeViewSet(APITestCase):
     def detail_post_results(self, owner_id):
         detail_url = reverse('billing-account-detail', kwargs={'owner_id': owner_id})
         get_detail = self.client.get(detail_url, format='json')
-        post = self.client.post(detail_url + 'url/', format='json')
+        post = self.client.post(detail_url + 'connect/', format='json')
         return get_detail, post
 
     def test_list_url_does_not_exist(self):
