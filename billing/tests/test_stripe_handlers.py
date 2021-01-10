@@ -48,5 +48,8 @@ class TestStripeWebhookHandler(TestCase):
         intent.save()
 
         handler_result = StripeHookHandler(event).handle()
+        intent = models.PaymentIntent.objects.get(pk=intent.id)
 
+        self.assertTrue(intent.paid)
+        self.assertTrue(intent.amount_received, 2000)
         self.assertTrue(handler_result)

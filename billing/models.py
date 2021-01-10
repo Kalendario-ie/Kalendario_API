@@ -105,5 +105,5 @@ class PaymentIntent(models.Model):
         self.request.accept()
         self.paid = True
         self.amount_received = stripe_intent.amount_received
-
+        self.save()
 
