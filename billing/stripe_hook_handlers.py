@@ -15,8 +15,12 @@ def payment_intent_succeeded(payment_intent):
 
 def account_updated(event):
     account = event.data.object
-    stripe_account = models.Account.objects.get(stripe_id=account.id)
-    stripe_account.update_stripe_fields(account)
+    try:
+        stripe_account = models.Account.objects.get(stripe_id=account.id)
+        stripe_account.update_stripe_fields(account)
+        return True
+    except models.Account.DoesNotExist:
+        return False
 
 
 handlers = {
