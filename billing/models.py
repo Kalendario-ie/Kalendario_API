@@ -50,6 +50,8 @@ class StripeAccount(models.Model):
 
     @property
     def currently_due(self):
+        if self.requirements_currently_due is None:
+            return []
         return self.json_decoder.decode(self.requirements_currently_due)
 
     def update_stripe_fields(self, stripe_act):
@@ -57,6 +59,6 @@ class StripeAccount(models.Model):
         self.charges_enabled = stripe_act.charges_enabled
         self.payouts_enabled = stripe_act.payouts_enabled
         self.default_currency = stripe_act.default_currency
-        listIWantToStore = stripe_act.requirements.currently_due
-        self.requirements_current_due = json.dumps(listIWantToStore)
+        self.requirements_currently_due = json.dumps(stripe_act.requirements.currently_due)
+        self.requirements_disabled_reason = stripe_act.requirements.disabled_reason
         self.save()

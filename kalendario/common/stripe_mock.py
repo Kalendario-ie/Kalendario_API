@@ -135,6 +135,12 @@ class StripeSubscriptionMock(StripeMock):
         self.status = 'active' if complete else 'incomplete'
 
 
+class Requirements:
+    def __init__(self, currently_due):
+        self.currently_due = currently_due
+        self.disabled_reason = 'none'
+
+
 class StripeConnectedAccountMock(StripeMock):
 
     def __init__(self):
@@ -143,6 +149,7 @@ class StripeConnectedAccountMock(StripeMock):
         self.charges_enabled = False
         self.payouts_enabled = False
         self.default_currency = 'EUR'
+        self.requirements = Requirements([])
 
 
 def create_customer_mock(instance):
