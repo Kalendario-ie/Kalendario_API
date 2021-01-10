@@ -406,24 +406,6 @@ class Request(CleanSaveMixin, models.Model):
             if appointment.start.date() != self.scheduled_date:
                 raise exceptions.ValidationError('Appointment does not start on the scheduled date of the request')
 
-    # def stripe_client_secret(self):
-    #     amount, fee = int(self.total * 100), int(self.fee * 100)
-    #     metadata = {'request_id': self.id}
-    #     if self._stripe_payment_intent_id is None:
-    #         stripe_id = self.owner.stripe_id()
-    #         intent = stripe_helpers.create_payment_intent(stripe_id, 'eur', amount, fee, metadata)
-    #         self._stripe_payment_intent_id = intent.stripe_id
-    #         self.save()
-    #         return intent.client_secret
-    #
-    #     intent = stripe_helpers.update_payment_intent(self._stripe_payment_intent_id, amount, fee, metadata)
-    #     return intent.client_secret
-
-    # def stripe_payment_intent_succeeded(self, amount):
-    #     self._stripe_is_paid = True
-    #     self._stripe_total_paid = amount
-    #     self.save()
-
 
 class Photo(CleanSaveMixin, models.Model):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)

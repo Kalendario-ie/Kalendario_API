@@ -1,6 +1,6 @@
 import stripe
 from django.conf import settings
-from stripe.webhook.error import SignatureVerificationError
+from stripe.error import SignatureVerificationError
 
 stripe.api_key = getattr(settings, 'STRIPE_API_KEY', '')
 stripe.api_version = getattr(settings, 'STRIPE_API_VERSION', '')
