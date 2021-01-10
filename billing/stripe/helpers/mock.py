@@ -1,4 +1,6 @@
 import uuid
+from collections import namedtuple
+
 from stripe.error import InvalidRequestError
 
 
@@ -152,17 +154,29 @@ class StripeConnectedAccountMock(StripeMock):
         self.requirements = Requirements([])
 
 
-def create_customer_mock(instance):
+def create_customer(instance):
     return StripeCustomerMock(instance.name, instance.email)
 
 
-def create_customer_fail_mock(instance):
+def create_customer_fail(instance):
     raise InvalidRequestError('invalid request', 'param')
 
 
-def create_subscription_mock(customer_id):
+def create_subscription(customer_id):
     return StripeSubscriptionMock(customer_id)
 
 
-def create_account_mock(company):
+def create_account(company):
     return StripeConnectedAccountMock()
+
+
+StripePaymentIntent = namedtuple('MyStruct', 'stripe_id  client_secret amount application_fee_amount')
+
+
+def create_payment_intent(request):
+    return StripePaymentIntent(stripe_id='test_id', client_secret='', amount=request.total_int,
+                               application_fee_amount=request.fee_int)
+
+
+def generate_account_link(account_id, refresh_url, return_url):
+    return 'account_link.url_'

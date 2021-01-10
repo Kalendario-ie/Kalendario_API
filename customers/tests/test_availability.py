@@ -1,7 +1,7 @@
 from customers.models import get_availability_for_service
 from customers.tests.generics import TestCaseWF
 from scheduling import models
-from scheduling.tests import util
+from util import test_util as util
 
 
 class SlotTest(TestCaseWF):

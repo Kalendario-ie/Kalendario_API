@@ -2,9 +2,9 @@ import json
 
 from django.db import models
 from core.models import User
-from scheduling.models import Company
+from scheduling.models import Company, Request
 from datetime import datetime
-
+from . import managers
 
 class BillingCustomer(models.Model):
     stripe_id = models.CharField(max_length=255, unique=True, null=True)
@@ -69,3 +69,41 @@ class Account(models.Model):
         self.requirements_currently_due = json.dumps(stripe_act.requirements.currently_due)
         self.requirements_disabled_reason = stripe_act.requirements.disabled_reason
         self.save()
+
+
+class PaymentIntent(models.Model):
+    stripe_id = models.CharField(max_length=255, unique=True, null=True)
+    request = models.OneToOneField(Request, on_delete=models.CASCADE)
+    client_secret = models.CharField(max_length=255, null=True)
+    paid = models.BooleanField(default=False)
+    application_fee_amount = models.FloatField(default=0)
+    amount = models.FloatField(default=0)
+    amount_received = models.FloatField(default=0)
+
+    objects = managers.RequestManager()
+
+    @property
+    def account(self):
+        return self.request.owner.account
+
+    @property
+    def user(self):
+        return self.request.user
+
+    @property
+    def customer(self):
+        return self.user.billingusercustomer
+
+    def update_stripe_fields(self, stripe_intent):
+        self.stripe_id = stripe_intent.stripe_id
+        self.client_secret = stripe_intent.client_secret
+        self.amount = stripe_intent.amount
+        self.application_fee_amount = stripe_intent.application_fee_amount
+        self.save()
+
+    def payment_succeeded(self, stripe_intent):
+        self.request.accept()
+        self.paid = True
+        self.amount_received = stripe_intent.amount_received
+
+

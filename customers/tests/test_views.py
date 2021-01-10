@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.core import mail
 from rest_framework import status
 
-import scheduling.tests.util as util
+import util.test_util as util
 from core.models import User
 from scheduling.models import Person, Company
 from scheduling.tests.generics import ViewTestCase

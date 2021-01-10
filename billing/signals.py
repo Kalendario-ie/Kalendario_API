@@ -6,7 +6,7 @@ from scheduling.models import Company
 from stripe.error import InvalidRequestError
 import logging
 from datetime import datetime
-from kalendario.common import stripe_helpers
+from billing.stripe import helpers as stripe_helpers
 
 
 def create_subscription(billing_customer):

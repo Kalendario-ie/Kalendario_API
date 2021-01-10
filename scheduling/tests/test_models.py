@@ -3,7 +3,7 @@ from scheduling import exceptions
 from datetime import datetime, time, timedelta
 
 from scheduling.tests.generics import TestCaseWF
-from scheduling.tests.util import next_monday, next_tuesday, book_appointment, reject_appointment
+from util.test_util import next_monday, next_tuesday, book_appointment, reject_appointment
 
 from django.core.exceptions import ValidationError
 

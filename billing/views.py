@@ -6,14 +6,11 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 import logging
-from django.conf import settings
-from kalendario.common import viewsets, mixins, stripe_helpers
-from . import serializers, models
-from .stripe_hook_handlers import handlers
+from kalendario.common import viewsets, mixins
+from . import serializers, models, stripe
 
 
 logger = logging.getLogger(__name__)
-STRIPE_WEBHOOK_SECRET = getattr(settings, 'STRIPE_WEBHOOK_SECRET', '')
 
 
 class AccountViewSet(mixins.WithPermissionsMixin,
@@ -31,10 +28,23 @@ class AccountViewSet(mixins.WithPermissionsMixin,
             origin = self.request.headers.get('origin', '')
             return_url = origin + '/admin/home'
             refresh_url = origin + reverse('billing-account-detail', kwargs={self.lookup_field: instance.id})
-            account_link_url = stripe_helpers.generate_account_link(instance.stripe_id, refresh_url, return_url)
+            account_link_url = stripe.helpers.generate_account_link(instance.stripe_id, refresh_url, return_url)
             return Response({'url': account_link_url})
         except Exception as e:
             return Response(data={'error': str(e)}, status=status.HTTP_403_FORBIDDEN)
+
+
+@csrf_exempt
+@require_POST
+def get_payment_intent(request):
+    payload = request.body
+
+    pi, created = models.PaymentIntent.objects.get_or_create(payload['request_id'])
+
+    if request.user and request.user.id != pi.user.id:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    return Response({'clientSecret': pi.client_secret})
 
 
 @csrf_exempt
@@ -51,23 +61,21 @@ def stripe_hook(request):
     event = None
 
     try:
-        event = stripe_helpers.stripe.Webhook.construct_event(payload, sig_header, STRIPE_WEBHOOK_SECRET)
+        event = stripe.helpers.construct_event(payload, sig_header)
     except ValueError as e:
         # Invalid payload
         return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
-    except stripe_helpers.stripe.webhook.error.SignatureVerificationError as e:
+    except stripe.helpers.SignatureVerificationError as e:
         # Invalid signature
         logger.error('Invalid Stripe signature')
         return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
 
-    print(event.type)
+    handler = stripe.hook_handler.StripeHookHandler(event)
 
-    handler = handlers.get(event.type)
-
-    if handler is None:
+    if handler.invalid_event:
         return HttpResponse(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-    if not handler(event):
+    if not handler.handle():
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
     return HttpResponse(status=status.HTTP_200_OK)

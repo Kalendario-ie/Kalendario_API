@@ -48,11 +48,11 @@ class RequestViewSet(mixins.QuerysetSerializerMixin, viewsets.ReadOnlyModelViewS
         serializer = self.get_read_serializer(instance)
         return Response(serializer.data)
 
-    @action(detail=True, methods=['post'])
-    def payment(self, *args, **kwargs):
-        request = self.get_object()
-        intent = request.stripe_client_secret()
-        return Response({'clientSecret': intent})
+    # @action(detail=True, methods=['post'])
+    # def payment(self, *args, **kwargs):
+    #     request = self.get_object()
+    #     intent = request.stripe_client_secret()
+    #     return Response({'clientSecret': intent})
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

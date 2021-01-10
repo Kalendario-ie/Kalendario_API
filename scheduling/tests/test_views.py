@@ -2,7 +2,7 @@ from django.contrib.auth.models import Permission
 from django.urls import reverse
 from rest_framework import status
 
-import scheduling.tests.util as util
+from util import test_util as util
 from core.models import User
 from scheduling import models
 from scheduling.tests.generics import ViewTestCase

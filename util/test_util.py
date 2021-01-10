@@ -5,6 +5,7 @@ from django.contrib.auth.models import Permission
 from scheduling.models import Shift, TimeFrame, Schedule, Appointment
 from core.models import GroupProfile
 
+
 def next_monday():
     today = datetime.now()
     return today + timedelta(7 - today.weekday())

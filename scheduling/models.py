@@ -6,7 +6,6 @@ from cloudinary.models import CloudinaryField
 from django.db.models import Q
 from simple_history.models import HistoricalRecords
 
-from kalendario.common import stripe_helpers
 from kalendario.common.model_mixins import CleanSaveMixin
 from scheduling import managers, exceptions
 
@@ -321,6 +320,9 @@ class Request(CleanSaveMixin, models.Model):
         self._status = status
         self.save()
 
+    def accept(self):
+        self.status = Appointment.ACCEPTED
+
     @property
     def customer_email(self):
         return self.user.email
@@ -351,8 +353,16 @@ class Request(CleanSaveMixin, models.Model):
         return 1
 
     @property
+    def fee_int(self):
+        return int(self.fee * 100)
+
+    @property
     def total(self):
         return self.sub_total + self.fee
+
+    @property
+    def total_int(self):
+        return int(self.total * 100)
 
     def add_appointment(self, user=None, **kwargs):
         """
@@ -396,23 +406,23 @@ class Request(CleanSaveMixin, models.Model):
             if appointment.start.date() != self.scheduled_date:
                 raise exceptions.ValidationError('Appointment does not start on the scheduled date of the request')
 
-    def stripe_client_secret(self):
-        amount, fee = int(self.total * 100), int(self.fee * 100)
-        metadata = {'request_id': self.id}
-        if self._stripe_payment_intent_id is None:
-            stripe_id = self.owner.stripe_id()
-            intent = stripe_helpers.create_payment_intent(stripe_id, 'eur', amount, fee, metadata)
-            self._stripe_payment_intent_id = intent.stripe_id
-            self.save()
-            return intent.client_secret
+    # def stripe_client_secret(self):
+    #     amount, fee = int(self.total * 100), int(self.fee * 100)
+    #     metadata = {'request_id': self.id}
+    #     if self._stripe_payment_intent_id is None:
+    #         stripe_id = self.owner.stripe_id()
+    #         intent = stripe_helpers.create_payment_intent(stripe_id, 'eur', amount, fee, metadata)
+    #         self._stripe_payment_intent_id = intent.stripe_id
+    #         self.save()
+    #         return intent.client_secret
+    #
+    #     intent = stripe_helpers.update_payment_intent(self._stripe_payment_intent_id, amount, fee, metadata)
+    #     return intent.client_secret
 
-        intent = stripe_helpers.update_payment_intent(self._stripe_payment_intent_id, amount, fee, metadata)
-        return intent.client_secret
-
-    def stripe_payment_intent_succeeded(self, amount):
-        self._stripe_is_paid = True
-        self._stripe_total_paid = amount
-        self.save()
+    # def stripe_payment_intent_succeeded(self, amount):
+    #     self._stripe_is_paid = True
+    #     self._stripe_total_paid = amount
+    #     self.save()
 
 
 class Photo(CleanSaveMixin, models.Model):
