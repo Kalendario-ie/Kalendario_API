@@ -443,8 +443,8 @@ class Config(CleanSaveMixin, models.Model):
 
     @property
     def can_receive_card_payments(self):
-        return (hasattr(self.owner, 'stripeconnectedaccount')
-                and self.owner.stripeconnectedaccount.is_stripe_enabled
+        return (hasattr(self.owner, 'account')
+                and self.owner.account.is_stripe_enabled
                 and self.allow_card_payment)
 
     @property
