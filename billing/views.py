@@ -12,21 +12,21 @@ from . import serializers, models
 from .stripe_hook_handlers import handlers
 
 
-class StripeViewSet(mixins.WithPermissionsMixin,
-                    mixins.AuthOwnerFilterMixin,
-                    viewsets.RetrieveModelMixin,
-                    viewsets.GenericViewSet):
+class AccountViewSet(mixins.WithPermissionsMixin,
+                     mixins.AuthOwnerFilterMixin,
+                     viewsets.RetrieveModelMixin,
+                     viewsets.GenericViewSet):
     serializer_class = serializers.StripeConnectedAccountSerializer
-    queryset = models.StripeAccount.objects.all()
+    queryset = models.Account.objects.all()
     lookup_field = 'owner_id'
 
     @action(detail=True, methods=['post'])
-    def url(self, request, *args, **kwargs):
+    def connect(self, request, *args, **kwargs):
         instance = self.get_object()
         try:
             origin = self.request.headers.get('origin', '')
             return_url = origin + '/admin/home'
-            refresh_url = origin + reverse('company-stripe-detail', kwargs={self.lookup_field: instance.id})
+            refresh_url = origin + reverse('billing-account-detail', kwargs={self.lookup_field: instance.id})
             account_link_url = stripe_helpers.generate_account_link(instance.stripe_id, refresh_url, return_url)
             return Response({'url': account_link_url})
         except Exception as e:

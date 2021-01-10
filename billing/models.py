@@ -32,7 +32,7 @@ class Subscription(models.Model):
         return self.current_period_end > datetime.now()
 
 
-class StripeAccount(models.Model):
+class Account(models.Model):
     stripe_id = models.CharField(max_length=255, unique=True, null=True)
     owner = models.OneToOneField(Company, on_delete=models.CASCADE)
     details_submitted = models.BooleanField(default=False)

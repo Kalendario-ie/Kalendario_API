@@ -12,20 +12,20 @@ class TestStripeViewSet(APITestCase):
 
     fixtures = ['companies.json', 'users.json']
 
-    def list_detail_post_results(self, owner_id):
-        detail_url = reverse('company-stripe-detail', kwargs={'owner_id': owner_id})
+    def detail_post_results(self, owner_id):
+        detail_url = reverse('billing-account-detail', kwargs={'owner_id': owner_id})
         get_detail = self.client.get(detail_url, format='json')
         post = self.client.post(detail_url + 'url/', format='json')
         return get_detail, post
 
     def test_list_url_does_not_exist(self):
-        self.assertRaises(NoReverseMatch, reverse, 'company-stripe-list')
+        self.assertRaises(NoReverseMatch, reverse, 'billing-account-list')
 
     def test_anonymous_users_access(self):
         """
         Anonymous users should have no access
         """
-        get_detail, post = self.list_detail_post_results(1)
+        get_detail, post = self.detail_post_results(1)
 
         self.assertEqual(get_detail.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(post.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -37,7 +37,7 @@ class TestStripeViewSet(APITestCase):
         user = User.objects.get(pk=1)
 
         self.client.force_authenticate(user)
-        get_detail, post = self.list_detail_post_results(1)
+        get_detail, post = self.detail_post_results(1)
 
         self.assertEqual(get_detail.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(post.status_code, status.HTTP_403_FORBIDDEN)
@@ -48,10 +48,10 @@ class TestStripeViewSet(APITestCase):
         """
 
         user = User.objects.get(pk=1)
-        user.add_permissions(models.StripeAccount)
+        user.add_permissions(models.Account)
 
         self.client.force_authenticate(user)
-        get_detail, post = self.list_detail_post_results(1)
+        get_detail, post = self.detail_post_results(1)
 
         self.assertEqual(get_detail.status_code, status.HTTP_200_OK)
         self.assertEqual(post.status_code, status.HTTP_200_OK)
@@ -61,10 +61,10 @@ class TestStripeViewSet(APITestCase):
         A user should not be able to access the view when trying to see a different company
         """
         user = User.objects.get(pk=1)
-        user.add_permissions(models.StripeAccount)
+        user.add_permissions(models.Account)
 
         self.client.force_authenticate(user)
-        get_detail, post = self.list_detail_post_results(2)
+        get_detail, post = self.detail_post_results(2)
 
         self.assertEqual(get_detail.status_code, status.HTTP_404_NOT_FOUND)
         self.assertEqual(post.status_code, status.HTTP_404_NOT_FOUND)
