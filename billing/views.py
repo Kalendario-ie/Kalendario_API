@@ -5,11 +5,15 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-
-from kalendario import settings
+import logging
+from django.conf import settings
 from kalendario.common import viewsets, mixins, stripe_helpers
 from . import serializers, models
 from .stripe_hook_handlers import handlers
+
+
+logger = logging.getLogger(__name__)
+STRIPE_WEBHOOK_SECRET = getattr(settings, 'STRIPE_WEBHOOK_SECRET', '')
 
 
 class AccountViewSet(mixins.WithPermissionsMixin,
@@ -42,13 +46,21 @@ def stripe_hook(request):
     422 if the event type has no handler
     404 if the event doesn't belong to a know entity
     """
-    endpoint_secret = getattr(settings, 'STRIPE_WEBHOOK_SECRET', '')
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+
     try:
-        event = stripe_helpers.stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
+        event = stripe_helpers.stripe.Webhook.construct_event(payload, sig_header, STRIPE_WEBHOOK_SECRET)
     except ValueError as e:
+        # Invalid payload
         return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+    except stripe_helpers.stripe.webhook.error.SignatureVerificationError as e:
+        # Invalid signature
+        logger.error('Invalid Stripe signature')
+        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+
+    print(event.type)
 
     handler = handlers.get(event.type)
 
