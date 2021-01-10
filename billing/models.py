@@ -54,6 +54,13 @@ class Account(models.Model):
             return []
         return self.json_decoder.decode(self.requirements_currently_due)
 
+    @property
+    def require_connect(self):
+        """
+        Returns true if the user is required to connect to stripe to provide extra information.
+        """
+        return self.requirements_disabled_reason is not None
+
     def update_stripe_fields(self, stripe_act):
         self.details_submitted = stripe_act.details_submitted
         self.charges_enabled = stripe_act.charges_enabled

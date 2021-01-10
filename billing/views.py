@@ -20,7 +20,7 @@ class AccountViewSet(mixins.WithPermissionsMixin,
                      mixins.AuthOwnerFilterMixin,
                      viewsets.RetrieveModelMixin,
                      viewsets.GenericViewSet):
-    serializer_class = serializers.StripeConnectedAccountSerializer
+    serializer_class = serializers.AccountSerializer
     queryset = models.Account.objects.all()
     lookup_field = 'owner_id'
 
