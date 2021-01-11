@@ -178,5 +178,10 @@ def create_payment_intent(request):
                                application_fee_amount=request.fee_int)
 
 
+def update_payment_intent(intent):
+    return StripePaymentIntent(stripe_id='test_id', client_secret='', amount=intent.request.total_int,
+                               application_fee_amount=intent.request.fee_int)
+
+
 def generate_account_link(account_id, refresh_url, return_url):
     return 'account_link.url_'

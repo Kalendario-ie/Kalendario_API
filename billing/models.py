@@ -6,6 +6,7 @@ from scheduling.models import Company, Request
 from datetime import datetime
 from . import managers
 
+
 class BillingCustomer(models.Model):
     stripe_id = models.CharField(max_length=255, unique=True, null=True)
 

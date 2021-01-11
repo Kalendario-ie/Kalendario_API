@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
 from rest_framework import status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, authentication_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 import logging
@@ -35,20 +35,24 @@ class AccountViewSet(mixins.WithPermissionsMixin,
 
 
 @csrf_exempt
-@require_POST
-def get_payment_intent(request):
-    payload = request.body
+@api_view(['POST'])
+@authentication_classes([IsAuthenticated])
+def payment_intent(request):
+    request_id = request.data.get('request_id')
 
-    pi, created = models.PaymentIntent.objects.get_or_create(payload['request_id'])
+    if request_id is None:
+        return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-    if request.user and request.user.id != pi.user.id:
+    pi, created = models.PaymentIntent.objects.get_or_create(request_id)
+
+    if request.user.id != pi.user.id:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     return Response({'clientSecret': pi.client_secret})
 
 
 @csrf_exempt
-@require_POST
+@api_view(['POST'])
 def stripe_hook(request):
     """
     Returns 200 if everything went ok

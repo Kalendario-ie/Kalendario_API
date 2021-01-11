@@ -8,5 +8,5 @@ router.register(r'accounts', views.AccountViewSet, 'billing-account')
 urlpatterns = [
     path(r'', include(router.urls)),
     path(r'stripe/', views.stripe_hook, name='stripe-webhook'),
-    path(r'payment/', views.get_payment_intent, name='stripe-webhook'),
+    path(r'payment/', views.payment_intent, name='stripe-payment'),
 ]

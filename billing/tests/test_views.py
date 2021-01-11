@@ -6,10 +6,11 @@ from rest_framework.test import APITestCase
 from billing import models
 
 from core.models import User
+from scheduling.models import Request
+from util import test_util
 
 
 class TestStripeViewSet(APITestCase):
-
     fixtures = ['companies.json', 'users.json']
 
     def detail_post_results(self, owner_id):
@@ -68,3 +69,19 @@ class TestStripeViewSet(APITestCase):
 
         self.assertEqual(get_detail.status_code, status.HTTP_404_NOT_FOUND)
         self.assertEqual(post.status_code, status.HTTP_404_NOT_FOUND)
+
+
+class TestPaymentIntentView(APITestCase):
+    fixtures = ['companies.json', 'users.json', 'services.json', 'timeframes.json', 'shifts.json',
+                'schedules.json', 'people.json', 'employees.json']
+
+    def test_intent_created(self):
+        request = Request.objects.get_current(1, 3)
+        user = User.objects.get(pk=3)
+        request.add_appointment(user, service_id=1, employee_id=1, owner_id=1,
+                                start=test_util.next_wednesday().replace(hour=9, minute=00))
+
+        self.client.force_authenticate(user)
+        intent_result = self.client.post(reverse('stripe-payment'), data={'request_id': request.id})
+
+        self.assertEqual(intent_result.status_code, status.HTTP_200_OK)
