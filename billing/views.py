@@ -1,8 +1,8 @@
-from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
-from rest_framework.decorators import action, api_view, authentication_classes
+from rest_framework.decorators import action, api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 import logging
@@ -36,7 +36,8 @@ class AccountViewSet(mixins.WithPermissionsMixin,
 
 @csrf_exempt
 @api_view(['POST'])
-@authentication_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def payment_intent(request):
     request_id = request.data.get('request_id')
 
@@ -68,18 +69,18 @@ def stripe_hook(request):
         event = stripe.helpers.construct_event(payload, sig_header)
     except ValueError as e:
         # Invalid payload
-        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
     except stripe.helpers.SignatureVerificationError as e:
         # Invalid signature
         logger.error('Invalid Stripe signature')
-        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     handler = stripe.hook_handler.StripeHookHandler(event)
 
     if handler.invalid_event:
-        return HttpResponse(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
     if not handler.handle():
-        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
-    return HttpResponse(status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_200_OK)
