@@ -1,6 +1,5 @@
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
-from rest_framework.decorators import action, api_view, authentication_classes, permission_classes
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
@@ -13,7 +12,6 @@ import logging
 
 ACCOUNT_WEBHOOK_SECRET = getattr(settings, 'ACCOUNT_WEBHOOK_SECRET', '')
 CONNECTED_ACCOUNT_WEBHOOK_SECRET = getattr(settings, 'CONNECTED_ACCOUNT_WEBHOOK_SECRET', '')
-
 
 logger = logging.getLogger(__name__)
 
@@ -39,22 +37,21 @@ class AccountViewSet(mixins.WithPermissionsMixin,
             return Response(data={'error': str(e)}, status=status.HTTP_403_FORBIDDEN)
 
 
-@csrf_exempt
-@api_view(['POST'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def payment_intent(request):
-    request_id = request.data.get('request_id')
+class PaymentIntentView(viewsets.GenericViewSet):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
-    if request_id is None:
-        return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    queryset = models.Request.objects.all()
+    serializer_class = serializers.PaymentIntentSecretSerializer
 
-    pi, created = models.PaymentIntent.objects.get_or_create(request_id)
+    def get_queryset(self, **kwargs):
+        return models.Request.objects.filter(user_id=self.request.user.id)
 
-    if request.user.id != pi.user.id:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    return Response({'clientSecret': pi.client_secret})
+    def update(self, request, *args, **kwargs):
+        request = self.get_object()
+        pi, created = models.PaymentIntent.objects.get_or_create(request.id)
+        serializer = self.get_serializer(pi)
+        return Response(serializer.data)
 
 
 class ConnectedAccountHookView(views.StripeHookView):

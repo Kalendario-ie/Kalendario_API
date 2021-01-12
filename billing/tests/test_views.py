@@ -83,7 +83,8 @@ class TestPaymentIntentView(APITestCase):
                                 start=test_util.next_wednesday().replace(hour=9, minute=00))
 
         self.client.force_authenticate(user)
-        intent_result = self.client.post(reverse('stripe-payment'), data={'request_id': request.id})
+        detail_url = reverse('payment-detail', kwargs={'pk': request.id})
+        intent_result = self.client.put(detail_url)
 
         self.assertEqual(intent_result.status_code, status.HTTP_200_OK)
 

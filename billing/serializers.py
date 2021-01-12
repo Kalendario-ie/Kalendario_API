@@ -7,3 +7,9 @@ class AccountSerializer(serializers.ModelSerializer):
         model = models.Account
         fields = ('id', 'details_submitted', 'charges_enabled', 'payouts_enabled',
                   'default_currency', 'currently_due', 'require_connect')
+
+
+class PaymentIntentSecretSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.PaymentIntent
+        fields = ('client_secret', )

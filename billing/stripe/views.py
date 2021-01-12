@@ -9,7 +9,7 @@ class StripeHookView(APIView):
     hook_secret = None
     hook_handler_class = None
 
-    def post(self, request, event):
+    def post(self, request, event, *args, **kwargs):
         """
         Returns 200 if everything went ok
         422 if the event type has no handler
