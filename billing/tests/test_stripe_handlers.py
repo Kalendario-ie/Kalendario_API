@@ -1,9 +1,9 @@
 import json
 from django.test import TestCase
 from billing import models
-from billing.stripe.hook_handler import StripeHookHandler
+from billing.stripe.hook_handler import AccountHookHandler, ConnectedAccountHookHandler
 from types import SimpleNamespace
-from scheduling.models import Request, Service, Employee
+from scheduling.models import Request
 from core.models import User
 from util import test_util
 
@@ -30,7 +30,7 @@ class TestStripeWebhookHandler(TestCase):
         requirements = event_account.requirements
         event_account.id = stripe_account.stripe_id
 
-        handler_result = StripeHookHandler(event).handle()
+        handler_result = ConnectedAccountHookHandler(event).handle()
         updated_account = models.Account.objects.get(pk=stripe_account.id)
 
         self.assertEqual(updated_account.currently_due, requirements.currently_due)
@@ -47,7 +47,7 @@ class TestStripeWebhookHandler(TestCase):
         intent.stripe_id = event.data.object.id
         intent.save()
 
-        handler_result = StripeHookHandler(event).handle()
+        handler_result = AccountHookHandler(event).handle()
         intent = models.PaymentIntent.objects.get(pk=intent.id)
 
         self.assertTrue(intent.paid)

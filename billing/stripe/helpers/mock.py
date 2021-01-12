@@ -1,7 +1,34 @@
+import json
 import uuid
 from collections import namedtuple
+from types import SimpleNamespace
 
 from stripe.error import InvalidRequestError
+
+
+def file_to_object(file_name):
+    file = open(file_name)
+    return json.load(file, object_hook=lambda d: SimpleNamespace(**d))
+
+
+def get_account_updated_event(*args, **kwargs):
+    return file_to_object('billing/fixtures/stripe_event_account_updated.json')
+
+
+def get_intent_succeeded_event(*args, **kwargs):
+    return file_to_object('billing/fixtures/payment_intent_succeeded.json')
+
+
+def get_payment_intent(*args, **kwargs):
+    return get_intent_succeeded_event().data.object
+
+
+def get_account(*args, **kwargs):
+    return get_account_updated_event().data.object
+
+
+def raise_value_error(*args, **kwargs):
+    raise ValueError
 
 
 class StripeMock:
@@ -170,18 +197,22 @@ def create_account(company):
     return StripeConnectedAccountMock()
 
 
-StripePaymentIntent = namedtuple('MyStruct', 'stripe_id  client_secret amount application_fee_amount')
+StripePaymentIntent = namedtuple('MyStruct', 'id  client_secret amount application_fee_amount')
 
 
 def create_payment_intent(request):
-    return StripePaymentIntent(stripe_id='test_id', client_secret='', amount=request.total_int,
+    return StripePaymentIntent(id='test_id', client_secret='', amount=request.total_int,
                                application_fee_amount=request.fee_int)
 
 
 def update_payment_intent(intent):
-    return StripePaymentIntent(stripe_id='test_id', client_secret='', amount=intent.request.total_int,
+    return StripePaymentIntent(id='test_id', client_secret='', amount=intent.request.total_int,
                                application_fee_amount=intent.request.fee_int)
 
 
 def generate_account_link(account_id, refresh_url, return_url):
     return 'account_link.url_'
+
+
+def construct_event(payload, sig_header, hook_secret):
+    return get_account_updated_event()

@@ -81,7 +81,7 @@ class PaymentIntent(models.Model):
     amount = models.FloatField(default=0)
     amount_received = models.FloatField(default=0)
 
-    objects = managers.RequestManager()
+    objects = managers.PaymentIntentManager()
 
     @property
     def account(self):
@@ -96,10 +96,10 @@ class PaymentIntent(models.Model):
         return self.user.billingusercustomer
 
     def update_stripe_fields(self, stripe_intent):
-        self.stripe_id = stripe_intent.stripe_id
+        self.stripe_id = stripe_intent.id
         self.client_secret = stripe_intent.client_secret
-        self.amount = stripe_intent.amount
-        self.application_fee_amount = stripe_intent.application_fee_amount
+        self.amount = stripe_intent.amount or 0
+        self.application_fee_amount = stripe_intent.application_fee_amount or 0
         self.save()
 
     def payment_succeeded(self, stripe_intent):

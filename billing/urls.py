@@ -7,6 +7,7 @@ router.register(r'accounts', views.AccountViewSet, 'billing-account')
 
 urlpatterns = [
     path(r'', include(router.urls)),
-    path(r'stripe/', views.stripe_hook, name='stripe-webhook'),
+    path(r'connected-acccount-hooks/', views.ConnectedAccountHookView.as_view(), name='connected-webhook'),
+    path(r'account-hooks/', views.AccountHookView.as_view(), name='account-webhook'),
     path(r'payment/', views.payment_intent, name='stripe-payment'),
 ]

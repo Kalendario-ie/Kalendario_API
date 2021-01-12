@@ -2,9 +2,10 @@ from django.urls.exceptions import NoReverseMatch
 from rest_framework.reverse import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from unittest.mock import patch
 
 from billing import models
-
+from billing.stripe.helpers import mock
 from core.models import User
 from scheduling.models import Request
 from util import test_util
@@ -85,3 +86,88 @@ class TestPaymentIntentView(APITestCase):
         intent_result = self.client.post(reverse('stripe-payment'), data={'request_id': request.id})
 
         self.assertEqual(intent_result.status_code, status.HTTP_200_OK)
+
+
+class TestAccountHookView(APITestCase):
+    fixtures = ['companies.json', 'users.json', 'services.json', 'timeframes.json', 'shifts.json',
+                'schedules.json', 'people.json', 'employees.json']
+
+    @patch('billing.stripe.helpers.construct_event', side_effect=mock.get_account_updated_event)
+    def test_invalid_event(self, mock_func):
+        result = self.client.post(reverse('account-webhook'), data={}, HTTP_STRIPE_SIGNATURE='test')
+
+        self.assertTrue(mock_func.called)
+        self.assertEqual(mock_func.call_count, 1)
+        self.assertEqual(result.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    @patch('billing.stripe.helpers.construct_event', side_effect=mock.raise_value_error)
+    def test_construct_event_throwing_error(self, mock_func):
+        result = self.client.post(reverse('account-webhook'), data={}, HTTP_STRIPE_SIGNATURE='test')
+
+        self.assertTrue(mock_func.called)
+        self.assertEqual(mock_func.call_count, 1)
+        self.assertEqual(result.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @patch('billing.stripe.helpers.construct_event', side_effect=mock.get_intent_succeeded_event)
+    def test_valid_event_without_database_object(self, mock_func):
+        intent_result = self.client.post(reverse('account-webhook'), data={}, HTTP_STRIPE_SIGNATURE='test')
+
+        self.assertTrue(mock_func.called)
+        self.assertEqual(mock_func.call_count, 1)
+        self.assertEqual(intent_result.status_code, status.HTTP_404_NOT_FOUND)
+
+    @patch('billing.stripe.helpers.construct_event', side_effect=mock.get_intent_succeeded_event)
+    @patch('billing.stripe.helpers.create_payment_intent', side_effect=mock.get_payment_intent)
+    def test_valid_event_database_link(self, mock_construct, mock_create):
+        request = Request.objects.get_current(1, 3)
+        intent, created = models.PaymentIntent.objects.get_or_create(request.id)
+
+        result = self.client.post(reverse('account-webhook'), data={}, HTTP_STRIPE_SIGNATURE='test')
+
+        self.assertTrue(mock_construct.called)
+        self.assertEqual(mock_construct.call_count, 1)
+        self.assertTrue(mock_create.called)
+        self.assertEqual(mock_create.call_count, 1)
+        self.assertEqual(result.status_code, status.HTTP_200_OK)
+
+
+class TestConnectedAccountHookView(APITestCase):
+    fixtures = ['companies.json', 'users.json', 'services.json', 'timeframes.json', 'shifts.json',
+                'schedules.json', 'people.json', 'employees.json']
+
+    @patch('billing.stripe.helpers.construct_event', side_effect=mock.get_intent_succeeded_event)
+    def test_invalid_event(self, mock_func):
+        result = self.client.post(reverse('connected-webhook'), data={}, HTTP_STRIPE_SIGNATURE='test')
+
+        self.assertTrue(mock_func.called)
+        self.assertEqual(mock_func.call_count, 1)
+        self.assertEqual(result.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    @patch('billing.stripe.helpers.construct_event', side_effect=mock.raise_value_error)
+    def test_construct_event_throwing_error(self, mock_func):
+        result = self.client.post(reverse('connected-webhook'), data={}, HTTP_STRIPE_SIGNATURE='test')
+
+        self.assertTrue(mock_func.called)
+        self.assertEqual(mock_func.call_count, 1)
+        self.assertEqual(result.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @patch('billing.stripe.helpers.construct_event', side_effect=mock.get_account_updated_event)
+    def test_valid_event_without_database_object(self, mock_func):
+        result = self.client.post(reverse('connected-webhook'), data={}, HTTP_STRIPE_SIGNATURE='test')
+
+        self.assertTrue(mock_func.called)
+        self.assertEqual(mock_func.call_count, 1)
+        self.assertEqual(result.status_code, status.HTTP_404_NOT_FOUND)
+
+    @patch('billing.stripe.helpers.construct_event', side_effect=mock.get_account_updated_event)
+    def test_valid_event_database_link(self, mock_construct):
+        event_account = mock.get_account()
+        account = models.Account.objects.first()
+        account.stripe_id = event_account.id
+        account.save()
+
+        result = self.client.post(reverse('connected-webhook'), data={}, HTTP_STRIPE_SIGNATURE='test')
+
+        self.assertTrue(mock_construct.called)
+        self.assertEqual(mock_construct.call_count, 1)
+        self.assertEqual(result.status_code, status.HTTP_200_OK)

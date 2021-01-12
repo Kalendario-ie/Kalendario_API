@@ -2,7 +2,7 @@ from django.db import models
 from billing.stripe import helpers
 
 
-class RequestManager(models.Manager):
+class PaymentIntentManager(models.Manager):
 
     def get_or_create(self, request_id):
         intent, created = super().get_or_create(request_id=request_id)

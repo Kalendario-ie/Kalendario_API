@@ -6,7 +6,6 @@ stripe.api_key = getattr(settings, 'STRIPE_API_KEY', '')
 stripe.api_version = getattr(settings, 'STRIPE_API_VERSION', '')
 publishable_key = getattr(settings, 'STRIPE_PUBLISHABLE_KEY', '')
 price_id = getattr(settings, 'STRIPE_SUBSCRIPTION_PRICE_ID', '')
-STRIPE_WEBHOOK_SECRET = getattr(settings, 'STRIPE_WEBHOOK_SECRET', '')
 
 
 def create_account(company):
@@ -78,5 +77,5 @@ def create_subscription(customer_id):
     )
 
 
-def construct_event(payload, sig_header):
-    return stripe.Webhook.construct_event(payload, sig_header, STRIPE_WEBHOOK_SECRET)
+def construct_event(payload, sig_header, hook_secret):
+    return stripe.Webhook.construct_event(payload, sig_header, hook_secret)
