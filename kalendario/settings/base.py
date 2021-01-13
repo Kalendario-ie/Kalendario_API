@@ -17,13 +17,44 @@ if os.path.isfile(dotenv_file):
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'djas139das$%@#*()dasd132173nsads1sbdascl')
 
+# Application definition
+INSTALLED_APPS = [
+    'scheduling.apps.SchedulingConfig',
+    'customers.apps.CustomersConfig',
+    'core.apps.CoreConfig',
+    'app_auth.apps.AuthConfig',
+    'billing.apps.BillingConfig',
 
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+
+    'corsheaders',
+
+    # cloudinary image uploader
+    'cloudinary',
+    'simple_history',
+    'safedelete',
+]
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
@@ -45,39 +76,6 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'kalendario.common.handlers.custom_exception_handler'
 
 }
-
-# Application definition
-INSTALLED_APPS = [
-    'scheduling.apps.SchedulingConfig',
-    'customers.apps.CustomersConfig',
-    'core.apps.CoreConfig',
-    'app_auth.apps.AuthConfig',
-    'billing.apps.BillingConfig',
-
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
-
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'rest_auth.registration',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-
-    'corsheaders',
-
-    # cloudinary image uploader
-    'cloudinary',
-    'simple_history',
-    'safedelete',
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -146,6 +144,8 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'app_auth.serializers.UserSerializer',
 }
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'kalendario-auth'
 
 OLD_PASSWORD_FIELD_ENABLED = True
 
