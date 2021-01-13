@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.views.generic import TemplateView
@@ -11,7 +10,7 @@ urlpatterns = [
     path(r'account-confirm-email/', TemplateView.as_view(template_name='home.html'),
          name='account_email_verification_sent'),
 
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('api/auth/', include('app_auth.urls')),
     path('api/admin/', include('scheduling.urls')),
     path('api/billing/', include('billing.urls')),
