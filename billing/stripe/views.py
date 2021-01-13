@@ -1,11 +1,11 @@
 from rest_framework import status
-from rest_framework.authentication import BasicAuthentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from billing.stripe.authentication import StripeAuthentication
 
 
 class StripeHookView(APIView):
-    authentication_classes = (BasicAuthentication,)
+    permission_classes = (StripeAuthentication, )
     hook_secret = None
     hook_handler_class = None
 
