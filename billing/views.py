@@ -1,7 +1,6 @@
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from kalendario.common import viewsets, mixins
@@ -37,8 +36,8 @@ class AccountViewSet(mixins.WithPermissionsMixin,
             return Response(data={'error': str(e)}, status=status.HTTP_403_FORBIDDEN)
 
 
-class PaymentIntentView(viewsets.GenericViewSet):
-    authentication_classes = [TokenAuthentication]
+class PaymentIntentView(mixins.RequireAuthMixin,
+                        viewsets.GenericViewSet):
     permission_classes = [IsAuthenticated]
 
     queryset = models.Request.objects.all()
