@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 class AccountViewSet(mixins.WithPermissionsMixin,
                      mixins.AuthOwnerFilterMixin,
-                     viewsets.RetrieveModelMixin,
+                     mixins.RetrieveModelMixin,
                      viewsets.GenericViewSet):
     serializer_class = serializers.AccountSerializer
     queryset = models.Account.objects.all()

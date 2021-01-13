@@ -13,19 +13,3 @@ class ModelViewSet(RenderParserPaginationMixin, drf.ModelViewSet):
 
 class ReadOnlyModelViewSet(RenderParserPaginationMixin, drf.ReadOnlyModelViewSet):
     pass
-
-
-class ReadCreateOnlyModelViewSet(RenderParserPaginationMixin,
-                                 drf.CreateModelMixin,
-                                 drf.ReadOnlyModelViewSet):
-    pass
-
-
-class RetrieveUpdateModelViewSet(drf.RetrieveModelMixin,
-                                 drf.UpdateModelMixin,
-                                 GenericViewSet):
-    pass
-
-
-class RetrieveModelMixin(drf.RetrieveModelMixin):
-    pass

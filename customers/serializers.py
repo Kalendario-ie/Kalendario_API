@@ -165,6 +165,3 @@ class RequestWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Request
         fields = ('id', 'customer_notes')
-
-    def save(self, **kwargs):
-        return serializers.ModelSerializer.save(self, **kwargs, complete=True)

@@ -1,3 +1,5 @@
+from drf_rw_serializers import viewsets as drf
+
 from kalendario.common.pagination import StandardResultsSetPagination
 
 from rest_framework.authentication import TokenAuthentication
@@ -45,3 +47,11 @@ class QuerysetSerializerMixin:
         serializer = self.get_queryset_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         return serializer.validated_data
+
+
+class UpdateModelMixin(drf.UpdateModelMixin):
+    pass
+
+
+class RetrieveModelMixin(drf.RetrieveModelMixin):
+    pass

@@ -13,9 +13,12 @@ from scheduling import models
 from kalendario.common import viewsets
 
 
-class RequestViewSet(mixins.QuerysetSerializerMixin, viewsets.ReadOnlyModelViewSet):
+class RequestViewSet(mixins.QuerysetSerializerMixin,
+                     mixins.UpdateModelMixin,
+                     viewsets.ReadOnlyModelViewSet):
     authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.RequestReadSerializer
+    write_serializer_class = serializers.RequestWriteSerializer
 
     def get_queryset_serializer_class(self):
         if self.action in ['current']:
@@ -69,7 +72,7 @@ class RequestViewSet(mixins.QuerysetSerializerMixin, viewsets.ReadOnlyModelViewS
         instance = self.get_object()
         serializer = serializers.RequestWriteSerializer(instance, data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(complete=True)
         message = instance.owner.config.post_book_email_message
         mail.send_mail('Request Submitted', message, [request.user.email])
         read_serializer = self.get_read_serializer(instance)
