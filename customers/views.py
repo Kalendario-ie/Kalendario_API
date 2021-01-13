@@ -1,5 +1,4 @@
 from rest_framework import status
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
@@ -14,9 +13,9 @@ from kalendario.common import viewsets
 
 
 class RequestViewSet(mixins.QuerysetSerializerMixin,
+                     mixins.RequireAuthMixin,
                      mixins.UpdateModelMixin,
                      viewsets.ReadOnlyModelViewSet):
-    authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.RequestReadSerializer
     write_serializer_class = serializers.RequestWriteSerializer
 

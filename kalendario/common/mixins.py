@@ -2,8 +2,8 @@ from drf_rw_serializers import viewsets as drf
 
 from kalendario.common.pagination import StandardResultsSetPagination
 
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
+from dj_rest_auth.jwt_auth import JWTCookieAuthentication
+from rest_framework.permissions import IsAuthenticated
 from . import filters, permissions
 from djangorestframework_camel_case.util import underscoreize
 
@@ -12,8 +12,11 @@ class RenderParserPaginationMixin:
     pagination_class = StandardResultsSetPagination
 
 
-class AuthOwnerFilterMixin:
-    authentication_classes = (TokenAuthentication,)
+class RequireAuthMixin:
+    authentication_classes = (JWTCookieAuthentication, )
+
+
+class AuthOwnerFilterMixin(RequireAuthMixin):
     filter_backends = [filters.OwnerFilter]
 
     def get_write_serializer(self, *args, **kwargs):

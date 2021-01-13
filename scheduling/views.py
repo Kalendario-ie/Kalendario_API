@@ -4,7 +4,6 @@ from cloudinary import CloudinaryResource
 from django.db.models import Q
 
 from rest_framework import status
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -115,7 +114,6 @@ class AppointmentViewSet(mixins.WithPermissionsMixin,
                          mixins.AuthOwnerFilterMixin,
                          mixins.QuerysetSerializerMixin,
                          viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication,)
     read_serializer_class = serializers.AppointmentReadSerializer
     queryset_serializer_class = serializers.AppointmentQuerySerlializer
 
