@@ -11,9 +11,9 @@ def next_monday():
     return today + timedelta(7 - today.weekday())
 
 
-def next_tuesday():
+def next_tuesday(modifier=0):
     today = datetime.now()
-    return today + timedelta(8 - today.weekday())
+    return today + timedelta(8 - today.weekday()) + timedelta(modifier)
 
 
 def next_wednesday():
@@ -50,27 +50,16 @@ def reject_appointment(appointment):
     appointment.save()
 
 
-def book_appointment(employee, customer, start, service=None, end=None, ignore_availability=False):
+def book_appointment(employee, customer=None, start=None, service=None, end=None, ignore_availability=False):
     if service is not None:
         end = start + service.duration
-        print('Booking a {time} service appointment on {date}'.format(time=service.duration, date=start))
-    else:
-        print('Booking a self appointment on {date}'.format(date=start))
-    try:
-        appointment = Appointment.objects.create(start=start,
-                                                 end=end,
-                                                 service=service,
-                                                 customer=customer,
-                                                 employee=employee,
-                                                 owner=employee.owner,
-                                                 ignore_availability=ignore_availability)
-    except Exception as e:
-        print('failed to create appointment: ' + str(e), end='\n\n')
-        raise
-
-    print('appointment created: ' + str(appointment), end='\n\n')
-
-    return appointment
+    return Appointment.objects.create(start=start,
+                                      end=end,
+                                      service=service,
+                                      customer=customer,
+                                      employee=employee,
+                                      owner=employee.owner,
+                                      ignore_availability=ignore_availability)
 
 
 def company_1_master_group():

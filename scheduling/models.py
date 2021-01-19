@@ -122,7 +122,15 @@ class Employee(Person):
         return self.schedule.get_availability(date)
 
     def confirmed_appointments(self, start, end):
-        appointments = self.service_provided.filter(start__gte=start, start__lte=end)
+        """
+        Given a star and end date this method will return
+        - appointments that have their start date between this range
+        - Appointments that have their start before this start and end after the end
+        """
+        start_between = [*self.service_provided.filter(start__gte=start, start__lte=end)]
+        start_before_ends_after = [*self.service_provided.filter(start__lte=start, end__gte=end)]
+        # appointments = [*start_between, *start_before_ends_after]
+        appointments = start_between + start_before_ends_after
         return [appointment for appointment in appointments if appointment.is_active()]
 
     # To be available the times must fit inside a frame and not overlap existing appointments

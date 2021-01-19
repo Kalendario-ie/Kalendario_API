@@ -96,3 +96,13 @@ class SlotTest(TestCaseWF):
     def test_get_without_employee(self):
         slots = self.get_slots(util.next_tuesday())
         self.assertEqual(len(slots), 14)
+
+    def test_get_inside_locked_period(self):
+        """
+        When an employee has a locked period that ranges for days, no slots should be retrieved for the full range.
+        """
+        lock = util.book_appointment(self.emp,
+                                     start=util.next_tuesday().replace(hour=9, minute=15),
+                                     end=util.next_tuesday(7).replace(hour=9, minute=15))
+        slots = self.get_slots_for_emp(util.next_wednesday())
+        self.assertEqual(len(slots), 0)

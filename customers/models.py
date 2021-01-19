@@ -58,6 +58,8 @@ def get_availability(employee: Employee, customer, start, end):
     for appointment in appointments:
         for i in range(len(slots)):
             slot = slots[i]
+            if appointment.start <= slot.start and appointment.end >= slot.end:
+                slots = slots[:i] + slots[i + 1:]
             if appointment.start >= slot.start and appointment.end <= slot.end:
                 slots = slots[:i] + [Slot(slot.start, appointment.start),
                                      Slot(appointment.end, slot.end)] + slots[i + 1:]
