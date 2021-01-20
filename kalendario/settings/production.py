@@ -22,7 +22,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), logging=False)
-del DATABASES['default']['OPTIONS']['sslmode']
 
 LOGGING = {
     'version': 1,
