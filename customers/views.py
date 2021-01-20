@@ -2,14 +2,13 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
-
-from kalendario.common import mixins, mail
+from kalendario.common import mixins, mail, viewsets
 from customers.models import get_availability_for_service
 from customers import serializers
-
 from scheduling import models
 
-from kalendario.common import viewsets
+import logging
+logger = logging.getLogger(__name__)
 
 
 class RequestViewSet(mixins.QuerysetSerializerMixin,
@@ -73,7 +72,10 @@ class RequestViewSet(mixins.QuerysetSerializerMixin,
         serializer.is_valid(raise_exception=True)
         serializer.save(complete=True)
         message = instance.owner.config.post_book_email_message
-        mail.send_mail('Request Submitted', message, [request.user.email])
+        try:
+            mail.send_mail('Request Submitted', message, [request.user.email])
+        except Exception as e:
+            logger.error(f'could not email user {request.user.email}: {e}')
         read_serializer = self.get_read_serializer(instance)
         return Response(read_serializer.data, status=status.HTTP_200_OK)
 
