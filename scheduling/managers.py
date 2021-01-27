@@ -2,6 +2,7 @@ import datetime
 from django.core.exceptions import ValidationError
 from django.db import models
 from safedelete.models import SafeDeleteManager
+from django.db.models import Q
 
 
 class AppointmentManager(SafeDeleteManager):
@@ -21,6 +22,23 @@ class AppointmentManager(SafeDeleteManager):
 
     def requests(self):
         return self.get_queryset().filter(status='P')
+
+    def active(self):
+        return self.get_queryset().filter(~Q(status='R'))
+
+    def overlapping(self, start, end, exclude_id=None, **kwargs):
+        """
+        Given a start and end date this method will appointments that overlaps with the date range
+        - appointments that have their start date between this range
+        - appointments that have their end date between this range
+        - Appointments that have their start before this start and end after the end
+        """
+        query = self.active().filter(Q(start__gte=start, start__lt=end) |  # starts between
+                                     Q(end__gt=start, end__lte=end) |  # ends between
+                                     Q(start__lte=start, end__gte=end))  # starts before and ends after
+        if exclude_id:
+            query = query.filter(~Q(id=exclude_id))
+        return query.filter(**kwargs)
 
 
 class RequestManager(models.Manager):

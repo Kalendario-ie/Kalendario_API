@@ -21,6 +21,10 @@ class TimeFrame(CleanSaveMixin, models.Model):
     end = models.TimeField()
     shift = models.ForeignKey('Shift', on_delete=models.CASCADE)
 
+    def is_beyond(self, start, end):
+        """Returns true is the start/end time provided is between the frames start/end time"""
+        return start >= self.start and end <= self.end
+
     def __str__(self):
         return str(self.id) + ' start: ' + self.start.__str__() + ', end: ' + self.end.__str__()
 
@@ -117,42 +121,27 @@ class Employee(Person):
         return self.services.filter(id=service.id).first() is not None
 
     def get_availability(self, date):
-        if self.schedule is None:
-            return []
-        return self.schedule.get_availability(date)
+        """Returns the employee's time frames for the date provided"""
+        return [] if self.schedule is None else self.schedule.get_availability(date)
 
     def confirmed_appointments(self, start, end):
-        """
-        Given a star and end date this method will return
-        - appointments that have their start date between this range
-        - Appointments that have their start before this start and end after the end
-        """
-        start_between = [*self.service_provided.filter(start__gte=start, start__lte=end)]
-        start_before_ends_after = [*self.service_provided.filter(start__lte=start, end__gte=end)]
-        # appointments = [*start_between, *start_before_ends_after]
-        appointments = start_between + start_before_ends_after
-        return [appointment for appointment in appointments if appointment.is_active()]
+        """Returns the appointments that overlaps with the start/end date range"""
+        return Appointment.objects.overlapping(start, end, employee=self)
 
-    # To be available the times must fit inside a frame and not overlap existing appointments
     def is_available(self, apt):
+        """
+        Returns true if the employee has availability in the schedule
+        and no overlapping appointments for the appointment
+        """
         return self._has_availability(apt.start, apt.end) and not self._is_overlapping(apt.start, apt.end, apt.id)
 
-    # Check id the appointment fits inside a frame
     def _has_availability(self, start, end):
-        availability = [*self.get_availability(start.date())]
-        for frame in availability:
-            if start.time() >= frame.start and end.time() <= frame.end:
-                return True
-        return False
+        """Returns true if the employee has availability in the schedule for the start / end date provided"""
+        return any(frame.is_beyond(start.time(), end.time()) for frame in self.get_availability(start.date()))
 
-    # Check if the appointment overlaps with any other appointment already booked.
     def _is_overlapping(self, start, end, exclude_id):
-        # Gets the list of all appointments that has the start or end datetime between the given start/end datetime
-        starts_or_ends_between = self.service_provided.filter(models.Q(start__gte=start, start__lt=end)
-                                                              | models.Q(end__gt=start, end__lte=end))
-
-        # For the list of appointments only consider the appointments that are active and is not the id provided
-        return any(x.is_active() and x.id != exclude_id for x in starts_or_ends_between)
+        """Returns true if the appointment overlaps with any other appointment booked for this employee"""
+        return Appointment.objects.overlapping(start, end, employee=self, exclude_id=exclude_id)
 
     def clean(self):
         Person.clean(self)
