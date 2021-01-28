@@ -112,8 +112,8 @@ class Employee(Person):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)
     private = models.BooleanField(default=False)
     schedule = models.ForeignKey(Schedule, on_delete=models.SET_NULL, null=True, blank=True)
-    services = models.ManyToManyField(Service)
-    instagram = models.CharField(max_length=200, null=True)
+    services = models.ManyToManyField(Service, null=True)
+    instagram = models.CharField(max_length=200, null=True, blank=True)
     profile_img = CloudinaryField('image', null=True, blank=True)
     bio = models.TextField(max_length=600, null=True, blank=True)
 
@@ -465,11 +465,15 @@ class Company(models.Model):
 
     @property
     def employees(self):
-        return Employee.objects.filter(private=False, owner_id=self.id)
+        return self.employee_set.filter(private=False)
 
     @property
     def services(self):
-        return Service.objects.filter(private=False, owner_id=self.id)
+        return self.service_set.filter(private=False)
+
+    @property
+    def slug(self):
+        return self.name.replace(' ', '_')
 
     def update_is_viewable(self):
         """
@@ -480,7 +484,7 @@ class Company(models.Model):
                              and (self.config.can_receive_card_payments or self.config.allow_unpaid_request))
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        if self.name.count(' ') > 0:
+        if self.name.count('_') > 0:
             raise ValidationError({"name": "name should not contain spaces"})
 
         if self.id is None:
