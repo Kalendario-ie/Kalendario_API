@@ -158,7 +158,8 @@ class RequestReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Request
-        fields = ('id', 'owner', 'appointments', 'total', 'fee', 'complete', 'status', 'customer_notes', 'scheduled_date')
+        fields = (
+            'id', 'owner', 'appointments', 'total', 'fee', 'complete', 'status', 'customer_notes', 'scheduled_date')
 
 
 class RequestWriteSerializer(serializers.ModelSerializer):

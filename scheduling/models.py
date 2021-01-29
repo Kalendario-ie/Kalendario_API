@@ -298,11 +298,6 @@ class Request(CleanSaveMixin, models.Model):
     customer_notes = models.TextField(max_length=255, null=True, blank=True)
     _status = models.CharField(max_length=1, choices=Appointment.STATUS_CHOICES, default=Appointment.PENDING)
 
-    # Fields below are control fields used for stripe information
-    _stripe_payment_intent_id = models.CharField(max_length=255, null=True)
-    _stripe_is_paid = models.BooleanField(default=False)
-    _stripe_total_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-
     objects = managers.RequestManager()
 
     @property
@@ -321,45 +316,24 @@ class Request(CleanSaveMixin, models.Model):
         self.status = Appointment.ACCEPTED
 
     @property
-    def customer_email(self):
-        return self.user.email
-
-    @property
     def request_accepted_email_message(self):
-        message = f'Appointment for {self.owner.name} has been confirmed.\n\n'
-        # message += f'{self.service.name} on {self.start} \n\n'
+        message = f'Request for {self.owner.name} has been confirmed.\n\n'
         message += f'{self.owner.config.appointment_accepted_message}'
         return message
 
     @property
     def request_rejected_email_message(self):
-        message = f'Appointment for {self.owner.name} has been rejected.\n'
-        # message += f'{self.service.name} on {self.start}'
+        message = f'Request for {self.owner.name} has been rejected.\n'
         message += f'{self.owner.config.appointment_rejected_message}'
         return message
 
     @property
-    def sub_total(self):
-        total = 0
-        for appointment in self.appointment_set.all():
-            total += appointment.cost
-        return total
+    def total(self):
+        return sum(appointment.cost for appointment in self.appointment_set.all())
 
     @property
     def fee(self):
         return 1
-
-    @property
-    def fee_int(self):
-        return int(self.fee * 100)
-
-    @property
-    def total(self):
-        return self.sub_total + self.fee
-
-    @property
-    def total_int(self):
-        return int(self.total * 100)
 
     def add_appointment(self, user=None, **kwargs):
         """

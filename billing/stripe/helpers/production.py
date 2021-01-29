@@ -38,11 +38,14 @@ def generate_account_link(account_id, refresh_url, return_url):
 def create_payment_intent(request):
     account = request.owner.account
 
+    fee = int(request.fee * 100)
+    total = int(request.cost * 100)
+
     return stripe.PaymentIntent.create(
-        amount=request.total_int,
+        amount=total+fee,
         currency=account.default_currency,
         transfer_data={'destination': account.stripe_id},
-        application_fee_amount=request.fee_int,
+        application_fee_amount=fee,
         customer=request.user.billingusercustomer,
         metadata={'request_id': request.id}
     )

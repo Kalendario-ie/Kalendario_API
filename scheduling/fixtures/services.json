@@ -6,6 +6,7 @@
       "owner": 1,
       "name": "C1 SERVICE 1",
       "duration": "00:30:00",
+      "cost": "15.00",
       "description": "Service 1 Description"
     }
   },
@@ -16,6 +17,7 @@
       "owner": 1,
       "name": "C1 SERVICE 2",
       "duration": "00:45:00",
+      "cost": "23.00",
       "description": "Service 2 Description"
     }
   },
