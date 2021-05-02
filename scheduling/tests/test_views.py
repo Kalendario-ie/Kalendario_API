@@ -32,7 +32,9 @@ def create_self_apt_data(emp, start, end):
             }
 
 
-def test_user(person=models.Person(email="user@email.com")):
+def test_user(person=None):
+    if person is None:
+        person = models.Person(email="user@email.com")
     person.save()
     user = User.objects.create(email='user@email.com')
     user.set_password('UserPass')
@@ -783,7 +785,9 @@ class ScheduleViewSetTest(ViewTestCase):
     def setUp(self):
         self.list_url = reverse('schedule-list')
 
-    def detail_url(self, sid=models.Schedule.objects.first().id):
+    def detail_url(self, sid=None):
+        if sid is None:
+            sid = models.Schedule.objects.first().id
         return reverse('schedule-detail', kwargs={'pk': sid})
 
     def test_anonymous_user_all_unauthorized(self):

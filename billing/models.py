@@ -95,6 +95,10 @@ class PaymentIntent(models.Model):
     def customer(self):
         return self.user.billingusercustomer
 
+    @property
+    def fee(self):
+        return self.amount * 0.01
+
     def update_stripe_fields(self, stripe_intent):
         self.stripe_id = stripe_intent.id
         self.client_secret = stripe_intent.client_secret

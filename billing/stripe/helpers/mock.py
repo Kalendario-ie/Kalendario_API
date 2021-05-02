@@ -200,10 +200,10 @@ def create_account(company):
 StripePaymentIntent = namedtuple('MyStruct', 'id  client_secret amount application_fee_amount')
 
 
-def create_payment_intent(request):
-    fee = (request.fee * 100)
-    total = int(request.total * 100)
-    return StripePaymentIntent(id='test_id', client_secret='', amount=total+fee,
+def create_payment_intent(intent):
+    total = int(intent.request.total * 100)
+    fee = total*0.01
+    return StripePaymentIntent(id='test_id', client_secret='', amount=total,
                                application_fee_amount=fee)
 
 

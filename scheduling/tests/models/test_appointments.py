@@ -17,6 +17,13 @@ class AppointmentTest(TestCaseWF):
             'service': Service.objects.get(pk=1)
         }
 
+    def test_add_appointment_with_service_and_no_customer(self):
+        """This should throw an error as the appointment must have a customer"""
+        data = self.data()
+        data['start'] = next_tuesday().replace(hour=9, minute=0)
+        del(data['service'])
+        self.assertRaises(ValidationError, book_appointment, **data)
+
     def test_add_appointment_scheduled_day_correct_time(self):
         data = self.data()
         data['start'] = next_tuesday().replace(hour=9, minute=0)

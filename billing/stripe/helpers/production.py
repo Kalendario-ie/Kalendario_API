@@ -35,27 +35,23 @@ def generate_account_link(account_id, refresh_url, return_url):
     return account_link.url
 
 
-def create_payment_intent(request):
-    account = request.owner.account
-
-    fee = int(request.fee * 100)
-    total = int(request.cost * 100)
+def create_payment_intent(intent):
 
     return stripe.PaymentIntent.create(
-        amount=total+fee,
-        currency=account.default_currency,
-        transfer_data={'destination': account.stripe_id},
-        application_fee_amount=fee,
-        customer=request.user.billingusercustomer,
-        metadata={'request_id': request.id}
+        amount=intent.amout,
+        currency=intent.account.default_currency,
+        transfer_data={'destination': intent.account.stripe_id},
+        application_fee_amount=intent.fee,
+        customer=intent.user.billingusercustomer,
+        metadata={'request_id': intent.request.request.id}
     )
 
 
 def update_payment_intent(intent):
     return stripe.PaymentIntent.modify(
         intent.stripe_id,
-        amount=intent.request.total_int,
-        application_fee_amount=intent.request.fee_int,
+        amount=intent.amout,
+        application_fee_amount=intent.fee,
     )
 
 
