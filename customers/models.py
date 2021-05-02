@@ -56,8 +56,7 @@ def get_availability(employee: Employee, customer, start, end):
 
     # goes through appointments removing the time of an appointment from the slot belongs to
     for appointment in appointments:
-        for i in range(len(slots)):
-            slot = slots[i]
+        for i, slot in enumerate(slots):
             if appointment.start <= slot.start and appointment.end >= slot.end:
                 slots = slots[:i] + slots[i + 1:]
             if appointment.start >= slot.start and appointment.end <= slot.end:
