@@ -1,3 +1,5 @@
+from django.core.exceptions import ValidationError
+
 from customers.models import get_availability_for_service
 from customers.tests.generics import TestCaseWF
 from scheduling import models
@@ -13,6 +15,9 @@ class SlotTest(TestCaseWF):
 
     def book_appointment(self, date):
         return util.book_appointment(self.emp, self.customer, date, self.service)
+
+    def lock_period(self, start, end):
+        return util.book_appointment(self.emp, start=start, end=end, ignore_availability=True)
 
     def get_slots(self, date_to_check, emp=None):
         return get_availability_for_service(self.service,
@@ -57,6 +62,11 @@ class SlotTest(TestCaseWF):
             self.assertEqual(slot.duration(), self.service.duration)
 
         self.assertEqual(len(slots), 12)
+
+    def test_day_inside_locked_period(self):
+        self.lock_period(util.next_tuesday(-1), util.next_tuesday(2))
+        slots = self.get_slots_for_emp(util.next_tuesday())
+        self.assertEqual(len(slots), 0)
 
     def test_day_without_schedule(self):
         slots = self.get_slots_for_emp(util.next_monday())
