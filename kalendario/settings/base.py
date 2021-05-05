@@ -211,3 +211,5 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': 120.0
     },
 }
+
+SPA_BASE_URL = os.environ.get('SPA_URL')
