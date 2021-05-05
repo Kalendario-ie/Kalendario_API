@@ -1,5 +1,5 @@
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
-from rest_auth.registration import views
+from dj_rest_auth.registration import views
 from rest_framework.permissions import IsAuthenticated
 from allauth.account.utils import send_email_confirmation
 
