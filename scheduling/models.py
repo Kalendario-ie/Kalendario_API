@@ -286,7 +286,7 @@ class Appointment(SafeDeleteModel):
         return self.delete(force_policy=HARD_DELETE)
 
     def __str__(self):
-        return f"{self.id} C: {self.customer} E: {self.employee}"
+        return f"{self.start} {self.end} C: {self.customer} E: {self.employee}"
 
 
 class Request(CleanSaveMixin, models.Model):

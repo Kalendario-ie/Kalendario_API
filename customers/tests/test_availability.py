@@ -1,5 +1,3 @@
-from django.core.exceptions import ValidationError
-
 from customers.models import get_availability_for_service
 from customers.tests.generics import TestCaseWF
 from scheduling import models

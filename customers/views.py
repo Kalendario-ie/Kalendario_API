@@ -39,15 +39,16 @@ class RequestViewSet(mixins.QuerysetSerializerMixin,
             queryset = queryset.filter(scheduled_date__lte=to_date)
         return queryset
 
-    def get_current(self):
-        owner_id = self.get_queryset_params().get('owner')
-        return models.Request.objects.get_current(owner_id, self.request.user.id)
+    def get_current(self, owner_id=None):
+        if not owner_id:
+            owner_id = self.get_queryset_params().get('owner')
+        instance = models.Request.objects.get_current(owner_id, self.request.user.id)
+        serializer = self.get_read_serializer(instance)
+        return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
     def current(self, request, *args, **kwargs):
-        instance = self.get_current()
-        serializer = self.get_read_serializer(instance)
-        return Response(serializer.data)
+        return self.get_current()
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -64,6 +65,20 @@ class RequestViewSet(mixins.QuerysetSerializerMixin,
         serializer.save()
         read_serializer = self.get_read_serializer(serializer.instance)
         return Response(read_serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(detail=False, methods=['post'])
+    def delete(self, request, *args, **kwargs):
+        """
+        This is different from destroy as this method allows to delete the appointment by only providing the id of the appointment
+        :param request: params {appointment: number}
+        """
+        appointment_id = self.request.data['appointment']
+        appointment = models.Appointment.objects.get(pk=appointment_id)
+        if appointment and appointment.customer.user_id == request.user.id:
+            owner_id = appointment.owner_id
+            appointment.delete()
+            return self.get_current(owner_id)
+        return Response({'error': 'invalid appointment id'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
     @action(detail=True, methods=['patch'])
     def confirm(self, request, *args, **kwargs):

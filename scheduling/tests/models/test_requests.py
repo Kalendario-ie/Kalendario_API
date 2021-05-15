@@ -46,6 +46,17 @@ class RequestTest(TestCaseWF):
                            owner_id=1)
         self.assertEqual(len(r1.appointment_set.all()), 1)
 
+    def test_add_appointment_no_employee(self):
+        """
+        requests can have appointments without an employee id
+        """
+        r1 = get_current()
+        r1.add_appointment(start=next_tuesday().replace(hour=9, minute=0),
+                           service_id=1,
+                           customer_id=2001,
+                           owner_id=1)
+        self.assertEqual(len(r1.appointment_set.all()), 1)
+
     def test_add_appointment_using_user(self):
         """
         Adding appointment providing the user instead of the customer should work the same way
