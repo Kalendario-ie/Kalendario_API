@@ -7,8 +7,8 @@ from scheduling.models import Employee
 class Slot:
 
     def __init__(self, start: datetime.datetime, end):
-        self.start = start.replace(second=0, microsecond=0)
-        self.end = end.replace(second=0, microsecond=0)
+        self.start = start
+        self.end = end
 
     def duration(self):
         return self.end - self.start
@@ -40,14 +40,17 @@ class Slot:
 
 
 def get_availability(employee: Employee, customer, start, end):
-    if start.date() <= datetime.date.today():
+    if start < datetime.datetime.now():
+        start = datetime.datetime.now()
+
+    if end.date() <= datetime.date.today():
         raise InvalidActionException("Date can't be in the past")
 
-    day = start
+    day = start.replace(hour=0, minute=0, second=0, microsecond=0)
     slots = []
     while day < end:
-        frames = employee.get_availability(day)
-        slots.extend([Slot.create_slot(day, x.start, x.end) for x in frames])
+        frame_slots = [Slot.create_slot(day, frame.start, frame.end) for frame in employee.get_availability(day)]
+        slots.extend([slot for slot in frame_slots if slot.start > start])
         day = day + datetime.timedelta(days=1)
 
     appointments = employee.confirmed_appointments(start, end)
