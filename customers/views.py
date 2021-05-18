@@ -136,3 +136,23 @@ class CompanyViewSet(viewsets.ReadOnlyModelViewSet):
         slots = get_availability_for_service(**query_serializer.validated_data)
         slot_serializer = serializers.SlotSerializer(slots, many=True)
         return Response(slot_serializer.data)
+
+
+class AppointmentViewSet(mixins.QuerysetSerializerMixin,
+                         mixins.RequireAuthMixin,
+                         viewsets.ReadOnlyModelViewSet):
+    queryset_serializer_class = serializers.AppointmentQuerySerializer
+    read_serializer_class = serializers.AppointmentReadSerializer
+
+    def get_queryset(self, **kwargs):
+        queryset = models.Appointment.objects.filter(request__user_id=self.request.user.id).order_by('start')
+        params = self.get_queryset_params()
+
+        from_date = params.get('start')
+        if from_date is not None:
+            queryset = queryset.filter(start__gte=from_date)
+
+        to_date = params.get('end')
+        if to_date is not None:
+            queryset = queryset.filter(end__lte=to_date)
+        return queryset

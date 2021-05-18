@@ -121,9 +121,8 @@ class AddAppointmentSerializer(serializers.ModelSerializer):
 
 
 class AppointmentQuerySerializer(serializers.Serializer):
-    status = serializers.CharField(required=False)
-    employees = serializers.ListField(required=False)
-    services = serializers.ListField(required=False)
+    start = serializers.DateTimeField(required=False)
+    end = serializers.DateTimeField(required=False)
 
     def create(self, validated_data):
         pass
