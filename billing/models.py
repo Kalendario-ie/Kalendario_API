@@ -78,8 +78,8 @@ class PaymentIntent(models.Model):
     client_secret = models.CharField(max_length=255, null=True)
     paid = models.BooleanField(default=False)
     application_fee_amount = models.FloatField(default=0)
-    amount = models.FloatField(default=0)
-    amount_received = models.FloatField(default=0)
+    amount = models.IntegerField(default=0)
+    amount_received = models.IntegerField(default=0)
 
     objects = managers.PaymentIntentManager()
 
@@ -97,7 +97,7 @@ class PaymentIntent(models.Model):
 
     @property
     def fee(self):
-        return self.amount * 0.01
+        return int(self.amount * 0.01)
 
     def update_stripe_fields(self, stripe_intent):
         self.stripe_id = stripe_intent.id
