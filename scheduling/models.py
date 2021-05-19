@@ -153,6 +153,7 @@ class Employee(Person):
 class Customer(Person):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)
     user = models.ForeignKey('core.User', on_delete=models.SET_NULL, null=True, blank=True)
+    warning = models.CharField(max_length=255, null=True)
 
     def confirmed_appointments(self, start, end):
         appointments = self.service_received.filter(start__gte=start, start__lte=end)

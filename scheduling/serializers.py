@@ -130,7 +130,7 @@ class ScheduleReadSerializer(serializers.ModelSerializer):
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Customer
-        fields = ('id', 'owner', 'first_name', 'last_name', 'name', 'phone', 'email')
+        fields = ('id', 'owner', 'first_name', 'last_name', 'name', 'phone', 'email', 'warning')
 
 
 class AppointmentReadSerializer(serializers.ModelSerializer):
