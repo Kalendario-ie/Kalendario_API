@@ -14,13 +14,18 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'email', 'phone', 'services', 'profile_img', 'bio')
 
 
-class UserAdminSerializer(serializers.ModelSerializer):
+class UserAdminReadSerializer(serializers.ModelSerializer):
     employee = EmployeeSerializer(read_only=True)
-    employee_id = serializers.IntegerField()
 
     class Meta:
         model = models.User
         fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name', 'groups', 'employee', 'employee_id')
+
+
+class UserAdminWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User
+        fields = ('id', 'owner', 'email', 'first_name', 'last_name', 'name', 'groups', 'employee')
 
 
 class PasswordChangeSerializer(serializers.Serializer):

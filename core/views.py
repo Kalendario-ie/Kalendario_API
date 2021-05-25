@@ -8,7 +8,8 @@ from core import models, serializers
 class UserViewSet(mixins.WithPermissionsMixin,
                   mixins.AuthOwnerFilterMixin,
                   viewsets.ModelViewSet):
-    serializer_class = serializers.UserAdminSerializer
+    read_serializer_class = serializers.UserAdminReadSerializer
+    write_serializer_class = serializers.UserAdminWriteSerializer
     queryset = models.User.objects.all()
 
     @action(detail=True, methods=['patch'])

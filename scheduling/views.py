@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from kalendario.common import viewsets, mixins
+from kalendario.common import viewsets, mixins, mail
 from scheduling import serializers, models
 import logging
 logger = logging.getLogger(__name__)
@@ -98,7 +98,11 @@ class RequestViewSet(mixins.WithPermissionsMixin,
         instance.status = models.Appointment.ACCEPTED
         serializer = self.get_read_serializer(instance)
         response = Response(serializer.data)
-        # TODO: PENDING EMAIL
+        message = instance.owner.config.appointment_accepted_message
+        try:
+            mail.send_mail('Request Accepted', message, [instance.user.email])
+        except Exception as e:
+            logger.error(f'could not email user {request.user.email}: {e}')
         return response
 
     @action(detail=True, methods=['patch'])
@@ -107,6 +111,11 @@ class RequestViewSet(mixins.WithPermissionsMixin,
         instance.status = models.Appointment.REJECTED
         serializer = self.get_read_serializer(instance)
         response = Response(serializer.data)
+        message = instance.owner.config.appointment_rejected_message
+        try:
+            mail.send_mail('Request Rejected', message, [instance.user.email])
+        except Exception as e:
+            logger.error(f'could not email user {request.user.email}: {e}')
         return response
 
 
