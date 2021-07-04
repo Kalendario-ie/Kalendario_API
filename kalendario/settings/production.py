@@ -1,5 +1,4 @@
 from .base import *
-import django_heroku
 
 DEBUG = os.environ.get('DEBUG_MODE', False)
 
@@ -20,8 +19,20 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# Activate Django-Heroku.
-django_heroku.settings(locals(), logging=False)
+
+# DBHOST is only the server name, not the full URL
+hostname = os.environ['DBHOST']
+# # Activate Django-Heroku.
+# django_heroku.settings(locals(), logging=False)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['DBNAME'],
+        'HOST': hostname + ".postgres.database.azure.com",
+        'USER': os.environ['DBUSER'] + "@" + hostname,
+        'PASSWORD': os.environ['DBPASS']
+    }
+}
 
 LOGGING = {
     'version': 1,
