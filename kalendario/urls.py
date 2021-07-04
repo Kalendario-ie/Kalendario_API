@@ -9,10 +9,10 @@ SPA_URL = getattr(settings, 'SPA_BASE_URL', '')
 
 urlpatterns = [
     url(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        PasswordResetRedirect.as_view(url=SPA_URL),
+        PasswordResetRedirect.as_view(url=SPA_URL + 'auth/'),
         name='password_reset_confirm'),
 
-    url(r'account-confirm-email/', RedirectView.as_view(url=SPA_URL + 'account-confirm-email/'),
+    url(r'account-confirm-email/', RedirectView.as_view(url=SPA_URL + 'auth/account-confirm-email/'),
         name='account_email_verification_sent'),
 
     path('api/auth/', include('app_auth.urls')),
