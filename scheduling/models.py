@@ -112,7 +112,7 @@ class Employee(Person):
     owner = models.ForeignKey('Company', on_delete=models.CASCADE)
     private = models.BooleanField(default=False)
     schedule = models.ForeignKey(Schedule, on_delete=models.SET_NULL, null=True, blank=True)
-    services = models.ManyToManyField(Service, null=True)
+    services = models.ManyToManyField(Service)
     instagram = models.CharField(max_length=200, null=True, blank=True)
     profile_img = CloudinaryField('image', null=True, blank=True)
     bio = models.TextField(max_length=600, null=True, blank=True)
