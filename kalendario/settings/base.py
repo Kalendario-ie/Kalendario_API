@@ -211,4 +211,4 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
-SPA_BASE_URL = os.environ.get('SPA_URL')
+SPA_BASE_URL = os.environ.get('SPA_URL', '')

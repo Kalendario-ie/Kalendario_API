@@ -4,9 +4,9 @@ DEBUG = os.environ.get('DEBUG_MODE', False)
 
 ENVIRONMENT = 'PROD'
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(';')
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(';')
 
-white_list = os.getenv('DJANGO_CORS_ORIGIN_WHITELIST')
+white_list = os.environ.get('DJANGO_CORS_ORIGIN_WHITELIST')
 CORS_ORIGIN_WHITELIST = tuple(white_list.split(';')) if white_list is not None else ()
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -57,7 +57,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console', 'logfile'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
             'propagate': False,
         },
     },
