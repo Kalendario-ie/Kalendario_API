@@ -12,6 +12,10 @@ jobs:
     env:
       PYTHONUNBUFFERED: 1
       DJANGO_SETTINGS_MODULE: kalendario.settings.test
+      DBHOST: ${{ secrets.DBHOST }}
+      DBNAME: ${{ secrets.DBNAME }}
+      DBUSER: ${{ secrets.DBUSER }}
+      DBPASS: ${{ secrets.DBPASS }}
     strategy:
       max-parallel: 4
       matrix:

@@ -1,6 +1,5 @@
 import dotenv
 import os
-import dj_database_url
 
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -108,7 +107,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kalendario.wsgi.application'
 
-DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['DBNAME'],
+        'HOST': os.environ['DBHOST'],
+        'USER': os.environ['DBUSER'],
+        'PASSWORD': os.environ['DBPASS']
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
