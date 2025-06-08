@@ -1,0 +1,64 @@
+$grid-breakpoints: (
+        xs: 0, // handset portrait (small, medium, large) | handset landscape (small)
+        sm: 600px, // handset landscape (medium, large) | tablet portrait(small, large)
+        md: 960px, //  tablet landscape (small, large)
+        lg: 1280px, // laptops and desktops
+        xl: 1600px // large desktops
+);
+
+$container-max-widths: (
+        sm: 600px,
+        md: 960px,
+        lg: 1280px,
+        xl: 1600px
+);
+
+$link-color: #3f51b5;
+$link-hover-color: currentColor;
+$link-hover-decoration: none;
+$label-margin-bottom: 0;
+$font-family-base: Inter, serif;
+$body-color: #3D3D51;
+$body-bg: white;
+$headings-font-weight: bold;
+$disable-color: #f0f0f0;
+
+$ksuccess: #27AE60;
+$primary: #0DB4B9;
+$accent-light: #F2A1A1;
+$accent: #E76D89;
+$primary-gradient: linear-gradient(205.76deg, #0DB4B9 0%, #f9f871 191.92%);
+$white-gray: rgb(248, 249, 250);
+$light-gray: #D0D0D0;
+$medium-gray: #A1A1A1;
+$view-height: calc(100vh - 56px);
+
+$theme-colors: (
+        "accent": $accent,
+        "accent-light": $accent-light,
+        "ksuccess": $ksuccess,
+        "light-gray": $light-gray,
+        "medium-gray": $medium-gray,
+        "white-gray": $white-gray
+);
+
+$btn-disabled-opacity: 0.2;
+$btn-border-radius: 10px;
+$btn-padding-y: 0.5rem;
+$btn-padding-x: 1rem;
+
+
+$list-group-action-hover-color: $accent-light;
+$list-group-hover-bg: inherit;
+$list-group-bg: inherit;
+
+$breadcrumb-bg: white;
+
+
+$card-border-radius: 10px;
+
+//z-layer
+$zindex-navbar: 101;
+$zindex-sidebar: 100;
+$zindex-sticky: 99;
+$zindex-sticky-top-left: 98;

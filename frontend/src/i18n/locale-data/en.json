@@ -1,0 +1,69 @@
+{
+  "AUTH": {
+    "LOGIN-HEADER": "Log in to Kalendario",
+    "REGISTER-HEADER": "Register to Kalendario",
+    "RESET-PASS-HEADER": "Reset your password",
+    "RESET-PASS-CONFIRM": "Send Email",
+    "RESET-PASS-TEXT": "Can't login? Reset Password",
+    "RESET-PASS-SENT": "Email sent successfully, check you inbox for further instructions",
+    "RESET-PASS-CONFIRM-HEADER": "Reset your password",
+    "RESET-PASS-CONFIRM-BUTTON": "Reset Password",
+    "RESET-PASS-CONFIRM-SENT": "Password reset successfully head to login page to login",
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "LOGOUT": "Logout",
+    "LOGOUT-SUCCESS": "Successfully logged out"
+  },
+  "COMMON": {
+    "FORM": {
+      "SUBMIT": "Submit",
+      "CANCEL": "Cancel",
+      "PROCESSING": "Processing"
+    },
+    "SURE-DELETE": "Are you sure you want to delete?"
+  },
+  "NAVBAR": {
+    "ADMIN": "Admin Dashboard",
+    "EMPLOYEE": "Employee Dashboard"
+  },
+  "COMPANY": {
+    "NO-SLOTS": "No time available for the date selected",
+    "EMPTY-CART": "Cart is empty",
+    "PROCEED-CHECKOUT": "Proceed to checkout",
+    "ADD-NOTES": "Add notes to the request",
+    "NOTES": "Notes",
+    "PAY-CARD": "Card",
+    "PAY-CASH": "Cash"
+  },
+  "APPOINTMENT": {
+    "STATUS": {
+      "P": "Pending",
+      "A": "Accepted",
+      "R": "Rejected"
+    }
+  },
+  "USER": {
+    "BOOKINGS": "Bookings"
+  },
+  "PAYMENTS": {
+    "PAY": "PAY",
+    "HEADER": "Payment with Stripe"
+  },
+  "ADMIN": {
+    "COMMON": {
+      "BACK-TO-LIST": "Back to list",
+      "HOME": "Home",
+      "SERVICES": "Services",
+      "SCHEDULES": "Schedules",
+      "EMPLOYEES": "Employees",
+      "CUSTOMERS": "Customers",
+      "CUSTOMER-DETAILS": "Customer Details",
+      "USERS": "Users",
+      "PERMISSION-GROUPS": "Permission Groups",
+      "APPOINTMENTS": "Appointments"
+    },
+    "SCHEDULE": {
+      "EDIT-FRAME-MODAL": "Edit frame times"
+    }
+  }
+}

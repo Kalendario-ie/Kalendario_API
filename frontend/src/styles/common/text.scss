@@ -1,0 +1,21 @@
+.text-small {
+font-size: 0.8rem;
+}
+
+.text-super-small {
+  font-size: 0.6rem;
+}
+
+p {
+  white-space: pre-line;
+}
+
+.fix-size {
+  font-size: 16px;
+}
+
+@each $color, $value in $theme-colors {
+  .underline-#{$color} {
+    text-decoration: underline $value;
+  }
+}

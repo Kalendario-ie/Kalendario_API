@@ -1,0 +1,8 @@
+
+ul.tree-view {
+  padding-inline-start: 0;
+}
+
+ul.tree-view > li > ul.tree-view {
+  padding-left: 16px
+}

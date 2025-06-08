@@ -1,0 +1,43 @@
+.form-control.form-control-admin {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+//
+//.form-control.form-control-admin:focus {
+//  border: 1px solid $primary;
+//}
+.form-control:focus {
+  border-color: $primary;
+}
+
+.form-control.ng-invalid {
+  border-color: red;
+}
+
+.input-group-text.input-group-text-admin {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+
+.input-default {
+  background-color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 15px;
+  border: 0;
+}
+
+.input-default::-webkit-input-placeholder {
+  letter-spacing: 0.12em;
+}
+
+.form-holder > i {
+  position: absolute;
+  right: 23px;
+  top: 15px;
+}
+
+.input-no-border {
+  border: 0;
+}

@@ -1,0 +1,35 @@
+html {
+  font-size: 1rem;
+  font-style: normal;
+}
+
+
+@include media-breakpoint-up(xs) {
+  .responsive-fs {
+    font-size: 0.5rem;
+  }
+}
+
+
+@include media-breakpoint-up(sm) {
+  .responsive-fs {
+    font-size: 0.5rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .responsive-fs {
+    font-size: 0.75rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .responsive-fs {
+    font-size: 1.0rem;
+  }
+}
+
+
+.tiny {
+  font-size: 0.6rem;
+}

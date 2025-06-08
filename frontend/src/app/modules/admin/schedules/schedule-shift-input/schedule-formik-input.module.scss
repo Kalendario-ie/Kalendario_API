@@ -1,0 +1,29 @@
+.lineCell {
+  min-height: 3rem;
+  max-height: 3rem;
+  min-width: 3rem;
+  max-width: 3rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-align: center;
+  border-bottom: 0.5px solid #B4B4B4;
+}
+
+.borderLeft {
+  border-left: 0.5px solid #B4B4B4;
+}
+
+
+.frameBox {
+  position: absolute;
+  min-width: 2rem;
+  max-width: 2rem;
+  z-index: 4;
+}
+
+.hourBox {
+  position: absolute;
+  right: 3.25rem;
+  bottom: 2.25rem;
+}

@@ -1,0 +1,130 @@
+
+.kalendario-company {
+  padding-top: 2rem;
+
+  h1, .h1 {
+    padding-bottom: 2.5rem;
+  }
+}
+
+.c-warn {
+  color: $danger;
+}
+
+@each $color, $value in $theme-colors {
+  .c-#{$color} {
+    color: $value;
+  }
+}
+
+
+@each $color, $value in $theme-colors {
+  .bg-#{$color} {
+    color: color-yiq($value);
+    background-color: $value;
+  }
+}
+
+.bg-primary-gradient {
+  background: $primary-gradient;
+  color: white;
+}
+
+.bs-primary {
+  border: 2px solid $primary;
+}
+
+.bg-primary {
+  background-color: $primary;
+}
+
+.no-border {
+  border: 0 !important;
+  box-sizing: border-box;
+}
+
+.light-grey {
+  color: #A1A1A1;
+}
+
+
+.company-circle-img-7 {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 7rem;
+  height: 7rem;
+}
+
+.company-circle-img-3 {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 3rem;
+  height: 3rem;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
+}
+
+.company-shadow-0 {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.company-shadow-1 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mat-radio-container {
+  .mat-radio-inner-circle, .mat-radio-outer-circle {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+ul.ul-none {
+  list-style-type: none;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  // Avoid browsers rendering the focus ring in some cases.
+  outline: 0;
+
+  // Avoid some cases where the browser will still render the native controls (see #9049).
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+
+.slot-button {
+  padding: 0.5rem;
+  border-radius: 3px;
+  text-align: center;
+  width: 10rem;
+  cursor: pointer;
+}
+
+
+.m-1r {
+  margin: 1rem;
+}
+
+.sticky-top-left {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: $zindex-sticky-top-left;
+}

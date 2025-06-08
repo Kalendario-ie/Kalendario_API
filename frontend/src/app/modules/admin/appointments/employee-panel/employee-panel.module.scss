@@ -1,0 +1,45 @@
+@import "src/styles/variables";
+
+$base-width: 12.5rem;
+$border-color: #d3d3d3;
+
+.sideItem {
+  min-width: 5rem;
+  width: 5rem;
+}
+
+.panelItem {
+  min-width: $base-width;
+  width: $base-width;
+  border-bottom: 0.5px solid $border-color;
+  border-right: 0.5px solid $border-color;
+}
+
+.middleItem {
+  width: $base-width;
+  border-bottom: 0.5px dashed $border-color;
+  border-right: 0.5px solid $border-color;
+}
+
+.unavailableSlot {
+  background-color: rgba(208, 208, 208, 0.4);
+}
+
+.borderRight {
+  border-bottom: 0.5px solid $border-color;
+  border-right: 0.5px solid $border-color;
+}
+
+.panelEvent {
+  position: absolute;
+  border: 0.5px lightgray solid;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.currentTimeLine {
+  border-bottom: $accent 1px solid;
+  width: 100%;
+  position: absolute;
+  z-index: 40;
+}

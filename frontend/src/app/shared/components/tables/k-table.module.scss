@@ -1,0 +1,9 @@
+@import 'src/styles/variables';
+
+.fixedHeaders > thead > tr > th {
+  position: sticky;
+  top: 0;
+  border-top: 0;
+  z-index: $zindex-sticky;
+  background-color: $white-gray;
+}

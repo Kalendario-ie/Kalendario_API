@@ -1,0 +1,83 @@
+@import "toggle";
+
+.btn {
+  &.disabled,
+  &:disabled {
+    background-color: $disable-color;
+    border-color: $disable-color;
+    opacity: 1;
+    color: $body-color;
+  }
+}
+
+.btn-light {
+  background-color: transparent;
+  border: 0;
+}
+
+.btn-primary-gradient {
+  background: $primary-gradient;
+  border-radius: 4rem;
+  color: white;
+}
+
+.btn-round {
+  border-radius: 1.5rem;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+}
+
+.btn-accent, .btn-accent:hover {
+  color: white;
+}
+
+button.btn-details {
+  border-radius: 0;
+  padding: 0 0;
+  border-width: 0;
+  border-style: none;
+  border-image: none;
+  border-bottom: $accent 1px solid;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.08em;
+  color: $accent;
+  background-color: $body-bg;
+}
+
+button.btn-details:hover {
+  color: $accent-light;
+  border-color: $accent-light;
+}
+
+button:disabled {
+  cursor: default;
+  pointer-events: all !important;
+}
+
+.btn.btn-admin {
+  border-radius: 4px;
+}
+
+.btn.btn-fab {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.icon-button {
+  border: 0;
+  background-color: inherit;
+}
+
+.icon-button:disabled {
+  color: gray;
+  opacity: 50%;
+}
